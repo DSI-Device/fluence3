@@ -1,11 +1,11 @@
-//
-// Prefix header for all source files of the 'Fluence3' target in the 'Fluence3' project
+////
+// Prefix header for all source files of the 'FBTest' target in the 'FBTest' project
 //
 
 #import <Availability.h>
 
-#ifndef __IPHONE_3_0
-#warning "This project uses features only available in iOS SDK 3.0 and later."
+#ifndef __IPHONE_4_0
+#warning "This project uses features only available in iOS SDK 4.0 and later."
 #endif
 
 #ifdef __OBJC__
