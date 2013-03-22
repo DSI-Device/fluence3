@@ -7,174 +7,501 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C89E776C16FC991A00CF25B6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89E776B16FC991A00CF25B6 /* UIKit.framework */; };
-		C89E776E16FC991A00CF25B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89E776D16FC991A00CF25B6 /* Foundation.framework */; };
-		C89E777016FC991A00CF25B6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89E776F16FC991A00CF25B6 /* CoreGraphics.framework */; };
-		C89E777616FC991A00CF25B6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C89E777416FC991A00CF25B6 /* InfoPlist.strings */; };
-		C89E777816FC991A00CF25B6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C89E777716FC991A00CF25B6 /* main.m */; };
-		C89E777C16FC991A00CF25B6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C89E777B16FC991A00CF25B6 /* AppDelegate.m */; };
+		C889BACB16F213370040CA39 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889BACA16F213370040CA39 /* UIKit.framework */; };
+		C889BACD16F213370040CA39 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889BACC16F213370040CA39 /* Foundation.framework */; };
+		C889BACF16F213370040CA39 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889BACE16F213370040CA39 /* CoreGraphics.framework */; };
+		C889BAD516F213370040CA39 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C889BAD316F213370040CA39 /* InfoPlist.strings */; };
+		C889BAD716F213370040CA39 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C889BAD616F213370040CA39 /* main.m */; };
+		C889BADB16F213370040CA39 /* Fluence3AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C889BADA16F213370040CA39 /* Fluence3AppDelegate.m */; };
+		C889BADE16F213370040CA39 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C889BADD16F213370040CA39 /* MainViewController.m */; };
+		C889BAE116F213370040CA39 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C889BADF16F213370040CA39 /* MainViewController.xib */; };
+		C889BAE816F213670040CA39 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889BAE716F213670040CA39 /* Accounts.framework */; };
+		C889BAEA16F2137F0040CA39 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889BAE916F2137F0040CA39 /* CoreLocation.framework */; };
+		C889BAEC16F213AF0040CA39 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C889BAEB16F213AF0040CA39 /* FacebookSDKResources.bundle */; };
+		C889BAEE16F213BF0040CA39 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889BAED16F213BF0040CA39 /* FacebookSDK.framework */; };
+		C889BAF216F2152E0040CA39 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C889BAF016F2152E0040CA39 /* LoginViewController.m */; };
+		C889BAF316F2152E0040CA39 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C889BAF116F2152E0040CA39 /* LoginViewController.xib */; };
+		C8952FB516F99E7B004EDAD7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8952FB416F99E7B004EDAD7 /* QuartzCore.framework */; };
+		C8952FB916F9A25A004EDAD7 /* GalleryController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8952FB716F9A25A004EDAD7 /* GalleryController.m */; };
+		C8952FBA16F9A25A004EDAD7 /* GalleryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8952FB816F9A25A004EDAD7 /* GalleryController.xib */; };
+		C897EE7016F709EA00AC1194 /* setupDao.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EE6616F709EA00AC1194 /* setupDao.m */; };
+		C897EE7116F709EA00AC1194 /* searchDao.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EE6716F709EA00AC1194 /* searchDao.m */; };
+		C897EE7216F709EA00AC1194 /* registrationDao.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EE6816F709EA00AC1194 /* registrationDao.m */; };
+		C897EE7316F709EA00AC1194 /* commonDao.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EE6916F709EA00AC1194 /* commonDao.m */; };
+		C897EE7416F709EA00AC1194 /* BaseDao.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EE6A16F709EA00AC1194 /* BaseDao.m */; };
+		C897EE7816F70A7D00AC1194 /* IreferConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EE7616F70A7D00AC1194 /* IreferConstraints.m */; };
+		C897EE7E16F70AF300AC1194 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C897EE7D16F70AF300AC1194 /* libsqlite3.dylib */; };
+		C897EEA116F70BE100AC1194 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = C897EE9D16F70BE100AC1194 /* sqlite3.c */; };
+		C897EEA216F70BE100AC1194 /* shell.c in Sources */ = {isa = PBXBuildFile; fileRef = C897EE9E16F70BE100AC1194 /* shell.c */; };
+		C897EED216F71A8F00AC1194 /* MYSBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EEBF16F71A8F00AC1194 /* MYSBJsonWriter.m */; };
+		C897EED316F71A8F00AC1194 /* MYSBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EEC016F71A8F00AC1194 /* MYSBJsonTokeniser.m */; };
+		C897EED416F71A8F00AC1194 /* MYSBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EEC116F71A8F00AC1194 /* MYSBJsonStreamWriterState.m */; };
+		C897EED516F71A8F00AC1194 /* MYSBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EEC216F71A8F00AC1194 /* MYSBJsonStreamWriter.m */; };
+		C897EED616F71A8F00AC1194 /* MYSBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EEC316F71A8F00AC1194 /* MYSBJsonStreamParserState.m */; };
+		C897EED716F71A8F00AC1194 /* MYSBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EEC416F71A8F00AC1194 /* MYSBJsonStreamParserAdapter.m */; };
+		C897EED816F71A8F00AC1194 /* MYSBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EEC516F71A8F00AC1194 /* MYSBJsonStreamParser.m */; };
+		C897EED916F71A8F00AC1194 /* MYSBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EEC616F71A8F00AC1194 /* MYSBJsonParser.m */; };
+		C897EEDA16F71A8F00AC1194 /* MYNSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EEC716F71A8F00AC1194 /* MYNSObject+JSON.m */; };
+		C897EEDD16F71B0C00AC1194 /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EEDB16F71B0B00AC1194 /* utils.m */; };
+		C897EEE316F7267900AC1194 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C897EEE216F7267800AC1194 /* SystemConfiguration.framework */; };
+		C8C0E7FC16F88FC900C92E99 /* FGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E7F616F88FC900C92E99 /* FGalleryViewController.m */; };
+		C8C0E7FD16F88FC900C92E99 /* FGalleryPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E7F716F88FC900C92E99 /* FGalleryPhotoView.m */; };
+		C8C0E7FE16F88FC900C92E99 /* FGalleryPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E7F816F88FC900C92E99 /* FGalleryPhoto.m */; };
+		C8C0E80316F890A200C92E99 /* lava.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C8C0E80016F890A200C92E99 /* lava.jpeg */; };
+		C8C0E80416F890A200C92E99 /* hawaii.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C8C0E80116F890A200C92E99 /* hawaii.jpeg */; };
+		C8C0E80516F890A200C92E99 /* audi.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8C0E80216F890A200C92E99 /* audi.jpg */; };
+		C8C0E80A16F890D900C92E99 /* photo-gallery-trashcan.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0E80616F890D900C92E99 /* photo-gallery-trashcan.png */; };
+		C8C0E80B16F890D900C92E99 /* photo-gallery-right.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0E80716F890D900C92E99 /* photo-gallery-right.png */; };
+		C8C0E80C16F890D900C92E99 /* photo-gallery-left.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0E80816F890D900C92E99 /* photo-gallery-left.png */; };
+		C8C0E80D16F890D900C92E99 /* photo-gallery-edit-caption.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0E80916F890D900C92E99 /* photo-gallery-edit-caption.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C89E776716FC991A00CF25B6 /* Fluence3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fluence3.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C89E776B16FC991A00CF25B6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		C89E776D16FC991A00CF25B6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		C89E776F16FC991A00CF25B6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		C89E777316FC991A00CF25B6 /* Fluence3-Info.plist */ = {isa = PBXFileReference; path = "Fluence3-Info.plist"; sourceTree = "<group>"; };
-		C89E777516FC991A00CF25B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C89E777716FC991A00CF25B6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C89E777916FC991A00CF25B6 /* Fluence3-Prefix.pch */ = {isa = PBXFileReference; path = "Fluence3-Prefix.pch"; sourceTree = "<group>"; };
-		C89E777A16FC991A00CF25B6 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
-		C89E777B16FC991A00CF25B6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C889BAC616F213370040CA39 /* Fluence3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fluence3.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C889BACA16F213370040CA39 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C889BACC16F213370040CA39 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C889BACE16F213370040CA39 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C889BAD216F213370040CA39 /* Fluence3-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Fluence3-Info.plist"; sourceTree = "<group>"; };
+		C889BAD416F213370040CA39 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C889BAD616F213370040CA39 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C889BAD816F213370040CA39 /* Fluence3-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fluence3-Prefix.pch"; sourceTree = "<group>"; };
+		C889BAD916F213370040CA39 /* Fluence3AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Fluence3AppDelegate.h; sourceTree = "<group>"; };
+		C889BADA16F213370040CA39 /* Fluence3AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Fluence3AppDelegate.m; sourceTree = "<group>"; };
+		C889BADC16F213370040CA39 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		C889BADD16F213370040CA39 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		C889BAE016F213370040CA39 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainViewController.xib; sourceTree = "<group>"; };
+		C889BAE716F213670040CA39 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		C889BAE916F2137F0040CA39 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C889BAEB16F213AF0040CA39 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
+		C889BAED16F213BF0040CA39 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		C889BAEF16F2152E0040CA39 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		C889BAF016F2152E0040CA39 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		C889BAF116F2152E0040CA39 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		C8952FB416F99E7B004EDAD7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C8952FB616F9A25A004EDAD7 /* GalleryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryController.h; sourceTree = "<group>"; };
+		C8952FB716F9A25A004EDAD7 /* GalleryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryController.m; sourceTree = "<group>"; };
+		C8952FB816F9A25A004EDAD7 /* GalleryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryController.xib; sourceTree = "<group>"; };
+		C897EE6616F709EA00AC1194 /* setupDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setupDao.m; sourceTree = "<group>"; };
+		C897EE6716F709EA00AC1194 /* searchDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchDao.m; sourceTree = "<group>"; };
+		C897EE6816F709EA00AC1194 /* registrationDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = registrationDao.m; sourceTree = "<group>"; };
+		C897EE6916F709EA00AC1194 /* commonDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commonDao.m; sourceTree = "<group>"; };
+		C897EE6A16F709EA00AC1194 /* BaseDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDao.m; sourceTree = "<group>"; };
+		C897EE6B16F709EA00AC1194 /* setupDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setupDao.h; sourceTree = "<group>"; };
+		C897EE6C16F709EA00AC1194 /* searchDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchDao.h; sourceTree = "<group>"; };
+		C897EE6D16F709EA00AC1194 /* registrationDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registrationDao.h; sourceTree = "<group>"; };
+		C897EE6E16F709EA00AC1194 /* commonDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commonDao.h; sourceTree = "<group>"; };
+		C897EE6F16F709EA00AC1194 /* BaseDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDao.h; sourceTree = "<group>"; };
+		C897EE7616F70A7D00AC1194 /* IreferConstraints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IreferConstraints.m; sourceTree = "<group>"; };
+		C897EE7716F70A7D00AC1194 /* IreferConstraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IreferConstraints.h; sourceTree = "<group>"; };
+		C897EE7D16F70AF300AC1194 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		C897EE9D16F70BE100AC1194 /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3.c; sourceTree = "<group>"; };
+		C897EE9E16F70BE100AC1194 /* shell.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shell.c; sourceTree = "<group>"; };
+		C897EE9F16F70BE100AC1194 /* sqlite3ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3ext.h; sourceTree = "<group>"; };
+		C897EEA016F70BE100AC1194 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3.h; sourceTree = "<group>"; };
+		C897EEBF16F71A8F00AC1194 /* MYSBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYSBJsonWriter.m; sourceTree = "<group>"; };
+		C897EEC016F71A8F00AC1194 /* MYSBJsonTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYSBJsonTokeniser.m; sourceTree = "<group>"; };
+		C897EEC116F71A8F00AC1194 /* MYSBJsonStreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYSBJsonStreamWriterState.m; sourceTree = "<group>"; };
+		C897EEC216F71A8F00AC1194 /* MYSBJsonStreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYSBJsonStreamWriter.m; sourceTree = "<group>"; };
+		C897EEC316F71A8F00AC1194 /* MYSBJsonStreamParserState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYSBJsonStreamParserState.m; sourceTree = "<group>"; };
+		C897EEC416F71A8F00AC1194 /* MYSBJsonStreamParserAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYSBJsonStreamParserAdapter.m; sourceTree = "<group>"; };
+		C897EEC516F71A8F00AC1194 /* MYSBJsonStreamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYSBJsonStreamParser.m; sourceTree = "<group>"; };
+		C897EEC616F71A8F00AC1194 /* MYSBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYSBJsonParser.m; sourceTree = "<group>"; };
+		C897EEC716F71A8F00AC1194 /* MYNSObject+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MYNSObject+JSON.m"; sourceTree = "<group>"; };
+		C897EEC816F71A8F00AC1194 /* MYSBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYSBJsonWriter.h; sourceTree = "<group>"; };
+		C897EEC916F71A8F00AC1194 /* MYSBJsonTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYSBJsonTokeniser.h; sourceTree = "<group>"; };
+		C897EECA16F71A8F00AC1194 /* MYSBJsonStreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYSBJsonStreamWriterState.h; sourceTree = "<group>"; };
+		C897EECB16F71A8F00AC1194 /* MYSBJsonStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYSBJsonStreamWriter.h; sourceTree = "<group>"; };
+		C897EECC16F71A8F00AC1194 /* MYSBJsonStreamParserState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYSBJsonStreamParserState.h; sourceTree = "<group>"; };
+		C897EECD16F71A8F00AC1194 /* MYSBJsonStreamParserAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYSBJsonStreamParserAdapter.h; sourceTree = "<group>"; };
+		C897EECE16F71A8F00AC1194 /* MYSBJsonStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYSBJsonStreamParser.h; sourceTree = "<group>"; };
+		C897EECF16F71A8F00AC1194 /* MYSBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYSBJsonParser.h; sourceTree = "<group>"; };
+		C897EED016F71A8F00AC1194 /* MYNSObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MYNSObject+JSON.h"; sourceTree = "<group>"; };
+		C897EED116F71A8F00AC1194 /* MYJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYJSON.h; sourceTree = "<group>"; };
+		C897EEDB16F71B0B00AC1194 /* utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = utils.m; sourceTree = "<group>"; };
+		C897EEDC16F71B0B00AC1194 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		C897EEE216F7267800AC1194 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C8C0E7F616F88FC900C92E99 /* FGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGalleryViewController.m; sourceTree = "<group>"; };
+		C8C0E7F716F88FC900C92E99 /* FGalleryPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGalleryPhotoView.m; sourceTree = "<group>"; };
+		C8C0E7F816F88FC900C92E99 /* FGalleryPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGalleryPhoto.m; sourceTree = "<group>"; };
+		C8C0E7F916F88FC900C92E99 /* FGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGalleryViewController.h; sourceTree = "<group>"; };
+		C8C0E7FA16F88FC900C92E99 /* FGalleryPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGalleryPhotoView.h; sourceTree = "<group>"; };
+		C8C0E7FB16F88FC900C92E99 /* FGalleryPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGalleryPhoto.h; sourceTree = "<group>"; };
+		C8C0E80016F890A200C92E99 /* lava.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lava.jpeg; sourceTree = "<group>"; };
+		C8C0E80116F890A200C92E99 /* hawaii.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hawaii.jpeg; sourceTree = "<group>"; };
+		C8C0E80216F890A200C92E99 /* audi.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = audi.jpg; sourceTree = "<group>"; };
+		C8C0E80616F890D900C92E99 /* photo-gallery-trashcan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo-gallery-trashcan.png"; sourceTree = "<group>"; };
+		C8C0E80716F890D900C92E99 /* photo-gallery-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo-gallery-right.png"; sourceTree = "<group>"; };
+		C8C0E80816F890D900C92E99 /* photo-gallery-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo-gallery-left.png"; sourceTree = "<group>"; };
+		C8C0E80916F890D900C92E99 /* photo-gallery-edit-caption.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo-gallery-edit-caption.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C89E776416FC991A00CF25B6 /* Frameworks */ = {
+		C889BAC316F213370040CA39 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C89E776C16FC991A00CF25B6 /* UIKit.framework in Frameworks */,
-				C89E776E16FC991A00CF25B6 /* Foundation.framework in Frameworks */,
-				C89E777016FC991A00CF25B6 /* CoreGraphics.framework in Frameworks */,
+				C8952FB516F99E7B004EDAD7 /* QuartzCore.framework in Frameworks */,
+				C897EEE316F7267900AC1194 /* SystemConfiguration.framework in Frameworks */,
+				C897EE7E16F70AF300AC1194 /* libsqlite3.dylib in Frameworks */,
+				C889BAEA16F2137F0040CA39 /* CoreLocation.framework in Frameworks */,
+				C889BAE816F213670040CA39 /* Accounts.framework in Frameworks */,
+				C889BACB16F213370040CA39 /* UIKit.framework in Frameworks */,
+				C889BACD16F213370040CA39 /* Foundation.framework in Frameworks */,
+				C889BACF16F213370040CA39 /* CoreGraphics.framework in Frameworks */,
+				C889BAEE16F213BF0040CA39 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C89E775C16FC991A00CF25B6 = {
+		C889BABB16F213370040CA39 = {
 			isa = PBXGroup;
 			children = (
-				C89E777116FC991A00CF25B6 /* Fluence3 */,
-				C89E776A16FC991A00CF25B6 /* Frameworks */,
-				C89E776816FC991A00CF25B6 /* Products */,
+				C889BAD016F213370040CA39 /* Fluence3 */,
+				C889BAC916F213370040CA39 /* Frameworks */,
+				C889BAC716F213370040CA39 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		C89E776816FC991A00CF25B6 /* Products */ = {
+		C889BAC716F213370040CA39 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C89E776716FC991A00CF25B6 /* Fluence3.app */,
+				C889BAC616F213370040CA39 /* Fluence3.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C89E776A16FC991A00CF25B6 /* Frameworks */ = {
+		C889BAC916F213370040CA39 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C89E776B16FC991A00CF25B6 /* UIKit.framework */,
-				C89E776D16FC991A00CF25B6 /* Foundation.framework */,
-				C89E776F16FC991A00CF25B6 /* CoreGraphics.framework */,
+				C8952FB416F99E7B004EDAD7 /* QuartzCore.framework */,
+				C897EEE216F7267800AC1194 /* SystemConfiguration.framework */,
+				C897EE7D16F70AF300AC1194 /* libsqlite3.dylib */,
+				C889BAED16F213BF0040CA39 /* FacebookSDK.framework */,
+				C889BAEB16F213AF0040CA39 /* FacebookSDKResources.bundle */,
+				C889BAE916F2137F0040CA39 /* CoreLocation.framework */,
+				C889BAE716F213670040CA39 /* Accounts.framework */,
+				C889BACA16F213370040CA39 /* UIKit.framework */,
+				C889BACC16F213370040CA39 /* Foundation.framework */,
+				C889BACE16F213370040CA39 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C89E777116FC991A00CF25B6 /* Fluence3 */ = {
+		C889BAD016F213370040CA39 /* Fluence3 */ = {
 			isa = PBXGroup;
 			children = (
-				C89E777A16FC991A00CF25B6 /* AppDelegate.h */,
-				C89E777B16FC991A00CF25B6 /* AppDelegate.m */,
-				C89E777216FC991A00CF25B6 /* Supporting Files */,
+				C8C0E7F216F87F3400C92E99 /* Classes */,
+				C8C0E7ED16F87EB700C92E99 /* Resources */,
+				C889BAD916F213370040CA39 /* Fluence3AppDelegate.h */,
+				C889BADA16F213370040CA39 /* Fluence3AppDelegate.m */,
+				C889BAD116F213370040CA39 /* Supporting Files */,
 			);
 			path = Fluence3;
 			sourceTree = "<group>";
 		};
-		C89E777216FC991A00CF25B6 /* Supporting Files */ = {
+		C889BAD116F213370040CA39 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C89E777316FC991A00CF25B6 /* Fluence3-Info.plist */,
-				C89E777416FC991A00CF25B6 /* InfoPlist.strings */,
-				C89E777716FC991A00CF25B6 /* main.m */,
-				C89E777916FC991A00CF25B6 /* Fluence3-Prefix.pch */,
+				C889BAD216F213370040CA39 /* Fluence3-Info.plist */,
+				C889BAD316F213370040CA39 /* InfoPlist.strings */,
+				C889BAD616F213370040CA39 /* main.m */,
+				C889BAD816F213370040CA39 /* Fluence3-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C897EE5A16F7078E00AC1194 /* dao */ = {
+			isa = PBXGroup;
+			children = (
+				C897EE6616F709EA00AC1194 /* setupDao.m */,
+				C897EE6716F709EA00AC1194 /* searchDao.m */,
+				C897EE6816F709EA00AC1194 /* registrationDao.m */,
+				C897EE6916F709EA00AC1194 /* commonDao.m */,
+				C897EE6A16F709EA00AC1194 /* BaseDao.m */,
+				C897EE6B16F709EA00AC1194 /* setupDao.h */,
+				C897EE6C16F709EA00AC1194 /* searchDao.h */,
+				C897EE6D16F709EA00AC1194 /* registrationDao.h */,
+				C897EE6E16F709EA00AC1194 /* commonDao.h */,
+				C897EE6F16F709EA00AC1194 /* BaseDao.h */,
+			);
+			name = dao;
+			sourceTree = "<group>";
+		};
+		C897EE7516F70A4D00AC1194 /* etc */ = {
+			isa = PBXGroup;
+			children = (
+				C897EEDB16F71B0B00AC1194 /* utils.m */,
+				C897EEDC16F71B0B00AC1194 /* utils.h */,
+				C897EE9C16F70BA100AC1194 /* sqlite-amalgamation-3071000 */,
+				C897EE7F16F70B0600AC1194 /* JSON */,
+				C897EE7616F70A7D00AC1194 /* IreferConstraints.m */,
+				C897EE7716F70A7D00AC1194 /* IreferConstraints.h */,
+			);
+			name = etc;
+			sourceTree = "<group>";
+		};
+		C897EE7F16F70B0600AC1194 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				C897EEBF16F71A8F00AC1194 /* MYSBJsonWriter.m */,
+				C897EEC016F71A8F00AC1194 /* MYSBJsonTokeniser.m */,
+				C897EEC116F71A8F00AC1194 /* MYSBJsonStreamWriterState.m */,
+				C897EEC216F71A8F00AC1194 /* MYSBJsonStreamWriter.m */,
+				C897EEC316F71A8F00AC1194 /* MYSBJsonStreamParserState.m */,
+				C897EEC416F71A8F00AC1194 /* MYSBJsonStreamParserAdapter.m */,
+				C897EEC516F71A8F00AC1194 /* MYSBJsonStreamParser.m */,
+				C897EEC616F71A8F00AC1194 /* MYSBJsonParser.m */,
+				C897EEC716F71A8F00AC1194 /* MYNSObject+JSON.m */,
+				C897EEC816F71A8F00AC1194 /* MYSBJsonWriter.h */,
+				C897EEC916F71A8F00AC1194 /* MYSBJsonTokeniser.h */,
+				C897EECA16F71A8F00AC1194 /* MYSBJsonStreamWriterState.h */,
+				C897EECB16F71A8F00AC1194 /* MYSBJsonStreamWriter.h */,
+				C897EECC16F71A8F00AC1194 /* MYSBJsonStreamParserState.h */,
+				C897EECD16F71A8F00AC1194 /* MYSBJsonStreamParserAdapter.h */,
+				C897EECE16F71A8F00AC1194 /* MYSBJsonStreamParser.h */,
+				C897EECF16F71A8F00AC1194 /* MYSBJsonParser.h */,
+				C897EED016F71A8F00AC1194 /* MYNSObject+JSON.h */,
+				C897EED116F71A8F00AC1194 /* MYJSON.h */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
+		C897EE9C16F70BA100AC1194 /* sqlite-amalgamation-3071000 */ = {
+			isa = PBXGroup;
+			children = (
+				C897EE9D16F70BE100AC1194 /* sqlite3.c */,
+				C897EE9E16F70BE100AC1194 /* shell.c */,
+				C897EE9F16F70BE100AC1194 /* sqlite3ext.h */,
+				C897EEA016F70BE100AC1194 /* sqlite3.h */,
+			);
+			name = "sqlite-amalgamation-3071000";
+			sourceTree = "<group>";
+		};
+		C8C0E7ED16F87EB700C92E99 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C8C0E7FF16F8901100C92E99 /* gallery */,
+				C8C0E7F016F87ED800C92E99 /* nibs */,
+				C8C0E7EF16F87ECF00C92E99 /* images */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		C8C0E7EF16F87ECF00C92E99 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				C8C0E80616F890D900C92E99 /* photo-gallery-trashcan.png */,
+				C8C0E80716F890D900C92E99 /* photo-gallery-right.png */,
+				C8C0E80816F890D900C92E99 /* photo-gallery-left.png */,
+				C8C0E80916F890D900C92E99 /* photo-gallery-edit-caption.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		C8C0E7F016F87ED800C92E99 /* nibs */ = {
+			isa = PBXGroup;
+			children = (
+				C8952FB816F9A25A004EDAD7 /* GalleryController.xib */,
+				C889BADF16F213370040CA39 /* MainViewController.xib */,
+				C889BAF116F2152E0040CA39 /* LoginViewController.xib */,
+			);
+			name = nibs;
+			sourceTree = "<group>";
+		};
+		C8C0E7F116F87F0600C92E99 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C8C0E7F516F88FAB00C92E99 /* FGallery */,
+				C8C0E7F416F88ED200C92E99 /* component */,
+				C8C0E7F316F87FEF00C92E99 /* pages */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+		C8C0E7F216F87F3400C92E99 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C8C0E7F116F87F0600C92E99 /* controllers */,
+				C897EE7516F70A4D00AC1194 /* etc */,
+				C897EE5A16F7078E00AC1194 /* dao */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		C8C0E7F316F87FEF00C92E99 /* pages */ = {
+			isa = PBXGroup;
+			children = (
+				C889BAEF16F2152E0040CA39 /* LoginViewController.h */,
+				C889BAF016F2152E0040CA39 /* LoginViewController.m */,
+				C889BADC16F213370040CA39 /* MainViewController.h */,
+				C889BADD16F213370040CA39 /* MainViewController.m */,
+				C8952FB616F9A25A004EDAD7 /* GalleryController.h */,
+				C8952FB716F9A25A004EDAD7 /* GalleryController.m */,
+			);
+			name = pages;
+			sourceTree = "<group>";
+		};
+		C8C0E7F416F88ED200C92E99 /* component */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = component;
+			sourceTree = "<group>";
+		};
+		C8C0E7F516F88FAB00C92E99 /* FGallery */ = {
+			isa = PBXGroup;
+			children = (
+				C8C0E7F616F88FC900C92E99 /* FGalleryViewController.m */,
+				C8C0E7F716F88FC900C92E99 /* FGalleryPhotoView.m */,
+				C8C0E7F816F88FC900C92E99 /* FGalleryPhoto.m */,
+				C8C0E7F916F88FC900C92E99 /* FGalleryViewController.h */,
+				C8C0E7FA16F88FC900C92E99 /* FGalleryPhotoView.h */,
+				C8C0E7FB16F88FC900C92E99 /* FGalleryPhoto.h */,
+			);
+			name = FGallery;
+			sourceTree = "<group>";
+		};
+		C8C0E7FF16F8901100C92E99 /* gallery */ = {
+			isa = PBXGroup;
+			children = (
+				C8C0E80016F890A200C92E99 /* lava.jpeg */,
+				C8C0E80116F890A200C92E99 /* hawaii.jpeg */,
+				C8C0E80216F890A200C92E99 /* audi.jpg */,
+			);
+			name = gallery;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C89E776616FC991A00CF25B6 /* Fluence3 */ = {
+		C889BAC516F213370040CA39 /* Fluence3 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C89E777F16FC991A00CF25B6 /* Build configuration list for PBXNativeTarget "Fluence3" */;
+			buildConfigurationList = C889BAE416F213370040CA39 /* Build configuration list for PBXNativeTarget "Fluence3" */;
 			buildPhases = (
-				C89E776316FC991A00CF25B6 /* Sources */,
-				C89E776416FC991A00CF25B6 /* Frameworks */,
-				C89E776516FC991A00CF25B6 /* Resources */,
+				C889BAC216F213370040CA39 /* Sources */,
+				C889BAC316F213370040CA39 /* Frameworks */,
+				C889BAC416F213370040CA39 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Fluence3;
-			productName = Fluence3;
-			productReference = C89E776716FC991A00CF25B6 /* Fluence3.app */;
+			productName = FBTest;
+			productReference = C889BAC616F213370040CA39 /* Fluence3.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		C89E775E16FC991A00CF25B6 /* Project object */ = {
+		C889BABD16F213370040CA39 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
 			};
-			buildConfigurationList = C89E776116FC991A00CF25B6 /* Build configuration list for PBXProject "Fluence3" */;
+			buildConfigurationList = C889BAC016F213370040CA39 /* Build configuration list for PBXProject "Fluence3" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = C89E775C16FC991A00CF25B6;
-			productRefGroup = C89E776816FC991A00CF25B6 /* Products */;
+			mainGroup = C889BABB16F213370040CA39;
+			productRefGroup = C889BAC716F213370040CA39 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C89E776616FC991A00CF25B6 /* Fluence3 */,
+				C889BAC516F213370040CA39 /* Fluence3 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C89E776516FC991A00CF25B6 /* Resources */ = {
+		C889BAC416F213370040CA39 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C89E777616FC991A00CF25B6 /* InfoPlist.strings in Resources */,
+				C889BAD516F213370040CA39 /* InfoPlist.strings in Resources */,
+				C889BAE116F213370040CA39 /* MainViewController.xib in Resources */,
+				C889BAEC16F213AF0040CA39 /* FacebookSDKResources.bundle in Resources */,
+				C889BAF316F2152E0040CA39 /* LoginViewController.xib in Resources */,
+				C8C0E80316F890A200C92E99 /* lava.jpeg in Resources */,
+				C8C0E80416F890A200C92E99 /* hawaii.jpeg in Resources */,
+				C8C0E80516F890A200C92E99 /* audi.jpg in Resources */,
+				C8C0E80A16F890D900C92E99 /* photo-gallery-trashcan.png in Resources */,
+				C8C0E80B16F890D900C92E99 /* photo-gallery-right.png in Resources */,
+				C8C0E80C16F890D900C92E99 /* photo-gallery-left.png in Resources */,
+				C8C0E80D16F890D900C92E99 /* photo-gallery-edit-caption.png in Resources */,
+				C8952FBA16F9A25A004EDAD7 /* GalleryController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C89E776316FC991A00CF25B6 /* Sources */ = {
+		C889BAC216F213370040CA39 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C89E777816FC991A00CF25B6 /* main.m in Sources */,
-				C89E777C16FC991A00CF25B6 /* AppDelegate.m in Sources */,
+				C889BAD716F213370040CA39 /* main.m in Sources */,
+				C889BADB16F213370040CA39 /* Fluence3AppDelegate.m in Sources */,
+				C889BADE16F213370040CA39 /* MainViewController.m in Sources */,
+				C889BAF216F2152E0040CA39 /* LoginViewController.m in Sources */,
+				C897EE7016F709EA00AC1194 /* setupDao.m in Sources */,
+				C897EE7116F709EA00AC1194 /* searchDao.m in Sources */,
+				C897EE7216F709EA00AC1194 /* registrationDao.m in Sources */,
+				C897EE7316F709EA00AC1194 /* commonDao.m in Sources */,
+				C897EE7416F709EA00AC1194 /* BaseDao.m in Sources */,
+				C897EE7816F70A7D00AC1194 /* IreferConstraints.m in Sources */,
+				C897EEA116F70BE100AC1194 /* sqlite3.c in Sources */,
+				C897EEA216F70BE100AC1194 /* shell.c in Sources */,
+				C897EED216F71A8F00AC1194 /* MYSBJsonWriter.m in Sources */,
+				C897EED316F71A8F00AC1194 /* MYSBJsonTokeniser.m in Sources */,
+				C897EED416F71A8F00AC1194 /* MYSBJsonStreamWriterState.m in Sources */,
+				C897EED516F71A8F00AC1194 /* MYSBJsonStreamWriter.m in Sources */,
+				C897EED616F71A8F00AC1194 /* MYSBJsonStreamParserState.m in Sources */,
+				C897EED716F71A8F00AC1194 /* MYSBJsonStreamParserAdapter.m in Sources */,
+				C897EED816F71A8F00AC1194 /* MYSBJsonStreamParser.m in Sources */,
+				C897EED916F71A8F00AC1194 /* MYSBJsonParser.m in Sources */,
+				C897EEDA16F71A8F00AC1194 /* MYNSObject+JSON.m in Sources */,
+				C897EEDD16F71B0C00AC1194 /* utils.m in Sources */,
+				C8C0E7FC16F88FC900C92E99 /* FGalleryViewController.m in Sources */,
+				C8C0E7FD16F88FC900C92E99 /* FGalleryPhotoView.m in Sources */,
+				C8C0E7FE16F88FC900C92E99 /* FGalleryPhoto.m in Sources */,
+				C8952FB916F9A25A004EDAD7 /* GalleryController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		C89E777416FC991A00CF25B6 /* InfoPlist.strings */ = {
+		C889BAD316F213370040CA39 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C89E777516FC991A00CF25B6 /* en */,
+				C889BAD416F213370040CA39 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C889BADF16F213370040CA39 /* MainViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C889BAE016F213370040CA39 /* en */,
+			);
+			name = MainViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		C89E777D16FC991A00CF25B6 /* Debug */ = {
+		C889BAE216F213370040CA39 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -191,15 +518,15 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		C89E777E16FC991A00CF25B6 /* Release */ = {
+		C889BAE316F213370040CA39 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -210,29 +537,48 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		C89E778016FC991A00CF25B6 /* Debug */ = {
+		C889BAE516F213370040CA39 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fluence3/Fluence3-Prefix.pch";
 				INFOPLIST_FILE = "Fluence3/Fluence3-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_LDFLAGS = (
+					"-lsqlite3.0",
+					"-ObjC",
+				);
+				PRODUCT_NAME = Fluence3;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
-		C89E778116FC991A00CF25B6 /* Release */ = {
+		C889BAE616F213370040CA39 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fluence3/Fluence3-Prefix.pch";
 				INFOPLIST_FILE = "Fluence3/Fluence3-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_LDFLAGS = (
+					"-lsqlite3.0",
+					"-ObjC",
+				);
+				PRODUCT_NAME = Fluence3;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -240,24 +586,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C89E776116FC991A00CF25B6 /* Build configuration list for PBXProject "Fluence3" */ = {
+		C889BAC016F213370040CA39 /* Build configuration list for PBXProject "Fluence3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C89E777D16FC991A00CF25B6 /* Debug */,
-				C89E777E16FC991A00CF25B6 /* Release */,
+				C889BAE216F213370040CA39 /* Debug */,
+				C889BAE316F213370040CA39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C89E777F16FC991A00CF25B6 /* Build configuration list for PBXNativeTarget "Fluence3" */ = {
+		C889BAE416F213370040CA39 /* Build configuration list for PBXNativeTarget "Fluence3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C89E778016FC991A00CF25B6 /* Debug */,
-				C89E778116FC991A00CF25B6 /* Release */,
+				C889BAE516F213370040CA39 /* Debug */,
+				C889BAE616F213370040CA39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = C89E775E16FC991A00CF25B6 /* Project object */;
+	rootObject = C889BABD16F213370040CA39 /* Project object */;
 }
