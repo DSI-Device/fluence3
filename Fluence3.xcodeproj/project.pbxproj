@@ -1,0 +1,263 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C89E776C16FC991A00CF25B6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89E776B16FC991A00CF25B6 /* UIKit.framework */; };
+		C89E776E16FC991A00CF25B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89E776D16FC991A00CF25B6 /* Foundation.framework */; };
+		C89E777016FC991A00CF25B6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89E776F16FC991A00CF25B6 /* CoreGraphics.framework */; };
+		C89E777616FC991A00CF25B6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C89E777416FC991A00CF25B6 /* InfoPlist.strings */; };
+		C89E777816FC991A00CF25B6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C89E777716FC991A00CF25B6 /* main.m */; };
+		C89E777C16FC991A00CF25B6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C89E777B16FC991A00CF25B6 /* AppDelegate.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C89E776716FC991A00CF25B6 /* Fluence3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fluence3.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C89E776B16FC991A00CF25B6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C89E776D16FC991A00CF25B6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C89E776F16FC991A00CF25B6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C89E777316FC991A00CF25B6 /* Fluence3-Info.plist */ = {isa = PBXFileReference; path = "Fluence3-Info.plist"; sourceTree = "<group>"; };
+		C89E777516FC991A00CF25B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C89E777716FC991A00CF25B6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C89E777916FC991A00CF25B6 /* Fluence3-Prefix.pch */ = {isa = PBXFileReference; path = "Fluence3-Prefix.pch"; sourceTree = "<group>"; };
+		C89E777A16FC991A00CF25B6 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		C89E777B16FC991A00CF25B6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C89E776416FC991A00CF25B6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C89E776C16FC991A00CF25B6 /* UIKit.framework in Frameworks */,
+				C89E776E16FC991A00CF25B6 /* Foundation.framework in Frameworks */,
+				C89E777016FC991A00CF25B6 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C89E775C16FC991A00CF25B6 = {
+			isa = PBXGroup;
+			children = (
+				C89E777116FC991A00CF25B6 /* Fluence3 */,
+				C89E776A16FC991A00CF25B6 /* Frameworks */,
+				C89E776816FC991A00CF25B6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C89E776816FC991A00CF25B6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C89E776716FC991A00CF25B6 /* Fluence3.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C89E776A16FC991A00CF25B6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C89E776B16FC991A00CF25B6 /* UIKit.framework */,
+				C89E776D16FC991A00CF25B6 /* Foundation.framework */,
+				C89E776F16FC991A00CF25B6 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C89E777116FC991A00CF25B6 /* Fluence3 */ = {
+			isa = PBXGroup;
+			children = (
+				C89E777A16FC991A00CF25B6 /* AppDelegate.h */,
+				C89E777B16FC991A00CF25B6 /* AppDelegate.m */,
+				C89E777216FC991A00CF25B6 /* Supporting Files */,
+			);
+			path = Fluence3;
+			sourceTree = "<group>";
+		};
+		C89E777216FC991A00CF25B6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C89E777316FC991A00CF25B6 /* Fluence3-Info.plist */,
+				C89E777416FC991A00CF25B6 /* InfoPlist.strings */,
+				C89E777716FC991A00CF25B6 /* main.m */,
+				C89E777916FC991A00CF25B6 /* Fluence3-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C89E776616FC991A00CF25B6 /* Fluence3 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C89E777F16FC991A00CF25B6 /* Build configuration list for PBXNativeTarget "Fluence3" */;
+			buildPhases = (
+				C89E776316FC991A00CF25B6 /* Sources */,
+				C89E776416FC991A00CF25B6 /* Frameworks */,
+				C89E776516FC991A00CF25B6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Fluence3;
+			productName = Fluence3;
+			productReference = C89E776716FC991A00CF25B6 /* Fluence3.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C89E775E16FC991A00CF25B6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = C89E776116FC991A00CF25B6 /* Build configuration list for PBXProject "Fluence3" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C89E775C16FC991A00CF25B6;
+			productRefGroup = C89E776816FC991A00CF25B6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C89E776616FC991A00CF25B6 /* Fluence3 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C89E776516FC991A00CF25B6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C89E777616FC991A00CF25B6 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C89E776316FC991A00CF25B6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C89E777816FC991A00CF25B6 /* main.m in Sources */,
+				C89E777C16FC991A00CF25B6 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C89E777416FC991A00CF25B6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C89E777516FC991A00CF25B6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C89E777D16FC991A00CF25B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C89E777E16FC991A00CF25B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C89E778016FC991A00CF25B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Fluence3/Fluence3-Prefix.pch";
+				INFOPLIST_FILE = "Fluence3/Fluence3-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C89E778116FC991A00CF25B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Fluence3/Fluence3-Prefix.pch";
+				INFOPLIST_FILE = "Fluence3/Fluence3-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C89E776116FC991A00CF25B6 /* Build configuration list for PBXProject "Fluence3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C89E777D16FC991A00CF25B6 /* Debug */,
+				C89E777E16FC991A00CF25B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C89E777F16FC991A00CF25B6 /* Build configuration list for PBXNativeTarget "Fluence3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C89E778016FC991A00CF25B6 /* Debug */,
+				C89E778116FC991A00CF25B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C89E775E16FC991A00CF25B6 /* Project object */;
+}
