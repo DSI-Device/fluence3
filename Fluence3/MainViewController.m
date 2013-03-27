@@ -92,35 +92,32 @@
             self.placePickerController.searchText = @"restaurant";
             self.placePickerController.itemPicturesEnabled = NO;
             self.placePickerController.delegate = self;
-//            
             [self.placePickerController loadData];
-            [self.navigationController pushViewController:self.placePickerController 
-                                                 animated:true];
+            [self.navigationController pushViewController:self.placePickerController animated:true];
             break;
 
         case 2:
             if (!self.friendPickerController) {
                 self.friendPickerController = [[[FBFriendPickerViewController alloc] initWithNibName:nil bundle:nil]autorelease];
                 self.friendPickerController.title = @"Select friends";
-                
                 // Set the friend picker delegate
                 self.friendPickerController.delegate = self;
             }
             
             [self.friendPickerController loadData];
-            [self.navigationController pushViewController:self.friendPickerController 
-                                                 animated:true];
+            [self.navigationController pushViewController:self.friendPickerController animated:true];
             break;
         
         case 3:
-            gc = [[[GalleryController alloc] initWithNibName:@"GalleryController" bundle:nil]autorelease];
+            gc = [[GalleryController alloc] initWithNibName:@"GalleryController" bundle:nil];
                 
             gc.title = @"Gallery";
                 
             // Set the friend picker delegate
             //gc.delegate = self;
                 
-            [self.navigationController pushViewController:gc animated:true];
+            [self.navigationController pushViewController:gc animated:YES];
+            [gc release];
             break;
             
     }

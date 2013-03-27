@@ -7,20 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FGalleryViewController.h"
 #import "Fluence3AppDelegate.h"
 #import "utils.h"
 
-@interface GalleryController : UIViewController <FGalleryViewControllerDelegate> {
+@interface GalleryController : UIViewController <UINavigationControllerDelegate> {
 	Fluence3AppDelegate *appdt;
-    NSArray *localCaptions;
-    NSArray *localImages;
-    NSArray *networkCaptions;
-    NSArray *networkImages;
-	FGalleryViewController *localGallery;
-    FGalleryViewController *networkGallery;
+    IBOutlet UIView *subNavContainer;
+    UINavigationController *subNavCntlr;
 }
 
-@property (strong, nonatomic)IBOutlet FGalleryViewController *localGallery;     
 
 @end

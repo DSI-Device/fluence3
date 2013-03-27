@@ -165,10 +165,10 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
    
-    UIButton *_button =[[[UIButton alloc]initWithFrame:CGRectMake(20,20,100,50)] autorelease];
-    [_button addTarget:self action:@selector(backButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [_button setBackgroundColor:[UIColor colorWithRed:200 green:191 blue:231 alpha:1]];
-    [self.view addSubview:_button];	
+//    UIButton *_button =[[[UIButton alloc]initWithFrame:CGRectMake(20,20,100,50)] autorelease];
+//    [_button addTarget:self action:@selector(backButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+//    [_button setBackgroundColor:[UIColor colorWithRed:200 green:191 blue:231 alpha:1]];
+//    [self.view addSubview:_button];	
     UISwipeGestureRecognizer *swipeGestureDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedScreenDown:)];
     swipeGestureDown.numberOfTouchesRequired = 1;
     swipeGestureDown.direction = (UISwipeGestureRecognizerDirectionDown);

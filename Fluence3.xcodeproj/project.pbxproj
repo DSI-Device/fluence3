@@ -21,6 +21,8 @@
 		C889BAEE16F213BF0040CA39 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889BAED16F213BF0040CA39 /* FacebookSDK.framework */; };
 		C889BAF216F2152E0040CA39 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C889BAF016F2152E0040CA39 /* LoginViewController.m */; };
 		C889BAF316F2152E0040CA39 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C889BAF116F2152E0040CA39 /* LoginViewController.xib */; };
+		C88DC2BA17031A6E002402BC /* GalleryNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = C88DC2B817031A6E002402BC /* GalleryNavController.m */; };
+		C88DC2BB17031A6E002402BC /* GalleryNavController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C88DC2B917031A6E002402BC /* GalleryNavController.xib */; };
 		C8952FB516F99E7B004EDAD7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8952FB416F99E7B004EDAD7 /* QuartzCore.framework */; };
 		C8952FB916F9A25A004EDAD7 /* GalleryController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8952FB716F9A25A004EDAD7 /* GalleryController.m */; };
 		C8952FBA16F9A25A004EDAD7 /* GalleryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8952FB816F9A25A004EDAD7 /* GalleryController.xib */; };
@@ -77,6 +79,9 @@
 		C889BAEF16F2152E0040CA39 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		C889BAF016F2152E0040CA39 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		C889BAF116F2152E0040CA39 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		C88DC2B717031A6E002402BC /* GalleryNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryNavController.h; sourceTree = "<group>"; };
+		C88DC2B817031A6E002402BC /* GalleryNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryNavController.m; sourceTree = "<group>"; };
+		C88DC2B917031A6E002402BC /* GalleryNavController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryNavController.xib; sourceTree = "<group>"; };
 		C8952FB416F99E7B004EDAD7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C8952FB616F9A25A004EDAD7 /* GalleryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryController.h; sourceTree = "<group>"; };
 		C8952FB716F9A25A004EDAD7 /* GalleryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryController.m; sourceTree = "<group>"; };
@@ -303,6 +308,7 @@
 		C8C0E7F016F87ED800C92E99 /* nibs */ = {
 			isa = PBXGroup;
 			children = (
+				C88DC2B917031A6E002402BC /* GalleryNavController.xib */,
 				C8952FB816F9A25A004EDAD7 /* GalleryController.xib */,
 				C889BADF16F213370040CA39 /* MainViewController.xib */,
 				C889BAF116F2152E0040CA39 /* LoginViewController.xib */,
@@ -339,6 +345,8 @@
 				C889BADD16F213370040CA39 /* MainViewController.m */,
 				C8952FB616F9A25A004EDAD7 /* GalleryController.h */,
 				C8952FB716F9A25A004EDAD7 /* GalleryController.m */,
+				C88DC2B717031A6E002402BC /* GalleryNavController.h */,
+				C88DC2B817031A6E002402BC /* GalleryNavController.m */,
 			);
 			name = pages;
 			sourceTree = "<group>";
@@ -435,6 +443,7 @@
 				C8C0E80C16F890D900C92E99 /* photo-gallery-left.png in Resources */,
 				C8C0E80D16F890D900C92E99 /* photo-gallery-edit-caption.png in Resources */,
 				C8952FBA16F9A25A004EDAD7 /* GalleryController.xib in Resources */,
+				C88DC2BB17031A6E002402BC /* GalleryNavController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +480,7 @@
 				C8C0E7FD16F88FC900C92E99 /* FGalleryPhotoView.m in Sources */,
 				C8C0E7FE16F88FC900C92E99 /* FGalleryPhoto.m in Sources */,
 				C8952FB916F9A25A004EDAD7 /* GalleryController.m in Sources */,
+				C88DC2BA17031A6E002402BC /* GalleryNavController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

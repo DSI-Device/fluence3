@@ -7,10 +7,12 @@
 //
 
 #import "GalleryController.h"
+#import "GalleryNavController.h"
 
 @implementation GalleryController
 
-@synthesize localGallery;
+
+#pragma mark - Memory management
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,26 +31,42 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void)dealloc {
+    [subNavCntlr release];
+    [super dealloc];
+}
+
+
 #pragma mark - View lifecycle
 
 - (void)loadView {
 	[super loadView];
-    self.title = @"FGallery";
-    //self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    self.title = @"Gallery";
+//    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     
-	localCaptions = [[NSArray alloc] initWithObjects:@"Lava", @"Hawaii", @"Audi", @"Happy New Year!",@"Frosty Web",nil];
-    localImages = [[NSArray alloc] initWithObjects: @"lava.jpeg", @"hawaii.jpeg", @"audi.jpg",nil];
+
     
-    networkCaptions = [[NSArray alloc] initWithObjects:@"Happy New Year!",@"Frosty Web",nil];
-    networkImages = [[NSArray alloc] initWithObjects:@"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg",nil];
+    subNavCntlr = [[UINavigationController alloc] init];
+    subNavCntlr.view.frame = subNavContainer.bounds;
     
-    appdt = [[UIApplication sharedApplication] delegate];
-    localGallery = [[FGalleryViewController alloc] initWithPhotoSource:self];
+    GalleryNavController *drillDown1 = [[GalleryNavController alloc] initWithNibName:@"GalleryNavController" bundle:nil];
+    drillDown1.title = @"Gallery Type Menu";
+    [subNavCntlr pushViewController:drillDown1 animated:YES];
+    [drillDown1 release];
     
-    [self presentViewController:localGallery animated:YES completion:nil];
-    //[appdt.navController pushViewController:networkGallery animated:YES];
-    //[appdt.mainViewController pushViewController:localGallery animated:YES];
-    [localGallery release];
+    subNavCntlr.delegate = self; // THIS IS THE MAGIC, PART 1
+    
+    [subNavContainer addSubview:subNavCntlr.view];
+    
+    
+//    [self tableView:((UITableView*) self.tableView) didSelectRowAtIndexPath:0];    
+//    appdt = [[UIApplication sharedApplication] delegate];
+//    localGallery = [[FGalleryViewController alloc] initWithPhotoSource:self];
+//    
+//    [self presentViewController:localGallery animated:YES completion:nil];
+//    //[appdt.navController pushViewController:networkGallery animated:YES];
+//    //[appdt.mainViewController pushViewController:localGallery animated:YES];
+//    [localGallery release];
 }
 
 - (void)viewDidLoad
@@ -102,58 +120,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-#pragma mark - FGalleryViewControllerDelegate Methods
-
-- (int)numberOfPhotosForPhotoGallery:(FGalleryViewController *)gallery
-{
-    int num;
-    if( gallery == localGallery ) {
-        num = [localImages count];
-    }
-    else if( gallery == networkGallery ) {
-        num = [networkImages count];
-    }
-	return num;
-}
-
-
-- (FGalleryPhotoSourceType)photoGallery:(FGalleryViewController *)gallery sourceTypeForPhotoAtIndex:(NSUInteger)index
-{
-	if( gallery == localGallery ) {
-		return FGalleryPhotoSourceTypeLocal;
-	}
-	else return FGalleryPhotoSourceTypeNetwork;
-}
-
-- (NSString*)photoGallery:(FGalleryViewController *)gallery captionForPhotoAtIndex:(NSUInteger)index
-{
-    NSString *caption;
-    if( gallery == localGallery ) {
-        caption = [localCaptions objectAtIndex:index];
-    }
-    else if( gallery == networkGallery ) {
-        caption = [networkCaptions objectAtIndex:index];
-    }
-	return caption;
-}
-
-- (NSString*)photoGallery:(FGalleryViewController*)gallery filePathForPhotoSize:(FGalleryPhotoSize)size atIndex:(NSUInteger)index {
-    return [localImages objectAtIndex:index];
-}
-
-- (NSString*)photoGallery:(FGalleryViewController *)gallery urlForPhotoSize:(FGalleryPhotoSize)size atIndex:(NSUInteger)index {
-    return [networkImages objectAtIndex:index];
-}
-
-- (void)handleTrashButtonTouch:(id)sender {
-    // here we could remove images from our local array storage and tell the gallery to remove that image
-    // ex:
-    //[localGallery removeImageAtIndex:[localGallery currentIndex]];
-}
-
-- (void)handleEditCaptionButtonTouch:(id)sender {
-    // here we could implement some code to change the caption for a stored image
-}
 
 
 @end
