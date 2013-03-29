@@ -30,5 +30,5 @@
 - (IBAction)selectPhotos;
 - (IBAction)cropping;
 - (IBAction)filtering;
-
+- (void)updateDisplay;
 @end

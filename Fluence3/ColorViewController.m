@@ -65,12 +65,12 @@
 -(IBAction)reset:(id)sender
 {
     appdt = [[UIApplication sharedApplication] delegate];
-	imageView.image=appdt.imgOptimized;
+	imageView.image = appdt.img;
 }
 
 -(IBAction)done:(id)sender
 {
-	[self.navigationController popViewControllerAnimated:YES];
+	//[self.navigationController popViewControllerAnimated:YES];
 }
 
 

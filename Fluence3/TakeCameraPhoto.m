@@ -8,6 +8,8 @@
 
 #import "TakeCameraPhoto.h"
 #import "ShowCropedImage.h"
+#import "ColorViewController.h"
+
 #define SHOW_PREVIEW NO
 
 #import <QuartzCore/QuartzCore.h>
@@ -73,7 +75,7 @@
     [picker release];*/
     self.image.hidden=YES;
     
-    appdt.img = [UIImage imageNamed:@"gavandme.jpg"];
+    appdt.img = appdt.imgOptimized = [UIImage imageNamed:@"gavandme.jpg"];
     
 //    self.imageCropper = [[BJImageCropper alloc] initWithImage:[UIImage imageNamed:@"gavandme.jpg"]  andMaxSize:CGSizeMake(300, 300)];
     
@@ -108,13 +110,11 @@
 
 - (IBAction)filtering
 {
-    [self.imageCropper saveCroppedImage];
-    self.image.image = [self.imageCropper getCroppedImage];
-    ShowCropedImage* nextView = [[ShowCropedImage alloc]initWithNibName:@"ShowCropedImage" bundle:[NSBundle mainBundle]];
-    //    nextView.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    //    [self presentViewController:nextView animated:YES completion:nil];
+    ColorViewController* nextView = [[ColorViewController alloc]initWithNibName:@"ColorVIewController" bundle:[NSBundle mainBundle]];
     
+    [self.imageCropper removeFromSuperview];
     cropButton.hidden = YES;
+    filterButton.hidden = YES;
     
     [self.navigationController pushViewController:nextView animated:YES];
     [nextView release];
