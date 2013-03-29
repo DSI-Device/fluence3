@@ -10,12 +10,15 @@
 #import <FacebookSDK/FacebookSDK.h>
 
 @class MainViewController;
+@class ISColumnsController;
 
 @interface Fluence3AppDelegate : UIResponder <UIApplicationDelegate>{
     NSString *userId;
     NSString *userName;
     NSString *accessToken;
     BOOL isStylist;
+    UIImage *img;
+    UIImage *imgOptimized;
 }
 
 extern NSString *const SessionStateChangedNotification;
@@ -27,8 +30,15 @@ extern NSString *const SessionStateChangedNotification;
 @property (strong, nonatomic) FBSession *session;
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) MainViewController *mainViewController;
+@property (retain, nonatomic) UINavigationController *navigationController;
+@property (retain, nonatomic) ISColumnsController *columnsController;
+
+@property (nonatomic, strong) UIImage *img;
+@property (nonatomic, strong) UIImage *imgOptimized;
+//@property (strong, nonatomic) MainViewController *mainViewController;
 
 - (void)openSession;
+- (void)reloadViewControllers;
+-(void)logoutButtonWasPressed;
 
 @end

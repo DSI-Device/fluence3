@@ -46,6 +46,9 @@ typedef enum
 	UIScrollView *_scroller;
 	UIView *_captionContainer;
 	UILabel *_caption;
+    
+    UIView *_tagContainer;
+    UILabel *_tag;
 	
 	NSMutableDictionary *_photoLoaders;
 	NSMutableArray *_barItems;
@@ -89,6 +92,7 @@ typedef enum
 
 @optional
 - (NSString*)photoGallery:(FGalleryViewController*)gallery captionForPhotoAtIndex:(NSUInteger)index;
+- (NSString*)photoGallery:(FGalleryViewController *)gallery tagsForPhotoAtIndex:(NSUInteger)index;
 
 // the photosource must implement one of these methods depending on which FGalleryPhotoSourceType is specified 
 - (NSString*)photoGallery:(FGalleryViewController*)gallery filePathForPhotoSize:(FGalleryPhotoSize)size atIndex:(NSUInteger)index;

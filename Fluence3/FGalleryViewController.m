@@ -26,6 +26,7 @@
 - (void)layoutButtons;
 - (void)updateScrollSize;
 - (void)updateCaption;
+- (void)updateTag;
 - (void)resizeImageViewsWithRect:(CGRect)rect;
 - (void)resetImageViewZoomLevels;
 
@@ -278,6 +279,7 @@ return coloredImg;
     _toolbar							= [[UIToolbar alloc] initWithFrame:CGRectZero];
     _captionContainer					= [[UIView alloc] initWithFrame:CGRectZero];
     _caption							= [[UILabel alloc] initWithFrame:CGRectZero];
+    _tag                                = [[UILabel alloc] initWithFrame:CGRectZero];
     
     _toolbar.barStyle					= UIBarStyleBlackTranslucent;
     _container.backgroundColor			= [UIColor blackColor];
@@ -303,6 +305,18 @@ return coloredImg;
     _caption.shadowColor						= [UIColor blackColor];
     _caption.shadowOffset						= CGSizeMake( 1, 1 );
     
+    // setup tag
+    _tagContainer.backgroundColor			= [UIColor colorWithWhite:0.0 alpha:.35];
+    _tagContainer.hidden					= YES;
+    _tagContainer.userInteractionEnabled	= NO;
+    _tagContainer.exclusiveTouch			= YES;
+    _tag.font								= [UIFont systemFontOfSize:14.0];
+    _tag.textColor							= [UIColor whiteColor];
+    _tag.backgroundColor					= [UIColor clearColor];
+    _tag.textAlignment						= UITextAlignmentCenter;
+    _tag.shadowColor						= [UIColor blackColor];
+    _tag.shadowOffset						= CGSizeMake( 1, 1 );
+    
     // make things flexible
     _container.autoresizesSubviews				= NO;
     _innerContainer.autoresizesSubviews			= NO;
@@ -326,6 +340,9 @@ return coloredImg;
 	
 	[_toolbar addSubview:_captionContainer];
 	[_captionContainer addSubview:_caption];
+    
+    [_toolbar addSubview:_tagContainer];
+    [_tagContainer addSubview:_caption];
 	
 	// create buttons for toolbar
 	UIImage *leftIcon = [UIImage imageNamed:@"photo-gallery-left.png"];
@@ -361,6 +378,8 @@ return coloredImg;
     [_toolbar release], _toolbar = nil;
     [_captionContainer release], _captionContainer = nil;
     [_caption release], _caption = nil;
+    [_tagContainer release], _tagContainer = nil;
+    [_tag release], _tag = nil;
     
     [super viewDidUnload];
 }
@@ -557,6 +576,7 @@ return coloredImg;
 	}
 	[self updateButtons];
 	[self updateCaption];
+    [self updateTag];
 }
 
 
@@ -745,6 +765,40 @@ return coloredImg;
 
 }
 
+
+- (void)updateTag
+{
+	if([_photoSource numberOfPhotosForPhotoGallery:self] > 0 )
+	{
+		if([_photoSource respondsToSelector:@selector(photoGallery:tagsForPhotoAtIndex:)])
+		{
+			NSString *tag = [_photoSource photoGallery:self tagsForPhotoAtIndex:_currentIndex];
+			
+			if([tag length] > 0 )
+			{
+				float tagWidth = _container.frame.size.width-kCaptionPadding*2;
+				CGSize textSize = [tag sizeWithFont:_caption.font];
+				NSUInteger numLines = ceilf( textSize.width / tagWidth );
+				NSInteger height = ( textSize.height + kCaptionPadding ) * numLines;
+				
+				_tag.numberOfLines = numLines;
+				_tag.text = tag;
+				
+				NSInteger containerHeight = height+kCaptionPadding*2;
+				_tagContainer.frame = CGRectMake(0, -containerHeight, _container.frame.size.width, containerHeight );
+				_tag.frame = CGRectMake(kCaptionPadding, kCaptionPadding, tagWidth, height );
+				
+				// show caption bar
+				_tagContainer.hidden = NO;
+			}
+			else {
+				
+				// hide it if we don't have a tag.
+				_tagContainer.hidden = YES;
+			}
+		}
+	}
+}
 
 - (void)updateCaption
 {
@@ -1286,7 +1340,13 @@ return coloredImg;
 	
     [_captionContainer release];
     _captionContainer = nil;
+    
+    [_tag release];
+    _tag = nil;
 	
+    [_tagContainer release];
+    _tagContainer = nil;
+
     [_container release];
     _container = nil;
 	

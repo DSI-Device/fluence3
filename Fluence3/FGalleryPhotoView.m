@@ -15,8 +15,6 @@
 - (void)stopTapTimer;
 @end
 
-
-
 @implementation FGalleryPhotoView
 @synthesize photoDelegate;
 @synthesize imageView;

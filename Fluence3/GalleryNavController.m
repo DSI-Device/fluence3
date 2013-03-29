@@ -34,12 +34,12 @@
     
 	localCaptions = [[NSArray alloc] initWithObjects:@"Lava", @"Hawaii", @"Audi", @"Happy New Year!",@"Frosty Web",nil];
     localImages = [[NSArray alloc] initWithObjects: @"lava.jpeg", @"hawaii.jpeg", @"audi.jpg",nil];
+    localTags = [[NSArray alloc] initWithObjects:@"Lava", @"Hawaii", @"Audi", @"Happy New Year!",@"Frosty Web",nil];
     
     networkCaptions = [[NSArray alloc] initWithObjects:@"Happy New Year!",@"Frosty Web",nil];
     networkImages = [[NSArray alloc] initWithObjects:@"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", 
                      @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg",nil];
-   
-
+    networkTags = [[NSArray alloc] initWithObjects:@"Lava", @"Hawaii", @"Audi", @"Happy New Year!",@"Frosty Web",nil];
 }
 
 
@@ -119,7 +119,7 @@
 		cell.textLabel.text = @"Public Gallery";
 	}
 	else if( indexPath.row == 2 ) {
-		cell.textLabel.text = @"Popular Gallery";//featured gallery
+		cell.textLabel.text = @"Popular Gallery";//popular gallery
 	}
     
     return cell;
@@ -131,12 +131,20 @@
     
 	if( indexPath.row == 0 ) {
 		localGallery = [[FGalleryViewController alloc] initWithPhotoSource:self];
-        [self.navigationController pushViewController:localGallery animated:YES];
+//        [self.navigationController pushViewController:localGallery animated:YES];
+//        [localGallery release];
+        
+        // THIS IS THE MAGIC PART 2
+        UIViewController *topVC = (UIViewController *)self.navigationController.delegate;
+        [topVC.navigationController pushViewController:localGallery animated:YES];
         [localGallery release];
 	}
     else if( indexPath.row == 1 ) {
 		networkGallery = [[FGalleryViewController alloc] initWithPhotoSource:self];
-        [self.navigationController pushViewController:networkGallery animated:YES];
+//        [self.navigationController pushViewController:networkGallery animated:YES];
+        
+        UIViewController *topVC = (UIViewController *)self.navigationController.delegate;
+        [topVC.navigationController pushViewController:networkGallery animated:YES];        
         [networkGallery release];        
     }
 	else if( indexPath.row == 2 ) {
@@ -147,12 +155,12 @@
 		NSArray *barItems = [NSArray arrayWithObjects:editCaptionButton, trashButton, nil];
 		
 		localGallery = [[FGalleryViewController alloc] initWithPhotoSource:self barItems:barItems];
-        [self.navigationController pushViewController:localGallery animated:YES];
+//        [self.navigationController pushViewController:localGallery animated:YES];
+        UIViewController *topVC = (UIViewController *)self.navigationController.delegate;
+        [topVC.navigationController pushViewController:localGallery animated:YES];        
         [localGallery release];
 	}
 }
-
-
 
 #pragma mark - FGalleryViewControllerDelegate Methods
 
@@ -187,6 +195,18 @@
         caption = [networkCaptions objectAtIndex:index];
     }
 	return caption;
+}
+
+- (NSString*)photoGallery:(FGalleryViewController *)gallery tagsForPhotoAtIndex:(NSUInteger)index
+{
+    NSString *tag;
+    if( gallery == localGallery ) {
+        tag = [localTags objectAtIndex:index];
+    }
+    else if( gallery == networkGallery ) {
+        tag = [networkTags objectAtIndex:index];
+    }
+	return tag;
 }
 
 - (NSString*)photoGallery:(FGalleryViewController*)gallery filePathForPhotoSize:(FGalleryPhotoSize)size atIndex:(NSUInteger)index {

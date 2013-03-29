@@ -12,11 +12,13 @@
 @interface GalleryNavController : UITableViewController<FGalleryViewControllerDelegate>{
     NSArray *localCaptions;
     NSArray *localImages;
+    NSArray *localTags;
     NSArray *networkCaptions;
     NSArray *networkImages;
-	FGalleryViewController *localGallery;
+    NSArray *networkTags;
+	
+    FGalleryViewController *localGallery;
     FGalleryViewController *networkGallery;
-
 }
 
 

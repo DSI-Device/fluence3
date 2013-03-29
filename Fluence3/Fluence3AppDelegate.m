@@ -9,11 +9,13 @@
 #import "Fluence3AppDelegate.h"
 #import "LoginViewController.h"
 #import "MainViewController.h"
+#import "ISViewController.h"
+#import "ISColumnsController.h"
 #import <FacebookSDK/FacebookSDK.h>
 
 @interface Fluence3AppDelegate ()
 
-@property (strong, nonatomic) UINavigationController* navController;
+//@property (strong, nonatomic) UINavigationController* navController;
 
 @end
 
@@ -22,22 +24,29 @@
 NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStateChangedNotification";
 
 @synthesize window = _window;
-@synthesize mainViewController = _mainViewController;
-@synthesize navController = _navController;
+//@synthesize mainViewController = _mainViewController;
+//@synthesize navController = _navController;
 @synthesize userId;
 @synthesize userName;
 @synthesize accessToken;
 @synthesize session = _session;
+@synthesize navigationController = _navigationController;
+@synthesize columnsController = _columnsController;
+@synthesize img;
+@synthesize imgOptimized;
 
 - (void)dealloc {
-
-	[_navController release];
-    [_mainViewController release];
+    [_navigationController release];
+    [_columnsController release];
+//	[_navController release];
+//  [_mainViewController release];
     [_window release];
     [_session release];
     [userId release];
     [userName release];
     [accessToken release];
+    [img release];
+    [imgOptimized release];
     [super dealloc];
 }
 
@@ -53,7 +62,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 
 - (void)showLoginView 
 {
-    UIViewController *topViewController = [self.navController topViewController];
+    UIViewController *topViewController = [self.navigationController topViewController];
     UIViewController *modalViewController = [topViewController modalViewController];
     
     // If the login screen is not already displayed, display it. If the login screen is 
@@ -78,7 +87,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 {
     switch (state) {
         case FBSessionStateOpen: {
-            UIViewController *topViewController = [self.navController topViewController];
+            UIViewController *topViewController = [self.navigationController topViewController];
             if ([[topViewController modalViewController] isKindOfClass:[LoginViewController class]]) {
                 [topViewController dismissModalViewControllerAnimated:YES];
             }
@@ -101,7 +110,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
         case FBSessionStateClosedLoginFailed:
             // Once the user has logged in, we want them to 
             // be looking at the root view.
-            [self.navController popToRootViewControllerAnimated:NO];
+            [self.navigationController popToRootViewControllerAnimated:NO];
             
             [FBSession.activeSession closeAndClearTokenInformation];
             
@@ -153,7 +162,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]autorelease];
+    /*self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]autorelease];
     // Override point for customization after application launch.
     self.mainViewController = [[[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil]autorelease];
     self.navController = [[[UINavigationController alloc] initWithRootViewController:self.mainViewController]autorelease];
@@ -169,8 +178,53 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
         [self showLoginView];
     }
     
+    return YES;*/
+    self.columnsController = [[[ISColumnsController alloc] init] autorelease];
+    self.columnsController.navigationItem.rightBarButtonItem =
+    [[[UIBarButtonItem alloc] initWithTitle:@"Logout"
+                                      style:UIBarButtonItemStylePlain
+                                     target:self
+                                     action:@selector(logoutButtonWasPressed)] autorelease];
+    [self reloadViewControllers];
+    
+    self.navigationController = [[[UINavigationController alloc] init] autorelease];
+    self.navigationController.viewControllers = [NSArray arrayWithObject:self.columnsController];
+    
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController = self.navigationController;
+    [self.window makeKeyAndVisible];
+    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+        // To-do, show logged in view
+        [self openSession];
+    } else {
+        // No, display the login page.
+        [self showLoginView];
+    }
     return YES;
 }
+
+- (void)reloadViewControllers
+{
+    ISViewController *viewController1 = [[[ISViewController alloc] init] autorelease];
+    viewController1.navigationItem.title = @"Fluence";
+    
+    ISViewController *viewController2 = [[[ISViewController alloc] init] autorelease];
+    viewController2.navigationItem.title = @"Fluence";
+    
+    ISViewController *viewController3 = [[[ISViewController alloc] init] autorelease];
+    viewController3.navigationItem.title = @"Fluence";
+    
+    self.columnsController.viewControllers = [NSArray arrayWithObjects:
+                                              viewController1,
+                                              viewController2,
+                                              viewController3, nil];
+}
+
+-(void)logoutButtonWasPressed {
+    [FBSession.activeSession closeAndClearTokenInformation];
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

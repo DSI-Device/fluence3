@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C849D17A17048DEC003D18A5 /* menu7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C849D17917048DEC003D18A5 /* menu7.jpg */; };
+		C849D18417049246003D18A5 /* ISViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C849D18317049246003D18A5 /* ISViewController.xib */; };
+		C849D18617049419003D18A5 /* fb-login-button.png in Resources */ = {isa = PBXBuildFile; fileRef = C849D18517049419003D18A5 /* fb-login-button.png */; };
+		C849D19117049995003D18A5 /* CameraImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = C849D18917049995003D18A5 /* CameraImageController.m */; };
+		C849D19217049995003D18A5 /* CameraImageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C849D18A17049995003D18A5 /* CameraImageController.xib */; };
+		C849D19317049995003D18A5 /* ShowCropedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C849D18C17049995003D18A5 /* ShowCropedImage.m */; };
+		C849D19417049995003D18A5 /* ShowCropedImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = C849D18D17049995003D18A5 /* ShowCropedImage.xib */; };
+		C849D19517049995003D18A5 /* TakeCameraPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = C849D18F17049995003D18A5 /* TakeCameraPhoto.m */; };
+		C849D19617049995003D18A5 /* TakeCameraPhoto.xib in Resources */ = {isa = PBXBuildFile; fileRef = C849D19017049995003D18A5 /* TakeCameraPhoto.xib */; };
+		C849D199170499B1003D18A5 /* gavandme.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C849D197170499B1003D18A5 /* gavandme.jpg */; };
+		C849D19A170499B1003D18A5 /* tactile_noise.png in Resources */ = {isa = PBXBuildFile; fileRef = C849D198170499B1003D18A5 /* tactile_noise.png */; };
 		C889BACB16F213370040CA39 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889BACA16F213370040CA39 /* UIKit.framework */; };
 		C889BACD16F213370040CA39 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889BACC16F213370040CA39 /* Foundation.framework */; };
 		C889BACF16F213370040CA39 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889BACE16F213370040CA39 /* CoreGraphics.framework */; };
@@ -56,9 +67,39 @@
 		C8C0E80B16F890D900C92E99 /* photo-gallery-right.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0E80716F890D900C92E99 /* photo-gallery-right.png */; };
 		C8C0E80C16F890D900C92E99 /* photo-gallery-left.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0E80816F890D900C92E99 /* photo-gallery-left.png */; };
 		C8C0E80D16F890D900C92E99 /* photo-gallery-edit-caption.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0E80916F890D900C92E99 /* photo-gallery-edit-caption.png */; };
+		C8CE00DA1704299400558361 /* ISColumnsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CE00D61704299400558361 /* ISColumnsController.m */; };
+		C8CE00DB1704299400558361 /* ISViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CE00D81704299400558361 /* ISViewController.m */; };
+		C8CE00E617042C9200558361 /* menu1.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CE00DF17042C9200558361 /* menu1.png */; };
+		C8CE00E717042C9200558361 /* menu2.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CE00E017042C9200558361 /* menu2.png */; };
+		C8CE00E817042C9200558361 /* menu3.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CE00E117042C9200558361 /* menu3.png */; };
+		C8CE00E917042C9200558361 /* menu4.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CE00E217042C9200558361 /* menu4.png */; };
+		C8CE00EA17042C9200558361 /* menu5.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CE00E317042C9200558361 /* menu5.png */; };
+		C8CE00EB17042C9200558361 /* menu6.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CE00E417042C9200558361 /* menu6.png */; };
+		C8D27A2517058F5A0069D983 /* ColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D27A2317058F590069D983 /* ColorViewController.m */; };
+		C8D27A2617058F5A0069D983 /* ColorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8D27A2417058F590069D983 /* ColorViewController.xib */; };
+		C8D27A28170594F60069D983 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8D27A27170594F60069D983 /* CoreImage.framework */; };
+		C8E509831704735800A1624A /* OBShapedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E509801704735800A1624A /* OBShapedButton.m */; };
+		C8E509841704735800A1624A /* UIImage+ColorAtPixel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E509821704735800A1624A /* UIImage+ColorAtPixel.m */; };
+		C8E5098717047B3400A1624A /* button-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = C8E5098517047B3400A1624A /* button-highlighted.png */; };
+		C8E5098817047B3400A1624A /* button-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = C8E5098617047B3400A1624A /* button-normal.png */; };
+		C8E5099117047FAB00A1624A /* BJImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E5099017047FAB00A1624A /* BJImageCropper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C849D17917048DEC003D18A5 /* menu7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu7.jpg; sourceTree = "<group>"; };
+		C849D18317049246003D18A5 /* ISViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ISViewController.xib; sourceTree = "<group>"; };
+		C849D18517049419003D18A5 /* fb-login-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fb-login-button.png"; sourceTree = "<group>"; };
+		C849D18817049995003D18A5 /* CameraImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraImageController.h; sourceTree = "<group>"; };
+		C849D18917049995003D18A5 /* CameraImageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraImageController.m; sourceTree = "<group>"; };
+		C849D18A17049995003D18A5 /* CameraImageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraImageController.xib; sourceTree = "<group>"; };
+		C849D18B17049995003D18A5 /* ShowCropedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowCropedImage.h; sourceTree = "<group>"; };
+		C849D18C17049995003D18A5 /* ShowCropedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowCropedImage.m; sourceTree = "<group>"; };
+		C849D18D17049995003D18A5 /* ShowCropedImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowCropedImage.xib; sourceTree = "<group>"; };
+		C849D18E17049995003D18A5 /* TakeCameraPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeCameraPhoto.h; sourceTree = "<group>"; };
+		C849D18F17049995003D18A5 /* TakeCameraPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeCameraPhoto.m; sourceTree = "<group>"; };
+		C849D19017049995003D18A5 /* TakeCameraPhoto.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TakeCameraPhoto.xib; sourceTree = "<group>"; };
+		C849D197170499B1003D18A5 /* gavandme.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gavandme.jpg; sourceTree = "<group>"; };
+		C849D198170499B1003D18A5 /* tactile_noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tactile_noise.png; sourceTree = "<group>"; };
 		C889BAC616F213370040CA39 /* Fluence3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fluence3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C889BACA16F213370040CA39 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C889BACC16F213370040CA39 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -138,6 +179,28 @@
 		C8C0E80716F890D900C92E99 /* photo-gallery-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo-gallery-right.png"; sourceTree = "<group>"; };
 		C8C0E80816F890D900C92E99 /* photo-gallery-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo-gallery-left.png"; sourceTree = "<group>"; };
 		C8C0E80916F890D900C92E99 /* photo-gallery-edit-caption.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo-gallery-edit-caption.png"; sourceTree = "<group>"; };
+		C8CE00D51704299400558361 /* ISColumnsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISColumnsController.h; sourceTree = "<group>"; };
+		C8CE00D61704299400558361 /* ISColumnsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISColumnsController.m; sourceTree = "<group>"; };
+		C8CE00D71704299400558361 /* ISViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISViewController.h; sourceTree = "<group>"; };
+		C8CE00D81704299400558361 /* ISViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISViewController.m; sourceTree = "<group>"; };
+		C8CE00DF17042C9200558361 /* menu1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu1.png; sourceTree = "<group>"; };
+		C8CE00E017042C9200558361 /* menu2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu2.png; sourceTree = "<group>"; };
+		C8CE00E117042C9200558361 /* menu3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu3.png; sourceTree = "<group>"; };
+		C8CE00E217042C9200558361 /* menu4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu4.png; sourceTree = "<group>"; };
+		C8CE00E317042C9200558361 /* menu5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu5.png; sourceTree = "<group>"; };
+		C8CE00E417042C9200558361 /* menu6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu6.png; sourceTree = "<group>"; };
+		C8D27A2217058F590069D983 /* ColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorViewController.h; sourceTree = "<group>"; };
+		C8D27A2317058F590069D983 /* ColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorViewController.m; sourceTree = "<group>"; };
+		C8D27A2417058F590069D983 /* ColorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorViewController.xib; sourceTree = "<group>"; };
+		C8D27A27170594F60069D983 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		C8E5097F1704735800A1624A /* OBShapedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBShapedButton.h; sourceTree = "<group>"; };
+		C8E509801704735800A1624A /* OBShapedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBShapedButton.m; sourceTree = "<group>"; };
+		C8E509811704735800A1624A /* UIImage+ColorAtPixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ColorAtPixel.h"; sourceTree = "<group>"; };
+		C8E509821704735800A1624A /* UIImage+ColorAtPixel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ColorAtPixel.m"; sourceTree = "<group>"; };
+		C8E5098517047B3400A1624A /* button-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-highlighted.png"; sourceTree = "<group>"; };
+		C8E5098617047B3400A1624A /* button-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-normal.png"; sourceTree = "<group>"; };
+		C8E5098F17047FAB00A1624A /* BJImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJImageCropper.h; sourceTree = "<group>"; };
+		C8E5099017047FAB00A1624A /* BJImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJImageCropper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8D27A28170594F60069D983 /* CoreImage.framework in Frameworks */,
 				C8952FB516F99E7B004EDAD7 /* QuartzCore.framework in Frameworks */,
 				C897EEE316F7267900AC1194 /* SystemConfiguration.framework in Frameworks */,
 				C897EE7E16F70AF300AC1194 /* libsqlite3.dylib in Frameworks */,
@@ -160,9 +224,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C849D18717049972003D18A5 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				C849D18817049995003D18A5 /* CameraImageController.h */,
+				C849D18917049995003D18A5 /* CameraImageController.m */,
+				C849D18B17049995003D18A5 /* ShowCropedImage.h */,
+				C849D18C17049995003D18A5 /* ShowCropedImage.m */,
+				C849D18E17049995003D18A5 /* TakeCameraPhoto.h */,
+				C849D18F17049995003D18A5 /* TakeCameraPhoto.m */,
+				C8D27A2217058F590069D983 /* ColorViewController.h */,
+				C8D27A2317058F590069D983 /* ColorViewController.m */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
 		C889BABB16F213370040CA39 = {
 			isa = PBXGroup;
 			children = (
+				C8D27A27170594F60069D983 /* CoreImage.framework */,
 				C889BAD016F213370040CA39 /* Fluence3 */,
 				C889BAC916F213370040CA39 /* Frameworks */,
 				C889BAC716F213370040CA39 /* Products */,
@@ -287,6 +367,7 @@
 		C8C0E7ED16F87EB700C92E99 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C8CE00DE17042C2200558361 /* Menu */,
 				C8C0E7FF16F8901100C92E99 /* gallery */,
 				C8C0E7F016F87ED800C92E99 /* nibs */,
 				C8C0E7EF16F87ECF00C92E99 /* images */,
@@ -297,6 +378,11 @@
 		C8C0E7EF16F87ECF00C92E99 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C849D197170499B1003D18A5 /* gavandme.jpg */,
+				C849D198170499B1003D18A5 /* tactile_noise.png */,
+				C849D18517049419003D18A5 /* fb-login-button.png */,
+				C8E5098517047B3400A1624A /* button-highlighted.png */,
+				C8E5098617047B3400A1624A /* button-normal.png */,
 				C8C0E80616F890D900C92E99 /* photo-gallery-trashcan.png */,
 				C8C0E80716F890D900C92E99 /* photo-gallery-right.png */,
 				C8C0E80816F890D900C92E99 /* photo-gallery-left.png */,
@@ -308,6 +394,11 @@
 		C8C0E7F016F87ED800C92E99 /* nibs */ = {
 			isa = PBXGroup;
 			children = (
+				C8D27A2417058F590069D983 /* ColorViewController.xib */,
+				C849D19017049995003D18A5 /* TakeCameraPhoto.xib */,
+				C849D18D17049995003D18A5 /* ShowCropedImage.xib */,
+				C849D18A17049995003D18A5 /* CameraImageController.xib */,
+				C849D18317049246003D18A5 /* ISViewController.xib */,
 				C88DC2B917031A6E002402BC /* GalleryNavController.xib */,
 				C8952FB816F9A25A004EDAD7 /* GalleryController.xib */,
 				C889BADF16F213370040CA39 /* MainViewController.xib */,
@@ -329,6 +420,7 @@
 		C8C0E7F216F87F3400C92E99 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C8E5098E17047F8800A1624A /* Library */,
 				C8C0E7F116F87F0600C92E99 /* controllers */,
 				C897EE7516F70A4D00AC1194 /* etc */,
 				C897EE5A16F7078E00AC1194 /* dao */,
@@ -339,6 +431,7 @@
 		C8C0E7F316F87FEF00C92E99 /* pages */ = {
 			isa = PBXGroup;
 			children = (
+				C849D18717049972003D18A5 /* Camera */,
 				C889BAEF16F2152E0040CA39 /* LoginViewController.h */,
 				C889BAF016F2152E0040CA39 /* LoginViewController.m */,
 				C889BADC16F213370040CA39 /* MainViewController.h */,
@@ -354,6 +447,11 @@
 		C8C0E7F416F88ED200C92E99 /* component */ = {
 			isa = PBXGroup;
 			children = (
+				C8E5097E1704732F00A1624A /* OBShapedButton */,
+				C8CE00D51704299400558361 /* ISColumnsController.h */,
+				C8CE00D61704299400558361 /* ISColumnsController.m */,
+				C8CE00D71704299400558361 /* ISViewController.h */,
+				C8CE00D81704299400558361 /* ISViewController.m */,
 			);
 			name = component;
 			sourceTree = "<group>";
@@ -379,6 +477,40 @@
 				C8C0E80216F890A200C92E99 /* audi.jpg */,
 			);
 			name = gallery;
+			sourceTree = "<group>";
+		};
+		C8CE00DE17042C2200558361 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				C849D17917048DEC003D18A5 /* menu7.jpg */,
+				C8CE00DF17042C9200558361 /* menu1.png */,
+				C8CE00E017042C9200558361 /* menu2.png */,
+				C8CE00E117042C9200558361 /* menu3.png */,
+				C8CE00E217042C9200558361 /* menu4.png */,
+				C8CE00E317042C9200558361 /* menu5.png */,
+				C8CE00E417042C9200558361 /* menu6.png */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		C8E5097E1704732F00A1624A /* OBShapedButton */ = {
+			isa = PBXGroup;
+			children = (
+				C8E5097F1704735800A1624A /* OBShapedButton.h */,
+				C8E509801704735800A1624A /* OBShapedButton.m */,
+				C8E509811704735800A1624A /* UIImage+ColorAtPixel.h */,
+				C8E509821704735800A1624A /* UIImage+ColorAtPixel.m */,
+			);
+			name = OBShapedButton;
+			sourceTree = "<group>";
+		};
+		C8E5098E17047F8800A1624A /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				C8E5098F17047FAB00A1624A /* BJImageCropper.h */,
+				C8E5099017047FAB00A1624A /* BJImageCropper.m */,
+			);
+			name = Library;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -444,6 +576,23 @@
 				C8C0E80D16F890D900C92E99 /* photo-gallery-edit-caption.png in Resources */,
 				C8952FBA16F9A25A004EDAD7 /* GalleryController.xib in Resources */,
 				C88DC2BB17031A6E002402BC /* GalleryNavController.xib in Resources */,
+				C8CE00E617042C9200558361 /* menu1.png in Resources */,
+				C8CE00E717042C9200558361 /* menu2.png in Resources */,
+				C8CE00E817042C9200558361 /* menu3.png in Resources */,
+				C8CE00E917042C9200558361 /* menu4.png in Resources */,
+				C8CE00EA17042C9200558361 /* menu5.png in Resources */,
+				C8CE00EB17042C9200558361 /* menu6.png in Resources */,
+				C8E5098717047B3400A1624A /* button-highlighted.png in Resources */,
+				C8E5098817047B3400A1624A /* button-normal.png in Resources */,
+				C849D17A17048DEC003D18A5 /* menu7.jpg in Resources */,
+				C849D18417049246003D18A5 /* ISViewController.xib in Resources */,
+				C849D18617049419003D18A5 /* fb-login-button.png in Resources */,
+				C849D19217049995003D18A5 /* CameraImageController.xib in Resources */,
+				C849D19417049995003D18A5 /* ShowCropedImage.xib in Resources */,
+				C849D19617049995003D18A5 /* TakeCameraPhoto.xib in Resources */,
+				C849D199170499B1003D18A5 /* gavandme.jpg in Resources */,
+				C849D19A170499B1003D18A5 /* tactile_noise.png in Resources */,
+				C8D27A2617058F5A0069D983 /* ColorViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +630,15 @@
 				C8C0E7FE16F88FC900C92E99 /* FGalleryPhoto.m in Sources */,
 				C8952FB916F9A25A004EDAD7 /* GalleryController.m in Sources */,
 				C88DC2BA17031A6E002402BC /* GalleryNavController.m in Sources */,
+				C8CE00DA1704299400558361 /* ISColumnsController.m in Sources */,
+				C8CE00DB1704299400558361 /* ISViewController.m in Sources */,
+				C8E509831704735800A1624A /* OBShapedButton.m in Sources */,
+				C8E509841704735800A1624A /* UIImage+ColorAtPixel.m in Sources */,
+				C8E5099117047FAB00A1624A /* BJImageCropper.m in Sources */,
+				C849D19117049995003D18A5 /* CameraImageController.m in Sources */,
+				C849D19317049995003D18A5 /* ShowCropedImage.m in Sources */,
+				C849D19517049995003D18A5 /* TakeCameraPhoto.m in Sources */,
+				C8D27A2517058F5A0069D983 /* ColorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

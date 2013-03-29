@@ -72,8 +72,8 @@
         id<FBGraphUser> friend = [self.selectedFriends objectAtIndex:0];
         friendsSubtitle = friend.name;
     }
-    [self updateCellIndex:2 withSubtitle:friendsSubtitle];
-    [self updateCellIndex:1 withSubtitle:(self.selectedPlace ?
+    [self updateCellIndex:1 withSubtitle:friendsSubtitle];
+    [self updateCellIndex:0 withSubtitle:(self.selectedPlace ?
                                           self.selectedPlace.name :
                                           @"Select One")];
 }
@@ -81,7 +81,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.row) {
-        case 1:
+        case 0:
             if (!self.placePickerController) {
                 self.placePickerController = [[[FBPlacePickerViewController alloc] initWithNibName:nil bundle:nil] autorelease];
                 self.placePickerController.title = @"Select a restaurant";
@@ -96,7 +96,7 @@
             [self.navigationController pushViewController:self.placePickerController animated:true];
             break;
 
-        case 2:
+        case 1:
             if (!self.friendPickerController) {
                 self.friendPickerController = [[[FBFriendPickerViewController alloc] initWithNibName:nil bundle:nil]autorelease];
                 self.friendPickerController.title = @"Select friends";
@@ -108,24 +108,24 @@
             [self.navigationController pushViewController:self.friendPickerController animated:true];
             break;
         
-        case 3:
-            gc = [[GalleryController alloc] initWithNibName:@"GalleryController" bundle:nil];
-                
-            gc.title = @"Gallery";
-                
-            // Set the friend picker delegate
-            //gc.delegate = self;
-                
-            [self.navigationController pushViewController:gc animated:YES];
-            [gc release];
-            break;
+//        case 3:
+//            gc = [[GalleryController alloc] initWithNibName:@"GalleryController" bundle:nil];
+//                
+//            gc.title = @"Gallery";
+//                
+//            // Set the friend picker delegate
+//            //gc.delegate = self;
+//                
+//            [self.navigationController pushViewController:gc animated:YES];
+//            [gc release];
+//            break;
             
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
-    return 4;
+    return 2;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
@@ -160,28 +160,17 @@
     }
     
     switch (indexPath.row) {
+        
         case 0:
-            cell.textLabel.text = @"What are you eating?";
-            cell.detailTextLabel.text = @"Select one";
-            cell.imageView.image = [UIImage imageNamed:@"action-eating.png"];
-            break;
-            
-        case 1:
-            cell.textLabel.text = @"Where are you?";
+            cell.textLabel.text = @"Location?";
             cell.detailTextLabel.text = @"Select one";
             cell.imageView.image = [UIImage imageNamed:@"action-location.png"];
             break;
             
-        case 2:
-            cell.textLabel.text = @"With whom?";
+        case 1:
+            cell.textLabel.text = @"Friends?";
             cell.detailTextLabel.text = @"Select friends";
             cell.imageView.image = [UIImage imageNamed:@"action-people.png"];
-            break;
-            
-        case 3:
-            cell.textLabel.text = @"Got a picture?";
-            cell.detailTextLabel.text = @"Take one";
-            cell.imageView.image = [UIImage imageNamed:@"action-photo.png"];
             break;
             
         default:
@@ -259,11 +248,11 @@
 
 - (void)viewDidLoad
 {
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] 
-                                              initWithTitle:@"Logout"
-                                              style:UIBarButtonItemStyleBordered
-                                              target:self
-                                              action:@selector(logoutButtonWasPressed:)]autorelease];
+//    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] 
+//                                              initWithTitle:@"Logout"
+//                                              style:UIBarButtonItemStyleBordered
+//                                              target:self
+//                                              action:@selector(logoutButtonWasPressed:)]autorelease];
     [super viewDidLoad];
 
     
@@ -327,8 +316,8 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
--(void)logoutButtonWasPressed:(id)sender {
-    [FBSession.activeSession closeAndClearTokenInformation];
-}
+//-(void)logoutButtonWasPressed:(id)sender {
+//    [FBSession.activeSession closeAndClearTokenInformation];
+//}
 
 @end
