@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2B1B65611713044D006610D3 /* lava.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2B1B65601713044D006610D3 /* lava.jpeg */; };
+		2B1B656717130C5E006610D3 /* Flogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1B656617130C5E006610D3 /* Flogo.png */; };
+		2B1B656917130D3E006610D3 /* flogo1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1B656817130D3E006610D3 /* flogo1.png */; };
 		2B53EDE9170F039200C8C184 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE6170F039200C8C184 /* share.png */; };
 		2B53EDEA170F039200C8C184 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE7170F039200C8C184 /* comment.png */; };
 		2B53EDEB170F039200C8C184 /* heart-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE8170F039200C8C184 /* heart-icon.png */; };
@@ -91,6 +93,8 @@
 
 /* Begin PBXFileReference section */
 		2B1B65601713044D006610D3 /* lava.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lava.jpeg; sourceTree = "<group>"; };
+		2B1B656617130C5E006610D3 /* Flogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Flogo.png; sourceTree = "<group>"; };
+		2B1B656817130D3E006610D3 /* flogo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flogo1.png; sourceTree = "<group>"; };
 		2B53EDE6170F039200C8C184 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		2B53EDE7170F039200C8C184 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
 		2B53EDE8170F039200C8C184 /* heart-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-icon.png"; sourceTree = "<group>"; };
@@ -251,6 +255,8 @@
 		C889BABB16F213370040CA39 = {
 			isa = PBXGroup;
 			children = (
+				2B1B656817130D3E006610D3 /* flogo1.png */,
+				2B1B656617130C5E006610D3 /* Flogo.png */,
 				C889BAD016F213370040CA39 /* Fluence3 */,
 				C889BAC916F213370040CA39 /* Frameworks */,
 				C889BAC716F213370040CA39 /* Products */,
@@ -610,6 +616,8 @@
 				2B53EDEA170F039200C8C184 /* comment.png in Resources */,
 				2B53EDEB170F039200C8C184 /* heart-icon.png in Resources */,
 				2B1B65611713044D006610D3 /* lava.jpeg in Resources */,
+				2B1B656717130C5E006610D3 /* Flogo.png in Resources */,
+				2B1B656917130D3E006610D3 /* flogo1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
