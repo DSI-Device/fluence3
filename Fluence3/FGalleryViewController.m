@@ -181,7 +181,8 @@
     swipeGestureUp.numberOfTouchesRequired = 1;
     swipeGestureUp.direction = (UISwipeGestureRecognizerDirectionUp);
     [[self view] addGestureRecognizer:swipeGestureUp];
-    
+    [swipeGestureDown release];
+    [swipeGestureUp release];
     // Do any additional setup after loading the view from its nib.
 }
 - (void) swipedScreenDown:(UISwipeGestureRecognizer*)swipeGesture {
@@ -234,7 +235,7 @@
     _toolbar1.backgroundColor					= [UIColor grayColor];
     _toolbar.tintColor					= [UIColor whiteColor];
     _toolbar1.tintColor					= [UIColor whiteColor];
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+//    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     _container.backgroundColor			= [UIColor whiteColor];
     
     // listen for container frame changes so we can properly update the layout during auto-rotation or going in and out of fullscreen
@@ -1470,6 +1471,7 @@
     [button addTarget:self action:@selector(tappedBtn:) forControlEvents:UIControlEventTouchUpInside];
     button.tag = index;
     [_tagContainer addSubview:button];
+    [button release];
 }
 
 - (void)tappedBtn:(id)sender
@@ -1492,8 +1494,8 @@
         //        CGSize inConSize = _innerContainer.frame.size;
         //        CGPoint inConCord = _innerContainer.frame.origin;
         //        CGSize toolSize = _toolbar.frame.size;
-        CGPoint toolCord = _toolbar.frame.origin;
-        CGSize capSize = _captionContainer.frame.size;
+//        CGPoint toolCord = _toolbar.frame.origin;
+//        CGSize capSize = _captionContainer.frame.size;
         //        CGPoint capCord = _captionContainer.frame.origin;
         NSInteger containerHeight = height + kCaptionPadding*2;
         //NSInteger containerY = toolCord.y - 27 - capSize.height;
@@ -1520,8 +1522,8 @@
             [buttonShop setImage:strechableButtonImagePressed forState:UIControlStateHighlighted];
             [buttonShop addTarget:self action:@selector(tappedShopBtn:) forControlEvents:UIControlEventTouchUpInside];
             buttonShop.stringId = shopUrl;
-            
             [_tagCaptionContainer addSubview:buttonShop]; //change container
+            [buttonShop release];
         }
         // show caption bar
         _tagCaptionContainer.hidden = NO;

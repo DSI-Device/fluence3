@@ -752,6 +752,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Fluence3;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -773,6 +774,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Fluence3;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
