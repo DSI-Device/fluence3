@@ -32,7 +32,7 @@
                   options:NSKeyValueObservingOptionNew
                   context:nil];
     }
-    return self;
+    return self;//test
 }
 
 - (void)loadTitleView
