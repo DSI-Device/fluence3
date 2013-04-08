@@ -251,7 +251,6 @@
 		C889BABB16F213370040CA39 = {
 			isa = PBXGroup;
 			children = (
-				C8D27A27170594F60069D983 /* CoreImage.framework */,
 				C889BAD016F213370040CA39 /* Fluence3 */,
 				C889BAC916F213370040CA39 /* Frameworks */,
 				C889BAC716F213370040CA39 /* Products */,
@@ -269,6 +268,7 @@
 		C889BAC916F213370040CA39 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C8D27A27170594F60069D983 /* CoreImage.framework */,
 				C8952FB416F99E7B004EDAD7 /* QuartzCore.framework */,
 				C897EEE216F7267800AC1194 /* SystemConfiguration.framework */,
 				C897EE7D16F70AF300AC1194 /* libsqlite3.dylib */,
