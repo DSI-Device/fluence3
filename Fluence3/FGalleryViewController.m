@@ -1,4 +1,4 @@
-    //
+//
 //  FGalleryViewController.m
 //  FGallery
 //
@@ -85,10 +85,10 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
 	if((self = [super initWithNibName:nil bundle:nil])) {
-	
+        
 		// init gallery id with our memory address
 		self.galleryID						= [NSString stringWithFormat:@"%p", self];
-
+        
         // configure view controller
 		self.hidesBottomBarWhenPushed		= YES;
         
@@ -106,18 +106,18 @@
 		_barItems							= [[NSMutableArray alloc] init];
         
         /*
-         // debugging: 
-        _container.layer.borderColor = [[UIColor yellowColor] CGColor];
-        _container.layer.borderWidth = 1.0;
+         // debugging:
+         _container.layer.borderColor = [[UIColor yellowColor] CGColor];
+         _container.layer.borderWidth = 1.0;
          
-        _innerContainer.layer.borderColor = [[UIColor greenColor] CGColor];
-        _innerContainer.layer.borderWidth = 1.0;
-        
-        _tagContainer.layer.borderColor = [[UIColor blueColor] CGColor];
-        _tagContainer.layer.borderWidth = 1.0;
+         _innerContainer.layer.borderColor = [[UIColor greenColor] CGColor];
+         _innerContainer.layer.borderWidth = 1.0;
          
-        _scroller.layer.borderColor = [[UIColor redColor] CGColor];
-        _scroller.layer.borderWidth = 2.0;
+         _tagContainer.layer.borderColor = [[UIColor blueColor] CGColor];
+         _tagContainer.layer.borderWidth = 1.0;
+         
+         _scroller.layer.borderColor = [[UIColor redColor] CGColor];
+         _scroller.layer.borderWidth = 2.0;
          */
         
 	}
@@ -171,7 +171,7 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-   
+    
     //Up-Down Gesture add to change date
     UISwipeGestureRecognizer *swipeGestureDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedScreenDown:)];
     swipeGestureDown.numberOfTouchesRequired = 1;
@@ -212,12 +212,14 @@
 
 - (void)loadView
 {
-        
+    
     // create public objects first so they're available for custom configuration right away. positioning comes later.
     _container							= [[UIView alloc] initWithFrame:CGRectZero];
     _innerContainer						= [[UIView alloc] initWithFrame:CGRectZero];
     _scroller							= [[UIScrollView alloc] initWithFrame:CGRectZero];
     _thumbsView							= [[UIScrollView alloc] initWithFrame:CGRectZero];
+    
+    _toolbar1							= [[UIToolbar alloc] initWithFrame:CGRectZero];
     _toolbar							= [[UIToolbar alloc] initWithFrame:CGRectZero];
     _toolbar1							= [[UIToolbar alloc] initWithFrame:CGRectZero];
     _captionContainer					= [[UIView alloc] initWithFrame:CGRectZero];
@@ -228,8 +230,11 @@
     _tagCaptionContainer                = [[UIView alloc] initWithFrame:CGRectZero];
     _tag                                = [[UILabel alloc] initWithFrame:CGRectZero];
     
-    _toolbar.barStyle					= UIBarStyleBlackTranslucent;
-    _toolbar1.barStyle					= UIBarStyleBlackTranslucent;
+    _tagCaptionContainer.backgroundColor = [UIColor grayColor];
+    _toolbar1.backgroundColor					= [UIColor grayColor];
+    _toolbar.tintColor					= [UIColor whiteColor];
+    _toolbar1.tintColor					= [UIColor whiteColor];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     _container.backgroundColor			= [UIColor whiteColor];
     
     // listen for container frame changes so we can properly update the layout during auto-rotation or going in and out of fullscreen
@@ -257,7 +262,7 @@
     _tagContainer.hidden					    = NO;
     _tagContainer.backgroundColor               = [UIColor colorWithWhite:1.0 alpha:0.0];
     _tagContainer.frame                         = CGRectMake(100, 114, 256, 278);
-
+    
     _tagCaptionContainer.hidden					= NO;
     _tagCaptionContainer.backgroundColor        = [UIColor colorWithWhite:1.0 alpha:0.0];
     //_tagCaptionContainer.frame                  = CGRectMake(64, 114, 256, 278);
@@ -329,6 +334,10 @@
     [_commentButton addTarget:self action:@selector(buttonPressed)
              forControlEvents:UIControlEventTouchUpInside];
     
+    
+    
+    
+    
 	// set view
 	self.view = _container;
 	
@@ -349,7 +358,7 @@
     
 	[_toolbar addSubview:_captionContainer];
 	[_captionContainer addSubview:_caption];
-        
+    
     [_tagCaptionContainer addSubview:_tag];
 	
 	// create buttons for toolbar
@@ -392,7 +401,7 @@
     [_tag release], _tag = nil;
     [_captionContainer release], _captionContainer = nil;
     [_caption release], _caption = nil;
-
+    
     
     [super viewDidUnload];
 }
@@ -486,7 +495,7 @@
     [super viewWillDisappear:animated];
     
 	_isActive = NO;
-
+    
 	[[UIApplication sharedApplication] setStatusBarStyle:_prevStatusStyle animated:animated];
 }
 
@@ -495,14 +504,14 @@
 {
     if(!_isFullscreen)
     {
-	// resize all the image views
-	NSUInteger i, count = [_photoViews count];
-	float dx = 0;
-	for (i = 0; i < count; i++) {
-		FGalleryPhotoView * photoView = [_photoViews objectAtIndex:i];
-		photoView.frame = CGRectMake(dx+50, 0, rect.size.width - 50, rect.size.height );
-		dx += rect.size.width;
-	}
+        // resize all the image views
+        NSUInteger i, count = [_photoViews count];
+        float dx = 0;
+        for (i = 0; i < count; i++) {
+            FGalleryPhotoView * photoView = [_photoViews objectAtIndex:i];
+            photoView.frame = CGRectMake(dx+50, 114, rect.size.width - 50,  _scroller.frame.size.height-(kToolbarHeight + 114)  );
+            dx += rect.size.width;
+        }
     }
 }
 
@@ -630,7 +639,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	if([keyPath isEqualToString:@"frame"]) 
+	if([keyPath isEqualToString:@"frame"])
 	{
 		[self layoutViews];
 	}
@@ -646,7 +655,7 @@
 	{//portrait
 		innerContainerRect = CGRectMake( 0, _container.frame.size.height - screenFrame.size.height, _container.frame.size.width, screenFrame.size.height );
 	}
-	else 
+	else
 	{// landscape
 		innerContainerRect = CGRectMake( 0, _container.frame.size.height - screenFrame.size.width, _container.frame.size.width, screenFrame.size.width );
 	}
@@ -675,9 +684,17 @@
 
 - (void)positionToolbar
 {
-	_toolbar.frame = CGRectMake( 0, _scroller.frame.size.height-kToolbarHeight, _scroller.frame.size.width, kToolbarHeight );
+    _toolbar1.frame = CGRectMake( 0, 114, 50, _scroller.frame.size.height-(kToolbarHeight + 114) );
+    _toolbar.frame = CGRectMake( 0, _scroller.frame.size.height-kToolbarHeight, _scroller.frame.size.width, kToolbarHeight );
+    CALayer *rightBorder = [CALayer layer];
     
-    _toolbar1.frame = CGRectMake( 0, 114, 50, _scroller.frame.size.height-(152) );
+    rightBorder.frame = CGRectMake(49, 0, 2.0, _scroller.frame.size.height-(kToolbarHeight + 114));
+    
+    rightBorder.backgroundColor = [UIColor colorWithWhite:0.8f
+                                                    alpha:1.0f].CGColor;
+    
+    [_toolbar1.layer addSublayer:rightBorder];
+    
 }
 
 
@@ -702,11 +719,11 @@
         if ([application respondsToSelector: @selector(setStatusBarHidden:withAnimation:)]) {
             [[UIApplication sharedApplication] setStatusBarHidden: YES withAnimation: UIStatusBarAnimationFade]; // 3.2+
         } else {
-    #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
             [[UIApplication sharedApplication] setStatusBarHidden: YES animated:YES]; // 2.0 - 3.2
-    #pragma GCC diagnostic warning "-Wdeprecated-declarations"
+#pragma GCC diagnostic warning "-Wdeprecated-declarations"
         }
-
+        
         [self.navigationController setNavigationBarHidden:YES animated:YES];
         [UIView beginAnimations:@"galleryOut" context:nil];
         [UIView setAnimationDelegate:self];
@@ -754,7 +771,7 @@
 	_toolbar.alpha = 1.0;
     _toolbar1.alpha = 1.0;
 	_captionContainer.alpha = 1.0;
-    _tagContainer.alpha = 1.0;                  
+    _tagContainer.alpha = 1.0;
 	[UIView commitAnimations];
 }
 
@@ -785,7 +802,7 @@
 	else {
 		[self exitFullscreen];
 	}
-
+    
 }
 
 
@@ -1097,7 +1114,7 @@
 
 - (void)unloadFullsizeImageWithIndex:(NSUInteger)index
 {
-	if (index < [_photoViews count]) {		
+	if (index < [_photoViews count]) {
 		FGalleryPhoto *loader = [_photoLoaders objectForKey:[NSString stringWithFormat:@"%i", index]];
 		[loader unloadFullsize];
 		
@@ -1126,7 +1143,7 @@
 		fullsizePath = [_photoSource photoGallery:self urlForPhotoSize:FGalleryPhotoSizeFullsize atIndex:index];
 		photo = [[[FGalleryPhoto alloc] initWithThumbnailUrl:thumbPath fullsizeUrl:fullsizePath delegate:self] autorelease];
 	}
-	else 
+	else
 	{
 		// invalid source type, throw an error.
 		[NSException raise:@"Invalid photo source type" format:@"The specified source type of %d is invalid", sourceType];
@@ -1182,7 +1199,7 @@
 	FGalleryPhotoView *photoView = [_photoViews objectAtIndex:photo.tag];
 	[photoView.activity startAnimating];
 	
-	// show activity indicator for thumbail 
+	// show activity indicator for thumbail
 	if( _isThumbViewShowing ) {
 		FGalleryPhotoView *thumb = [_photoThumbnailViews objectAtIndex:photo.tag];
 		[thumb.activity startAnimating];
@@ -1196,7 +1213,7 @@
 	FGalleryPhotoView *photoView = [_photoViews objectAtIndex:photo.tag];
 	[photoView.activity startAnimating];
 	
-	// show activity indicator for thumbail 
+	// show activity indicator for thumbail
 	if( _isThumbViewShowing ) {
 		FGalleryPhotoView *thumb = [_photoThumbnailViews objectAtIndex:photo.tag];
 		[thumb.activity startAnimating];
@@ -1212,7 +1229,7 @@
 	// if the gallery photo hasn't loaded the fullsize yet, set the thumbnail as its image.
 	if( !photo.hasFullsizeLoaded )
 		photoView.imageView.image = photo.thumbnail;
-
+    
 	[photoView.activity stopAnimating];
 	
 	// grab the thumbail view and set its image
@@ -1244,8 +1261,9 @@
 	_isScrolling = YES;
     _toolbar1.alpha = 0.0;
     _tagContainer.alpha = 0.0;
+    _tagCaptionContainer.alpha = 0.0;
 }
- 
+
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
@@ -1451,7 +1469,7 @@
     [button setImage:strechableButtonImagePressed forState:UIControlStateHighlighted];
     [button addTarget:self action:@selector(tappedBtn:) forControlEvents:UIControlEventTouchUpInside];
     button.tag = index;
-    [_tagContainer addSubview:button];  
+    [_tagContainer addSubview:button];
 }
 
 - (void)tappedBtn:(id)sender
@@ -1469,27 +1487,27 @@
         _tag.numberOfLines = numLines;
         _tag.text = [tag objectForKey:@"tagCaption"];
         
-//        CGSize conSize = _container.frame.size;
-//        CGPoint conCord = _container.frame.origin;
-//        CGSize inConSize = _innerContainer.frame.size;
-//        CGPoint inConCord = _innerContainer.frame.origin;
-//        CGSize toolSize = _toolbar.frame.size;
+        //        CGSize conSize = _container.frame.size;
+        //        CGPoint conCord = _container.frame.origin;
+        //        CGSize inConSize = _innerContainer.frame.size;
+        //        CGPoint inConCord = _innerContainer.frame.origin;
+        //        CGSize toolSize = _toolbar.frame.size;
         CGPoint toolCord = _toolbar.frame.origin;
         CGSize capSize = _captionContainer.frame.size;
-//        CGPoint capCord = _captionContainer.frame.origin;
+        //        CGPoint capCord = _captionContainer.frame.origin;
         NSInteger containerHeight = height + kCaptionPadding*2;
-        NSInteger containerY = toolCord.y - 27 - capSize.height;
-        _tagCaptionContainer.backgroundColor = [UIColor clearColor];
-        _tagCaptionContainer.frame = CGRectMake(0, containerY, _container.frame.size.width, containerHeight);
-        _tag.frame = CGRectMake(kCaptionPadding, kCaptionPadding, tagWidth-50, height);
+        //NSInteger containerY = toolCord.y - 27 - capSize.height;
+        _tagCaptionContainer.backgroundColor = [UIColor grayColor];
+        _tagCaptionContainer.frame = CGRectMake(50, _scroller.frame.size.height-(kToolbarHeight+35), _container.frame.size.width-50, containerHeight);
+        _tag.frame = CGRectMake(kCaptionPadding-25, kCaptionPadding, tagWidth-50, height);
         
         NSString* shopUrl = [tag objectForKey:@"tagShopLink"];
         if(shopUrl != nil && shopUrl != @""){
             CGSize tagSize = _tag.frame.size;
-        
+            
             OBShapedButton *buttonShop = [[OBShapedButton buttonWithType:UIButtonTypeCustom] retain];
             buttonShop.frame = CGRectMake(tagSize.width+10, kCaptionPadding, 20.0, 20.0);
-//            buttonShop.frame = CGRectMake(10, 20, 30.0, 30.0); //change location
+            //            buttonShop.frame = CGRectMake(10, 20, 30.0, 30.0); //change location
             
             [buttonShop setTitle:@"Shop" forState:UIControlStateNormal];
             buttonShop.backgroundColor = [UIColor clearColor];
@@ -1598,7 +1616,7 @@
 
 
 /**
- *	This section overrides the auto-rotate methods for UINaviationController and UITabBarController 
+ *	This section overrides the auto-rotate methods for UINaviationController and UITabBarController
  *	to allow the tab bar to rotate only when a FGalleryController is the visible controller. Sweet.
  */
 
@@ -1606,11 +1624,11 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-	if([self.visibleViewController isKindOfClass:[FGalleryViewController class]]) 
+	if([self.visibleViewController isKindOfClass:[FGalleryViewController class]])
 	{
         return YES;
 	}
-
+    
 	// To preserve the UINavigationController's defined behavior,
 	// walk its stack.  If all of the view controllers in the stack
 	// agree they can rotate to the given orientation, then allow it.
@@ -1622,7 +1640,7 @@
 			supported = NO;
 			break;
 		}
-	}	
+	}
 	if(supported)
 		return YES;
 	

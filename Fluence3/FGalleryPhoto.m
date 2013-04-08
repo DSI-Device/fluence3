@@ -128,7 +128,7 @@
 	
 	_hasFullsizeLoaded = YES;
 	_isFullsizeLoading = NO;
-
+    
 	[self performSelectorOnMainThread:@selector(didLoadFullsize) withObject:nil waitUntilDone:YES];
 	
 	[pool release];
@@ -193,7 +193,7 @@
 
 
 
-- (void)connection:(NSURLConnection *)conn didReceiveData:(NSData *)data 
+- (void)connection:(NSURLConnection *)conn didReceiveData:(NSData *)data
 {
 	if( conn == _thumbConnection )
 		[_thumbData appendData:data];
@@ -206,8 +206,8 @@
 
 
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)conn 
-{	
+- (void)connectionDidFinishLoading:(NSURLConnection *)conn
+{
 	if( conn == _thumbConnection )
 	{
 		_isThumbLoading = NO;
@@ -216,11 +216,11 @@
 		// create new image with data
 		_thumbnail = [[UIImage alloc] initWithData:_thumbData];
 		
-		// cleanup 
+		// cleanup
 		[self killThumbnailLoadObjects];
 		
 		// notify delegate
-		if( _delegate ) 
+		if( _delegate )
 			[self didLoadThumbnail];
 	}
     else if( conn == _fullsizeConnection )
@@ -231,7 +231,7 @@
 		// create new image with data
 		_fullsize = [[UIImage alloc] initWithData:_fullsizeData];
 		
-		// cleanup 
+		// cleanup
 		[self killFullsizeLoadObjects];
 		
 		// notify delegate
@@ -240,7 +240,7 @@
 	}
 	
 	// turn off data indicator
-	if( !_isFullsizeLoading && !_isThumbLoading ) 
+	if( !_isFullsizeLoading && !_isThumbLoading )
 		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
@@ -278,7 +278,7 @@
 
 - (void)didLoadThumbnail
 {
-//	FLog(@"gallery phooto did load thumbnail!");
+    //	FLog(@"gallery phooto did load thumbnail!");
 	if([_delegate respondsToSelector:@selector(galleryPhoto:didLoadThumbnail:)])
 		[_delegate galleryPhoto:self didLoadThumbnail:_thumbnail];
 }
@@ -286,7 +286,7 @@
 
 - (void)didLoadFullsize
 {
-//	FLog(@"gallery phooto did load fullsize!");
+    //	FLog(@"gallery phooto did load fullsize!");
 	if([_delegate respondsToSelector:@selector(galleryPhoto:didLoadFullsize:)])
 		[_delegate galleryPhoto:self didLoadFullsize:_fullsize];
 }
@@ -320,9 +320,9 @@
 
 - (void)dealloc
 {
-//	NSLog(@"FGalleryPhoto dealloc");
+    //	NSLog(@"FGalleryPhoto dealloc");
 	
-//	[_delegate release];
+    //	[_delegate release];
 	_delegate = nil;
 	
 	[_fullsizeConnection cancel];

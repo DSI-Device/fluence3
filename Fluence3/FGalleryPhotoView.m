@@ -95,7 +95,7 @@
 	[super setFrame:theFrame];
 	
 	// update content size
-	self.contentSize = CGSizeMake(theFrame.size.width * self.zoomScale, theFrame.size.height * self.zoomScale );
+	self.contentSize = CGSizeMake(theFrame.size.width * self.zoomScale, theFrame.size.height * self.zoomScale);
 	
 	// resize image view and keep it proportional to the current zoom scale
 	imageView.frame = CGRectMake( imagePoint.x, imagePoint.y, theFrame.size.width * self.zoomScale, theFrame.size.height * self.zoomScale);
@@ -144,31 +144,32 @@
 		}
 		else {
 			
-			_isZoomed = YES;
+			//
+            //_isZoomed = YES;
 			
-			// define a rect to zoom to.
-			CGPoint touchCenter = [touch locationInView:self];
-			CGSize zoomRectSize = CGSizeMake(self.frame.size.width / self.maximumZoomScale, self.frame.size.height / self.maximumZoomScale );
-			CGRect zoomRect = CGRectMake( touchCenter.x - zoomRectSize.width * .5, touchCenter.y - zoomRectSize.height * .5, zoomRectSize.width, zoomRectSize.height );
-			
-			// correct too far left
-			if( zoomRect.origin.x < 0 )
-				zoomRect = CGRectMake(0, zoomRect.origin.y, zoomRect.size.width, zoomRect.size.height );
-			
-			// correct too far up
-			if( zoomRect.origin.y < 0 )
-				zoomRect = CGRectMake(zoomRect.origin.x, 0, zoomRect.size.width, zoomRect.size.height );
-			
-			// correct too far right
-			if( zoomRect.origin.x + zoomRect.size.width > self.frame.size.width )
-				zoomRect = CGRectMake(self.frame.size.width - zoomRect.size.width, zoomRect.origin.y, zoomRect.size.width, zoomRect.size.height );
-			
-			// correct too far down
-			if( zoomRect.origin.y + zoomRect.size.height > self.frame.size.height )
-				zoomRect = CGRectMake( zoomRect.origin.x, self.frame.size.height - zoomRect.size.height, zoomRect.size.width, zoomRect.size.height );
-			
+            //			// define a rect to zoom to.
+            //			CGPoint touchCenter = [touch locationInView:self];
+            //			CGSize zoomRectSize = CGSizeMake(self.frame.size.width / self.maximumZoomScale, self.frame.size.height / self.maximumZoomScale );
+            //			CGRect zoomRect = CGRectMake( touchCenter.x - zoomRectSize.width * .5, touchCenter.y - zoomRectSize.height * .5, zoomRectSize.width, zoomRectSize.height );
+            //
+            //			// correct too far left
+            //			if( zoomRect.origin.x < 0 )
+            //				zoomRect = CGRectMake(0, zoomRect.origin.y, zoomRect.size.width, zoomRect.size.height );
+            //
+            //			// correct too far up
+            //			if( zoomRect.origin.y < 0 )
+            //				zoomRect = CGRectMake(zoomRect.origin.x, 0, zoomRect.size.width, zoomRect.size.height );
+            //
+            //			// correct too far right
+            //			if( zoomRect.origin.x + zoomRect.size.width > self.frame.size.width )
+            //				zoomRect = CGRectMake(self.frame.size.width - zoomRect.size.width, zoomRect.origin.y, zoomRect.size.width, zoomRect.size.height );
+            //
+            //			// correct too far down
+            //			if( zoomRect.origin.y + zoomRect.size.height > self.frame.size.height )
+            //				zoomRect = CGRectMake( zoomRect.origin.x, self.frame.size.height - zoomRect.size.height, zoomRect.size.width, zoomRect.size.height );
+            //
 			// zoom to it.
-			[self zoomToRect:zoomRect animated:YES];
+			//[self zoomToRect:zoomRect animated:YES];
 		}
 	}
 }
