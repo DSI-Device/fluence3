@@ -181,7 +181,8 @@
     swipeGestureUp.numberOfTouchesRequired = 1;
     swipeGestureUp.direction = (UISwipeGestureRecognizerDirectionUp);
     [[self view] addGestureRecognizer:swipeGestureUp];
-    
+    [swipeGestureDown release];
+    [swipeGestureUp release];
     // Do any additional setup after loading the view from its nib.
 }
 - (void) swipedScreenDown:(UISwipeGestureRecognizer*)swipeGesture {
