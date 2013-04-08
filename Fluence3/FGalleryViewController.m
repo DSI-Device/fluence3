@@ -4,7 +4,7 @@
 //
 //  Created by Grant Davis on 5/19/10.
 //  Copyright 2011 Grant Davis Interactive, LLC. All rights reserved.
-//
+//Fluence 3
 
 #import "FGalleryViewController.h"
 #import "RemoveEventView.h"
