@@ -35,7 +35,7 @@
 
 - (void)loadView {
 	[super loadView];
-    		
+    		 
 	//localCaptions = [[NSArray alloc] initWithObjects:@"Lava", @"Hawaii", @"Audi", @"Happy New Year!",@"Frosty Web",nil];
     //localImages = [[NSArray alloc] initWithObjects: @"lava.jpeg", @"hawaii.jpeg", @"audi.jpg",nil];
     //localTags = [[NSArray alloc] initWithObjects:@"TestTag1", @"TestTag2", @"TestTag3", @"Happy New Year!",@"Frosty Web",nil];
