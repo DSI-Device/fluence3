@@ -235,7 +235,7 @@
     _toolbar1.backgroundColor					= [UIColor grayColor];
     _toolbar.tintColor					= [UIColor whiteColor];
     _toolbar1.tintColor					= [UIColor whiteColor];
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+//    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     _container.backgroundColor			= [UIColor whiteColor];
     
     // listen for container frame changes so we can properly update the layout during auto-rotation or going in and out of fullscreen

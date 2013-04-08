@@ -53,7 +53,10 @@
     NSDictionary *localCollection = [[NSDictionary  alloc] initWithObjectsAndKeys: @"1", @"imageId", @"Lava", @"imageCaption", @"lava.jpeg", @"imageUrl", tagArray, @"tags",@"12", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", nil];
     NSDictionary *localCollection1 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"2", @"imageId", @"Hawaii", @"imageCaption", @"hawaii.jpeg", @"imageUrl", nil, @"tags",@"11", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"userPic", nil];
     
-    imageArray = [[NSMutableArray alloc] initWithObjects:localCollection,localCollection1,nil];  
+    imageArray = [[NSMutableArray alloc] initWithObjects:localCollection,localCollection1,nil];
+    
+    [tagCollection release];
+    [tagCollection1 release];
     [localCollection release];
     [localCollection1 release];
 }
@@ -153,7 +156,7 @@
         // THIS IS THE MAGIC PART 2
         UIViewController *topVC = (UIViewController *)self.navigationController.delegate;
         [topVC.navigationController pushViewController:localGallery animated:YES];
-        [localGallery release];
+//        [localGallery release];
 	}
     else if( indexPath.row == 1 ) {
 		networkGallery = [[FGalleryViewController alloc] initWithPhotoSource:self];
@@ -161,7 +164,6 @@
         
         UIViewController *topVC = (UIViewController *)self.navigationController.delegate;
         [topVC.navigationController pushViewController:networkGallery animated:YES];        
-        [networkGallery release];        
     }
 	else if( indexPath.row == 2 ) {
 		UIImage *trashIcon = [UIImage imageNamed:@"photo-gallery-trashcan.png"];
@@ -174,8 +176,7 @@
         //        [self.navigationController pushViewController:localGallery animated:YES];
         UIViewController *topVC = (UIViewController *)self.navigationController.delegate;
         [topVC.navigationController pushViewController:localGallery animated:YES];        
-        [localGallery release];
-	}
+    }
 }
 
 #pragma mark - FGalleryViewControllerDelegate Methods
