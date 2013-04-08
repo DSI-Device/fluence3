@@ -256,7 +256,7 @@
     return [[imageArray objectAtIndex:index] objectForKey:@"imageUrl"];
 }
 
-- (NSDictionary*)photoGallery:(FGalleryViewController*)gallery infoForPhotoSize:(FGalleryPhotoSize)size atIndex:(NSUInteger)index {
+- (NSDictionary*)photoGallery:(FGalleryViewController*)gallery infoForPhotoAtIndex:(FGalleryPhotoSize)size atIndex:(NSUInteger)index {
     //return [localImages objectAtIndex:index];
     return [imageArray objectAtIndex:index];
 }

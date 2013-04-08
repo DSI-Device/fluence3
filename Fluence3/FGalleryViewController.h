@@ -106,6 +106,7 @@ typedef enum
 - (NSString*)photoGallery:(FGalleryViewController*)gallery captionForPhotoAtIndex:(NSUInteger)index;
 - (NSMutableArray*)photoGallery:(FGalleryViewController *)gallery tagsForPhotoAtIndex:(NSUInteger)index;
 - (NSDictionary*)photoGallery:(FGalleryViewController *)gallery tagsForPhotoAtId:(NSUInteger)tagId:(NSUInteger)index;
+- (NSDictionary*)photoGallery:(FGalleryViewController*)gallery infoForPhotoAtIndex:(FGalleryPhotoSize)size atIndex:(NSUInteger)index;
 
 // the photosource must implement one of these methods depending on which FGalleryPhotoSourceType is specified
 - (NSString*)photoGallery:(FGalleryViewController*)gallery filePathForPhotoSize:(FGalleryPhotoSize)size atIndex:(NSUInteger)index;
