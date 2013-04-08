@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "FGalleryPhotoView.h"
 #import "FGalleryPhoto.h"
+#import "RemoveEventView.h"
 
 
 typedef enum
@@ -42,14 +43,17 @@ typedef enum
 	UIView *_container; // used as view for the controller
 	UIView *_innerContainer; // sized and placed to be fullscreen within the container
 	UIToolbar *_toolbar;
+    UIToolbar *_toolbar1;
 	UIScrollView *_thumbsView;
 	UIScrollView *_scroller;
 	UIView *_captionContainer;
 	UILabel *_caption;
     
-    UIView *_tagContainer;
+    RemoveEventView *_tagContainer;
     UILabel *_tag;
 	
+    UIView *_tagCaptionContainer;
+    
 	NSMutableDictionary *_photoLoaders;
 	NSMutableArray *_barItems;
 	NSMutableArray *_photoThumbnailViews;
@@ -59,6 +63,11 @@ typedef enum
     
 	UIBarButtonItem *_nextButton;
 	UIBarButtonItem *_prevButton;
+    
+    
+    UIButton *_likeButton;
+    UIButton *_shareButton;
+    UIButton *_commentButton;
 }
 
 - (id)initWithPhotoSource:(NSObject<FGalleryViewControllerDelegate>*)photoSrc;
@@ -70,11 +79,14 @@ typedef enum
 - (void)removeImageAtIndex:(NSUInteger)index;
 - (void)reloadGallery;
 - (FGalleryPhoto*)currentPhoto;
+- (void)addMyButton:(NSInteger)index:(NSString*)caption:(UIView*)container:(NSInteger)xc:(NSInteger)yc;
+
 
 @property NSInteger currentIndex;
 @property NSInteger startingIndex;
 @property (nonatomic,assign) NSObject<FGalleryViewControllerDelegate> *photoSource;
 @property (nonatomic,readonly) UIToolbar *toolBar;
+@property (nonatomic,readonly) UIToolbar *toolBar1;
 @property (nonatomic,readonly) UIView* thumbsView;
 @property (nonatomic,retain) NSString *galleryID;
 @property (nonatomic) BOOL useThumbnailView;
@@ -92,7 +104,8 @@ typedef enum
 
 @optional
 - (NSString*)photoGallery:(FGalleryViewController*)gallery captionForPhotoAtIndex:(NSUInteger)index;
-- (NSString*)photoGallery:(FGalleryViewController *)gallery tagsForPhotoAtIndex:(NSUInteger)index;
+- (NSMutableArray*)photoGallery:(FGalleryViewController *)gallery tagsForPhotoAtIndex:(NSUInteger)index;
+- (NSDictionary*)photoGallery:(FGalleryViewController *)gallery tagsForPhotoAtId:(NSUInteger)tagId:(NSUInteger)index;
 
 // the photosource must implement one of these methods depending on which FGalleryPhotoSourceType is specified 
 - (NSString*)photoGallery:(FGalleryViewController*)gallery filePathForPhotoSize:(FGalleryPhotoSize)size atIndex:(NSUInteger)index;

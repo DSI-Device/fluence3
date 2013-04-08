@@ -631,7 +631,7 @@
 	return nil;
 }
 
-- (void) updateSyncronizableReports{
+- (BOOL) updateSyncronizableReports{
 	if (sqlite3_open([[self dataFilePath] UTF8String], &database) == SQLITE_OK) {
 		BOOL status = YES;
 		char *errorMsg;
@@ -683,7 +683,7 @@
 	return nil;
 }
 
-- (void) updateSyncronizableRanks{
+- (BOOL) updateSyncronizableRanks{
 	if (sqlite3_open([[self dataFilePath] UTF8String], &database) == SQLITE_OK) {
 		BOOL status = YES;
 		char *errorMsg;

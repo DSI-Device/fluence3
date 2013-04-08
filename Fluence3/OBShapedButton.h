@@ -55,6 +55,7 @@
 @interface OBShapedButton : UIButton {
     // Our class interface is empty. OBShapedButton only overwrites one method of UIView.
     // It has no attributes of its own.
+    NSString *stringId;
 }
-
+@property (nonatomic, strong) NSString *stringId;
 @end

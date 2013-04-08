@@ -34,6 +34,7 @@
 @end
 
 @implementation TakeCameraPhoto
+
 @synthesize image,button,cropButton,filterButton;
 @synthesize imageCropper;
 
@@ -46,9 +47,18 @@
     return self;
 }
 
+- (void)dealloc {
+    [image release];
+    [button release];
+    [cropButton release];
+    [filterButton release];
+    [imageCropper release];
+    [super dealloc];
+}
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)img editingInfo:(NSDictionary *)editInfo {
     //image.image = img;
-    self.imageCropper = [[BJImageCropper alloc] initWithImage:img andMaxSize:CGSizeMake(300, 300)];
+    self.imageCropper = [[[BJImageCropper alloc] initWithImage:img andMaxSize:CGSizeMake(300, 300)]autorelease];
     [self.view addSubview:self.imageCropper];
     self.imageCropper.center = self.view.center;
     self.imageCropper.imageView.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -57,29 +67,30 @@
     self.imageCropper.imageView.layer.shadowOffset = CGSizeMake(1, 1);
     
     [self.imageCropper addObserver:self forKeyPath:@"crop" options:NSKeyValueObservingOptionNew context:nil];
-
+    
     [self dismissModalViewControllerAnimated:YES];
     cropButton.hidden = NO;
+    
     //[[picker parentViewController] dismissModalViewControllerAnimated:YES];
 }
 - (IBAction)selectPhotos
 {
     /*UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    //picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    picker.delegate = self;
-    [self presentModalViewController:picker animated:YES];
-    //picker.allowsEditing = YES;
-    //[picker setAllowsEditing:YES];
-    //picker.allowsImageEditing = YES;
-    [picker release];*/
+     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+     //picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+     picker.delegate = self;
+     [self presentModalViewController:picker animated:YES];
+     //picker.allowsEditing = YES;
+     //[picker setAllowsEditing:YES];
+     //picker.allowsImageEditing = YES;
+     [picker release];*/
     self.image.hidden=YES;
     
     appdt.img = appdt.imgOptimized = [UIImage imageNamed:@"gavandme.jpg"];
     
-//    self.imageCropper = [[BJImageCropper alloc] initWithImage:[UIImage imageNamed:@"gavandme.jpg"]  andMaxSize:CGSizeMake(300, 300)];
+    //    self.imageCropper = [[BJImageCropper alloc] initWithImage:[UIImage imageNamed:@"gavandme.jpg"]  andMaxSize:CGSizeMake(300, 300)];
     
-    self.imageCropper = [[BJImageCropper alloc] initWithImage:appdt.img  andMaxSize:CGSizeMake(300, 300)];
+    self.imageCropper = [[[BJImageCropper alloc] initWithImage:appdt.img  andMaxSize:CGSizeMake(300, 300)]autorelease];
     [self.view addSubview:self.imageCropper];
     self.imageCropper.center = self.view.center;
     self.imageCropper.imageView.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -92,15 +103,14 @@
     //[self dismissModalViewControllerAnimated:YES];
     cropButton.hidden = NO;
     filterButton.hidden = NO;
-
 }
 - (IBAction)cropping
 {
-   [self.imageCropper saveCroppedImage];
+    [self.imageCropper saveCroppedImage];
     self.image.image = [self.imageCropper getCroppedImage];
     ShowCropedImage* nextView = [[ShowCropedImage alloc]initWithNibName:@"ShowCropedImage" bundle:[NSBundle mainBundle]];
-//    nextView.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-//    [self presentViewController:nextView animated:YES completion:nil];
+    //    nextView.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    //    [self presentViewController:nextView animated:YES completion:nil];
     
     cropButton.hidden = YES;
     
@@ -125,32 +135,32 @@
     appdt = [[UIApplication sharedApplication] delegate];
     
     /*self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tactile_noise.png"]];
-    
-    self.imageCropper = [[BJImageCropper alloc] initWithImage:[UIImage imageNamed:@"gavandme.jpg"] andMaxSize:CGSizeMake(1024, 600)];
-    [self.view addSubview:self.imageCropper];
-    self.imageCropper.center = self.view.center;
-    self.imageCropper.imageView.layer.shadowColor = [[UIColor blackColor] CGColor];
-    self.imageCropper.imageView.layer.shadowRadius = 3.0f;
-    self.imageCropper.imageView.layer.shadowOpacity = 0.8f;
-    self.imageCropper.imageView.layer.shadowOffset = CGSizeMake(1, 1);
-    
-    [self.imageCropper addObserver:self forKeyPath:@"crop" options:NSKeyValueObservingOptionNew context:nil];
-    cropButton.hidden = NO;
+     
+     self.imageCropper = [[BJImageCropper alloc] initWithImage:[UIImage imageNamed:@"gavandme.jpg"] andMaxSize:CGSizeMake(1024, 600)];
+     [self.view addSubview:self.imageCropper];
+     self.imageCropper.center = self.view.center;
+     self.imageCropper.imageView.layer.shadowColor = [[UIColor blackColor] CGColor];
+     self.imageCropper.imageView.layer.shadowRadius = 3.0f;
+     self.imageCropper.imageView.layer.shadowOpacity = 0.8f;
+     self.imageCropper.imageView.layer.shadowOffset = CGSizeMake(1, 1);
+     
+     [self.imageCropper addObserver:self forKeyPath:@"crop" options:NSKeyValueObservingOptionNew context:nil];
+     cropButton.hidden = NO;
      if (SHOW_PREVIEW) {
-        self.image = [[UIImageView alloc] initWithFrame:CGRectMake(10,10,self.imageCropper.crop.size.width * 0.1, self.imageCropper.crop.size.height * 0.1)];
-        self.image.image = [self.imageCropper getCroppedImage];
-        self.image.clipsToBounds = YES;
-        self.image.layer.borderColor = [[UIColor whiteColor] CGColor];
-        self.image.layer.borderWidth = 2.0;
-        //[self.view addSubview:self.preview];
-    }*/
+     self.image = [[UIImageView alloc] initWithFrame:CGRectMake(10,10,self.imageCropper.crop.size.width * 0.1, self.imageCropper.crop.size.height * 0.1)];
+     self.image.image = [self.imageCropper getCroppedImage];
+     self.image.clipsToBounds = YES;
+     self.image.layer.borderColor = [[UIColor whiteColor] CGColor];
+     self.image.layer.borderWidth = 2.0;
+     //[self.view addSubview:self.preview];
+     }*/
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString* path = [documentsDirectory stringByAppendingPathComponent:
                       [NSString stringWithString: @"test.png"] ];
     self.image.image = [UIImage imageWithContentsOfFile:path];
-
-        // Do any additional setup after loading the view from its nib.
+    
+    // Do any additional setup after loading the view from its nib.
 }
 - (void)viewDidUnload
 {

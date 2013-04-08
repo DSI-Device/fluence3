@@ -45,11 +45,11 @@
 
 - (NSArray *)getSyncronizableReports;
 
-- (void) updateSyncronizableReports;
+- (BOOL) updateSyncronizableReports;
 
 - (NSArray *)getSyncronizableRanks;
 
-- (void) updateSyncronizableRanks;
+- (BOOL) updateSyncronizableRanks;
 
 - (int) getSearchCount:(int)type;
 

@@ -7,6 +7,8 @@
 //
 
 #import "FGalleryViewController.h"
+#import "RemoveEventView.h"
+#import "OBShapedButton.h"
 
 #define kThumbnailSize 75
 #define kThumbnailSpacing 4
@@ -72,6 +74,7 @@
 @synthesize currentIndex = _currentIndex;
 @synthesize thumbsView = _thumbsView;
 @synthesize toolBar = _toolbar;
+@synthesize toolBar1 = _toolbar1;
 @synthesize useThumbnailView = _useThumbnailView;
 @synthesize startingIndex = _startingIndex;
 @synthesize beginsInThumbnailView = _beginsInThumbnailView;
@@ -104,15 +107,19 @@
         
         /*
          // debugging: 
-         _container.layer.borderColor = [[UIColor yellowColor] CGColor];
-         _container.layer.borderWidth = 1.0;
+        _container.layer.borderColor = [[UIColor yellowColor] CGColor];
+        _container.layer.borderWidth = 1.0;
          
-         _innerContainer.layer.borderColor = [[UIColor greenColor] CGColor];
-         _innerContainer.layer.borderWidth = 1.0;
+        _innerContainer.layer.borderColor = [[UIColor greenColor] CGColor];
+        _innerContainer.layer.borderWidth = 1.0;
+        
+        _tagContainer.layer.borderColor = [[UIColor blueColor] CGColor];
+        _tagContainer.layer.borderWidth = 1.0;
          
-         _scroller.layer.borderColor = [[UIColor redColor] CGColor];
-         _scroller.layer.borderWidth = 2.0;
+        _scroller.layer.borderColor = [[UIColor redColor] CGColor];
+        _scroller.layer.borderWidth = 2.0;
          */
+        
 	}
 	return self;
 }
@@ -147,7 +154,6 @@
 - (id)initWithPhotoSource:(NSObject<FGalleryViewControllerDelegate>*)photoSrc
 {
 	if((self = [self initWithNibName:nil bundle:nil])) {
-		
 		_photoSource = photoSrc;
 	}
 	return self;
@@ -166,10 +172,7 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
    
-//    UIButton *_button =[[[UIButton alloc]initWithFrame:CGRectMake(20,20,100,50)] autorelease];
-//    [_button addTarget:self action:@selector(backButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-//    [_button setBackgroundColor:[UIColor colorWithRed:200 green:191 blue:231 alpha:1]];
-//    [self.view addSubview:_button];	
+    //Up-Down Gesture add to change date
     UISwipeGestureRecognizer *swipeGestureDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedScreenDown:)];
     swipeGestureDown.numberOfTouchesRequired = 1;
     swipeGestureDown.direction = (UISwipeGestureRecognizerDirectionDown);
@@ -203,71 +206,10 @@
     [alert release];
 }
 
-
 - (void) backButtonClicked: (id) sender{
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    NSLog(@"Touches began!");
-    UITouch *touch= [[event allTouches] anyObject];
-    CGPoint point= [touch locationInView:touch.view];
-    
-    /*UIImage *image = [UIImage imageNamed:@"BluePin.png"];
-    
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-    [imageView setFrame: CGRectMake(point.x-(imageView.bounds.size.width/2), point.y-(imageView.bounds.size.width/2), imageView.bounds.size.width, imageView.bounds.size.height)];
-    [self.view addSubview: imageView];
-    //self.currentPins += 1;
-    
-    [UIView animateWithDuration:2.0 delay:1.0 options:UIViewAnimationOptionCurveLinear  animations:^{
-        [imageView setAlpha:0.0];
-    } completion:^(BOOL finished) {
-        [imageView removeFromSuperview];
-        //self.currentPins -= 1;
-    }];
-    
-    // for(;self.currentPins > 10; currentPins -= 1){
-    //     [[[self subviews] objectAtIndex:0] removeFromSuperview];
-    // }*/
-    
-}
-/*
-// load the image
-NSString *name = @"badge.png";
-UIImage *img = [UIImage imageNamed:name];
-
-// begin a new image context, to draw our colored image onto
-UIGraphicsBeginImageContext(img.size);
-
-// get a reference to that context we created
-CGContextRef context = UIGraphicsGetCurrentContext();
-
-// set the fill color
-[color setFill];
-
-// translate/flip the graphics context (for transforming from CG* coords to UI* coords
-CGContextTranslateCTM(context, 0, img.size.height);
-CGContextScaleCTM(context, 1.0, -1.0);
-
-// set the blend mode to color burn, and the original image
-CGContextSetBlendMode(context, kCGBlendModeColorBurn);
-CGRect rect = CGRectMake(0, 0, img.size.width, img.size.height);
-CGContextDrawImage(context, rect, img.CGImage);
-
-// set a mask that matches the shape of the image, then draw (color burn) a colored rectangle
-CGContextClipToMask(context, rect, img.CGImage);
-CGContextAddRect(context, rect);
-CGContextDrawPath(context,kCGPathFill);
-
-// generate a new UIImage from the graphics context we drew onto
-UIImage *coloredImg = UIGraphicsGetImageFromCurrentImageContext();
-UIGraphicsEndImageContext();
-
-//return the color-burned image
-return coloredImg;
-*/
 - (void)loadView
 {
         
@@ -277,12 +219,18 @@ return coloredImg;
     _scroller							= [[UIScrollView alloc] initWithFrame:CGRectZero];
     _thumbsView							= [[UIScrollView alloc] initWithFrame:CGRectZero];
     _toolbar							= [[UIToolbar alloc] initWithFrame:CGRectZero];
+    _toolbar1							= [[UIToolbar alloc] initWithFrame:CGRectZero];
     _captionContainer					= [[UIView alloc] initWithFrame:CGRectZero];
     _caption							= [[UILabel alloc] initWithFrame:CGRectZero];
+    
+    _tagContainer                       = [[RemoveEventView alloc] initWithFrame:CGRectZero];
+    
+    _tagCaptionContainer                = [[UIView alloc] initWithFrame:CGRectZero];
     _tag                                = [[UILabel alloc] initWithFrame:CGRectZero];
     
     _toolbar.barStyle					= UIBarStyleBlackTranslucent;
-    _container.backgroundColor			= [UIColor blackColor];
+    _toolbar1.barStyle					= UIBarStyleBlackTranslucent;
+    _container.backgroundColor			= [UIColor whiteColor];
     
     // listen for container frame changes so we can properly update the layout during auto-rotation or going in and out of fullscreen
     [_container addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
@@ -294,7 +242,7 @@ return coloredImg;
     _scroller.showsHorizontalScrollIndicator	= NO;
     
     // setup caption
-    _captionContainer.backgroundColor			= [UIColor colorWithWhite:0.0 alpha:.35];
+    _captionContainer.backgroundColor			= [UIColor clearColor];
     _captionContainer.hidden					= YES;
     _captionContainer.userInteractionEnabled	= NO;
     _captionContainer.exclusiveTouch			= YES;
@@ -306,16 +254,20 @@ return coloredImg;
     _caption.shadowOffset						= CGSizeMake( 1, 1 );
     
     // setup tag
-    _tagContainer.backgroundColor			= [UIColor colorWithWhite:0.0 alpha:.35];
-    _tagContainer.hidden					= YES;
-    _tagContainer.userInteractionEnabled	= NO;
-    _tagContainer.exclusiveTouch			= YES;
-    _tag.font								= [UIFont systemFontOfSize:14.0];
-    _tag.textColor							= [UIColor whiteColor];
-    _tag.backgroundColor					= [UIColor clearColor];
-    _tag.textAlignment						= UITextAlignmentCenter;
-    _tag.shadowColor						= [UIColor blackColor];
-    _tag.shadowOffset						= CGSizeMake( 1, 1 );
+    _tagContainer.hidden					    = NO;
+    _tagContainer.backgroundColor               = [UIColor colorWithWhite:1.0 alpha:0.0];
+    _tagContainer.frame                         = CGRectMake(100, 114, 256, 278);
+
+    _tagCaptionContainer.hidden					= NO;
+    _tagCaptionContainer.backgroundColor        = [UIColor colorWithWhite:1.0 alpha:0.0];
+    //_tagCaptionContainer.frame                  = CGRectMake(64, 114, 256, 278);
+    
+    _tag.font								    = [UIFont systemFontOfSize:14.0];
+    _tag.textColor							    = [UIColor whiteColor];
+    _tag.backgroundColor					    = [UIColor clearColor];
+    _tag.textAlignment						    = UITextAlignmentCenter;
+    _tag.shadowColor						    = [UIColor blackColor];
+    _tag.shadowOffset						    = CGSizeMake( 1, 1 );
     
     // make things flexible
     _container.autoresizesSubviews				= NO;
@@ -328,8 +280,57 @@ return coloredImg;
     _thumbsView.hidden							= YES;
     _thumbsView.contentInset					= UIEdgeInsetsMake( kThumbnailSpacing, kThumbnailSpacing, kThumbnailSpacing, kThumbnailSpacing);
     
+    
+    _likeButton  = [UIButton buttonWithType:UIButtonTypeCustom];
+    //set the position of the button
+    _likeButton.frame = CGRectMake(5, 20, 40, 40);
+    UIImage *buttonImage = [UIImage imageNamed:@"heart-icon.png"];
+    
+    //create the button and assign the image addSubview:button
+    
+    [_likeButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [_likeButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    
+    //set the button's title
+    [_likeButton setTitle:@"12" forState:UIControlStateNormal];
+    //listen for clicks
+    [_likeButton addTarget:self action:@selector(buttonPressed)
+          forControlEvents:UIControlEventTouchUpInside];
+    //add the button to the view
+    _shareButton  = [UIButton buttonWithType:UIButtonTypeCustom];
+    //set the position of the button
+    _shareButton.frame = CGRectMake(5, 90, 40, 40);
+    UIImage *buttonImage1 = [UIImage imageNamed:@"share.png"];
+    
+    //create the button and assign the image addSubview:button
+    
+    [_shareButton setBackgroundImage:buttonImage1 forState:UIControlStateNormal];
+    [_shareButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    
+    //set the button's title
+    [_shareButton setTitle:@"3" forState:UIControlStateNormal];
+    //listen for clicks
+    [_shareButton addTarget:self action:@selector(buttonPressed)
+           forControlEvents:UIControlEventTouchUpInside];
+    
+    _commentButton  = [UIButton buttonWithType:UIButtonTypeCustom];
+    //set the position of the button
+    _commentButton.frame = CGRectMake(5, 160, 40, 40);
+    UIImage *buttonImage2 = [UIImage imageNamed:@"comment.png"];
+    
+    //create the button and assign the image addSubview:button
+    
+    [_commentButton setBackgroundImage:buttonImage2 forState:UIControlStateNormal];
+    [_commentButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    
+    //set the button's title
+    [_commentButton setTitle:@"5" forState:UIControlStateNormal];
+    //listen for clicks
+    [_commentButton addTarget:self action:@selector(buttonPressed)
+             forControlEvents:UIControlEventTouchUpInside];
+    
 	// set view
-	self.view                                   = _container;
+	self.view = _container;
 	
 	// add items to their containers
 	[_container addSubview:_innerContainer];
@@ -337,12 +338,19 @@ return coloredImg;
 	
 	[_innerContainer addSubview:_scroller];
 	[_innerContainer addSubview:_toolbar];
-	
+    [_innerContainer addSubview:_toolbar1];
+    [_innerContainer addSubview:_tagContainer];
+    [_innerContainer addSubview:_tagCaptionContainer];
+    
+    
+    [_toolbar1 addSubview:_likeButton];
+    [_toolbar1 addSubview:_shareButton];
+    [_toolbar1 addSubview:_commentButton];
+    
 	[_toolbar addSubview:_captionContainer];
 	[_captionContainer addSubview:_caption];
-    
-    [_toolbar addSubview:_tagContainer];
-    [_tagContainer addSubview:_caption];
+        
+    [_tagCaptionContainer addSubview:_tag];
 	
 	// create buttons for toolbar
 	UIImage *leftIcon = [UIImage imageNamed:@"photo-gallery-left.png"];
@@ -357,7 +365,7 @@ return coloredImg;
 	_prevNextButtonSize = leftIcon.size.width;
 	
 	// set buttons on the toolbar.
-	[_toolbar setItems:_barItems animated:NO];
+	//[_toolbar setItems:_barItems animated:NO];
     
     // build stuff
     [self reloadGallery];
@@ -367,7 +375,10 @@ return coloredImg;
 - (void)viewDidUnload {
     
     [self destroyViews];
-    
+    [_shareButton release], _shareButton = nil;
+    [_commentButton release], _commentButton = nil;
+    [_likeButton release], _likeButton = nil;
+    [_toolbar1 release], _toolbar = nil;
     [_barItems release], _barItems = nil;
     [_nextButton release], _nextButton = nil;
     [_prevButton release], _prevButton = nil;
@@ -376,10 +387,12 @@ return coloredImg;
     [_scroller release], _scroller = nil;
     [_thumbsView release], _thumbsView = nil;
     [_toolbar release], _toolbar = nil;
+    [_tagContainer release], _tagContainer = nil;
+    [_tagCaptionContainer release], _tagCaptionContainer = nil;
+    [_tag release], _tag = nil;
     [_captionContainer release], _captionContainer = nil;
     [_caption release], _caption = nil;
-    [_tagContainer release], _tagContainer = nil;
-    [_tag release], _tag = nil;
+
     
     [super viewDidUnload];
 }
@@ -480,14 +493,17 @@ return coloredImg;
 
 - (void)resizeImageViewsWithRect:(CGRect)rect
 {
+    if(!_isFullscreen)
+    {
 	// resize all the image views
 	NSUInteger i, count = [_photoViews count];
 	float dx = 0;
 	for (i = 0; i < count; i++) {
 		FGalleryPhotoView * photoView = [_photoViews objectAtIndex:i];
-		photoView.frame = CGRectMake(dx, 0, rect.size.width, rect.size.height );
+		photoView.frame = CGRectMake(dx+50, 0, rect.size.width - 50, rect.size.height );
 		dx += rect.size.width;
 	}
+    }
 }
 
 
@@ -604,13 +620,7 @@ return coloredImg;
     
     _useThumbnailView = useThumbnailView;
     if( self.navigationController ) {
-        if (_useThumbnailView) {
-            UIBarButtonItem *btn = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"See all", @"") style:UIBarButtonItemStylePlain target:self action:@selector(handleSeeAllTouch:)] autorelease];
-            [self.navigationItem setRightBarButtonItem:btn animated:YES];
-        }
-        else {
-            [self.navigationItem setRightBarButtonItem:nil animated:NO];
-        }
+        
     }
 }
 
@@ -666,6 +676,8 @@ return coloredImg;
 - (void)positionToolbar
 {
 	_toolbar.frame = CGRectMake( 0, _scroller.frame.size.height-kToolbarHeight, _scroller.frame.size.width, kToolbarHeight );
+    
+    _toolbar1.frame = CGRectMake( 0, 114, 50, _scroller.frame.size.height-(152) );
 }
 
 
@@ -684,10 +696,9 @@ return coloredImg;
     if (!_isThumbViewShowing)
     {
         _isFullscreen = YES;
-        
         [self disableApp];
-        
         UIApplication* application = [UIApplication sharedApplication];
+        
         if ([application respondsToSelector: @selector(setStatusBarHidden:withAnimation:)]) {
             [[UIApplication sharedApplication] setStatusBarHidden: YES withAnimation: UIStatusBarAnimationFade]; // 3.2+
         } else {
@@ -695,18 +706,29 @@ return coloredImg;
             [[UIApplication sharedApplication] setStatusBarHidden: YES animated:YES]; // 2.0 - 3.2
     #pragma GCC diagnostic warning "-Wdeprecated-declarations"
         }
-        
+
         [self.navigationController setNavigationBarHidden:YES animated:YES];
-        
         [UIView beginAnimations:@"galleryOut" context:nil];
         [UIView setAnimationDelegate:self];
         [UIView setAnimationDidStopSelector:@selector(enableApp)];
         _toolbar.alpha = 0.0;
+        _toolbar1.alpha = 0.0;
         _captionContainer.alpha = 0.0;
+        _tagContainer.alpha = 0.0;
+        _tagCaptionContainer.alpha = 0.0;
         [UIView commitAnimations];
+        
+        CGRect rect = _scroller.frame;
+        NSUInteger i, count = [_photoViews count];
+        float dx = 0;
+        for (i = 0; i < count; i++)
+        {
+            FGalleryPhotoView * photoView = [_photoViews objectAtIndex:i];
+            photoView.frame = CGRectMake(dx, 0, rect.size.width, rect.size.height );
+            dx += rect.size.width;
+        }
     }
 }
-
 
 
 - (void)exitFullscreen
@@ -730,7 +752,9 @@ return coloredImg;
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(enableApp)];
 	_toolbar.alpha = 1.0;
+    _toolbar1.alpha = 1.0;
 	_captionContainer.alpha = 1.0;
+    _tagContainer.alpha = 1.0;                  
 	[UIView commitAnimations];
 }
 
@@ -759,46 +783,11 @@ return coloredImg;
 		[self enterFullscreen];
 	}
 	else {
-		
 		[self exitFullscreen];
 	}
 
 }
 
-
-- (void)updateTag
-{
-	if([_photoSource numberOfPhotosForPhotoGallery:self] > 0 )
-	{
-		if([_photoSource respondsToSelector:@selector(photoGallery:tagsForPhotoAtIndex:)])
-		{
-			NSString *tag = [_photoSource photoGallery:self tagsForPhotoAtIndex:_currentIndex];
-			
-			if([tag length] > 0 )
-			{
-				float tagWidth = _container.frame.size.width-kCaptionPadding*2;
-				CGSize textSize = [tag sizeWithFont:_caption.font];
-				NSUInteger numLines = ceilf( textSize.width / tagWidth );
-				NSInteger height = ( textSize.height + kCaptionPadding ) * numLines;
-				
-				_tag.numberOfLines = numLines;
-				_tag.text = tag;
-				
-				NSInteger containerHeight = height+kCaptionPadding*2;
-				_tagContainer.frame = CGRectMake(0, -containerHeight, _container.frame.size.width, containerHeight );
-				_tag.frame = CGRectMake(kCaptionPadding, kCaptionPadding, tagWidth, height );
-				
-				// show caption bar
-				_tagContainer.hidden = NO;
-			}
-			else {
-				
-				// hide it if we don't have a tag.
-				_tagContainer.hidden = YES;
-			}
-		}
-	}
-}
 
 - (void)updateCaption
 {
@@ -807,26 +796,21 @@ return coloredImg;
 		if([_photoSource respondsToSelector:@selector(photoGallery:captionForPhotoAtIndex:)])
 		{
 			NSString *caption = [_photoSource photoGallery:self captionForPhotoAtIndex:_currentIndex];
-			
 			if([caption length] > 0 )
 			{
 				float captionWidth = _container.frame.size.width-kCaptionPadding*2;
 				CGSize textSize = [caption sizeWithFont:_caption.font];
 				NSUInteger numLines = ceilf( textSize.width / captionWidth );
 				NSInteger height = ( textSize.height + kCaptionPadding ) * numLines;
-				
 				_caption.numberOfLines = numLines;
 				_caption.text = caption;
-				
 				NSInteger containerHeight = height+kCaptionPadding*2;
-				_captionContainer.frame = CGRectMake(0, -containerHeight, _container.frame.size.width, containerHeight );
+				_captionContainer.frame = CGRectMake(0, containerHeight-20, _container.frame.size.width, containerHeight );
 				_caption.frame = CGRectMake(kCaptionPadding, kCaptionPadding, captionWidth, height );
-				
 				// show caption bar
 				_captionContainer.hidden = NO;
 			}
 			else {
-				
 				// hide it if we don't have a caption.
 				_captionContainer.hidden = YES;
 			}
@@ -845,7 +829,7 @@ return coloredImg;
 - (void)updateTitle
 {
     if (!_hideTitle){
-        [self setTitle:[NSString stringWithFormat:@"%i %@ %i", _currentIndex+1, NSLocalizedString(@"of", @"") , [_photoSource numberOfPhotosForPhotoGallery:self]]];
+        [self setTitle:@"Fluence"];
     }else{
         [self setTitle:@""];
     }
@@ -901,7 +885,6 @@ return coloredImg;
 {
 	NSUInteger i, count = [_photoSource numberOfPhotosForPhotoGallery:self];
 	for (i = 0; i < count; i++) {
-		
 		FGalleryPhotoView *thumbView = [[FGalleryPhotoView alloc] initWithFrame:CGRectZero target:self action:@selector(handleThumbClick:)];
 		[thumbView setContentMode:UIViewContentModeScaleAspectFill];
 		[thumbView setClipsToBounds:YES];
@@ -911,8 +894,6 @@ return coloredImg;
 		[thumbView release];
 	}
 }
-
-
 
 - (void)arrangeThumbs
 {
@@ -1180,6 +1161,15 @@ return coloredImg;
 	[self updateButtons];
 	[self loadFullsizeImageWithIndex:_currentIndex];
 	[self preloadThumbnailImages];
+    if(_isFullscreen)
+    {
+        
+    }
+    else
+    {
+        
+        _toolbar1.alpha = 1.0;
+    }
 }
 
 
@@ -1252,6 +1242,8 @@ return coloredImg;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
 	_isScrolling = YES;
+    _toolbar1.alpha = 0.0;
+    _tagContainer.alpha = 0.0;
 }
  
 
@@ -1267,6 +1259,12 @@ return coloredImg;
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
 	[self scrollingHasEnded];
+    if( _isFullscreen == NO )
+    {
+        _toolbar1.alpha = 1.0;
+        _tagContainer.alpha = 1.0;
+        
+    }
 }
 
 
@@ -1334,6 +1332,13 @@ return coloredImg;
 	self.galleryID = nil;
 	
 	_photoSource = nil;
+    
+    [_tag release];
+    _tag = nil;
+	
+    [_tagContainer release];
+    _tagContainer = nil;
+    
 	
     [_caption release];
     _caption = nil;
@@ -1341,12 +1346,6 @@ return coloredImg;
     [_captionContainer release];
     _captionContainer = nil;
     
-    [_tag release];
-    _tag = nil;
-	
-    [_tagContainer release];
-    _tagContainer = nil;
-
     [_container release];
     _container = nil;
 	
@@ -1355,6 +1354,9 @@ return coloredImg;
 	
     [_toolbar release];
     _toolbar = nil;
+    
+    [_toolbar1 release];
+    _toolbar1 = nil;
 	
     [_thumbsView release];
     _thumbsView = nil;
@@ -1383,9 +1385,213 @@ return coloredImg;
 	
     [_prevButton release];
     _prevButton = nil;
+    
+    
+    [_likeButton release];
+    _likeButton = nil;
+    
+    [_shareButton release];
+    _shareButton = nil;
+	
+    [_commentButton release];
+    _commentButton = nil;
 	
     [super dealloc];
 }
+
+#pragma mark - Tagging Related
+
+- (void)updateTag
+{
+    
+	if([_photoSource numberOfPhotosForPhotoGallery:self] > 0 )
+	{
+		if([_photoSource respondsToSelector:@selector(photoGallery:tagsForPhotoAtIndex:)])
+		{
+			NSMutableArray *tag = [_photoSource photoGallery:self tagsForPhotoAtIndex:_currentIndex];
+            NSInteger tagCount = [tag count];
+            if(tagCount > 0 )
+			{
+                for (int i = 0; i < tagCount; i++) {
+                    id row = [tag objectAtIndex:i];
+                    //for(id key in row) {
+                    NSString* tagId = [NSString stringWithFormat:[row objectForKey:@"tagId"]];
+                    NSString* tagCaption = [NSString stringWithFormat:[row objectForKey:@"tagCaption"]];
+                    NSString* tagX = [NSString stringWithFormat:[row objectForKey:@"tagX"]];
+                    NSString* tagY = [NSString stringWithFormat:[row objectForKey:@"tagY"]];
+                    [self addMyButton:[tagId integerValue]:tagCaption:_tagContainer:[tagX integerValue]:[tagY integerValue]];
+                    //}
+                }
+                /*
+                 for (int i = 0; i < 9; i++) {
+                 [[self.view viewWithTag:i] removeFromSuperview];
+                 }*/
+			}
+			else {
+				// hide it if we don't have a tag.
+				_tagContainer.hidden = YES;
+			}
+		}
+	}
+}
+
+- (void)addMyButton:(NSInteger)index:(NSString*)caption:(UIView*)container:(NSInteger)xc:(NSInteger)yc{    // Method for creating button, with background image and other properties
+    OBShapedButton *button = [[OBShapedButton buttonWithType:UIButtonTypeCustom] retain];
+    button.frame = CGRectMake(xc, yc, 25.0, 25.0);
+    [button setTitle:caption forState:UIControlStateNormal];
+    button.backgroundColor = [UIColor clearColor];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal ];
+    UIImage *buttonImageNormal = [UIImage imageNamed:@"button-normal.png"];
+    UIImage *strechableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:12 topCapHeight:0];
+    
+    [button setImage:strechableButtonImageNormal forState:UIControlStateNormal];
+    UIImage *buttonImagePressed = [UIImage imageNamed:@"button-highlighted.png"];
+    UIImage *strechableButtonImagePressed = [buttonImagePressed stretchableImageWithLeftCapWidth:12 topCapHeight:0];
+    
+    [button setImage:strechableButtonImagePressed forState:UIControlStateHighlighted];
+    [button addTarget:self action:@selector(tappedBtn:) forControlEvents:UIControlEventTouchUpInside];
+    button.tag = index;
+    [_tagContainer addSubview:button];  
+}
+
+- (void)tappedBtn:(id)sender
+{
+    OBShapedButton *button = (OBShapedButton *)sender;
+    int bTag = button.tag;
+    _tagCaptionContainer.alpha = 1.0;
+    NSDictionary *tag = [_photoSource photoGallery:self tagsForPhotoAtId:bTag:_currentIndex];
+    
+    if(tag != Nil){
+        float tagWidth = _container.frame.size.width-kCaptionPadding*2;
+        CGSize textSize = [[tag objectForKey:@"tagCaption"] sizeWithFont:_tag.font];
+        NSUInteger numLines = ceilf( textSize.width / tagWidth );
+        NSInteger height = ( textSize.height + kCaptionPadding ) * numLines;
+        _tag.numberOfLines = numLines;
+        _tag.text = [tag objectForKey:@"tagCaption"];
+        
+//        CGSize conSize = _container.frame.size;
+//        CGPoint conCord = _container.frame.origin;
+//        CGSize inConSize = _innerContainer.frame.size;
+//        CGPoint inConCord = _innerContainer.frame.origin;
+//        CGSize toolSize = _toolbar.frame.size;
+        CGPoint toolCord = _toolbar.frame.origin;
+        CGSize capSize = _captionContainer.frame.size;
+//        CGPoint capCord = _captionContainer.frame.origin;
+        NSInteger containerHeight = height + kCaptionPadding*2;
+        NSInteger containerY = toolCord.y - 27 - capSize.height;
+        _tagCaptionContainer.backgroundColor = [UIColor clearColor];
+        _tagCaptionContainer.frame = CGRectMake(0, containerY, _container.frame.size.width, containerHeight);
+        _tag.frame = CGRectMake(kCaptionPadding, kCaptionPadding, tagWidth-50, height);
+        
+        NSString* shopUrl = [tag objectForKey:@"tagShopLink"];
+        if(shopUrl != nil && shopUrl != @""){
+            CGSize tagSize = _tag.frame.size;
+        
+            OBShapedButton *buttonShop = [[OBShapedButton buttonWithType:UIButtonTypeCustom] retain];
+            buttonShop.frame = CGRectMake(tagSize.width+10, kCaptionPadding, 20.0, 20.0);
+//            buttonShop.frame = CGRectMake(10, 20, 30.0, 30.0); //change location
+            
+            [buttonShop setTitle:@"Shop" forState:UIControlStateNormal];
+            buttonShop.backgroundColor = [UIColor clearColor];
+            [buttonShop setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal ];
+            UIImage *buttonImageNormal = [UIImage imageNamed:@"button-normal.png"];
+            UIImage *strechableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:12 topCapHeight:0];
+            [buttonShop setImage:strechableButtonImageNormal forState:UIControlStateNormal];
+            UIImage *buttonImagePressed = [UIImage imageNamed:@"button-highlighted.png"];
+            UIImage *strechableButtonImagePressed = [buttonImagePressed stretchableImageWithLeftCapWidth:12 topCapHeight:0];
+            [buttonShop setImage:strechableButtonImagePressed forState:UIControlStateHighlighted];
+            [buttonShop addTarget:self action:@selector(tappedShopBtn:) forControlEvents:UIControlEventTouchUpInside];
+            buttonShop.stringId = shopUrl;
+            
+            [_tagCaptionContainer addSubview:buttonShop]; //change container
+        }
+        // show caption bar
+        _tagCaptionContainer.hidden = NO;
+    }
+}
+
+- (void)tappedShopBtn:(id)sender{
+    OBShapedButton* shopBtn = (OBShapedButton *)sender;
+    NSString* url = shopBtn.stringId;
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle: @"Next Date"
+                          message: [NSString stringWithFormat:url]
+                          delegate: nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+}
+
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"Touches began!");
+    
+    /*UIView *hitView = [self.view hitTest:point withEvent:event];
+     
+     // If the hitView is THIS view, return the view that you want to receive the touch instead:
+     if (hitView == _tagContainer) {
+     return _innerContainer;
+     }
+     // Else return the hitView (as it could be one of this view's buttons):
+     return hitView;*/
+    //    UITouch *touch= [[event allTouches] anyObject];
+    //    CGPoint point= [touch locationInView:touch.view];
+    
+    /*UIImage *image = [UIImage imageNamed:@"BluePin.png"];
+     
+     
+     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+     [imageView setFrame: CGRectMake(point.x-(imageView.bounds.size.width/2), point.y-(imageView.bounds.size.width/2), imageView.bounds.size.width, imageView.bounds.size.height)];
+     [self.view addSubview: imageView];
+     //self.currentPins += 1;
+     
+     [UIView animateWithDuration:2.0 delay:1.0 options:UIViewAnimationOptionCurveLinear  animations:^{
+     [imageView setAlpha:0.0];
+     } completion:^(BOOL finished) {
+     [imageView removeFromSuperview];
+     //self.currentPins -= 1;
+     }];
+     
+     // for(;self.currentPins > 10; currentPins -= 1){
+     //     [[[self subviews] objectAtIndex:0] removeFromSuperview];
+     // }*/
+    
+}
+/*
+ // load the image
+ NSString *name = @"badge.png";
+ UIImage *img = [UIImage imageNamed:name];
+ 
+ // begin a new image context, to draw our colored image onto
+ UIGraphicsBeginImageContext(img.size);
+ 
+ // get a reference to that context we created
+ CGContextRef context = UIGraphicsGetCurrentContext();
+ 
+ // set the fill color
+ [color setFill];
+ 
+ // translate/flip the graphics context (for transforming from CG* coords to UI* coords
+ CGContextTranslateCTM(context, 0, img.size.height);
+ CGContextScaleCTM(context, 1.0, -1.0);
+ 
+ // set the blend mode to color burn, and the original image
+ CGContextSetBlendMode(context, kCGBlendModeColorBurn);
+ CGRect rect = CGRectMake(0, 0, img.size.width, img.size.height);
+ CGContextDrawImage(context, rect, img.CGImage);
+ 
+ // set a mask that matches the shape of the image, then draw (color burn) a colored rectangle
+ CGContextClipToMask(context, rect, img.CGImage);
+ CGContextAddRect(context, rect);
+ CGContextDrawPath(context,kCGPathFill);
+ 
+ // generate a new UIImage from the graphics context we drew onto
+ UIImage *coloredImg = UIGraphicsGetImageFromCurrentImageContext();
+ UIGraphicsEndImageContext();
+ 
+ //return the color-burned image
+ return coloredImg;
+ */
 
 
 @end

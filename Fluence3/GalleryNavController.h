@@ -16,7 +16,10 @@
     NSArray *networkCaptions;
     NSArray *networkImages;
     NSArray *networkTags;
-	
+    
+    NSMutableArray *tagArray;
+    NSMutableArray *imageArray;
+    
     FGalleryViewController *localGallery;
     FGalleryViewController *networkGallery;
 }

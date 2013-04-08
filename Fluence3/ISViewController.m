@@ -79,32 +79,19 @@
 
 - (IBAction)galleryClicked {
     gc = [[[GalleryController alloc] initWithNibName:@"GalleryController" bundle:nil]autorelease];
-    
     gc.title = @"Gallery";
-    
-    // Set the friend picker delegate
-    //gc.delegate = self;
-    
     [self.navigationController pushViewController:gc animated:true];
 }
 
 - (IBAction)profileClicked {
     mc = [[[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil]autorelease];
     mc.title = @"Profile";
-    
-    // Set the friend picker delegate
-    //gc.delegate = self;
-    
     [self.navigationController pushViewController:mc animated:true];
 }
 
 - (IBAction)newCameraImageClicked {
     nCameraImage = [[[CameraImageController alloc] initWithNibName:@"CameraImageController" bundle:nil]autorelease];
     nCameraImage.title = @"Capture New";
-    
-    // Set the friend picker delegate
-    //gc.delegate = self;
-    
     [self.navigationController pushViewController:nCameraImage animated:true];
 }
 

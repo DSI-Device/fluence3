@@ -44,7 +44,7 @@
     
     appdt = [[UIApplication sharedApplication] delegate];
     imageView.image = [self makeImageBlackWhite:appdt.imgOptimized];
-
+    
 }
 
 - (void)viewDidUnload
@@ -105,6 +105,7 @@
     CGImageRef cgImage = [context createCGImage:image fromRect:image.extent];
     UIImage *resultUIImage = [UIImage imageWithCGImage:cgImage];
     
+    CGImageRelease(cgImage);    
     return resultUIImage;
 }
 

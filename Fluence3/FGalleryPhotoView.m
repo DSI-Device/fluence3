@@ -137,7 +137,7 @@
 	if (touch.tapCount == 2) {
 		[self stopTapTimer];
 		
-		if( _isZoomed ) 
+		if( _isZoomed )
 		{
 			_isZoomed = NO;
 			[self setZoomScale:self.minimumZoomScale animated:YES];
@@ -146,7 +146,7 @@
 			
 			_isZoomed = YES;
 			
-			// define a rect to zoom to. 
+			// define a rect to zoom to.
 			CGPoint touchCenter = [touch locationInView:self];
 			CGSize zoomRectSize = CGSizeMake(self.frame.size.width / self.maximumZoomScale, self.frame.size.height / self.maximumZoomScale );
 			CGRect zoomRect = CGRectMake( touchCenter.x - zoomRectSize.width * .5, touchCenter.y - zoomRectSize.height * .5, zoomRectSize.width, zoomRectSize.height );

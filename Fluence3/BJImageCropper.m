@@ -626,7 +626,9 @@
                       [NSString stringWithString: @"test.png"] ];
     NSData* data = UIImagePNGRepresentation(croppedImage);
     [data writeToFile:path atomically:YES];
+    return nil;
 }
+
 #ifndef ARC
 
 - (void)dealloc {

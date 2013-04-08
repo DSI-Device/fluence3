@@ -13,7 +13,5 @@
 
 - (BOOL) clearUsers;
 - (BOOL) clearPractices;
-- (BOOL) clearHospitals;
-- (BOOL) clearCounties;
 
 @end

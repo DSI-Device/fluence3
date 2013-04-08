@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B53EDE9170F039200C8C184 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE6170F039200C8C184 /* share.png */; };
+		2B53EDEA170F039200C8C184 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE7170F039200C8C184 /* comment.png */; };
+		2B53EDEB170F039200C8C184 /* heart-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE8170F039200C8C184 /* heart-icon.png */; };
 		C849D17A17048DEC003D18A5 /* menu7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C849D17917048DEC003D18A5 /* menu7.jpg */; };
 		C849D18417049246003D18A5 /* ISViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C849D18317049246003D18A5 /* ISViewController.xib */; };
 		C849D18617049419003D18A5 /* fb-login-button.png in Resources */ = {isa = PBXBuildFile; fileRef = C849D18517049419003D18A5 /* fb-login-button.png */; };
@@ -57,6 +60,7 @@
 		C897EEDA16F71A8F00AC1194 /* MYNSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EEC716F71A8F00AC1194 /* MYNSObject+JSON.m */; };
 		C897EEDD16F71B0C00AC1194 /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EEDB16F71B0B00AC1194 /* utils.m */; };
 		C897EEE316F7267900AC1194 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C897EEE216F7267800AC1194 /* SystemConfiguration.framework */; };
+		C8A13E70170C12E90027C655 /* RemoveEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A13E6F170C12E90027C655 /* RemoveEventView.m */; };
 		C8C0E7FC16F88FC900C92E99 /* FGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E7F616F88FC900C92E99 /* FGalleryViewController.m */; };
 		C8C0E7FD16F88FC900C92E99 /* FGalleryPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E7F716F88FC900C92E99 /* FGalleryPhotoView.m */; };
 		C8C0E7FE16F88FC900C92E99 /* FGalleryPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E7F816F88FC900C92E99 /* FGalleryPhoto.m */; };
@@ -86,6 +90,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B53EDE6170F039200C8C184 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		2B53EDE7170F039200C8C184 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
+		2B53EDE8170F039200C8C184 /* heart-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-icon.png"; sourceTree = "<group>"; };
 		C849D17917048DEC003D18A5 /* menu7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu7.jpg; sourceTree = "<group>"; };
 		C849D18317049246003D18A5 /* ISViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ISViewController.xib; sourceTree = "<group>"; };
 		C849D18517049419003D18A5 /* fb-login-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fb-login-button.png"; sourceTree = "<group>"; };
@@ -166,6 +173,8 @@
 		C897EEDB16F71B0B00AC1194 /* utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = utils.m; sourceTree = "<group>"; };
 		C897EEDC16F71B0B00AC1194 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		C897EEE216F7267800AC1194 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C8A13E6E170C12E90027C655 /* RemoveEventView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveEventView.h; sourceTree = "<group>"; };
+		C8A13E6F170C12E90027C655 /* RemoveEventView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveEventView.m; sourceTree = "<group>"; };
 		C8C0E7F616F88FC900C92E99 /* FGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGalleryViewController.m; sourceTree = "<group>"; };
 		C8C0E7F716F88FC900C92E99 /* FGalleryPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGalleryPhotoView.m; sourceTree = "<group>"; };
 		C8C0E7F816F88FC900C92E99 /* FGalleryPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGalleryPhoto.m; sourceTree = "<group>"; };
@@ -482,6 +491,9 @@
 		C8CE00DE17042C2200558361 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				2B53EDE6170F039200C8C184 /* share.png */,
+				2B53EDE7170F039200C8C184 /* comment.png */,
+				2B53EDE8170F039200C8C184 /* heart-icon.png */,
 				C849D17917048DEC003D18A5 /* menu7.jpg */,
 				C8CE00DF17042C9200558361 /* menu1.png */,
 				C8CE00E017042C9200558361 /* menu2.png */,
@@ -509,6 +521,8 @@
 			children = (
 				C8E5098F17047FAB00A1624A /* BJImageCropper.h */,
 				C8E5099017047FAB00A1624A /* BJImageCropper.m */,
+				C8A13E6E170C12E90027C655 /* RemoveEventView.h */,
+				C8A13E6F170C12E90027C655 /* RemoveEventView.m */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -593,6 +607,9 @@
 				C849D199170499B1003D18A5 /* gavandme.jpg in Resources */,
 				C849D19A170499B1003D18A5 /* tactile_noise.png in Resources */,
 				C8D27A2617058F5A0069D983 /* ColorViewController.xib in Resources */,
+				2B53EDE9170F039200C8C184 /* share.png in Resources */,
+				2B53EDEA170F039200C8C184 /* comment.png in Resources */,
+				2B53EDEB170F039200C8C184 /* heart-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,6 +656,7 @@
 				C849D19317049995003D18A5 /* ShowCropedImage.m in Sources */,
 				C849D19517049995003D18A5 /* TakeCameraPhoto.m in Sources */,
 				C8D27A2517058F5A0069D983 /* ColorViewController.m in Sources */,
+				C8A13E70170C12E90027C655 /* RemoveEventView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

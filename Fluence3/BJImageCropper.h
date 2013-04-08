@@ -55,5 +55,5 @@
 - (id)initWithImage:(UIImage*)newImage andMaxSize:(CGSize)maxSize;
 
 - (UIImage*) getCroppedImage;
-- (UIImage*) saveCroppedImage;
+- (void*) saveCroppedImage;
 @end

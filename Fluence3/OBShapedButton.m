@@ -45,6 +45,7 @@
 
 @synthesize previousTouchPoint = _previousTouchPoint;
 @synthesize previousTouchHitTestResponse = _previousTouchHitTestResponse;
+@synthesize stringId;
 
 - (id)initWithFrame:(CGRect)frame
 {

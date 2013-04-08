@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ApplicationProperties</key>
+	<dict>
+		<key>ApplicationPath</key>
+		<string>Applications/Fluence3.app</string>
+		<key>CFBundleIdentifier</key>
+		<string>com.dsi.Fluence3</string>
+		<key>CFBundleShortVersionString</key>
+		<string>1.0</string>
+	</dict>
+	<key>ArchiveVersion</key>
+	<real>1</real>
+	<key>CreationDate</key>
+	<date>2013-04-02T07:07:46Z</date>
+	<key>Name</key>
+	<string>FBTest</string>
+	<key>SchemeName</key>
+	<string>FBTest</string>
+</dict>
+</plist>
