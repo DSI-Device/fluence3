@@ -1501,20 +1501,20 @@
         //NSInteger containerY = toolCord.y - 27 - capSize.height;
         _tagCaptionContainer.backgroundColor = [UIColor grayColor];
         _tagCaptionContainer.frame = CGRectMake(50, _scroller.frame.size.height-(kToolbarHeight+35), _container.frame.size.width-50, containerHeight);
-        _tag.frame = CGRectMake(kCaptionPadding-25, kCaptionPadding, tagWidth-50, height);
+        _tag.frame = CGRectMake(kCaptionPadding-25, kCaptionPadding, tagWidth-80, height);
         
         NSString* shopUrl = [tag objectForKey:@"tagShopLink"];
         if(shopUrl != nil && shopUrl != @""){
             CGSize tagSize = _tag.frame.size;
             
             OBShapedButton *buttonShop = [[OBShapedButton buttonWithType:UIButtonTypeCustom] retain];
-            buttonShop.frame = CGRectMake(tagSize.width+10, kCaptionPadding, 20.0, 20.0);
+            buttonShop.frame = CGRectMake(tagSize.width-40, kCaptionPadding, 20.0, 20.0);
             //            buttonShop.frame = CGRectMake(10, 20, 30.0, 30.0); //change location
             
             [buttonShop setTitle:@"Shop" forState:UIControlStateNormal];
             buttonShop.backgroundColor = [UIColor clearColor];
             [buttonShop setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal ];
-            UIImage *buttonImageNormal = [UIImage imageNamed:@"button-normal.png"];
+            UIImage *buttonImageNormal = [UIImage imageNamed:@"shop.png"];
             UIImage *strechableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:12 topCapHeight:0];
             [buttonShop setImage:strechableButtonImageNormal forState:UIControlStateNormal];
             UIImage *buttonImagePressed = [UIImage imageNamed:@"button-highlighted.png"];
@@ -1534,7 +1534,7 @@
     OBShapedButton* shopBtn = (OBShapedButton *)sender;
     NSString* url = shopBtn.stringId;
     UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle: @"Next Date"
+                          initWithTitle: @"URl Selected"
                           message: [NSString stringWithFormat:url]
                           delegate: nil
                           cancelButtonTitle:@"OK"
