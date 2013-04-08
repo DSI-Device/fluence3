@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B1B65611713044D006610D3 /* lava.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2B1B65601713044D006610D3 /* lava.jpeg */; };
 		2B53EDE9170F039200C8C184 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE6170F039200C8C184 /* share.png */; };
 		2B53EDEA170F039200C8C184 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE7170F039200C8C184 /* comment.png */; };
 		2B53EDEB170F039200C8C184 /* heart-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE8170F039200C8C184 /* heart-icon.png */; };
@@ -64,7 +65,6 @@
 		C8C0E7FC16F88FC900C92E99 /* FGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E7F616F88FC900C92E99 /* FGalleryViewController.m */; };
 		C8C0E7FD16F88FC900C92E99 /* FGalleryPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E7F716F88FC900C92E99 /* FGalleryPhotoView.m */; };
 		C8C0E7FE16F88FC900C92E99 /* FGalleryPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E7F816F88FC900C92E99 /* FGalleryPhoto.m */; };
-		C8C0E80316F890A200C92E99 /* lava.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C8C0E80016F890A200C92E99 /* lava.jpeg */; };
 		C8C0E80416F890A200C92E99 /* hawaii.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C8C0E80116F890A200C92E99 /* hawaii.jpeg */; };
 		C8C0E80516F890A200C92E99 /* audi.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8C0E80216F890A200C92E99 /* audi.jpg */; };
 		C8C0E80A16F890D900C92E99 /* photo-gallery-trashcan.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0E80616F890D900C92E99 /* photo-gallery-trashcan.png */; };
@@ -90,6 +90,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B1B65601713044D006610D3 /* lava.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lava.jpeg; sourceTree = "<group>"; };
 		2B53EDE6170F039200C8C184 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		2B53EDE7170F039200C8C184 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
 		2B53EDE8170F039200C8C184 /* heart-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-icon.png"; sourceTree = "<group>"; };
@@ -181,7 +182,6 @@
 		C8C0E7F916F88FC900C92E99 /* FGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGalleryViewController.h; sourceTree = "<group>"; };
 		C8C0E7FA16F88FC900C92E99 /* FGalleryPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGalleryPhotoView.h; sourceTree = "<group>"; };
 		C8C0E7FB16F88FC900C92E99 /* FGalleryPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGalleryPhoto.h; sourceTree = "<group>"; };
-		C8C0E80016F890A200C92E99 /* lava.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lava.jpeg; sourceTree = "<group>"; };
 		C8C0E80116F890A200C92E99 /* hawaii.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hawaii.jpeg; sourceTree = "<group>"; };
 		C8C0E80216F890A200C92E99 /* audi.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = audi.jpg; sourceTree = "<group>"; };
 		C8C0E80616F890D900C92E99 /* photo-gallery-trashcan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo-gallery-trashcan.png"; sourceTree = "<group>"; };
@@ -481,7 +481,7 @@
 		C8C0E7FF16F8901100C92E99 /* gallery */ = {
 			isa = PBXGroup;
 			children = (
-				C8C0E80016F890A200C92E99 /* lava.jpeg */,
+				2B1B65601713044D006610D3 /* lava.jpeg */,
 				C8C0E80116F890A200C92E99 /* hawaii.jpeg */,
 				C8C0E80216F890A200C92E99 /* audi.jpg */,
 			);
@@ -581,7 +581,6 @@
 				C889BAE116F213370040CA39 /* MainViewController.xib in Resources */,
 				C889BAEC16F213AF0040CA39 /* FacebookSDKResources.bundle in Resources */,
 				C889BAF316F2152E0040CA39 /* LoginViewController.xib in Resources */,
-				C8C0E80316F890A200C92E99 /* lava.jpeg in Resources */,
 				C8C0E80416F890A200C92E99 /* hawaii.jpeg in Resources */,
 				C8C0E80516F890A200C92E99 /* audi.jpg in Resources */,
 				C8C0E80A16F890D900C92E99 /* photo-gallery-trashcan.png in Resources */,
@@ -610,6 +609,7 @@
 				2B53EDE9170F039200C8C184 /* share.png in Resources */,
 				2B53EDEA170F039200C8C184 /* comment.png in Resources */,
 				2B53EDEB170F039200C8C184 /* heart-icon.png in Resources */,
+				2B1B65611713044D006610D3 /* lava.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
