@@ -93,8 +93,8 @@
 
 /* Begin PBXFileReference section */
 		2B1B65601713044D006610D3 /* lava.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lava.jpeg; sourceTree = "<group>"; };
-		2B1B656617130C5E006610D3 /* Flogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Flogo.png; sourceTree = "<group>"; };
-		2B1B656817130D3E006610D3 /* flogo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flogo1.png; sourceTree = "<group>"; };
+		2B1B656617130C5E006610D3 /* Flogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Flogo.png; path = ../Flogo.png; sourceTree = "<group>"; };
+		2B1B656817130D3E006610D3 /* flogo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flogo1.png; path = ../flogo1.png; sourceTree = "<group>"; };
 		2B53EDE6170F039200C8C184 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		2B53EDE7170F039200C8C184 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
 		2B53EDE8170F039200C8C184 /* heart-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-icon.png"; sourceTree = "<group>"; };
@@ -255,8 +255,6 @@
 		C889BABB16F213370040CA39 = {
 			isa = PBXGroup;
 			children = (
-				2B1B656817130D3E006610D3 /* flogo1.png */,
-				2B1B656617130C5E006610D3 /* Flogo.png */,
 				C889BAD016F213370040CA39 /* Fluence3 */,
 				C889BAC916F213370040CA39 /* Frameworks */,
 				C889BAC716F213370040CA39 /* Products */,
@@ -393,6 +391,8 @@
 		C8C0E7EF16F87ECF00C92E99 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				2B1B656817130D3E006610D3 /* flogo1.png */,
+				2B1B656617130C5E006610D3 /* Flogo.png */,
 				C849D197170499B1003D18A5 /* gavandme.jpg */,
 				C849D198170499B1003D18A5 /* tactile_noise.png */,
 				C849D18517049419003D18A5 /* fb-login-button.png */,
