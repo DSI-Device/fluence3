@@ -1471,6 +1471,7 @@
     [button addTarget:self action:@selector(tappedBtn:) forControlEvents:UIControlEventTouchUpInside];
     button.tag = index;
     [_tagContainer addSubview:button];
+    [button release];
 }
 
 - (void)tappedBtn:(id)sender
@@ -1493,8 +1494,8 @@
         //        CGSize inConSize = _innerContainer.frame.size;
         //        CGPoint inConCord = _innerContainer.frame.origin;
         //        CGSize toolSize = _toolbar.frame.size;
-        CGPoint toolCord = _toolbar.frame.origin;
-        CGSize capSize = _captionContainer.frame.size;
+//        CGPoint toolCord = _toolbar.frame.origin;
+//        CGSize capSize = _captionContainer.frame.size;
         //        CGPoint capCord = _captionContainer.frame.origin;
         NSInteger containerHeight = height + kCaptionPadding*2;
         //NSInteger containerY = toolCord.y - 27 - capSize.height;
@@ -1521,8 +1522,8 @@
             [buttonShop setImage:strechableButtonImagePressed forState:UIControlStateHighlighted];
             [buttonShop addTarget:self action:@selector(tappedShopBtn:) forControlEvents:UIControlEventTouchUpInside];
             buttonShop.stringId = shopUrl;
-            
             [_tagCaptionContainer addSubview:buttonShop]; //change container
+            [buttonShop release];
         }
         // show caption bar
         _tagCaptionContainer.hidden = NO;
