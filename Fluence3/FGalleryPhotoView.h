@@ -23,7 +23,7 @@
 }
 
 - (void)killActivityIndicator;
-
+//nahid
 // inits this view to have a button over the image
 - (id)initWithFrame:(CGRect)frame target:(id)target action:(SEL)action;
 
