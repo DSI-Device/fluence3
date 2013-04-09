@@ -2,12 +2,13 @@
 #import "GalleryController.h"
 #import "MainViewController.h"
 #import "CameraImageController.h"
+#import "SelectListViewController.h"
 
 @implementation ISViewController
 
 @synthesize gc;
 @synthesize mc;
-@synthesize nCameraImage;
+@synthesize nCameraImage,selectListView;
 
 - (void)viewDidLoad
 {
@@ -63,6 +64,7 @@
     [gc release];
     [mc release];
     [nCameraImage release];
+    [selectListView release];
     [super dealloc];
 }
 
@@ -94,6 +96,10 @@
     nCameraImage.title = @"Capture New";
     [self.navigationController pushViewController:nCameraImage animated:true];
 }
-
+- (IBAction)findPeopleClicked{
+    selectListView = [[[SelectListViewController alloc] initWithNibName:@"SelectListViewController" bundle:nil]autorelease];
+    selectListView.title = @"Find People";
+    [self.navigationController pushViewController:selectListView animated:true];
+}
 
 @end
