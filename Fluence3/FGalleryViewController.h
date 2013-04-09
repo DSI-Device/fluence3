@@ -49,9 +49,12 @@ typedef enum
 	UIView *_captionContainer;
 	UILabel *_caption;
     
+    UIView *_userInfoContainer;
+	UILabel *_userInfoCaption;
+    UIButton *_userProfileImage;
+    
     RemoveEventView *_tagContainer;
     UILabel *_tag;
-	
     UIView *_tagCaptionContainer;
     
 	NSMutableDictionary *_photoLoaders;
@@ -106,7 +109,7 @@ typedef enum
 - (NSString*)photoGallery:(FGalleryViewController*)gallery captionForPhotoAtIndex:(NSUInteger)index;
 - (NSMutableArray*)photoGallery:(FGalleryViewController *)gallery tagsForPhotoAtIndex:(NSUInteger)index;
 - (NSDictionary*)photoGallery:(FGalleryViewController *)gallery tagsForPhotoAtId:(NSUInteger)tagId:(NSUInteger)index;
-- (NSDictionary*)photoGallery:(FGalleryViewController*)gallery infoForPhotoAtIndex:(FGalleryPhotoSize)size atIndex:(NSUInteger)index;
+- (NSDictionary*)photoGallery:(FGalleryViewController*)gallery infoForPhotoAtIndex:(NSUInteger)index;
 
 // the photosource must implement one of these methods depending on which FGalleryPhotoSourceType is specified
 - (NSString*)photoGallery:(FGalleryViewController*)gallery filePathForPhotoSize:(FGalleryPhotoSize)size atIndex:(NSUInteger)index;

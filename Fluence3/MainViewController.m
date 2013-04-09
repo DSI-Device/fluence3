@@ -207,6 +207,12 @@
              }
          }];      
     }
+    
+    /*  get profile image from app delegate
+     UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 10, 100, 50)];
+    imgView.image = appdt.userProfileImage;
+    imgView.contentMode = UIViewContentModeCenter;
+    [self.view addSubview:imgView];*/
 }  
 - (void)sessionStateChanged:(NSNotification*)notification {
     [self populateUserDetails];

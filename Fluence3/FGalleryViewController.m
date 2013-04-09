@@ -29,6 +29,7 @@
 - (void)updateScrollSize;
 - (void)updateCaption;
 - (void)updateTag;
+- (void)updateUserInfo;
 - (void)resizeImageViewsWithRect:(CGRect)rect;
 - (void)resetImageViewZoomLevels;
 
@@ -226,13 +227,17 @@
     _captionContainer					= [[UIView alloc] initWithFrame:CGRectZero];
     _caption							= [[UILabel alloc] initWithFrame:CGRectZero];
     
+    _userInfoContainer					= [[UIView alloc] initWithFrame:CGRectZero];
+    _userInfoCaption					= [[UILabel alloc] initWithFrame:CGRectZero];
+    _userProfileImage                   = [[UIButton alloc] initWithFrame:CGRectZero];
+    
     _tagContainer                       = [[RemoveEventView alloc] initWithFrame:CGRectZero];
     
     _tagCaptionContainer                = [[UIView alloc] initWithFrame:CGRectZero];
     _tag                                = [[UILabel alloc] initWithFrame:CGRectZero];
     
     _tagCaptionContainer.backgroundColor = [UIColor grayColor];
-    _toolbar1.backgroundColor					= [UIColor grayColor];
+    _toolbar1.backgroundColor			= [UIColor grayColor];
     _toolbar.tintColor					= [UIColor whiteColor];
     _toolbar1.tintColor					= [UIColor whiteColor];
 //    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
@@ -258,6 +263,20 @@
     _caption.textAlignment						= UITextAlignmentCenter;
     _caption.shadowColor						= [UIColor blackColor];
     _caption.shadowOffset						= CGSizeMake( 1, 1 );
+
+    
+    // setup user Info container
+    _userInfoContainer.backgroundColor			= [UIColor clearColor];
+    _userInfoContainer.hidden					= YES;
+    _userInfoContainer.userInteractionEnabled	= NO;
+    _userInfoContainer.exclusiveTouch			= YES;
+    _userInfoCaption.font						= [UIFont systemFontOfSize:14.0];
+    _userInfoCaption.textColor					= [UIColor whiteColor];
+    _userInfoCaption.backgroundColor			= [UIColor clearColor];
+    _userInfoCaption.textAlignment				= UITextAlignmentCenter;
+    _userInfoCaption.shadowColor				= [UIColor blackColor];
+    _userInfoCaption.shadowOffset				= CGSizeMake( 1, 1 );
+    _userProfileImage.contentMode = UIViewContentModeCenter;
     
     // setup tag
     _tagContainer.hidden					    = NO;
@@ -347,21 +366,23 @@
 	[_container addSubview:_thumbsView];
 	
 	[_innerContainer addSubview:_scroller];
+    [_innerContainer addSubview:_userInfoContainer];
 	[_innerContainer addSubview:_toolbar];
     [_innerContainer addSubview:_toolbar1];
     [_innerContainer addSubview:_tagContainer];
     [_innerContainer addSubview:_tagCaptionContainer];
-    
-    
+        
     [_toolbar1 addSubview:_likeButton];
     [_toolbar1 addSubview:_shareButton];
     [_toolbar1 addSubview:_commentButton];
-    
+
 	[_toolbar addSubview:_captionContainer];
 	[_captionContainer addSubview:_caption];
     
     [_tagCaptionContainer addSubview:_tag];
-	
+	[_userInfoContainer addSubview:_userInfoCaption];
+    [_userInfoContainer addSubview:_userProfileImage];
+    
 	// create buttons for toolbar
 	UIImage *leftIcon = [UIImage imageNamed:@"photo-gallery-left.png"];
 	UIImage *rightIcon = [UIImage imageNamed:@"photo-gallery-right.png"];
@@ -402,7 +423,9 @@
     [_tag release], _tag = nil;
     [_captionContainer release], _captionContainer = nil;
     [_caption release], _caption = nil;
-    
+    [_userInfoContainer release], _userInfoContainer = nil;
+    [_userInfoCaption release], _userInfoCaption = nil;
+    [_userProfileImage release], _userProfileImage = nil;
     
     [super viewDidUnload];
 }
@@ -602,6 +625,7 @@
 	}
 	[self updateButtons];
 	[self updateCaption];
+    [self updateUserInfo];
     [self updateTag];
 }
 
@@ -614,6 +638,7 @@
 	[self positionToolbar];
 	[self updateScrollSize];
 	[self updateCaption];
+    [self updateUserInfo];
 	[self resizeImageViewsWithRect:_scroller.frame];
 	[self layoutButtons];
 	[self arrangeThumbs];
@@ -734,6 +759,7 @@
         _captionContainer.alpha = 0.0;
         _tagContainer.alpha = 0.0;
         _tagCaptionContainer.alpha = 0.0;
+        _userInfoContainer.alpha = 0.0;
         [UIView commitAnimations];
         
         CGRect rect = _scroller.frame;
@@ -773,7 +799,8 @@
     _toolbar1.alpha = 1.0;
 	_captionContainer.alpha = 1.0;
     _tagContainer.alpha = 1.0;
-	[UIView commitAnimations];
+	_userInfoContainer.alpha = 1.0;
+    [UIView commitAnimations];
 }
 
 
@@ -1175,6 +1202,7 @@
 	
 	_currentIndex = newIndex;
 	[self updateCaption];
+    [self updateUserInfo];
 	[self updateTitle];
 	[self updateButtons];
 	[self loadFullsizeImageWithIndex:_currentIndex];
@@ -1357,13 +1385,21 @@
 	
     [_tagContainer release];
     _tagContainer = nil;
-    
-	
+   	
     [_caption release];
     _caption = nil;
 	
     [_captionContainer release];
     _captionContainer = nil;
+
+    [_userInfoContainer release];
+    _userInfoContainer = nil;
+
+    [_userInfoCaption release];
+    _userInfoCaption = nil;
+    
+    [_userProfileImage release];
+    _userProfileImage = nil;
     
     [_container release];
     _container = nil;
@@ -1405,7 +1441,6 @@
     [_prevButton release];
     _prevButton = nil;
     
-    
     [_likeButton release];
     _likeButton = nil;
     
@@ -1418,12 +1453,61 @@
     [super dealloc];
 }
 
+#pragma mark - User Info Related
+
+- (void)updateUserInfo
+{
+	if([_photoSource numberOfPhotosForPhotoGallery:self] > 0 )
+	{
+		if([_photoSource respondsToSelector:@selector(photoGallery:infoForPhotoAtIndex:)])
+		{
+			NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
+			
+            NSString* userId   = [NSString stringWithFormat:[imageInfo objectForKey:@"userId"]];
+            NSString* userName = [NSString stringWithFormat:[imageInfo objectForKey:@"userName"]];
+            NSString* userPic  = [NSString stringWithFormat:[imageInfo objectForKey:@"userPic"]];
+            
+            _userInfoCaption.text = userName;
+            [_userProfileImage setBackgroundImage:[UIImage imageNamed:@"lava.jpeg"] forState:UIControlStateNormal];
+            /*
+            dispatch_queue_t downloader = dispatch_queue_create("PicDownloader", NULL);
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:userPic]];
+            dispatch_async(downloader, ^{
+                NSData *data = [NSData dataWithContentsOfURL:url];
+                [_userProfileImage setBackgroundImage:[UIImage imageWithData:data] forState:UIControlStateNormal];
+            });
+            *///enable caching
+            if([userName length] > 0 )
+			{
+				float captionWidth = _container.frame.size.width-kCaptionPadding*2-_userProfileImage.frame.size.width;
+				CGSize textSize = [userName sizeWithFont:_userInfoCaption.font];
+				NSUInteger numLines = ceilf( textSize.width / captionWidth );
+				NSInteger height = ( textSize.height + kCaptionPadding ) * numLines;
+				_userInfoCaption.numberOfLines = numLines;
+				_userInfoCaption.text = userName;
+				NSInteger containerHeight = height+kCaptionPadding*2;
+//				_userInfoContainer.frame = CGRectMake(0, containerHeight-20, _container.frame.size.width, containerHeight );
+                _userInfoContainer.frame = CGRectMake(0, 64, _container.frame.size.width, 50 );
+
+				_userInfoCaption.frame = CGRectMake(_userProfileImage.frame.size.width+kCaptionPadding, kCaptionPadding, captionWidth, 42 );
+                _userProfileImage.frame = CGRectMake(kCaptionPadding, kCaptionPadding, 45, 45);
+                
+				// show caption bar
+				_userInfoContainer.hidden = NO;
+			}
+			else {
+				// hide it if we don't have a caption.
+				_userInfoContainer.hidden = YES;
+			}
+		}
+	}
+}
+
 #pragma mark - Tagging Related
 
 - (void)updateTag
 {
-    
-	if([_photoSource numberOfPhotosForPhotoGallery:self] > 0 )
+ 	if([_photoSource numberOfPhotosForPhotoGallery:self] > 0 )
 	{
 		if([_photoSource respondsToSelector:@selector(photoGallery:tagsForPhotoAtIndex:)])
 		{
@@ -1489,14 +1573,14 @@
         _tag.numberOfLines = numLines;
         _tag.text = [tag objectForKey:@"tagCaption"];
         
-        //        CGSize conSize = _container.frame.size;
-        //        CGPoint conCord = _container.frame.origin;
-        //        CGSize inConSize = _innerContainer.frame.size;
-        //        CGPoint inConCord = _innerContainer.frame.origin;
-        //        CGSize toolSize = _toolbar.frame.size;
+//        CGSize conSize = _container.frame.size;
+//        CGPoint conCord = _container.frame.origin;
+//        CGSize inConSize = _innerContainer.frame.size;
+//        CGPoint inConCord = _innerContainer.frame.origin;
+//        CGSize toolSize = _toolbar.frame.size;
 //        CGPoint toolCord = _toolbar.frame.origin;
 //        CGSize capSize = _captionContainer.frame.size;
-        //        CGPoint capCord = _captionContainer.frame.origin;
+//        CGPoint capCord = _captionContainer.frame.origin;
         NSInteger containerHeight = height + kCaptionPadding*2;
         //NSInteger containerY = toolCord.y - 27 - capSize.height;
         _tagCaptionContainer.backgroundColor = [UIColor grayColor];

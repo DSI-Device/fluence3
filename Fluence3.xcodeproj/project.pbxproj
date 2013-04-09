@@ -96,7 +96,7 @@
 		2B1B65601713044D006610D3 /* lava.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lava.jpeg; sourceTree = "<group>"; };
 		2B1B656617130C5E006610D3 /* Flogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Flogo.png; path = ../Flogo.png; sourceTree = "<group>"; };
 		2B1B656817130D3E006610D3 /* flogo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flogo1.png; path = ../flogo1.png; sourceTree = "<group>"; };
-		2B1B657217131202006610D3 /* shop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shop.png; sourceTree = "<group>"; };
+		2B1B657217131202006610D3 /* shop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shop.png; path = ../../../Users/Shuvo/Desktop/shop.png; sourceTree = "<group>"; };
 		2B53EDE6170F039200C8C184 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		2B53EDE7170F039200C8C184 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
 		2B53EDE8170F039200C8C184 /* heart-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-icon.png"; sourceTree = "<group>"; };
@@ -700,7 +700,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sazzad Mostafa (XJXYRP74T6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sazzad Mostafa (XJXYRP74T6)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -715,6 +716,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PROVISIONING_PROFILE = "9AD14E67-F209-4160-A2E7-2CEF27C492BD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9AD14E67-F209-4160-A2E7-2CEF27C492BD";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -725,7 +728,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sazzad Mostafa (XJXYRP74T6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sazzad Mostafa (XJXYRP74T6)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -734,6 +738,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "9AD14E67-F209-4160-A2E7-2CEF27C492BD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9AD14E67-F209-4160-A2E7-2CEF27C492BD";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -743,6 +749,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sazzad Mostafa (XJXYRP74T6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sazzad Mostafa (XJXYRP74T6)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -756,6 +764,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Fluence3;
+				PROVISIONING_PROFILE = "9AD14E67-F209-4160-A2E7-2CEF27C492BD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9AD14E67-F209-4160-A2E7-2CEF27C492BD";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -765,6 +775,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sazzad Mostafa (XJXYRP74T6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sazzad Mostafa (XJXYRP74T6)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -778,6 +790,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Fluence3;
+				PROVISIONING_PROFILE = "9AD14E67-F209-4160-A2E7-2CEF27C492BD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9AD14E67-F209-4160-A2E7-2CEF27C492BD";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

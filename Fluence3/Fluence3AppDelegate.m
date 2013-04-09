@@ -28,6 +28,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 //@synthesize navController = _navController;
 @synthesize userId;
 @synthesize userName;
+@synthesize userProfileImage;
 @synthesize accessToken;
 @synthesize session = _session;
 @synthesize navigationController = _navigationController;
@@ -44,6 +45,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
     [_session release];
     [userId release];
     [userName release];
+    [userProfileImage release];
     [accessToken release];
     [img release];
     [imgOptimized release];
@@ -100,8 +102,14 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
                  if(!error) {
                      self.userId = user.id;
                      self.userName = user.name;
+                     dispatch_queue_t downloader = dispatch_queue_create("PicDownloader", NULL);
+                     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=normal", user.id]];
+                     dispatch_async(downloader, ^{
+                         NSData *data = [NSData dataWithContentsOfURL:url];
+                         self.userProfileImage = [UIImage imageWithData:data];
+                     });
                      self.accessToken = FBSession.activeSession.accessToken;
-                     NSLog(@"--UserId: %@, Token: %@",user.id, FBSession.activeSession.accessToken);
+                     NSLog(@"--UserId: %@, Token: %@",url, FBSession.activeSession.accessToken);
                  }
              }];
         }
@@ -150,6 +158,12 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
                                        if(!error) {
                                            self.userId = user.id;
                                            self.userName = user.name;
+                                           dispatch_queue_t downloader = dispatch_queue_create("PicDownloader", NULL);
+                                           NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=normal", user.id]];
+                                           dispatch_async(downloader, ^{
+                                               NSData *data = [NSData dataWithContentsOfURL:url];
+                                               self.userProfileImage = [UIImage imageWithData:data];
+                                           });
                                            self.accessToken = FBSession.activeSession.accessToken;
                                            NSLog(@"--UserId: %@, Token: %@",user.id, FBSession.activeSession.accessToken);
                                        }

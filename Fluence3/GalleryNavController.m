@@ -7,6 +7,7 @@
 //
 
 #import "GalleryNavController.h"
+#import "Fluence3AppDelegate.h"
 
 @implementation GalleryNavController
 
@@ -35,8 +36,9 @@
 
 - (void)loadView {
 	[super loadView];
-    		 
-	//localCaptions = [[NSArray alloc] initWithObjects:@"Lava", @"Hawaii", @"Audi", @"Happy New Year!",@"Frosty Web",nil];
+    appdt = [[UIApplication sharedApplication] delegate];
+	
+    //localCaptions = [[NSArray alloc] initWithObjects:@"Lava", @"Hawaii", @"Audi", @"Happy New Year!",@"Frosty Web",nil];
     //localImages = [[NSArray alloc] initWithObjects: @"lava.jpeg", @"hawaii.jpeg", @"audi.jpg",nil];
     //localTags = [[NSArray alloc] initWithObjects:@"TestTag1", @"TestTag2", @"TestTag3", @"Happy New Year!",@"Frosty Web",nil];
     
@@ -50,8 +52,8 @@
     
     tagArray = [[NSMutableArray alloc] initWithObjects:tagCollection,tagCollection1,nil];    
     
-    NSDictionary *localCollection = [[NSDictionary  alloc] initWithObjectsAndKeys: @"1", @"imageId", @"Lava", @"imageCaption", @"lava.jpeg", @"imageUrl", tagArray, @"tags",@"12", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", nil];
-    NSDictionary *localCollection1 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"2", @"imageId", @"Hawaii", @"imageCaption", @"hawaii.jpeg", @"imageUrl", nil, @"tags",@"11", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"userPic", nil];
+    NSDictionary *localCollection = [[NSDictionary  alloc] initWithObjectsAndKeys: @"1", @"imageId", @"Lava", @"imageCaption", @"lava.jpeg", @"imageUrl", tagArray, @"tags",@"12", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", @"Nazmul", @"userName",nil];
+    NSDictionary *localCollection1 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"2", @"imageId", @"Hawaii", @"imageCaption", @"hawaii.jpeg", @"imageUrl", nil, @"tags",@"11", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"userPic", @"Nahid", @"userName", nil];
     
     imageArray = [[NSMutableArray alloc] initWithObjects:localCollection,localCollection1,nil];
     
@@ -219,18 +221,14 @@
 {
     //tagCollection
     NSMutableArray *tag;
-    
-    tag = [[imageArray objectAtIndex:index] objectForKey:@"tags"];//[dict objectForKey:aKey] 
-    
+    tag = [[imageArray objectAtIndex:index] objectForKey:@"tags"];
     /*if( gallery == localGallery ) {
      tag = [localTags objectAtIndex:index];
      }
      else if( gallery == networkGallery ) {
      tag = [networkTags objectAtIndex:index];
      }*/
-    
-    
-	return tag;
+    return tag;
 }
 
 - (NSDictionary*)photoGallery:(FGalleryViewController *)gallery tagsForPhotoAtId:(NSUInteger)tagId:(NSUInteger)photoIndex
@@ -256,7 +254,7 @@
     return [[imageArray objectAtIndex:index] objectForKey:@"imageUrl"];
 }
 
-- (NSDictionary*)photoGallery:(FGalleryViewController*)gallery infoForPhotoAtIndex:(FGalleryPhotoSize)size atIndex:(NSUInteger)index {
+- (NSDictionary*)photoGallery:(FGalleryViewController*)gallery infoForPhotoAtIndex:(NSUInteger)index {
     //return [localImages objectAtIndex:index];
     return [imageArray objectAtIndex:index];
 }

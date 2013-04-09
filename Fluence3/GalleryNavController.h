@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "FGalleryViewController.h"
 
+@class Fluence3AppDelegate;
+
 @interface GalleryNavController : UITableViewController<FGalleryViewControllerDelegate>{
+    Fluence3AppDelegate *appdt;
     NSArray *localCaptions;
     NSArray *localImages;
     NSArray *localTags;
