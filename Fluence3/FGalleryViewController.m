@@ -1772,7 +1772,6 @@
 	return ( interfaceOrientation == UIInterfaceOrientationPortrait ) ? YES : NO;
 }
 
-
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
 	// see if the current controller in the stack is a gallery
