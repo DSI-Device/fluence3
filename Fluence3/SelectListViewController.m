@@ -24,7 +24,7 @@
 	parser.delegate = adapter;
 	parser.multi = YES;
     [utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
-    
+    self.dataSource = [[NSMutableArray alloc] initWithObjects:nil];
 	[self.listTableView setHidden:YES];
 	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&limit=%d",self.currentLimit];
     //NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
@@ -120,8 +120,13 @@
 - (void)parser:(MYSBJsonStreamParser *)parser foundArray:(NSArray *)array {
 	NSLog(@"inside foundArray %u", [array count]);
 	if([array count] > 0){
-		self.dataSource = [[NSMutableArray alloc] initWithObjects:nil];
+		
 		for (NSDictionary *dict in array) {
+            self.action_status = [[dict objectForKey:@"action"] intValue];
+            if(self.action_status==2)
+            {
+                return;
+            }
 			[self.dataSource addObject:dict];
 		}
 	}
@@ -136,15 +141,16 @@
 // methods for tableview protocols
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"Count numberOfRowsInSection %u", [self.dataSource count]);
 	return [self.dataSource count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-	
+	NSLog(@"Count cellForRowAtIndexPath %u", [self.dataSource count]);
 	NSUInteger row = [indexPath row];
 	NSDictionary *rowData = [self.dataSource objectAtIndex:row];
-	
+	//[rowData setValue:@"dsd" forKey:@"mykey"];
 	if ([rowData objectForKey:@"count"] != NULL && ![[rowData objectForKey:@"count"] isEqual:@""] ) {
 		
 		static NSString *cellTableIdentifier = @"viewMoreCell";
@@ -185,44 +191,54 @@
         cell.followed.tag=[indexPath row];
         followed_s = [rowData objectForKey:@"followed"];
         [cell.followed addTarget:self action:@selector(tappedFollowBtn2:)  forControlEvents:UIControlEventTouchUpInside];
+		NSString *serverUrl = [@"http://103.4.147.139/fluence3/images/" stringByAppendingFormat:@"%@",[rowData objectForKey:@"userImage"]];
+		
+		NSURL *url = [NSURL URLWithString:serverUrl];
+		
+		NSData *data = [[NSData alloc] initWithContentsOfURL:url];
+		
+		UIImage *tmpImage = [[UIImage alloc] initWithData:data];
+		
+		//yourImageView.image = tmpImage;
+		
+		
+		[cell.userImage setImage:tmpImage];
 		if ([followed_s isEqualToString:@"1"]) {
 			cell.isFollowed = YES;
             [cell.followed setTitle:@"Unfollow" forState:UIControlStateNormal];
-			[cell.userImage setImage:[UIImage imageNamed:@"checkbox_ticked.png"]];
 		}else if([followed_s isEqualToString:@"0"]){
 			cell.isFollowed = NO;
             [cell.followed setTitle:@"Follow" forState:UIControlStateNormal];
-			[cell.userImage setImage:[UIImage imageNamed:@"checkbox_not_ticked.png"]];
+			
 		}else {
 			cell.followed.hidden = YES;
 		}
 		
 		return cell;
+
 	}
 }
 //[objectWithOurMethod methodName:int1 ];
 - (void)tappedFollowBtn2:(id) sender
 {
     NSLog(@"Button Clicked...");
-    
+    NSLog(@"Count tappedFollowBtn2 %u", [self.dataSource count]);
     //UIButton *senderButton = (UIButton *)sender;
     NSIndexPath *indexPath = [listTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
-    
-	
-    
-	
-    //UITableViewCellContentView *cellContentView = (UITableViewCellContentView *)senderButton.superview;
-    
+    NSUInteger row = [indexPath row];
+	NSDictionary *rowData = [self.dataSource objectAtIndex:row];
+	//
     CustomPeopleListCell *cell = (CustomPeopleListCell *) [listTableView cellForRowAtIndexPath:indexPath];
 	if (!cell.isFollowed) {
         
+        [rowData setValue:@"1" forKey:@"followed"];
         cell.isFollowed = YES;
         [cell.followed setTitle:@"Unfollow" forState:UIControlStateNormal];
 		followed_s = @"1";
         
 		
     }else {
-        
+        [rowData setValue:@"0" forKey:@"followed"];
         cell.isFollowed = NO;
         [cell.followed setTitle:@"Follow" forState:UIControlStateNormal];
 		followed_s = @"0";
@@ -231,8 +247,7 @@
 	
     
 	
-    // NSURL *url = [NSURL URLWithString:@"http://103.4.147.139/fluence3/index.php/welcome/follow"];
-	NSLog(@"Follower ID : %@ ",cell.userID);
+   	NSLog(@"Follower ID : %@ ",cell.userID);
 	NSString *myRequestString = [[NSString alloc] initWithFormat:@"userID=%@&followed=%@",cell.userID,followed_s];
 	NSLog(@"%@ ",myRequestString);
 	NSData *myRequestData = [ NSData dataWithBytes: [ myRequestString UTF8String ] length: [ myRequestString length ] ];
@@ -243,37 +258,12 @@
 	NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 	
     if (conn) NSLog(@"Connection Successful");
-	//NSData *returnData = [ NSURLConnection sendSynchronousRequest: request returningResponse: nil error: nil ];
-    
 	
-    /*
-     NSString *post = [[NSString alloc] initWithFormat:@"userID=%@&followed=%@",cell.userID.text,followed_json];
-     
-     NSData * postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
-     
-     NSString * postLength = [NSString stringWithFormat:@"%d",[postData length]];
-     
-     NSMutableURLRequest * request = [[[NSMutableURLRequest alloc] init] autorelease];
-     
-     [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://103.4.147.139/fluence3/index.php/welcome/follow",post]]];
-     [request setHTTPMethod:@"POST"];
-     
-     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-     
-     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-     
-     [request setHTTPBody:postData];
-     
-     
-     NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-     
-     if (conn) NSLog(@"Connection Successful");
-     
-     }
-     
+    
+}
      
      // event handler after selecting a table row
-     - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
      NSLog(@"Row selected...");
      
      /* NSUInteger row = [indexPath row];
