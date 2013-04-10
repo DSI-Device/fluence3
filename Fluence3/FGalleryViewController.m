@@ -1463,7 +1463,7 @@
 		{
 			NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
 			
-            NSString* userId   = [NSString stringWithFormat:[imageInfo objectForKey:@"userId"]];
+//            NSString* userId   = [NSString stringWithFormat:[imageInfo objectForKey:@"userId"]];
             NSString* userName = [NSString stringWithFormat:[imageInfo objectForKey:@"userName"]];
             NSString* userPic  = [NSString stringWithFormat:[imageInfo objectForKey:@"userPic"]];
             
@@ -1482,10 +1482,10 @@
 				float captionWidth = _container.frame.size.width-kCaptionPadding*2-_userProfileImage.frame.size.width;
 				CGSize textSize = [userName sizeWithFont:_userInfoCaption.font];
 				NSUInteger numLines = ceilf( textSize.width / captionWidth );
-				NSInteger height = ( textSize.height + kCaptionPadding ) * numLines;
+//				NSInteger height = ( textSize.height + kCaptionPadding ) * numLines;
 				_userInfoCaption.numberOfLines = numLines;
 				_userInfoCaption.text = userName;
-				NSInteger containerHeight = height+kCaptionPadding*2;
+//				NSInteger containerHeight = height+kCaptionPadding*2;
 //				_userInfoContainer.frame = CGRectMake(0, containerHeight-20, _container.frame.size.width, containerHeight );
                 _userInfoContainer.frame = CGRectMake(0, 64, _container.frame.size.width, 50 );
 
