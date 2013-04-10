@@ -283,7 +283,18 @@
                           otherButtonTitles:nil];
     [alert show];
     [alert release];
+    //tagCollection
+/*    NSString * tId = [NSString stringWithFormat:@"%d",0];
+    NSMutableArray* tag = [[imageArray objectAtIndex:0] objectForKey:@"tags"];//[dict objectForKey:aKey] 
+    int tagCount = [tag count];
     
+    for (int i = 0; i < tagCount; i++) {
+        id row = [tag objectAtIndex:i];
+        NSString * str = [NSString stringWithFormat:[row objectForKey:@"tagId"]];
+        if([str isEqualToString:tId]){
+           	return row;
+        }
+    }*/
     [localGallery reloadGallery];
 }
 

@@ -1463,7 +1463,7 @@
                 [_userProfileImage setBackgroundImage:[UIImage imageWithData:data] forState:UIControlStateNormal];
             });
             //enable caching loose-end
-/*            FGalleryPhoto *photoProfile;
+/*          FGalleryPhoto *photoProfile;
             NSString *thumbPath;
             NSString *fullsizePath;
             
