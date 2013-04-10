@@ -275,7 +275,14 @@
 }
 
 -(void)photoGallery:(FGalleryViewController *)gallery handleChangeDate:(NSString*)date{
-    
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle: @"Next Date"
+                          message: @"test"
+                          delegate: nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
+    [alert release];
     
     [localGallery reloadGallery];
 }

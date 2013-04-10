@@ -1640,15 +1640,9 @@
     components.day = 1;
     NSDate* newDate = [calendar dateByAddingComponents: components toDate: dateFromString options: 0];
     
+    [_photoSource photoGallery:self handleChangeDate:[dateFormatter stringFromDate:newDate]];
     
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle: @"Next Date"
-                          message: self.currentDate
-                          delegate: nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil];
-    [alert show];
-    [alert release];
+    
 }
 - (void) swipedScreenUp:(UISwipeGestureRecognizer*)swipeGesture {
     UIAlertView *alert = [[UIAlertView alloc]
@@ -1660,8 +1654,6 @@
     [alert show];
     [alert release];
 }
-
-
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     NSLog(@"Touches began!");
