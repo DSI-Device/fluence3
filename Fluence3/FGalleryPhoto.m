@@ -52,14 +52,12 @@
 - (id)initWithThumbnailPath:(NSString*)thumb fullsizePath:(NSString*)fullsize delegate:(NSObject<FGalleryPhotoDelegate>*)delegate
 {
 	self = [super init];
-	
 	_useNetwork = NO;
 	_thumbUrl = [thumb retain];
 	_fullsizeUrl = [fullsize retain];
 	_delegate = delegate;
 	return self;
 }
-
 
 - (void)loadThumbnail
 {

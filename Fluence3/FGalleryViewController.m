@@ -80,6 +80,7 @@
 @synthesize startingIndex = _startingIndex;
 @synthesize beginsInThumbnailView = _beginsInThumbnailView;
 @synthesize hideTitle = _hideTitle;
+@synthesize currentDate;
 
 #pragma mark - Public Methods
 
@@ -106,6 +107,12 @@
 		_photoThumbnailViews				= [[NSMutableArray alloc] init];
 		_barItems							= [[NSMutableArray alloc] init];
         
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        
+        self.currentDate = [dateFormatter stringFromDate:[NSDate date]];
+        
+        [dateFormatter release];
         /*
          // debugging:
          _container.layer.borderColor = [[UIColor yellowColor] CGColor];
@@ -185,27 +192,7 @@
     [swipeGestureDown release];
     [swipeGestureUp release];
     // Do any additional setup after loading the view from its nib.
-}
-- (void) swipedScreenDown:(UISwipeGestureRecognizer*)swipeGesture {
-    //[utils showAlert:@"Warning !!" message:@"Activation Failed !! Please try again with correct credential." delegate:self];
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle: @"Next Date"
-                          message: @"Next date selected!"
-                          delegate: nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil];
-    [alert show];
-    [alert release];
-}
-- (void) swipedScreenUp:(UISwipeGestureRecognizer*)swipeGesture {
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle: @"Previous Date"
-                          message: @"Previous date selected!"
-                          delegate: nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil];
-    [alert show];
-    [alert release];
+    
 }
 
 - (void) backButtonClicked: (id) sender{
@@ -1468,15 +1455,27 @@
             NSString* userPic  = [NSString stringWithFormat:[imageInfo objectForKey:@"userPic"]];
             
             _userInfoCaption.text = userName;
-            [_userProfileImage setBackgroundImage:[UIImage imageNamed:@"lava.jpeg"] forState:UIControlStateNormal];
-            /*
+            
             dispatch_queue_t downloader = dispatch_queue_create("PicDownloader", NULL);
             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:userPic]];
             dispatch_async(downloader, ^{
                 NSData *data = [NSData dataWithContentsOfURL:url];
                 [_userProfileImage setBackgroundImage:[UIImage imageWithData:data] forState:UIControlStateNormal];
             });
-            *///enable caching
+            //enable caching loose-end
+/*            FGalleryPhoto *photoProfile;
+            NSString *thumbPath;
+            NSString *fullsizePath;
+            
+            thumbPath = userPic;
+            fullsizePath = userPic;
+            photoProfile = [[[FGalleryPhoto alloc] initWithThumbnailUrl:thumbPath fullsizeUrl:fullsizePath delegate:self] autorelease];
+            [photoProfile loadThumbnail];
+
+            [_userProfileImage setBackgroundImage:photoProfile.fullsize forState:UIControlStateNormal];
+//            photoView.imageView.image = photo.fullsize;
+            [photoProfile release];*/
+            
             if([userName length] > 0 )
 			{
 				float captionWidth = _container.frame.size.width-kCaptionPadding*2-_userProfileImage.frame.size.width;
@@ -1626,6 +1625,43 @@
     [alert show];
     [alert release];
 }
+
+#pragma mark Date-Related Operation
+
+- (void) swipedScreenDown:(UISwipeGestureRecognizer*)swipeGesture {
+    //[utils showAlert:@"Warning !!" message:@"Activation Failed !! Please try again with correct credential." delegate:self];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *dateFromString = [[NSDate alloc] init];
+    dateFromString = [dateFormatter dateFromString:self.currentDate];
+    
+    NSCalendar*       calendar = [[[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar] autorelease];
+    NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
+    components.day = 1;
+    NSDate* newDate = [calendar dateByAddingComponents: components toDate: dateFromString options: 0];
+    
+    
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle: @"Next Date"
+                          message: self.currentDate
+                          delegate: nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+}
+- (void) swipedScreenUp:(UISwipeGestureRecognizer*)swipeGesture {
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle: @"Previous Date"
+                          message: @"Previous date selected!"
+                          delegate: nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+}
+
+
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     NSLog(@"Touches began!");
