@@ -39,6 +39,7 @@ typedef enum
 	CGRect _scrollerRect;
 	NSString *galleryID;
 	NSInteger _currentIndex;
+    NSString *currentDate;
 	
 	UIView *_container; // used as view for the controller
 	UIView *_innerContainer; // sized and placed to be fullscreen within the container
@@ -84,7 +85,7 @@ typedef enum
 - (FGalleryPhoto*)currentPhoto;
 - (void)addMyButton:(NSInteger)index:(NSString*)caption:(UIView*)container:(NSInteger)xc:(NSInteger)yc;
 
-
+@property (nonatomic,retain) NSString *currentDate;
 @property NSInteger currentIndex;
 @property NSInteger startingIndex;
 @property (nonatomic,assign) NSObject<FGalleryViewControllerDelegate> *photoSource;
@@ -114,5 +115,8 @@ typedef enum
 // the photosource must implement one of these methods depending on which FGalleryPhotoSourceType is specified
 - (NSString*)photoGallery:(FGalleryViewController*)gallery filePathForPhotoSize:(FGalleryPhotoSize)size atIndex:(NSUInteger)index;
 - (NSString*)photoGallery:(FGalleryViewController*)gallery urlForPhotoSize:(FGalleryPhotoSize)size atIndex:(NSUInteger)index;
+
+//Date Related Datasource Change
+- (void)photoGallery:(FGalleryViewController*)gallery handleChangeDate:(NSString*)date;
 
 @end

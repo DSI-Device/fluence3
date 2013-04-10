@@ -198,6 +198,7 @@
 
 - (FGalleryPhotoSourceType)photoGallery:(FGalleryViewController *)gallery sourceTypeForPhotoAtIndex:(NSUInteger)index
 {
+    return FGalleryPhotoSourceTypeNetwork;
 	if( gallery == localGallery ) {
 		return FGalleryPhotoSourceTypeLocal;
 	}
@@ -248,7 +249,6 @@
     return nil; 
 }
 
-
 - (NSString*)photoGallery:(FGalleryViewController*)gallery filePathForPhotoSize:(FGalleryPhotoSize)size atIndex:(NSUInteger)index {
     //return [localImages objectAtIndex:index];
     return [[imageArray objectAtIndex:index] objectForKey:@"imageUrl"];
@@ -260,7 +260,8 @@
 }
 
 - (NSString*)photoGallery:(FGalleryViewController *)gallery urlForPhotoSize:(FGalleryPhotoSize)size atIndex:(NSUInteger)index {
-    return [networkImages objectAtIndex:index];
+    //return [networkImages objectAtIndex:index];
+    return [[imageArray objectAtIndex:index] objectForKey:@"imageUrl"];
 }
 
 - (void)handleTrashButtonTouch:(id)sender {
@@ -271,6 +272,19 @@
 
 - (void)handleEditCaptionButtonTouch:(id)sender {
     // here we could implement some code to change the caption for a stored image
+}
+
+-(void)photoGallery:(FGalleryViewController *)gallery handleChangeDate:(NSString*)date{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle: @"Next Date"
+                          message: @"test"
+                          delegate: nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+    
+    [localGallery reloadGallery];
 }
 
 @end
