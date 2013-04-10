@@ -1493,6 +1493,15 @@
                 
 				// show caption bar
 				_userInfoContainer.hidden = NO;
+                
+                CALayer *rightBorder = [CALayer layer];
+                
+                rightBorder.frame = CGRectMake(0, 113, _container.frame.size.width, 2.0);
+                
+                rightBorder.backgroundColor = [UIColor colorWithWhite:0.8f
+                                                                alpha:1.0f].CGColor;
+                
+                [_innerContainer.layer addSublayer:rightBorder];
 			}
 			else {
 				// hide it if we don't have a caption.
@@ -1582,8 +1591,8 @@
 //        CGPoint capCord = _captionContainer.frame.origin;
         NSInteger containerHeight = height + kCaptionPadding*2;
         //NSInteger containerY = toolCord.y - 27 - capSize.height;
-        _tagCaptionContainer.backgroundColor = [UIColor grayColor];
-        _tagCaptionContainer.frame = CGRectMake(50, _scroller.frame.size.height-(kToolbarHeight+35), _container.frame.size.width-50, containerHeight);
+        _tagCaptionContainer.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+        _tagCaptionContainer.frame = CGRectMake(50, _scroller.frame.size.height-(kToolbarHeight+27), _container.frame.size.width-50, containerHeight);
         _tag.frame = CGRectMake(kCaptionPadding-25, kCaptionPadding, tagWidth-80, height);
         
         NSString* shopUrl = [tag objectForKey:@"tagShopLink"];
@@ -1591,7 +1600,7 @@
             CGSize tagSize = _tag.frame.size;
             
             OBShapedButton *buttonShop = [[OBShapedButton buttonWithType:UIButtonTypeCustom] retain];
-            buttonShop.frame = CGRectMake(tagSize.width-40, kCaptionPadding, 20.0, 20.0);
+            buttonShop.frame = CGRectMake(tagSize.width-40, kCaptionPadding-7, 35.0, 35.0);
             //            buttonShop.frame = CGRectMake(10, 20, 30.0, 30.0); //change location
             
             [buttonShop setTitle:@"Shop" forState:UIControlStateNormal];
@@ -1600,7 +1609,7 @@
             UIImage *buttonImageNormal = [UIImage imageNamed:@"shop.png"];
             UIImage *strechableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:12 topCapHeight:0];
             [buttonShop setImage:strechableButtonImageNormal forState:UIControlStateNormal];
-            UIImage *buttonImagePressed = [UIImage imageNamed:@"button-highlighted.png"];
+            UIImage *buttonImagePressed = [UIImage imageNamed:@"shop.png"];
             UIImage *strechableButtonImagePressed = [buttonImagePressed stretchableImageWithLeftCapWidth:12 topCapHeight:0];
             [buttonShop setImage:strechableButtonImagePressed forState:UIControlStateHighlighted];
             [buttonShop addTarget:self action:@selector(tappedShopBtn:) forControlEvents:UIControlEventTouchUpInside];
