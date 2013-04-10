@@ -284,17 +284,20 @@
     [alert show];
     [alert release];
     //tagCollection
-/*    NSString * tId = [NSString stringWithFormat:@"%d",0];
-    NSMutableArray* tag = [[imageArray objectAtIndex:0] objectForKey:@"tags"];//[dict objectForKey:aKey] 
-    int tagCount = [tag count];
+    NSDictionary *tagCollection = [[NSDictionary alloc] initWithObjectsAndKeys: @"1", @"tagId", @"1", @"imageId", @"LLLLLLLTest Tag 1", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"50", @"tagX", @"110", @"tagY", nil];
+    NSDictionary *tagCollection1 = [[NSDictionary alloc] initWithObjectsAndKeys: @"2", @"tagId", @"1", @"imageId", @"KKKKKTest Tag 2", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"100", @"tagX", @"240", @"tagY", nil];
     
-    for (int i = 0; i < tagCount; i++) {
-        id row = [tag objectAtIndex:i];
-        NSString * str = [NSString stringWithFormat:[row objectForKey:@"tagId"]];
-        if([str isEqualToString:tId]){
-           	return row;
-        }
-    }*/
+    tagArray = [[NSMutableArray alloc] initWithObjects:tagCollection,tagCollection1,nil];    
+    
+    NSDictionary *localCollection = [[NSDictionary  alloc] initWithObjectsAndKeys: @"1", @"imageId", @"Lava", @"imageCaption", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"imageUrl", tagArray, @"tags",@"12", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", @"Nazmul", @"userName",nil];
+    NSDictionary *localCollection1 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"2", @"imageId", @"Hawaii", @"imageCaption", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"imageUrl", tagArray, @"tags",@"11", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"userPic", @"Nahid", @"userName", nil];
+    
+    imageArray = [[NSMutableArray alloc] initWithObjects:localCollection,localCollection1,nil];
+    
+    [tagCollection release];
+    [tagCollection1 release];
+    [localCollection release];
+    [localCollection1 release];
     [localGallery reloadGallery];
 }
 
