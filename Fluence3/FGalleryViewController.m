@@ -80,7 +80,6 @@
 @synthesize startingIndex = _startingIndex;
 @synthesize beginsInThumbnailView = _beginsInThumbnailView;
 @synthesize hideTitle = _hideTitle;
-@synthesize currentDate;
 
 #pragma mark - Public Methods
 
