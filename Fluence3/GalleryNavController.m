@@ -53,7 +53,7 @@
     tagArray = [[NSMutableArray alloc] initWithObjects:tagCollection,tagCollection1,nil];    
     
     NSDictionary *localCollection = [[NSDictionary  alloc] initWithObjectsAndKeys: @"1", @"imageId", @"Lava", @"imageCaption", @"lava.jpeg", @"imageUrl", tagArray, @"tags",@"12", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", @"Nazmul", @"userName",nil];
-    NSDictionary *localCollection1 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"2", @"imageId", @"Hawaii", @"imageCaption", @"hawaii.jpeg", @"imageUrl", nil, @"tags",@"11", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"userPic", @"Nahid", @"userName", nil];
+    NSDictionary *localCollection1 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"2", @"imageId", @"Hawaii", @"imageCaption", @"hawaii.jpeg", @"imageUrl", tagArray, @"tags",@"11", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"userPic", @"Nahid", @"userName", nil];
     
     imageArray = [[NSMutableArray alloc] initWithObjects:localCollection,localCollection1,nil];
     
