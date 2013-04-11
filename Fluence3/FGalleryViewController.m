@@ -1527,7 +1527,7 @@
 		if([_photoSource respondsToSelector:@selector(photoGallery:tagsForPhotoAtIndex:)])
 		{
             //removes tag
-            NSInteger t = [[_tagContainer subviews] count];
+//            NSInteger t = [[_tagContainer subviews] count];
             //for (int i = 0; i < [[_tagContainer subviews] count]; i++ ) {
                 //[[[_tagContainer subviews] objectAtIndex:i] removeFromSuperview];
             for (OBShapedButton *btn in _tagContainer.subviews){     
@@ -1654,17 +1654,15 @@
     //[utils showAlert:@"Warning !!" message:@"Activation Failed !! Please try again with correct credential." delegate:self];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate *dateFromString = [[NSDate alloc] init];
-    dateFromString = [dateFormatter dateFromString:self.currentDate];
-    
-    NSCalendar*       calendar = [[[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar] autorelease];
-    NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
+    NSDate *dateFromStr = [dateFormatter dateFromString:self.currentDate];    
+    NSCalendar *calendar = [[[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar] autorelease];
+    NSDateComponents *components = [[[NSDateComponents alloc] init] autorelease];
     components.day = 1;
-    NSDate* newDate = [calendar dateByAddingComponents: components toDate: dateFromString options: 0];
+    NSDate *newDate = [calendar dateByAddingComponents: components toDate: dateFromStr options: 0];
     
     [_photoSource photoGallery:self handleChangeDate:[dateFormatter stringFromDate:newDate]];
-    
-    
+    [dateFormatter release];
+
 }
 - (void) swipedScreenUp:(UISwipeGestureRecognizer*)swipeGesture {
     UIAlertView *alert = [[UIAlertView alloc]

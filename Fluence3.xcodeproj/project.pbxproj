@@ -71,6 +71,8 @@
 		C897EEDD16F71B0C00AC1194 /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EEDB16F71B0B00AC1194 /* utils.m */; };
 		C897EEE316F7267900AC1194 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C897EEE216F7267800AC1194 /* SystemConfiguration.framework */; };
 		C8A13E70170C12E90027C655 /* RemoveEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A13E6F170C12E90027C655 /* RemoveEventView.m */; };
+		C8AC7EE61716EE49007E035E /* ImagePlinkController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AC7EE41716EE49007E035E /* ImagePlinkController.m */; };
+		C8AC7EE71716EE49007E035E /* ImagePlinkController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8AC7EE51716EE49007E035E /* ImagePlinkController.xib */; };
 		C8C0E7FC16F88FC900C92E99 /* FGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E7F616F88FC900C92E99 /* FGalleryViewController.m */; };
 		C8C0E7FD16F88FC900C92E99 /* FGalleryPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E7F716F88FC900C92E99 /* FGalleryPhotoView.m */; };
 		C8C0E7FE16F88FC900C92E99 /* FGalleryPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E7F816F88FC900C92E99 /* FGalleryPhoto.m */; };
@@ -198,6 +200,9 @@
 		C897EEE216F7267800AC1194 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C8A13E6E170C12E90027C655 /* RemoveEventView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveEventView.h; sourceTree = "<group>"; };
 		C8A13E6F170C12E90027C655 /* RemoveEventView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveEventView.m; sourceTree = "<group>"; };
+		C8AC7EE31716EE49007E035E /* ImagePlinkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePlinkController.h; sourceTree = "<group>"; };
+		C8AC7EE41716EE49007E035E /* ImagePlinkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePlinkController.m; sourceTree = "<group>"; };
+		C8AC7EE51716EE49007E035E /* ImagePlinkController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImagePlinkController.xib; sourceTree = "<group>"; };
 		C8C0E7F616F88FC900C92E99 /* FGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGalleryViewController.m; sourceTree = "<group>"; };
 		C8C0E7F716F88FC900C92E99 /* FGalleryPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGalleryPhotoView.m; sourceTree = "<group>"; };
 		C8C0E7F816F88FC900C92E99 /* FGalleryPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGalleryPhoto.m; sourceTree = "<group>"; };
@@ -266,6 +271,8 @@
 				C849D18F17049995003D18A5 /* TakeCameraPhoto.m */,
 				C8D27A2217058F590069D983 /* ColorViewController.h */,
 				C8D27A2317058F590069D983 /* ColorViewController.m */,
+				C8AC7EE31716EE49007E035E /* ImagePlinkController.h */,
+				C8AC7EE41716EE49007E035E /* ImagePlinkController.m */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -428,6 +435,7 @@
 		C8C0E7F016F87ED800C92E99 /* nibs */ = {
 			isa = PBXGroup;
 			children = (
+				C8AC7EE51716EE49007E035E /* ImagePlinkController.xib */,
 				2B18F10C171459AE008432D6 /* viewMoreCell.xib */,
 				2B18F0FF1714579F008432D6 /* SelectListViewController.xib */,
 				2B18F0F41714574F008432D6 /* CustomPeopleListCell.xib */,
@@ -651,6 +659,7 @@
 				2B18F1001714579F008432D6 /* SelectListViewController.xib in Resources */,
 				2B18F10E171459AE008432D6 /* viewMoreCell.xib in Resources */,
 				2B18F11017145A09008432D6 /* shop.png in Resources */,
+				C8AC7EE71716EE49007E035E /* ImagePlinkController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,6 +710,7 @@
 				2B18F0F81714574F008432D6 /* CustomPeopleListCell.m in Sources */,
 				2B18F0FA1714574F008432D6 /* SelectListViewController.m in Sources */,
 				2B18F10D171459AE008432D6 /* viewMoreCell.m in Sources */,
+				C8AC7EE61716EE49007E035E /* ImagePlinkController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

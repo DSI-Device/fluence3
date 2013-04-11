@@ -96,7 +96,6 @@
 		self.spinner.hidden = YES;
 		self.spinnerBg.hidden = YES;
 		[self.listTableView setHidden:NO];
-		
 	}
 	if(self.action_status==2)
 	{
@@ -258,13 +257,13 @@
 	NSData *myRequestData = [ NSData dataWithBytes: [ myRequestString UTF8String ] length: [ myRequestString length ] ];
 	NSMutableURLRequest *request = [ [ NSMutableURLRequest alloc ] initWithURL: [ NSURL URLWithString: @"http://103.4.147.139/fluence3/index.php/welcome/follow/" ] ];
    	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
-    [ request setHTTPMethod: @"POST" ];
-	[ request setHTTPBody: myRequestData ];
+    [request setHTTPMethod: @"POST"];
+	[request setHTTPBody: myRequestData];
 	NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 	
     if (conn) NSLog(@"Connection Successful");
-	
-    
+	[request release];//shuvo
+
 }
      
      // event handler after selecting a table row

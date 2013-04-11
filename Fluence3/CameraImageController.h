@@ -13,5 +13,6 @@
 }
 
 - (IBAction)view01Action;
+- (IBAction)openPlinkingController;
 
 @end

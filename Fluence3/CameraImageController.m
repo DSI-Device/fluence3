@@ -8,6 +8,7 @@
 
 #import "CameraImageController.h"
 #import "TakeCameraPhoto.h"
+#import "ImagePlinkController.h"
 @interface CameraImageController ()
 
 @end
@@ -36,19 +37,18 @@
 }
 - (IBAction)view01Action
 {
-
     TakeCameraPhoto* nextView = [[TakeCameraPhoto alloc]initWithNibName:@"TakeCameraPhoto" bundle:[NSBundle mainBundle]];
-//    nextView.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-//    [self presentViewController:nextView animated:YES completion:nil];
-//    [nextView release];
-
-    
-    // THIS IS THE MAGIC PART 2
-//    UIViewController *topVC = (UIViewController *)self.navigationController.delegate;
     [self.navigationController pushViewController:nextView animated:YES];
     [nextView release];
-    
 }
+
+- (IBAction)openPlinkingController
+{
+    ImagePlinkController* nextView = [[ImagePlinkController alloc]initWithNibName:@"ImagePlinkController" bundle:[NSBundle mainBundle]];
+    [self.navigationController pushViewController:nextView animated:YES];
+    [nextView release];
+}
+
 @end
 
 
