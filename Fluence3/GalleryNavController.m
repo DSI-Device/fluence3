@@ -52,14 +52,23 @@
     
     tagArray = [[NSMutableArray alloc] initWithObjects:tagCollection,tagCollection1,nil];    
 
+    //tagCollection
+    NSDictionary *tagCollection2 = [[NSDictionary alloc] initWithObjectsAndKeys: @"3", @"tagId", @"2", @"imageId", @"LLLLLLLTest Tag 1", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"50", @"tagX", @"110", @"tagY", nil];
+    NSDictionary *tagCollection3 = [[NSDictionary alloc] initWithObjectsAndKeys: @"4", @"tagId", @"2", @"imageId", @"KKKKKTest Tag 2", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"100", @"tagX", @"240", @"tagY", nil];
+    
+    tagArray1 = [[NSMutableArray alloc] initWithObjects:tagCollection2,tagCollection3,nil];    
+    
+    
     NSDictionary *localCollection = [[NSDictionary  alloc] initWithObjectsAndKeys: @"1", @"imageId", @"Lava", @"imageCaption", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"imageUrl", tagArray, @"tags",@"12", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", @"Nazmul", @"userName",nil];
-    NSDictionary *localCollection1 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"2", @"imageId", @"Hawaii", @"imageCaption", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"imageUrl", tagArray, @"tags",@"11", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"userPic", @"Nahid", @"userName", nil];
+    NSDictionary *localCollection1 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"2", @"imageId", @"Hawaii", @"imageCaption", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"imageUrl", tagArray1, @"tags",@"11", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"userPic", @"Nahid", @"userName", nil];
 
     
     imageArray = [[NSMutableArray alloc] initWithObjects:localCollection,localCollection1,nil];
     
     [tagCollection release];
     [tagCollection1 release];
+    [tagCollection2 release];
+    [tagCollection3 release];
     [localCollection release];
     [localCollection1 release];
 }
@@ -289,6 +298,8 @@
     NSDictionary *tagCollection1 = [[NSDictionary alloc] initWithObjectsAndKeys: @"2", @"tagId", @"1", @"imageId", @"KKKKKTest Tag 2", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"100", @"tagX", @"240", @"tagY", nil];
     
     tagArray = [[NSMutableArray alloc] initWithObjects:tagCollection,tagCollection1,nil];    
+    
+    
     
     NSDictionary *localCollection = [[NSDictionary  alloc] initWithObjectsAndKeys: @"1", @"imageId", @"Lava", @"imageCaption", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"imageUrl", tagArray, @"tags",@"12", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", @"Nazmul", @"userName",nil];
     NSDictionary *localCollection1 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"2", @"imageId", @"Hawaii", @"imageCaption", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"imageUrl", tagArray, @"tags",@"11", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"userPic", @"Nahid", @"userName", nil];

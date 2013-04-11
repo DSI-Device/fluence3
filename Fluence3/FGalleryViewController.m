@@ -80,6 +80,7 @@
 @synthesize startingIndex = _startingIndex;
 @synthesize beginsInThumbnailView = _beginsInThumbnailView;
 @synthesize hideTitle = _hideTitle;
+@synthesize currentDate;
 
 #pragma mark - Public Methods
 
@@ -418,6 +419,11 @@
 
 
 - (void)destroyViews {
+    //removes tag
+//    NSInteger t = [[_tagContainer subviews] count];
+//    for (int i = 0; i < [[_tagContainer subviews] count]; i++ ) {
+//        [[[_tagContainer subviews] objectAtIndex:i] removeFromSuperview];
+//    }
     // remove previous photo views
     for (UIView *view in _photoViews) {
         [view removeFromSuperview];
@@ -624,6 +630,7 @@
 	[self positionToolbar];
 	[self updateScrollSize];
 	[self updateCaption];
+    [self updateTag];
     [self updateUserInfo];
 	[self resizeImageViewsWithRect:_scroller.frame];
 	[self layoutButtons];
@@ -1532,11 +1539,7 @@
                     [self addMyButton:[tagId integerValue]:tagCaption:_tagContainer:[tagX integerValue]:[tagY integerValue]];
                     //}
                 }
-                /*
-                 for (int i = 0; i < 9; i++) {
-                 [[self.view viewWithTag:i] removeFromSuperview];
-                 }*/
-			}
+            }
 			else {
 				// hide it if we don't have a tag.
 				_tagContainer.hidden = YES;

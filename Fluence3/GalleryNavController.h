@@ -21,6 +21,7 @@
     NSArray *networkTags;
     
     NSMutableArray *tagArray;
+    NSMutableArray *tagArray1;
     NSMutableArray *imageArray;
     
     FGalleryViewController *localGallery;

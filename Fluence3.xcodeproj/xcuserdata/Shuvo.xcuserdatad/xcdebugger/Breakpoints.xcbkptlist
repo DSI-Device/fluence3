@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Fluence3/FGalleryViewController.m"
-         timestampString = "387292061.902533"
+         timestampString = "387355848.934484"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1246"
-         endingLineNumber = "1246"
+         startingLineNumber = "1253"
+         endingLineNumber = "1253"
          landmarkName = "-galleryPhoto:didLoadThumbnail:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -23,11 +23,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Fluence3/FGalleryViewController.m"
-         timestampString = "387292061.902533"
+         timestampString = "387355848.934484"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1262"
-         endingLineNumber = "1262"
+         startingLineNumber = "1269"
+         endingLineNumber = "1269"
          landmarkName = "-galleryPhoto:didLoadFullsize:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -36,13 +36,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Fluence3/FGalleryViewController.m"
-         timestampString = "387297829.671426"
+         filePath = "Fluence3/GalleryNavController.m"
+         timestampString = "387355910.344954"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "424"
-         endingLineNumber = "424"
-         landmarkName = "-destroyViews"
+         startingLineNumber = "242"
+         endingLineNumber = "242"
+         landmarkName = "-photoGallery:tagsForPhotoAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
