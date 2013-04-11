@@ -30,6 +30,7 @@
 - (void)updateCaption;
 - (void)updateTag;
 - (void)updateUserInfo;
+- (void)updateImageInfo;
 - (void)resizeImageViewsWithRect:(CGRect)rect;
 - (void)resetImageViewZoomLevels;
 
@@ -303,10 +304,14 @@
     [_likeButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     
     //set the button's title
-    [_likeButton setTitle:@"12" forState:UIControlStateNormal];
     //listen for clicks
-    [_likeButton addTarget:self action:@selector(buttonPressed)
-          forControlEvents:UIControlEventTouchUpInside];
+    [_likeButton addTarget:self action:@selector(likeButtonP:) forControlEvents:UIControlEventTouchUpInside];
+    
+    //set the position of the button
+    _likeNumber =  [[UILabel alloc] initWithFrame: CGRectMake(5, 60, 40, 20)];
+    _likeNumber.textAlignment = UITextAlignmentCenter;
+    
+    
     //add the button to the view
     _shareButton  = [UIButton buttonWithType:UIButtonTypeCustom];
     //set the position of the button
@@ -319,7 +324,6 @@
     [_shareButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     
     //set the button's title
-    [_shareButton setTitle:@"3" forState:UIControlStateNormal];
     //listen for clicks
     [_shareButton addTarget:self action:@selector(buttonPressed)
            forControlEvents:UIControlEventTouchUpInside];
@@ -335,7 +339,6 @@
     [_commentButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     
     //set the button's title
-    [_commentButton setTitle:@"5" forState:UIControlStateNormal];
     //listen for clicks
     [_commentButton addTarget:self action:@selector(buttonPressed)
              forControlEvents:UIControlEventTouchUpInside];
@@ -359,6 +362,7 @@
     [_innerContainer addSubview:_tagCaptionContainer];
         
     [_toolbar1 addSubview:_likeButton];
+    [_toolbar1 addSubview:_likeNumber];
     [_toolbar1 addSubview:_shareButton];
     [_toolbar1 addSubview:_commentButton];
 
@@ -395,6 +399,7 @@
     [_shareButton release], _shareButton = nil;
     [_commentButton release], _commentButton = nil;
     [_likeButton release], _likeButton = nil;
+    [_likeNumber release], _likeNumber = nil;
     [_toolbar1 release], _toolbar = nil;
     [_barItems release], _barItems = nil;
     [_nextButton release], _nextButton = nil;
@@ -612,6 +617,7 @@
 	[self updateButtons];
 	[self updateCaption];
     [self updateUserInfo];
+    [self updateImageInfo];
     [self updateTag];
 }
 
@@ -625,6 +631,7 @@
 	[self updateScrollSize];
 	[self updateCaption];
     [self updateUserInfo];
+    [self updateImageInfo];
 	[self resizeImageViewsWithRect:_scroller.frame];
 	[self layoutButtons];
 	[self arrangeThumbs];
@@ -1189,6 +1196,7 @@
 	_currentIndex = newIndex;
 	[self updateCaption];
     [self updateUserInfo];
+    [self updateImageInfo];
 	[self updateTitle];
 	[self updateButtons];
 	[self loadFullsizeImageWithIndex:_currentIndex];
@@ -1430,6 +1438,9 @@
     [_likeButton release];
     _likeButton = nil;
     
+    [_likeNumber release];
+    _likeNumber = nil;
+    
     [_shareButton release];
     _shareButton = nil;
 	
@@ -1438,6 +1449,37 @@
 	
     [super dealloc];
 }
+
+
+
+#pragma mark - Image Info Related
+
+- (void)updateImageInfo
+{
+	if([_photoSource numberOfPhotosForPhotoGallery:self] > 0 )
+	{
+		if([_photoSource respondsToSelector:@selector(photoGallery:infoForPhotoAtIndex:)])
+		{
+			NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
+			
+            //            NSString* userId   = [NSString stringWithFormat:[imageInfo objectForKey:@"userId"]];
+            NSString* imageLike = [NSString stringWithFormat:[imageInfo objectForKey:@"imageLike"]];
+            _likeNumber.text = imageLike;
+            
+			}
+			
+		}
+	}
+
+
+
+
+
+
+
+
+
+
 
 #pragma mark - User Info Related
 
@@ -1592,7 +1634,7 @@
         //NSInteger containerY = toolCord.y - 27 - capSize.height;
         _tagCaptionContainer.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
         _tagCaptionContainer.frame = CGRectMake(50, _scroller.frame.size.height-(kToolbarHeight+27), _container.frame.size.width-50, containerHeight);
-        _tag.frame = CGRectMake(kCaptionPadding-25, kCaptionPadding, tagWidth-80, height);
+        _tag.frame = CGRectMake(kCaptionPadding, kCaptionPadding, tagWidth-80, height);
         
         NSString* shopUrl = [tag objectForKey:@"tagShopLink"];
         if(shopUrl != nil && shopUrl != @""){
@@ -1620,6 +1662,7 @@
         _tagCaptionContainer.hidden = NO;
     }
 }
+
 
 - (void)tappedShopBtn:(id)sender{
     OBShapedButton* shopBtn = (OBShapedButton *)sender;
@@ -1732,6 +1775,19 @@
  //return the color-burned image
  return coloredImg;
  */
+
+#pragma mark LikeButtonPressed
+
+- (void)likeButtonP:(id)sender {
+    NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
+    
+    //            NSString* userId   = [NSString stringWithFormat:[imageInfo objectForKey:@"userId"]];
+    NSString* imageLike = [NSString stringWithFormat:[imageInfo objectForKey:@"imageId"]];
+    [_photoSource photoGallery:self likeButtonClicked:imageLike:_currentIndex];
+    
+    
+}
+
 
 
 @end

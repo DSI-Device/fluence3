@@ -52,8 +52,8 @@
     
     tagArray = [[NSMutableArray alloc] initWithObjects:tagCollection,tagCollection1,nil];    
     
-    NSDictionary *localCollection = [[NSDictionary  alloc] initWithObjectsAndKeys: @"1", @"imageId", @"Lava", @"imageCaption", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"imageUrl", tagArray, @"tags",@"12", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", @"Nazmul", @"userName",nil];
-    NSDictionary *localCollection1 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"2", @"imageId", @"Hawaii", @"imageCaption", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"imageUrl", tagArray, @"tags",@"11", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"userPic", @"Nahid", @"userName", nil];
+    NSMutableDictionary *localCollection = [[NSMutableDictionary  alloc] initWithObjectsAndKeys: @"1", @"imageId", @"Lava", @"imageCaption", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"imageUrl", tagArray, @"tags",@"12", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", @"Nazmul", @"userName", @"0", @"imageLiked",nil];
+    NSMutableDictionary *localCollection1 = [[NSMutableDictionary  alloc] initWithObjectsAndKeys: @"2", @"imageId", @"Hawaii", @"imageCaption", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"imageUrl", tagArray, @"tags",@"11", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"userPic", @"Nahid", @"userName", @"0", @"imageLiked", nil];
 
     
     imageArray = [[NSMutableArray alloc] initWithObjects:localCollection,localCollection1,nil];
@@ -285,6 +285,27 @@
     [alert show];
     [alert release];
     
+    [localGallery reloadGallery];
+}
+
+-(void)photoGallery:(FGalleryViewController *)gallery likeButtonClicked:(NSString*)imageId:(NSInteger)imgIndex{
+    
+    
+    NSString * str = [[imageArray objectAtIndex:imgIndex] objectForKey:@"imageLike"];
+    NSInteger value = [str intValue];
+    value = value + 1;
+    NSString *imglk = [NSString stringWithFormat:@"%d", value];
+    [[imageArray objectAtIndex:imgIndex] setValue:imglk forKey:@"imageLike"];
+
+    NSString *string = [NSString stringWithFormat:@"%d", imgIndex];
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle: string
+                          message: str
+                          delegate: nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
+    [alert release];
     [localGallery reloadGallery];
 }
 
