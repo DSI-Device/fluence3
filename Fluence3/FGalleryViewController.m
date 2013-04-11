@@ -81,6 +81,7 @@
 @synthesize startingIndex = _startingIndex;
 @synthesize beginsInThumbnailView = _beginsInThumbnailView;
 @synthesize hideTitle = _hideTitle;
+@synthesize currentDate;
 
 #pragma mark - Public Methods
 
@@ -423,6 +424,11 @@
 
 
 - (void)destroyViews {
+    //removes tag
+//    NSInteger t = [[_tagContainer subviews] count];
+//    for (int i = 0; i < [[_tagContainer subviews] count]; i++ ) {
+//        [[[_tagContainer subviews] objectAtIndex:i] removeFromSuperview];
+//    }
     // remove previous photo views
     for (UIView *view in _photoViews) {
         [view removeFromSuperview];
@@ -630,6 +636,7 @@
 	[self positionToolbar];
 	[self updateScrollSize];
 	[self updateCaption];
+    [self updateTag];
     [self updateUserInfo];
     [self updateImageInfo];
 	[self resizeImageViewsWithRect:_scroller.frame];
@@ -1504,7 +1511,7 @@
                 [_userProfileImage setBackgroundImage:[UIImage imageWithData:data] forState:UIControlStateNormal];
             });
             //enable caching loose-end
-/*            FGalleryPhoto *photoProfile;
+/*          FGalleryPhoto *photoProfile;
             NSString *thumbPath;
             NSString *fullsizePath;
             
@@ -1560,7 +1567,17 @@
 	{
 		if([_photoSource respondsToSelector:@selector(photoGallery:tagsForPhotoAtIndex:)])
 		{
-			NSMutableArray *tag = [_photoSource photoGallery:self tagsForPhotoAtIndex:_currentIndex];
+            //removes tag
+            NSInteger t = [[_tagContainer subviews] count];
+            //for (int i = 0; i < [[_tagContainer subviews] count]; i++ ) {
+                //[[[_tagContainer subviews] objectAtIndex:i] removeFromSuperview];
+            for (OBShapedButton *btn in _tagContainer.subviews){     
+//                UIView *test = [[_tagContainer subviews] objectAtIndex:i];
+                [btn removeFromSuperview];
+                
+            }
+
+            NSMutableArray *tag = [_photoSource photoGallery:self tagsForPhotoAtIndex:_currentIndex];
             NSInteger tagCount = [tag count];
             if(tagCount > 0 )
 			{
@@ -1574,11 +1591,7 @@
                     [self addMyButton:[tagId integerValue]:tagCaption:_tagContainer:[tagX integerValue]:[tagY integerValue]];
                     //}
                 }
-                /*
-                 for (int i = 0; i < 9; i++) {
-                 [[self.view viewWithTag:i] removeFromSuperview];
-                 }*/
-			}
+            }
 			else {
 				// hide it if we don't have a tag.
 				_tagContainer.hidden = YES;
@@ -1826,7 +1839,6 @@
 	// so, we'll just support the basic portrait.
 	return ( interfaceOrientation == UIInterfaceOrientationPortrait ) ? YES : NO;
 }
-
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {

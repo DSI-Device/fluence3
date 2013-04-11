@@ -24,7 +24,7 @@
 	parser.delegate = adapter;
 	parser.multi = YES;
     [utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
-    self.dataSource = [[NSMutableArray alloc] initWithObjects:nil];
+    
 	[self.listTableView setHidden:YES];
 	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&limit=%d",self.currentLimit];
     //NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
@@ -126,6 +126,11 @@
             if(self.action_status==2)
             {
                 return;
+            }
+            if(self.action_status==1)
+            {
+                NSLog(@"New Json");
+                self.dataSource = [[NSMutableArray alloc] initWithObjects:nil];
             }
 			[self.dataSource addObject:dict];
 		}
