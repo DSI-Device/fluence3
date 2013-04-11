@@ -1196,6 +1196,7 @@
 	_currentIndex = newIndex;
 	[self updateCaption];
     [self updateUserInfo];
+    [self updateTag];
 	[self updateTitle];
 	[self updateButtons];
 	[self loadFullsizeImageWithIndex:_currentIndex];
@@ -1525,7 +1526,17 @@
 	{
 		if([_photoSource respondsToSelector:@selector(photoGallery:tagsForPhotoAtIndex:)])
 		{
-			NSMutableArray *tag = [_photoSource photoGallery:self tagsForPhotoAtIndex:_currentIndex];
+            //removes tag
+            NSInteger t = [[_tagContainer subviews] count];
+            //for (int i = 0; i < [[_tagContainer subviews] count]; i++ ) {
+                //[[[_tagContainer subviews] objectAtIndex:i] removeFromSuperview];
+            for (OBShapedButton *btn in _tagContainer.subviews){     
+//                UIView *test = [[_tagContainer subviews] objectAtIndex:i];
+                [btn removeFromSuperview];
+                
+            }
+
+            NSMutableArray *tag = [_photoSource photoGallery:self tagsForPhotoAtIndex:_currentIndex];
             NSInteger tagCount = [tag count];
             if(tagCount > 0 )
 			{

@@ -47,14 +47,14 @@
                      @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg",nil];
     networkTags = [[NSArray alloc] initWithObjects:@"Lava", @"Hawaii", @"Audi", @"NetTestTag1",@"NetTestTag2",nil];    
     
-    NSDictionary *tagCollection = [[NSDictionary alloc] initWithObjectsAndKeys: @"1", @"tagId", @"1", @"imageId", @"Test Tag 1", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"50", @"tagX", @"150", @"tagY", nil];
+    NSDictionary *tagCollection = [[NSDictionary alloc] initWithObjectsAndKeys: @"1", @"tagId", @"1", @"imageId", @"Test Tag 1", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"100", @"tagX", @"150", @"tagY", nil];
     NSDictionary *tagCollection1 = [[NSDictionary alloc] initWithObjectsAndKeys: @"2", @"tagId", @"1", @"imageId", @"Test Tag 2", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"100", @"tagX", @"200", @"tagY", nil];
     
     tagArray = [[NSMutableArray alloc] initWithObjects:tagCollection,tagCollection1,nil];    
 
     //tagCollection
-    NSDictionary *tagCollection2 = [[NSDictionary alloc] initWithObjectsAndKeys: @"3", @"tagId", @"2", @"imageId", @"LLLLLLLTest Tag 1", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"50", @"tagX", @"110", @"tagY", nil];
-    NSDictionary *tagCollection3 = [[NSDictionary alloc] initWithObjectsAndKeys: @"4", @"tagId", @"2", @"imageId", @"KKKKKTest Tag 2", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"100", @"tagX", @"240", @"tagY", nil];
+    NSDictionary *tagCollection2 = [[NSDictionary alloc] initWithObjectsAndKeys: @"3", @"tagId", @"2", @"imageId", @"LLLLLLLTest Tag 1", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"10", @"tagX", @"110", @"tagY", nil];
+    NSDictionary *tagCollection3 = [[NSDictionary alloc] initWithObjectsAndKeys: @"4", @"tagId", @"2", @"imageId", @"KKKKKTest Tag 2", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"10", @"tagX", @"200", @"tagY", nil];
     
     tagArray1 = [[NSMutableArray alloc] initWithObjects:tagCollection2,tagCollection3,nil];    
     
