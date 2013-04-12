@@ -7,6 +7,7 @@
 //
 
 #import "ImagePlinkController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation ImagePlinkController
 
@@ -42,6 +43,7 @@
 }
 - (void)loadView
 {
+     appdt.img = appdt.imgOptimized = [UIImage imageNamed:@"gavandme.jpg"];
     // create public objects first so they're available for custom configuration right away. positioning comes later.
     _container							= [[UIView alloc] initWithFrame:CGRectZero];
     _innerContainer						= [[UIView alloc] initWithFrame:CGRectZero];
@@ -49,53 +51,63 @@
     _tagContainer                       = [[RemoveEventView alloc] initWithFrame:CGRectZero];
     _plinkImage                         = [[UIImageView alloc] initWithFrame:CGRectZero];
     
+
+//setup views
+    CGRect screenFrame                  = [[UIScreen mainScreen] bounds];
+	_container.frame                    = CGRectMake(0, 0, screenFrame.size.width, screenFrame.size.height);
+    CGRect innerContainerRect;
+    innerContainerRect                  = CGRectMake(0, 0, _container.frame.size.width, screenFrame.size.height);
+    _innerContainer.frame               = innerContainerRect;
+    _toolbar.frame                      = CGRectMake( 0, _container.frame.size.height-140, _container.frame.size.width, _container.frame.size.height-80 );
+    _plinkImage.frame                   = CGRectMake(0, 10, _container.frame.size.width, 278);
+    
 // setup tag
-    _tagContainer.hidden					    = NO;
-    _tagContainer.backgroundColor               = [UIColor colorWithWhite:1.0 alpha:0.0];
-    _tagContainer.frame                         = CGRectMake(100, 114, 256, 278);
+    _tagContainer.hidden				= NO;
+    _tagContainer.backgroundColor       = [UIColor colorWithWhite:1.0 alpha:0.0];
+    _tagContainer.frame                 = CGRectMake(0, 10, _container.frame.size.width, 278);
 
 // setup Image view
     _plinkImage.image = appdt.img;
     
 //setup buttons
     _saveButton  = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    //set the position of the button
+
+//set the position of the button
     _saveButton.frame = CGRectMake(5, 20, 40, 40);
-    //background image
+
+//background image
 //    UIImage *buttonImage = [UIImage imageNamed:@"heart-icon.png"];
     
-    //create the button and assign the image addSubview:button
+//create the button and assign the image addSubview:button
     
 //    [_saveButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [_saveButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     
-    //set the button's title
+//set the button's title
     [_saveButton setTitle:@"Save" forState:UIControlStateNormal];
-    //listen for clicks
+//listen for clicks
     [_saveButton addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
-    //add the button to the view
-
+//add the button to the view
     _cancelButton  = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    //set the position of the button
-    _cancelButton.frame = CGRectMake(5, 20, 40, 40);
-    //background image
-    //    UIImage *buttonImage = [UIImage imageNamed:@"heart-icon.png"];
+//set the position of the button
+    _cancelButton.frame = CGRectMake(50, 20, 40, 40);
+//background image
+//    UIImage *buttonImage = [UIImage imageNamed:@"heart-icon.png"];
     
-    //create the button and assign the image addSubview:button
-    
-    //    [_saveButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+//create the button and assign the image addSubview:button
+//    [_saveButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [_cancelButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     
-    //set the button's title
+//set the button's title
     [_cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
-    //listen for clicks
+//listen for clicks
     [_cancelButton addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
-    //add the button to the view
+//add the button to the view
     
-    // set view
+// set view
 	self.view = _container;
     
-    // add items to their containers
+// add items to their containers                                                                       
 	[_container addSubview:_innerContainer];
 	[_innerContainer addSubview:_toolbar];
     [_innerContainer addSubview:_plinkImage];    
@@ -104,9 +116,26 @@
     [_toolbar addSubview:_cancelButton];
     [_toolbar addSubview:_saveButton];
     
-}
-- (void)viewDidUnload {
+//For debug
     
+//    CGSize contS = _container.frame.size;
+//    CGPoint contP = _container.frame.origin;
+//    
+//    CGSize inContS = _innerContainer.frame.size;
+//    CGPoint inContP = _innerContainer.frame.origin;
+//
+//    CGSize tContS = _tagContainer.frame.size;
+//    CGPoint tContP = _tagContainer.frame.origin;
+//    
+//    CGSize tbContS = _toolbar.frame.size;
+//    CGPoint tbContP = _toolbar.frame.origin;
+//
+//    CGSize piContS = _plinkImage.frame.size;
+//    CGPoint piContP = _plinkImage.frame.origin;
+
+}
+
+- (void)viewDidUnload {
     [_cancelButton release], _cancelButton = nil;
     [_saveButton release], _saveButton = nil;
     [_tagItems release], _tagItems = nil;
@@ -147,12 +176,87 @@
     _container = nil;
 }
 
+- (void)removeImageAtIndex:(NSUInteger)index
+{
+	// remove the image and thumbnail at the specified index.
 
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"Touches began!");
+    
+    /*UIView *hitView = [self.view hitTest:point withEvent:event];
+     
+     // If the hitView is THIS view, return the view that you want to receive the touch instead:
+     if (hitView == _tagContainer) {
+     return _innerContainer;
+     }
+     // Else return the hitView (as it could be one of this view's buttons):
+     return hitView;*/
+    //    UITouch *touch= [[event allTouches] anyObject];
+    //    CGPoint point= [touch locationInView:touch.view];
+    
+    /*UIImage *image = [UIImage imageNamed:@"BluePin.png"];
+     
+     
+     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+     [imageView setFrame: CGRectMake(point.x-(imageView.bounds.size.width/2), point.y-(imageView.bounds.size.width/2), imageView.bounds.size.width, imageView.bounds.size.height)];
+     [self.view addSubview: imageView];
+     //self.currentPins += 1;
+     
+     [UIView animateWithDuration:2.0 delay:1.0 options:UIViewAnimationOptionCurveLinear  animations:^{
+     [imageView setAlpha:0.0];
+     } completion:^(BOOL finished) {
+     [imageView removeFromSuperview];
+     //self.currentPins -= 1;
+     }];
+     
+     // for(;self.currentPins > 10; currentPins -= 1){
+     //     [[[self subviews] objectAtIndex:0] removeFromSuperview];
+     // }*/
+    
+}
+/*
+ // load the image
+ NSString *name = @"badge.png";
+ UIImage *img = [UIImage imageNamed:name];
+ 
+ // begin a new image context, to draw our colored image onto
+ UIGraphicsBeginImageContext(img.size);
+ 
+ // get a reference to that context we created
+ CGContextRef context = UIGraphicsGetCurrentContext();
+ 
+ // set the fill color
+ [color setFill];
+ 
+ // translate/flip the graphics context (for transforming from CG* coords to UI* coords
+ CGContextTranslateCTM(context, 0, img.size.height);
+ CGContextScaleCTM(context, 1.0, -1.0);
+ 
+ // set the blend mode to color burn, and the original image
+ CGContextSetBlendMode(context, kCGBlendModeColorBurn);
+ CGRect rect = CGRectMake(0, 0, img.size.width, img.size.height);
+ CGContextDrawImage(context, rect, img.CGImage);
+ 
+ // set a mask that matches the shape of the image, then draw (color burn) a colored rectangle
+ CGContextClipToMask(context, rect, img.CGImage);
+ CGContextAddRect(context, rect);
+ CGContextDrawPath(context,kCGPathFill);
+ 
+ // generate a new UIImage from the graphics context we drew onto
+ UIImage *coloredImg = UIGraphicsGetImageFromCurrentImageContext();
+ UIGraphicsEndImageContext();
+ 
+ //return the color-burned image
+ return coloredImg;
+ */
+
 
 @end
