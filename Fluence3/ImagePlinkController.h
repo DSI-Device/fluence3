@@ -16,17 +16,19 @@
 	UIView *_innerContainer; // sized and placed to be fullscreen within the container
 	UIToolbar *_toolbar;
     UIImageView *_plinkImage;
-    RemoveEventView *_tagContainer;
+    UIView *_tagContainer;
     
     UIButton *_saveButton;
     UIButton *_cancelButton;
 
     NSMutableDictionary *_tag;
 	NSMutableArray *_tagItems;
+    NSString* _tagCategory;
 }
 
 - (void)removeImageAtIndex:(NSUInteger)index;
 
+@property (nonatomic,retain) NSString *_tagCategory;
 @property (nonatomic,readonly) UIToolbar *toolBar;
 
 @end

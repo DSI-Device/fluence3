@@ -8,10 +8,13 @@
 
 #import "ImagePlinkController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "OBShapedButton.h"
+#import "TagCategoryController.h"
 
 @implementation ImagePlinkController
 
 @synthesize toolBar = _toolbar;
+@synthesize _tagCategory;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,7 +51,7 @@
     _container							= [[UIView alloc] initWithFrame:CGRectZero];
     _innerContainer						= [[UIView alloc] initWithFrame:CGRectZero];
     _toolbar							= [[UIToolbar alloc] initWithFrame:CGRectZero];
-    _tagContainer                       = [[RemoveEventView alloc] initWithFrame:CGRectZero];
+    _tagContainer                       = [[UIView alloc] initWithFrame:CGRectZero];
     _plinkImage                         = [[UIImageView alloc] initWithFrame:CGRectZero];
     
 
@@ -190,20 +193,56 @@
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     NSLog(@"Touches began!");
+    UITouch *touch= [[event allTouches] anyObject];
+    CGPoint point= [touch locationInView:touch.view];
+    UIView *hitView = [self.view hitTest:point withEvent:event];
     
-    /*UIView *hitView = [self.view hitTest:point withEvent:event];
-     
-     // If the hitView is THIS view, return the view that you want to receive the touch instead:
-     if (hitView == _tagContainer) {
-     return _innerContainer;
-     }
-     // Else return the hitView (as it could be one of this view's buttons):
-     return hitView;*/
+    if (hitView == _tagContainer) {
+        
+        TagCategoryController* nextView = [[TagCategoryController alloc]initWithNibName:@"TagCategoryController" bundle:[NSBundle mainBundle]];
+        [self presentModalViewController:nextView animated:YES];
+        [nextView release];
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Previous Date"
+                              message: _tagCategory
+                              delegate: nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        OBShapedButton *button = [[OBShapedButton buttonWithType:UIButtonTypeCustom] retain];
+        button.frame = CGRectMake(point.x, point.y, 25.0, 25.0);
+        [button setTitle:@"tagBtn" forState:UIControlStateNormal];
+        button.backgroundColor = [UIColor clearColor];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal ];
+        UIImage *buttonImageNormal = [UIImage imageNamed:@"button-normal.png"];
+        UIImage *strechableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:12 topCapHeight:0];
+    
+        [button setImage:strechableButtonImageNormal forState:UIControlStateNormal];
+        UIImage *buttonImagePressed = [UIImage imageNamed:@"button-highlighted.png"];
+        UIImage *strechableButtonImagePressed = [buttonImagePressed stretchableImageWithLeftCapWidth:12 topCapHeight:0];
+    
+        [button setImage:strechableButtonImagePressed forState:UIControlStateHighlighted];
+        [button addTarget:self action:@selector(tappedBtn:) forControlEvents:UIControlEventTouchUpInside];
+        button.tag = 1;
+        [_tagContainer addSubview:button];
+        [button release];
+    }
+    
+    _tag = [[NSMutableDictionary alloc] initWithObjectsAndKeys: @"1", @"tagId", @"0", @"imageId", @"Test Tag 2", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"100", @"tagX", @"200", @"tagY", nil];
+    _tagItems = [[NSMutableArray alloc] initWithObjects:_tag, nil];    
+    
+    //If the hitView is THIS view, return the view that you want to receive the touch instead:
+//    if (hitView == _tagContainer) {
+    //return _innerContainer;
+//    }
+    //    Else return the hitView (as it could be one of this view's buttons):
+    //    return hitView;
     //    UITouch *touch= [[event allTouches] anyObject];
     //    CGPoint point= [touch locationInView:touch.view];
     
     /*UIImage *image = [UIImage imageNamed:@"BluePin.png"];
-     
      
      UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
      [imageView setFrame: CGRectMake(point.x-(imageView.bounds.size.width/2), point.y-(imageView.bounds.size.width/2), imageView.bounds.size.width, imageView.bounds.size.height)];
@@ -220,7 +259,6 @@
      // for(;self.currentPins > 10; currentPins -= 1){
      //     [[[self subviews] objectAtIndex:0] removeFromSuperview];
      // }*/
-    
 }
 /*
  // load the image
