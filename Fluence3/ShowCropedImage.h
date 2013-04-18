@@ -10,7 +10,20 @@
 
 @interface ShowCropedImage : UIViewController
 {
-    IBOutlet UIImageView *image;
+    // UIImageView *rootImageView;
+    
+    IBOutlet UIImageView *rootImageView;
+    UIToolbar *toolBar;
+    UISegmentedControl *seg;
+    UIImage *currentImage;
+    UIImagePickerController *imagePicker;
+    NSData *data;
+    UIScrollView *scrollerView;
+    
+    UIImage *rootImage;
+    UIImageView *imageView;
+    
 }
-@property (nonatomic, retain) IBOutlet UIImageView *image;
+@property (nonatomic, retain) IBOutlet UIImageView *rootImageView;
+- (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize;
 @end
