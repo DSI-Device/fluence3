@@ -265,8 +265,8 @@
     NSInteger containerHeight = height + kCaptionPadding*2;
     _tagCaptionContainer.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     _tagCaptionContainer.frame = CGRectMake(50, _container.frame.size.height-(kToolbarHeight), _container.frame.size.width-50, containerHeight);
-    _tagCaption.frame = CGRectMake(kCaptionPadding-25, kCaptionPadding, tagWidth-80, height);
-    
+    //_tagCaption.frame = CGRectMake(kCaptionPadding-25, kCaptionPadding, tagWidth-80, height);
+    _tagCaption.frame = CGRectMake(25, 10, 80, 20);
     CGSize tagSize = _tagCaption.frame.size;
             
     OBShapedButton *buttonDelete = [[OBShapedButton buttonWithType:UIButtonTypeRoundedRect] retain];
