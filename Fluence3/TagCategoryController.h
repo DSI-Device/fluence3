@@ -7,7 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TagBrandController.h"
 
-@interface TagCategoryController : UITableViewController
+@protocol TagCategoryControllerDelegate ;
+
+@interface TagCategoryController : UITableViewController <TagBrandControllerDelegate>
+{
+    NSString *category, *brand;
+}
+
+
+@property (nonatomic, retain) id <TagCategoryControllerDelegate> delegate;
+@property (nonatomic, retain) NSString *category;
+@property (nonatomic, retain) NSString *brand;
+
+@end
+
+
+@protocol TagCategoryControllerDelegate <NSObject>
+
+@optional
+- (void)addItemViewController:(TagCategoryController *)controller didFinishEnteringItem:(NSString *)item:(NSString *)item2;
 
 @end

@@ -31,6 +31,8 @@
 		C849D19617049995003D18A5 /* TakeCameraPhoto.xib in Resources */ = {isa = PBXBuildFile; fileRef = C849D19017049995003D18A5 /* TakeCameraPhoto.xib */; };
 		C849D199170499B1003D18A5 /* gavandme.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C849D197170499B1003D18A5 /* gavandme.jpg */; };
 		C849D19A170499B1003D18A5 /* tactile_noise.png in Resources */ = {isa = PBXBuildFile; fileRef = C849D198170499B1003D18A5 /* tactile_noise.png */; };
+		C84D34CA171EA8B800FFBA18 /* TagBrandController.m in Sources */ = {isa = PBXBuildFile; fileRef = C84D34C8171EA8B800FFBA18 /* TagBrandController.m */; };
+		C84D34CB171EA8B800FFBA18 /* TagBrandController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C84D34C9171EA8B800FFBA18 /* TagBrandController.xib */; };
 		C889BACB16F213370040CA39 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889BACA16F213370040CA39 /* UIKit.framework */; };
 		C889BACD16F213370040CA39 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889BACC16F213370040CA39 /* Foundation.framework */; };
 		C889BACF16F213370040CA39 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889BACE16F213370040CA39 /* CoreGraphics.framework */; };
@@ -134,6 +136,9 @@
 		C849D19017049995003D18A5 /* TakeCameraPhoto.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TakeCameraPhoto.xib; sourceTree = "<group>"; };
 		C849D197170499B1003D18A5 /* gavandme.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gavandme.jpg; sourceTree = "<group>"; };
 		C849D198170499B1003D18A5 /* tactile_noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tactile_noise.png; sourceTree = "<group>"; };
+		C84D34C7171EA8B800FFBA18 /* TagBrandController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagBrandController.h; sourceTree = "<group>"; };
+		C84D34C8171EA8B800FFBA18 /* TagBrandController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagBrandController.m; sourceTree = "<group>"; };
+		C84D34C9171EA8B800FFBA18 /* TagBrandController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagBrandController.xib; sourceTree = "<group>"; };
 		C889BAC616F213370040CA39 /* Fluence3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fluence3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C889BACA16F213370040CA39 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C889BACC16F213370040CA39 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -281,6 +286,9 @@
 				C8A39B5E171D926D00F7F44D /* TagCategoryController.h */,
 				C8A39B5F171D926D00F7F44D /* TagCategoryController.m */,
 				C8A39B60171D926D00F7F44D /* TagCategoryController.xib */,
+				C84D34C7171EA8B800FFBA18 /* TagBrandController.h */,
+				C84D34C8171EA8B800FFBA18 /* TagBrandController.m */,
+				C84D34C9171EA8B800FFBA18 /* TagBrandController.xib */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -669,6 +677,7 @@
 				2B18F11017145A09008432D6 /* shop.png in Resources */,
 				C8AC7EE71716EE49007E035E /* ImagePlinkController.xib in Resources */,
 				C8A39B62171D926D00F7F44D /* TagCategoryController.xib in Resources */,
+				C84D34CB171EA8B800FFBA18 /* TagBrandController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,6 +730,7 @@
 				2B18F10D171459AE008432D6 /* viewMoreCell.m in Sources */,
 				C8AC7EE61716EE49007E035E /* ImagePlinkController.m in Sources */,
 				C8A39B61171D926D00F7F44D /* TagCategoryController.m in Sources */,
+				C84D34CA171EA8B800FFBA18 /* TagBrandController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

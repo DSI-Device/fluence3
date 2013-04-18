@@ -191,6 +191,51 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+//- (void)addBrandViewController:(TagBrandController *)controller didFinishEnteringBrand:(NSString *)item
+//{
+//    NSLog(@"This was returned from Brand Controller %@",item);    
+//    [_tag setValue:item forKey:@"tagBrand"];
+//    
+
+//}
+
+- (void)addItemViewController:(TagCategoryController *)controller didFinishEnteringItem:(NSString *)item:(NSString *)item2
+{
+    [_tag setValue:item forKey:@"tagCaption"];
+    [_tag setValue:item2 forKey:@"tagBrand"];
+//    UIAlertView *alert = [[UIAlertView alloc]
+//                          initWithTitle: @"Previous Date"
+//                          message: item
+//                          delegate: nil
+//                          cancelButtonTitle:@"OK"
+//                          otherButtonTitles:nil];
+//    [alert show];
+//    [alert release];
+    
+    NSInteger myX = [[_tag objectForKey:@"tagX"] intValue];
+    NSInteger myY = [[_tag objectForKey:@"tagY"] intValue];
+
+//    _tagItems = [[NSMutableArray alloc] initWithObjects:_tag, nil];    
+    [_tagItems addObject:_tag];
+    OBShapedButton *button = [[OBShapedButton buttonWithType:UIButtonTypeCustom] retain];
+    button.frame = CGRectMake(myX, myY, 25.0, 25.0);
+    [button setTitle:@"tagBtn" forState:UIControlStateNormal];
+    button.backgroundColor = [UIColor clearColor];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal ];
+    UIImage *buttonImageNormal = [UIImage imageNamed:@"button-normal.png"];
+    UIImage *strechableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:12 topCapHeight:0];
+    
+    [button setImage:strechableButtonImageNormal forState:UIControlStateNormal];
+    UIImage *buttonImagePressed = [UIImage imageNamed:@"button-highlighted.png"];
+    UIImage *strechableButtonImagePressed = [buttonImagePressed stretchableImageWithLeftCapWidth:12 topCapHeight:0];
+    
+    [button setImage:strechableButtonImagePressed forState:UIControlStateHighlighted];
+    [button addTarget:self action:@selector(tappedBtn:) forControlEvents:UIControlEventTouchUpInside];
+    button.tag = 1;
+    [_tagContainer addSubview:button];
+    [button release];
+}
+
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     NSLog(@"Touches began!");
     UITouch *touch= [[event allTouches] anyObject];
@@ -198,42 +243,18 @@
     UIView *hitView = [self.view hitTest:point withEvent:event];
     
     if (hitView == _tagContainer) {
-        
         TagCategoryController* nextView = [[TagCategoryController alloc]initWithNibName:@"TagCategoryController" bundle:[NSBundle mainBundle]];
-        [self presentModalViewController:nextView animated:YES];
+        nextView.delegate = self;
+        [self presentViewController:nextView animated:YES completion:nil];
         [nextView release];
-        
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle: @"Previous Date"
-                              message: _tagCategory
-                              delegate: nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        [alert show];
-        [alert release];
-        OBShapedButton *button = [[OBShapedButton buttonWithType:UIButtonTypeCustom] retain];
-        button.frame = CGRectMake(point.x, point.y, 25.0, 25.0);
-        [button setTitle:@"tagBtn" forState:UIControlStateNormal];
-        button.backgroundColor = [UIColor clearColor];
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal ];
-        UIImage *buttonImageNormal = [UIImage imageNamed:@"button-normal.png"];
-        UIImage *strechableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:12 topCapHeight:0];
-    
-        [button setImage:strechableButtonImageNormal forState:UIControlStateNormal];
-        UIImage *buttonImagePressed = [UIImage imageNamed:@"button-highlighted.png"];
-        UIImage *strechableButtonImagePressed = [buttonImagePressed stretchableImageWithLeftCapWidth:12 topCapHeight:0];
-    
-        [button setImage:strechableButtonImagePressed forState:UIControlStateHighlighted];
-        [button addTarget:self action:@selector(tappedBtn:) forControlEvents:UIControlEventTouchUpInside];
-        button.tag = 1;
-        [_tagContainer addSubview:button];
-        [button release];
     }
+    NSInteger x = point.x-12;
+    NSInteger y = point.y-25;
+
+    _tag = [[NSMutableDictionary alloc] initWithObjectsAndKeys: @"0", @"tagId", @"0", @"imageId", @"Test", @"tagCaption", @"http://www.google.com", @"tagShopLink", [NSString stringWithFormat:@"%d", x], @"tagX", [NSString stringWithFormat:@"%d", y], @"tagY", @"testBrand", @"tagBrand", nil];
+
     
-    _tag = [[NSMutableDictionary alloc] initWithObjectsAndKeys: @"1", @"tagId", @"0", @"imageId", @"Test Tag 2", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"100", @"tagX", @"200", @"tagY", nil];
-    _tagItems = [[NSMutableArray alloc] initWithObjects:_tag, nil];    
-    
-    //If the hitView is THIS view, return the view that you want to receive the touch instead:
+    //If the hitView is THIS view, return the view that you want to receive the touch instead: NSString * tId = [NSString stringWithFormat:@"%d",tagId];
 //    if (hitView == _tagContainer) {
     //return _innerContainer;
 //    }

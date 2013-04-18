@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Fluence3AppDelegate.h"
 #import "RemoveEventView.h"
+#import "TagCategoryController.h"
 
-@interface ImagePlinkController : UIViewController{
+@interface ImagePlinkController : UIViewController<TagCategoryControllerDelegate>{
     Fluence3AppDelegate *appdt;
     UIView *_container; // used as view for the controller
 	UIView *_innerContainer; // sized and placed to be fullscreen within the container
@@ -24,6 +25,7 @@
     NSMutableDictionary *_tag;
 	NSMutableArray *_tagItems;
     NSString* _tagCategory;
+
 }
 
 - (void)removeImageAtIndex:(NSUInteger)index;

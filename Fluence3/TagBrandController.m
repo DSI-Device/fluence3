@@ -1,17 +1,16 @@
 //
-//  TagCategoryController.m
+//  TagBrandController.m
 //  Fluence3
 //
-//  Created by Joseph Armand Baroi on 4/16/13.
+//  Created by Joseph Armand Baroi on 4/17/13.
 //  Copyright (c) 2013 __MyCompanyName__. All rights reserved.
 //
 
-#import "TagCategoryController.h"
 #import "TagBrandController.h"
 
-@implementation TagCategoryController
+@implementation TagBrandController
 
-@synthesize delegate,category,brand;
+@synthesize delegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -89,7 +88,7 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 4;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -105,18 +104,18 @@
     switch (indexPath.row) {
             
         case 0:
-            cell.textLabel.text = @"Shirt";
+            cell.textLabel.text = @"Gucci";
             cell.detailTextLabel.text = @"";
             cell.imageView.image = [UIImage imageNamed:@"action-location.png"];
             break;
             
         case 1:
-            cell.textLabel.text = @"Hat";
+            cell.textLabel.text = @"Ralph Lauren";
             cell.detailTextLabel.text = @"";
             cell.imageView.image = [UIImage imageNamed:@"action-people.png"];
             break;
         case 2:
-            cell.textLabel.text = @"Pant";
+            cell.textLabel.text = @"Addidas";
             cell.detailTextLabel.text = @"";
             cell.imageView.image = [UIImage imageNamed:@"action-people.png"];
             break;
@@ -174,34 +173,21 @@
     NSString *itemToPassBack = @"Pass this value back to ViewControllerA";
     switch (indexPath.row) {
         case 0:
-            itemToPassBack = @"Shirt";
+            itemToPassBack = @"Gucci";
             break;
             
         case 1:
-            itemToPassBack = @"Hat";
+            itemToPassBack = @"Ralph Lauren";
             break;
             
         case 2:
-            itemToPassBack = @"Pant";
+            itemToPassBack = @"Addidas";
             break;
             
     }
-    category = itemToPassBack;
-    TagBrandController* nextView1 = [[TagBrandController alloc]initWithNibName:@"TagBrandController" bundle:[NSBundle mainBundle]];
-    nextView1.delegate = self;
-    [self presentViewController:nextView1 animated:YES completion:nil];
-    [nextView1 release];
     
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//	[self.delegate addItemViewController:self didFinishEnteringItem:itemToPassBack];
+    [self.delegate addBrandViewController:self didFinishEnteringBrand:itemToPassBack];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-- (void)addBrandViewController:(TagBrandController *)controller didFinishEnteringBrand:(NSString *)item
-{
-    brand = item;
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    [self.delegate addItemViewController:self didFinishEnteringItem:category:brand];
-}
-
 
 @end
