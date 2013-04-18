@@ -1204,6 +1204,7 @@
 	[self updateCaption];
     [self updateUserInfo];
     [self updateImageInfo];
+    [self updateTag];
 	[self updateTitle];
 	[self updateButtons];
 	[self loadFullsizeImageWithIndex:_currentIndex];
