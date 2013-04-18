@@ -72,6 +72,8 @@ typedef enum
     UIButton *_likeButton;
     UIButton *_shareButton;
     UIButton *_commentButton;
+    
+    UILabel *_likeNumber;
 }
 
 - (id)initWithPhotoSource:(NSObject<FGalleryViewControllerDelegate>*)photoSrc;
@@ -116,7 +118,11 @@ typedef enum
 - (NSString*)photoGallery:(FGalleryViewController*)gallery filePathForPhotoSize:(FGalleryPhotoSize)size atIndex:(NSUInteger)index;
 - (NSString*)photoGallery:(FGalleryViewController*)gallery urlForPhotoSize:(FGalleryPhotoSize)size atIndex:(NSUInteger)index;
 
+
 //Date Related Datasource Change
 - (void)photoGallery:(FGalleryViewController*)gallery handleChangeDate:(NSString*)date;
+
+//Date Related Datasource Change
+- (void)photoGallery:(FGalleryViewController*)gallery likeButtonClicked:(NSString*)imageId:(NSInteger)imgIndex;
 
 @end
