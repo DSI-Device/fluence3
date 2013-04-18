@@ -26,7 +26,7 @@
 
 - (void)didReceiveMemoryWarning
 {
-    // Releases the view if it doesn't have a superview.
+    // Releases the view if it doesn't have a superview.<a href="http://www.flickr.com/photos/karimbokingz/8660669674/" title="Once upon a time by karimbokingz, on Flickr"><img src="http://farm9.staticflickr.com/8111/8660669674_490f367358.jpg" width="500" height="333" alt="Once upon a time"></a>
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
@@ -43,7 +43,7 @@
     //localTags = [[NSArray alloc] initWithObjects:@"TestTag1", @"TestTag2", @"TestTag3", @"Happy New Year!",@"Frosty Web",nil];
     
     networkCaptions = [[NSArray alloc] initWithObjects:@"Happy New Year!",@"Frosty Web",nil];
-    networkImages = [[NSArray alloc] initWithObjects:@"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", 
+    networkImages = [[NSArray alloc] initWithObjects:@"http://farm9.staticflickr.com/8111/8660669674_490f367358.jpg", 
                      @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg",nil];
     networkTags = [[NSArray alloc] initWithObjects:@"Lava", @"Hawaii", @"Audi", @"NetTestTag1",@"NetTestTag2",nil];    
     
@@ -56,7 +56,7 @@
     NSDictionary *tagCollection2 = [[NSDictionary alloc] initWithObjectsAndKeys: @"3", @"tagId", @"2", @"imageId", @"LLLLLLLTest Tag 1", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"10", @"tagX", @"110", @"tagY", nil];
     NSDictionary *tagCollection3 = [[NSDictionary alloc] initWithObjectsAndKeys: @"4", @"tagId", @"2", @"imageId", @"KKKKKTest Tag 2", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"10", @"tagX", @"200", @"tagY", nil];
     
-    NSMutableDictionary *localCollection = [[NSMutableDictionary  alloc] initWithObjectsAndKeys: @"1", @"imageId", @"Lava", @"imageCaption", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"imageUrl", tagArray, @"tags",@"12", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", @"Nazmul", @"userName", @"0", @"imageLiked",nil];
+    NSMutableDictionary *localCollection = [[NSMutableDictionary  alloc] initWithObjectsAndKeys: @"1", @"imageId", @"Lava", @"imageCaption", @"http://farm9.staticflickr.com/8111/8660669674_490f367358.jpg", @"imageUrl", tagArray, @"tags",@"12", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", @"Nazmul", @"userName", @"0", @"imageLiked",nil];
     NSMutableDictionary *localCollection1 = [[NSMutableDictionary  alloc] initWithObjectsAndKeys: @"2", @"imageId", @"Hawaii", @"imageCaption", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"imageUrl", tagArray, @"tags",@"11", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"userPic", @"Nahid", @"userName", @"0", @"imageLiked", nil];
 
     

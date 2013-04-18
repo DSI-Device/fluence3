@@ -13,7 +13,9 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1254"
-         endingLineNumber = "1254">
+         endingLineNumber = "1254"
+         landmarkName = "@implementation FGalleryViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -25,7 +27,9 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1270"
-         endingLineNumber = "1270">
+         endingLineNumber = "1270"
+         landmarkName = "-galleryPhoto:didLoadThumbnail:"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -33,11 +37,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Fluence3/ImagePlinkController.m"
-         timestampString = "387978030.355674"
+         timestampString = "387990038.050904"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "290"
-         endingLineNumber = "290"
+         startingLineNumber = "296"
+         endingLineNumber = "296"
          landmarkName = "-tappedDeleteBtn:"
          landmarkType = "5">
       </FileBreakpoint>

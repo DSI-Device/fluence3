@@ -57,15 +57,16 @@
     _toolbar							= [[UIToolbar alloc] initWithFrame:CGRectZero];
     _tagContainer                       = [[UIView alloc] initWithFrame:CGRectZero];
     _plinkImage                         = [[UIImageView alloc] initWithFrame:CGRectZero];
+    _tagCaptionContainer                = [[UIView alloc] initWithFrame:CGRectZero];
+    _tagCaption                         = [[UILabel alloc] initWithFrame:CGRectZero];
     
-
 //setup views
     CGRect screenFrame                  = [[UIScreen mainScreen] bounds];
 	_container.frame                    = CGRectMake(0, 0, screenFrame.size.width, screenFrame.size.height);
     CGRect innerContainerRect;
     innerContainerRect                  = CGRectMake(0, 0, _container.frame.size.width, screenFrame.size.height);
     _innerContainer.frame               = innerContainerRect;
-    _toolbar.frame                      = CGRectMake( 0, _container.frame.size.height-140, _container.frame.size.width, _container.frame.size.height-80 );
+    _toolbar.frame                      = CGRectMake( 0, _container.frame.size.height-120, _container.frame.size.width, 60);
     _plinkImage.frame                   = CGRectMake(0, 10, _container.frame.size.width, 278);
     
 // setup tag
@@ -76,8 +77,12 @@
 // setup tag Caption
     _tagCaptionContainer.hidden				= YES;
     _tagCaptionContainer.backgroundColor    = [UIColor colorWithWhite:1.0 alpha:0.0];
-    _tagCaptionContainer.frame              = CGRectMake(0, _container.frame.size.height-40, _container.frame.size.width, 40);
-    
+    _tagCaption.font								= [UIFont systemFontOfSize:14.0];
+    _tagCaption.textColor							= [UIColor whiteColor];
+    _tagCaption.backgroundColor					= [UIColor clearColor];
+    _tagCaption.textAlignment						= UITextAlignmentCenter;
+    _tagCaption.shadowColor						= [UIColor blackColor];
+    _tagCaption.shadowOffset						= CGSizeMake( 1, 1 );    
 // setup Image view
     _plinkImage.image = appdt.img;
     
@@ -85,7 +90,7 @@
     _saveButton  = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 
 //set the position of the button
-    _saveButton.frame = CGRectMake(5, 20, 40, 40);
+    _saveButton.frame = CGRectMake(5, 10, 40, 40);
 
 //background image
 //    UIImage *buttonImage = [UIImage imageNamed:@"heart-icon.png"];
@@ -102,7 +107,7 @@
 //add the button to the view
     _cancelButton  = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 //set the position of the button
-    _cancelButton.frame = CGRectMake(50, 20, 40, 40);
+    _cancelButton.frame = CGRectMake(50, 10, 40, 40);
 //background image
 //    UIImage *buttonImage = [UIImage imageNamed:@"heart-icon.png"];
     
@@ -264,9 +269,10 @@
 
     NSInteger containerHeight = height + kCaptionPadding*2;
     _tagCaptionContainer.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-    _tagCaptionContainer.frame = CGRectMake(50, _container.frame.size.height-(kToolbarHeight), _container.frame.size.width-50, containerHeight);
-    //_tagCaption.frame = CGRectMake(kCaptionPadding-25, kCaptionPadding, tagWidth-80, height);
-    _tagCaption.frame = CGRectMake(25, 10, 80, 20);
+    _tagCaptionContainer.frame = CGRectMake(0, _toolbar.frame.origin.y - 30, _container.frame.size.width, containerHeight);
+//    _toolbar.frame                      = CGRectMake( 0, _container.frame.size.height-80, _container.frame.size.width, _container.frame.size.height );
+    _tagCaption.frame = CGRectMake(kCaptionPadding, kCaptionPadding, tagWidth-80, height);
+    //_tagCaption.frame = CGRectMake(25, 10, 80, 20);
     CGSize tagSize = _tagCaption.frame.size;
             
     OBShapedButton *buttonDelete = [[OBShapedButton buttonWithType:UIButtonTypeRoundedRect] retain];
