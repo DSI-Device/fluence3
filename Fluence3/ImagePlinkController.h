@@ -18,6 +18,8 @@
 	UIToolbar *_toolbar;
     UIImageView *_plinkImage;
     UIView *_tagContainer;
+    UIView *_tagCaptionContainer;
+    UILabel *_tagCaption;
     
     UIButton *_saveButton;
     UIButton *_cancelButton;
@@ -25,7 +27,7 @@
     NSMutableDictionary *_tag;
 	NSMutableArray *_tagItems;
     NSString* _tagCategory;
-
+    NSInteger _currentIndex;
 }
 
 - (void)removeImageAtIndex:(NSUInteger)index;

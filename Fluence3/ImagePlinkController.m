@@ -11,6 +11,9 @@
 #import "OBShapedButton.h"
 #import "TagCategoryController.h"
 
+#define kCaptionPadding 3
+#define kToolbarHeight 40
+
 @implementation ImagePlinkController
 
 @synthesize toolBar = _toolbar;
@@ -24,6 +27,7 @@
         _tag						= [[NSMutableDictionary alloc] init];
 		_tagItems					= [[NSMutableArray alloc] init];
         appdt                       = [[UIApplication sharedApplication] delegate];
+        _currentIndex               = 0;
     }
     return self;
 }
@@ -69,6 +73,11 @@
     _tagContainer.backgroundColor       = [UIColor colorWithWhite:1.0 alpha:0.0];
     _tagContainer.frame                 = CGRectMake(0, 10, _container.frame.size.width, 278);
 
+// setup tag Caption
+    _tagCaptionContainer.hidden				= YES;
+    _tagCaptionContainer.backgroundColor    = [UIColor colorWithWhite:1.0 alpha:0.0];
+    _tagCaptionContainer.frame              = CGRectMake(0, _container.frame.size.height-40, _container.frame.size.width, 40);
+    
 // setup Image view
     _plinkImage.image = appdt.img;
     
@@ -114,11 +123,13 @@
 	[_container addSubview:_innerContainer];
 	[_innerContainer addSubview:_toolbar];
     [_innerContainer addSubview:_plinkImage];    
-    [_innerContainer addSubview:_tagContainer];    
+    [_innerContainer addSubview:_tagContainer];
+    [_innerContainer addSubview:_tagCaptionContainer];
 
     [_toolbar addSubview:_cancelButton];
     [_toolbar addSubview:_saveButton];
     
+    [_tagCaptionContainer addSubview:_tagCaption];
 //For debug
     
 //    CGSize contS = _container.frame.size;
@@ -216,7 +227,7 @@
     NSInteger myY = [[_tag objectForKey:@"tagY"] intValue];
 
 //    _tagItems = [[NSMutableArray alloc] initWithObjects:_tag, nil];    
-    [_tagItems addObject:_tag];
+    [_tagItems insertObject:_tag atIndex:_currentIndex];
     OBShapedButton *button = [[OBShapedButton buttonWithType:UIButtonTypeCustom] retain];
     button.frame = CGRectMake(myX, myY, 25.0, 25.0);
     [button setTitle:@"tagBtn" forState:UIControlStateNormal];
@@ -231,9 +242,60 @@
     
     [button setImage:strechableButtonImagePressed forState:UIControlStateHighlighted];
     [button addTarget:self action:@selector(tappedBtn:) forControlEvents:UIControlEventTouchUpInside];
-    button.tag = 1;
+    button.tag = _currentIndex;
     [_tagContainer addSubview:button];
     [button release];
+    _currentIndex++;
+}
+
+- (void)tappedBtn:(id)sender
+{
+    OBShapedButton *button = (OBShapedButton *)sender;
+    int bTag = button.tag;
+    _tagCaptionContainer.alpha = 1.0;
+    _tag = [_tagItems objectAtIndex:bTag];
+    
+    float tagWidth = _container.frame.size.width-kCaptionPadding*2;
+    CGSize textSize = [[_tag objectForKey:@"tagCaption"] sizeWithFont:_tagCaption.font];
+    NSUInteger numLines = ceilf( textSize.width / tagWidth );
+    NSInteger height = ( textSize.height + kCaptionPadding ) * numLines;
+    _tagCaption.numberOfLines = numLines;
+    _tagCaption.text = [_tag objectForKey:@"tagCaption"];
+
+    NSInteger containerHeight = height + kCaptionPadding*2;
+    _tagCaptionContainer.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    _tagCaptionContainer.frame = CGRectMake(50, _container.frame.size.height-(kToolbarHeight), _container.frame.size.width-50, containerHeight);
+    _tagCaption.frame = CGRectMake(kCaptionPadding-25, kCaptionPadding, tagWidth-80, height);
+    
+    CGSize tagSize = _tagCaption.frame.size;
+            
+    OBShapedButton *buttonDelete = [[OBShapedButton buttonWithType:UIButtonTypeRoundedRect] retain];
+    buttonDelete.frame = CGRectMake(tagSize.width-40, kCaptionPadding-7, 35.0, 35.0);
+    [buttonDelete setTitle:@"Delete" forState:UIControlStateNormal];
+    buttonDelete.backgroundColor = [UIColor clearColor];
+    [buttonDelete setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal ];
+
+    [buttonDelete addTarget:self action:@selector(tappedDeleteBtn:) forControlEvents:UIControlEventTouchUpInside];
+    buttonDelete.tag = bTag;
+    [_tagCaptionContainer addSubview:buttonDelete]; //change container
+    [buttonDelete release];
+    
+// show caption bar
+    _tagCaptionContainer.hidden = NO;
+    
+}
+
+- (void)tappedDeleteBtn:(id)sender{
+    OBShapedButton* deleteBtn = (OBShapedButton *)sender;
+    NSInteger bTag = deleteBtn.tag;
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle: @"URl Selected"
+                          message: [NSString stringWithFormat:@"%d", bTag]
+                          delegate: nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
+    [alert release];
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -252,7 +314,6 @@
     NSInteger y = point.y-25;
 
     _tag = [[NSMutableDictionary alloc] initWithObjectsAndKeys: @"0", @"tagId", @"0", @"imageId", @"Test", @"tagCaption", @"http://www.google.com", @"tagShopLink", [NSString stringWithFormat:@"%d", x], @"tagX", [NSString stringWithFormat:@"%d", y], @"tagY", @"testBrand", @"tagBrand", nil];
-
     
     //If the hitView is THIS view, return the view that you want to receive the touch instead: NSString * tId = [NSString stringWithFormat:@"%d",tagId];
 //    if (hitView == _tagContainer) {
