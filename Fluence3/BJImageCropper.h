@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Fluence3AppDelegate.h"
 #define IMAGE_CROPPER_OUTSIDE_STILL_TOUCHABLE 40.0f
 #define IMAGE_CROPPER_INSIDE_STILL_EDGE 20.0f
 
@@ -36,7 +36,7 @@
     UIView *bottomRightView;
 
     CGFloat imageScale;
-    
+    Fluence3AppDelegate *appdt;
     BOOL isPanning;
     NSInteger currentTouches;
     CGPoint panTouch;
@@ -48,7 +48,7 @@
 @property (nonatomic, readonly) CGRect unscaledCrop;
 @property (nonatomic, retain) UIImage* image;
 @property (nonatomic, retain, readonly) UIImageView* imageView;
-
+@property (nonatomic, retain, readonly) Fluence3AppDelegate *appdt;
 + (UIView *)initialCropViewForImageView:(UIImageView*)imageView;
 
 - (id)initWithImage:(UIImage*)newImage;

@@ -11,12 +11,14 @@
 
 #import "ShowCropedImage.h"
 #import "CameraImageController.h"
+#import "ImagePlinkController.h"
+
 @interface ShowCropedImage ()
 
 @end
 
 @implementation ShowCropedImage
-@synthesize rootImageView;
+@synthesize rootImageView,appdt;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -90,6 +92,8 @@
                       [NSString stringWithString: @"test.png"] ];
     UIImage *image = [UIImage imageWithContentsOfFile:path];
     
+    appdt.img = appdt.imgOptimized = [UIImage imageWithContentsOfFile:path];
+    
     currentImage = [self imageWithImageSimple:image scaledToSize:CGSizeMake(260, 340)];
     //    currentImage = image;
     
@@ -111,7 +115,7 @@
     [scrollerView release];
     [seg release];
     
-    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(save)];
+    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithTitle:@"Plink" style:UIBarButtonItemStyleBordered target:self action:@selector(save)];
     
     
     self.navigationItem.rightBarButtonItem = right;
@@ -210,19 +214,29 @@
 
 -(void)save
 {
+    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString* path = [documentsDirectory stringByAppendingPathComponent:
                       [NSString stringWithString: @"test.png"] ];
     NSData* data = UIImagePNGRepresentation(rootImageView.image);
+    
+    appdt.img = appdt.imgOptimized = rootImageView.image;
     [data writeToFile:path atomically:YES];
     
     
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Saved Successfully" delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil, nil];
+    //UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Saved Successfully" delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil, nil];
     //        alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-    [alert show];
-    [alert release];}
+    //[alert show];
+    //[alert release];
+    
+    ImagePlinkController* nextView = [[ImagePlinkController alloc]initWithNibName:@"ImagePlinkController" bundle:[NSBundle mainBundle]];
+    [self.navigationController pushViewController:nextView animated:YES];
+    [nextView release];
+    
+
+}
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

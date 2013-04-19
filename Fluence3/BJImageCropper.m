@@ -29,7 +29,7 @@
 @dynamic crop;
 @dynamic image;
 @dynamic unscaledCrop;
-@synthesize imageView;
+@synthesize imageView,appdt;
 
 - (UIImage*)image {
     return imageView.image;
@@ -619,6 +619,8 @@
 	NSLog(@"saving image done");
     
 	//[croppedImage release];*/
+    appdt.img = appdt.imgOptimized = croppedImage;
+    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];

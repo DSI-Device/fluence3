@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Fluence3AppDelegate.h"
 
 @interface ShowCropedImage : UIViewController
 {
@@ -19,11 +20,12 @@
     UIImagePickerController *imagePicker;
     NSData *data;
     UIScrollView *scrollerView;
-    
+    Fluence3AppDelegate *appdt;
     UIImage *rootImage;
     UIImageView *imageView;
     
 }
 @property (nonatomic, retain) IBOutlet UIImageView *rootImageView;
+@property (nonatomic, retain) IBOutlet Fluence3AppDelegate *appdt;
 - (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize;
 @end

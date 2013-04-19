@@ -35,7 +35,7 @@
 
 @implementation TakeCameraPhoto
 
-@synthesize image,button,cropButton,filterButton;
+@synthesize image,button,cropButton,appdt;
 @synthesize imageCropper;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -51,7 +51,6 @@
     [image release];
     [button release];
     [cropButton release];
-    [filterButton release];
     [imageCropper release];
     [super dealloc];
 }
@@ -75,20 +74,39 @@
 }
 - (IBAction)selectPhotos
 {
-    /*UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-     //picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-     picker.delegate = self;
-     [self presentModalViewController:picker animated:YES];
-     //picker.allowsEditing = YES;
-     //[picker setAllowsEditing:YES];
-     //picker.allowsImageEditing = YES;
-     [picker release];*/
+    @try 
+    {
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+        {
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];  
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;  
+            //picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            
+            picker.delegate = self; 
+            
+            [self presentModalViewController:picker animated:YES];
+            [picker release];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"The device does not have camera" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            [alert release];
+        }
+        
+        
+    }
+    @catch (NSException *exception) 
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Camera" message:@"Camera is not available  " delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+    
     self.image.hidden=YES;
+  /*  appdt.img = appdt.imgOptimized = [UIImage imageNamed:@"gavandme.jpg"];
     
-    appdt.img = appdt.imgOptimized = [UIImage imageNamed:@"gavandme.jpg"];
     
-    //    self.imageCropper = [[BJImageCropper alloc] initWithImage:[UIImage imageNamed:@"gavandme.jpg"]  andMaxSize:CGSizeMake(300, 300)];
     
     self.imageCropper = [[[BJImageCropper alloc] initWithImage:appdt.img  andMaxSize:CGSizeMake(300, 240)]autorelease];
     [self.view addSubview:self.imageCropper];
@@ -102,7 +120,9 @@
     
     //[self dismissModalViewControllerAnimated:YES];
     cropButton.hidden = NO;
-    filterButton.hidden = NO;
+*/
+    
+    
 }
 - (IBAction)cropping
 {
@@ -118,17 +138,7 @@
     [nextView release];
 }
 
-- (IBAction)filtering
-{
-    ColorViewController* nextView = [[ColorViewController alloc]initWithNibName:@"ColorVIewController" bundle:[NSBundle mainBundle]];
-    
-    [self.imageCropper removeFromSuperview];
-    cropButton.hidden = YES;
-    filterButton.hidden = YES;
-    
-    [self.navigationController pushViewController:nextView animated:YES];
-    [nextView release];
-}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -158,7 +168,7 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString* path = [documentsDirectory stringByAppendingPathComponent:
                       [NSString stringWithString: @"test.png"] ];
-    self.image.image = [UIImage imageWithContentsOfFile:path];
+    appdt.img = appdt.imgOptimized = self.image.image = [UIImage imageWithContentsOfFile:path];
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -200,6 +210,31 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];
+}
+-(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary*)info
+{
+    [picker dismissModalViewControllerAnimated:YES];
+    
+    
+    self.image.hidden=YES;
+    appdt.img = appdt.imgOptimized = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    
+    
+    
+    self.imageCropper = [[[BJImageCropper alloc] initWithImage:appdt.img  andMaxSize:CGSizeMake(300, 240)]autorelease];
+    [self.view addSubview:self.imageCropper];
+    self.imageCropper.center = self.view.center;
+    self.imageCropper.imageView.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.imageCropper.imageView.layer.shadowRadius = 3.0f;
+    self.imageCropper.imageView.layer.shadowOpacity = 0.8f;
+    self.imageCropper.imageView.layer.shadowOffset = CGSizeMake(1, 1);
+    
+    [self.imageCropper addObserver:self forKeyPath:@"crop" options:NSKeyValueObservingOptionNew context:nil];
+    
+    //[self dismissModalViewControllerAnimated:YES];
+    cropButton.hidden = NO;
+
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

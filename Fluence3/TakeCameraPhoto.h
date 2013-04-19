@@ -15,7 +15,7 @@
     IBOutlet UIImageView *image;
     IBOutlet UIButton *button;
     IBOutlet UIButton *cropButton;
-    IBOutlet UIButton *filterButton;
+
     Fluence3AppDelegate *appdt;
     BJImageCropper *imageCropper;
     
@@ -24,11 +24,11 @@
 @property (nonatomic, retain) IBOutlet UIImageView *image;
 @property (nonatomic, retain) IBOutlet UIButton *button;
 @property (nonatomic, retain) IBOutlet UIButton *cropButton;
-@property (nonatomic, retain) IBOutlet UIButton *filterButton;
+@property (nonatomic, retain) IBOutlet Fluence3AppDelegate *appdt;
 @property (nonatomic, strong) BJImageCropper *imageCropper;
 
 - (IBAction)selectPhotos;
 - (IBAction)cropping;
-- (IBAction)filtering;
+
 - (void)updateDisplay;
 @end
