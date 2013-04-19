@@ -50,7 +50,14 @@
 }
 - (void)loadView
 {
-     appdt.img = appdt.imgOptimized = [UIImage imageNamed:@"gavandme.jpg"];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString* path = [documentsDirectory stringByAppendingPathComponent:
+                      [NSString stringWithString: @"test.png"] ];
+     appdt.img = appdt.imgOptimized = [UIImage imageWithContentsOfFile:path];
+
+    
+    // appdt.img = appdt.imgOptimized = [UIImage imageNamed:@"test.png"];
     // create public objects first so they're available for custom configuration right away. positioning comes later.
     _container							= [[UIView alloc] initWithFrame:CGRectZero];
     _innerContainer						= [[UIView alloc] initWithFrame:CGRectZero];
