@@ -67,12 +67,12 @@
     innerContainerRect                  = CGRectMake(0, 0, _container.frame.size.width, screenFrame.size.height);
     _innerContainer.frame               = innerContainerRect;
     _toolbar.frame                      = CGRectMake( 0, _container.frame.size.height-120, _container.frame.size.width, 60);
-    _plinkImage.frame                   = CGRectMake(0, 10, _container.frame.size.width, 278);
+    _plinkImage.frame                   = CGRectMake(0, 0, _container.frame.size.width, 320);
     
 // setup tag
     _tagContainer.hidden				= NO;
     _tagContainer.backgroundColor       = [UIColor colorWithWhite:1.0 alpha:0.0];
-    _tagContainer.frame                 = CGRectMake(0, 10, _container.frame.size.width, 278);
+    _tagContainer.frame                 = CGRectMake(0, 0, _container.frame.size.width, 320);
 
 // setup tag Caption
     _tagCaptionContainer.hidden				= YES;
@@ -193,6 +193,8 @@
     
     [_container release];
     _container = nil;
+    
+    [super dealloc];
 }
 
 - (void)removeImageAtIndex:(NSUInteger)index
@@ -207,13 +209,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-//- (void)addBrandViewController:(TagBrandController *)controller didFinishEnteringBrand:(NSString *)item
-//{
-//    NSLog(@"This was returned from Brand Controller %@",item);    
-//    [_tag setValue:item forKey:@"tagBrand"];
-//    
-
-//}
+#pragma mark Tag Related
 
 - (void)addItemViewController:(TagCategoryController *)controller didFinishEnteringItem:(NSString *)item:(NSString *)item2
 {
@@ -294,17 +290,8 @@
 - (void)tappedDeleteBtn:(id)sender{
     OBShapedButton* deleteBtn = (OBShapedButton *)sender;
     NSInteger bTag = deleteBtn.tag;
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle: @"URl Selected"
-                          message: [NSString stringWithFormat:@"%d", bTag]
-                          delegate: nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil];
-    [alert show];
-    [alert release];
     [[_tagContainer viewWithTag:bTag] removeFromSuperview];
-    [_tagItems removeObjectAtIndex:bTag];
-    _currentIndex--;
+    [[_tagItems objectAtIndex:bTag]setValue:@"1" forKey:@"tagDeleted"];
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -322,70 +309,7 @@
     NSInteger x = point.x-12;
     NSInteger y = point.y-25;
 
-    _tag = [[NSMutableDictionary alloc] initWithObjectsAndKeys: @"0", @"tagId", @"0", @"imageId", @"Test", @"tagCaption", @"http://www.google.com", @"tagShopLink", [NSString stringWithFormat:@"%d", x], @"tagX", [NSString stringWithFormat:@"%d", y], @"tagY", @"testBrand", @"tagBrand", nil];
-    
-    //If the hitView is THIS view, return the view that you want to receive the touch instead: NSString * tId = [NSString stringWithFormat:@"%d",tagId];
-//    if (hitView == _tagContainer) {
-    //return _innerContainer;
-//    }
-    //    Else return the hitView (as it could be one of this view's buttons):
-    //    return hitView;
-    //    UITouch *touch= [[event allTouches] anyObject];
-    //    CGPoint point= [touch locationInView:touch.view];
-    
-    /*UIImage *image = [UIImage imageNamed:@"BluePin.png"];
-     
-     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-     [imageView setFrame: CGRectMake(point.x-(imageView.bounds.size.width/2), point.y-(imageView.bounds.size.width/2), imageView.bounds.size.width, imageView.bounds.size.height)];
-     [self.view addSubview: imageView];
-     //self.currentPins += 1;
-     
-     [UIView animateWithDuration:2.0 delay:1.0 options:UIViewAnimationOptionCurveLinear  animations:^{
-     [imageView setAlpha:0.0];
-     } completion:^(BOOL finished) {
-     [imageView removeFromSuperview];
-     //self.currentPins -= 1;
-     }];
-     
-     // for(;self.currentPins > 10; currentPins -= 1){
-     //     [[[self subviews] objectAtIndex:0] removeFromSuperview];
-     // }*/
+    _tag = [[NSMutableDictionary alloc] initWithObjectsAndKeys: @"0", @"tagId", @"0", @"imageId", @"Test", @"tagCaption", @"http://www.google.com", @"tagShopLink", [NSString stringWithFormat:@"%d", x], @"tagX", [NSString stringWithFormat:@"%d", y], @"tagY", @"testBrand", @"tagBrand", @"0", @"tagDeleted", nil];
 }
-/*
- // load the image
- NSString *name = @"badge.png";
- UIImage *img = [UIImage imageNamed:name];
- 
- // begin a new image context, to draw our colored image onto
- UIGraphicsBeginImageContext(img.size);
- 
- // get a reference to that context we created
- CGContextRef context = UIGraphicsGetCurrentContext();
- 
- // set the fill color
- [color setFill];
- 
- // translate/flip the graphics context (for transforming from CG* coords to UI* coords
- CGContextTranslateCTM(context, 0, img.size.height);
- CGContextScaleCTM(context, 1.0, -1.0);
- 
- // set the blend mode to color burn, and the original image
- CGContextSetBlendMode(context, kCGBlendModeColorBurn);
- CGRect rect = CGRectMake(0, 0, img.size.width, img.size.height);
- CGContextDrawImage(context, rect, img.CGImage);
- 
- // set a mask that matches the shape of the image, then draw (color burn) a colored rectangle
- CGContextClipToMask(context, rect, img.CGImage);
- CGContextAddRect(context, rect);
- CGContextDrawPath(context,kCGPathFill);
- 
- // generate a new UIImage from the graphics context we drew onto
- UIImage *coloredImg = UIGraphicsGetImageFromCurrentImageContext();
- UIGraphicsEndImageContext();
- 
- //return the color-burned image
- return coloredImg;
- */
-
 
 @end
