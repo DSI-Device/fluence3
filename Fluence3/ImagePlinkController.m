@@ -257,7 +257,7 @@
 {
     OBShapedButton *button = (OBShapedButton *)sender;
     int bTag = button.tag;
-    _tagCaptionContainer.alpha = 1.0;
+    _tagCaptionContainer.alpha = 0.5;
     _tag = [_tagItems objectAtIndex:bTag];
     
     float tagWidth = _container.frame.size.width-kCaptionPadding*2;
@@ -276,9 +276,9 @@
     CGSize tagSize = _tagCaption.frame.size;
             
     OBShapedButton *buttonDelete = [[OBShapedButton buttonWithType:UIButtonTypeRoundedRect] retain];
-    buttonDelete.frame = CGRectMake(tagSize.width-40, kCaptionPadding-7, 35.0, 35.0);
+    buttonDelete.frame = CGRectMake(tagSize.width-40, kCaptionPadding-7, 50.0, 35.0);
     [buttonDelete setTitle:@"Delete" forState:UIControlStateNormal];
-    buttonDelete.backgroundColor = [UIColor clearColor];
+    buttonDelete.backgroundColor = [UIColor blueColor];
     [buttonDelete setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal ];
 
     [buttonDelete addTarget:self action:@selector(tappedDeleteBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -302,6 +302,9 @@
                           otherButtonTitles:nil];
     [alert show];
     [alert release];
+    [[_tagContainer viewWithTag:bTag] removeFromSuperview];
+    [_tagItems removeObjectAtIndex:bTag];
+    _currentIndex--;
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
