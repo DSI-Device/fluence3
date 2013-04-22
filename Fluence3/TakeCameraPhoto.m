@@ -74,7 +74,7 @@
 }
 - (IBAction)selectPhotos
 {
-    @try 
+    /*@try 
     {
         if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         {
@@ -102,13 +102,14 @@
         [alert show];
         [alert release];
     }
-    
+    */
     self.image.hidden=YES;
-  /*  appdt.img = appdt.imgOptimized = [UIImage imageNamed:@"gavandme.jpg"];
+    appdt.img = appdt.imgOptimized = [UIImage imageNamed:@"gavandme.jpg"];
     
+//    self.imageCropper.frame = CGRectMake(0, 0 ,300, 400);
     
-    
-    self.imageCropper = [[[BJImageCropper alloc] initWithImage:appdt.img  andMaxSize:CGSizeMake(300, 240)]autorelease];
+    self.imageCropper = [[[BJImageCropper alloc] initWithImage:appdt.img andMaxSize:CGSizeMake(450, 340)]autorelease];
+//    self.imageCropper.frame = CGRectMake(0, 0 ,300, 400);
     [self.view addSubview:self.imageCropper];
     self.imageCropper.center = self.view.center;
     self.imageCropper.imageView.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -120,8 +121,6 @@
     
     //[self dismissModalViewControllerAnimated:YES];
     cropButton.hidden = NO;
-*/
-    
     
 }
 - (IBAction)cropping
