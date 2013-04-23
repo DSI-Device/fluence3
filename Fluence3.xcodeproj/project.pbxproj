@@ -21,6 +21,7 @@
 		2B53EDEA170F039200C8C184 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE7170F039200C8C184 /* comment.png */; };
 		2B53EDEB170F039200C8C184 /* heart-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE8170F039200C8C184 /* heart-icon.png */; };
 		2BCF8CA8171FEC3B00B31E12 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCF8CA7171FEC3B00B31E12 /* ImageUtil.m */; };
+		C838CB741726A4CC00B9AC17 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C838CB731726A4CC00B9AC17 /* MyAnnotation.m */; };
 		C849D17A17048DEC003D18A5 /* menu7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C849D17917048DEC003D18A5 /* menu7.jpg */; };
 		C849D18417049246003D18A5 /* ISViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C849D18317049246003D18A5 /* ISViewController.xib */; };
 		C849D18617049419003D18A5 /* fb-login-button.png in Resources */ = {isa = PBXBuildFile; fileRef = C849D18517049419003D18A5 /* fb-login-button.png */; };
@@ -144,6 +145,8 @@
 		2BCF8CA5171FEC3B00B31E12 /* ColorMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMatrix.h; sourceTree = "<group>"; };
 		2BCF8CA6171FEC3B00B31E12 /* ImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtil.h; sourceTree = "<group>"; };
 		2BCF8CA7171FEC3B00B31E12 /* ImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtil.m; sourceTree = "<group>"; };
+		C838CB721726A4CC00B9AC17 /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
+		C838CB731726A4CC00B9AC17 /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
 		C849D17917048DEC003D18A5 /* menu7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu7.jpg; sourceTree = "<group>"; };
 		C849D18317049246003D18A5 /* ISViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ISViewController.xib; sourceTree = "<group>"; };
 		C849D18517049419003D18A5 /* fb-login-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fb-login-button.png"; sourceTree = "<group>"; };
@@ -332,6 +335,15 @@
 				C8A6195F1720229300190841 /* 110.png */,
 			);
 			name = Photos;
+			sourceTree = "<group>";
+		};
+		C838CB701726A46500B9AC17 /* Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				C838CB721726A4CC00B9AC17 /* MyAnnotation.h */,
+				C838CB731726A4CC00B9AC17 /* MyAnnotation.m */,
+			);
+			name = Annotation;
 			sourceTree = "<group>";
 		};
 		C849D18717049972003D18A5 /* Camera */ = {
@@ -583,6 +595,7 @@
 		C8C0E7F416F88ED200C92E99 /* component */ = {
 			isa = PBXGroup;
 			children = (
+				C838CB701726A46500B9AC17 /* Annotation */,
 				C8E5097E1704732F00A1624A /* OBShapedButton */,
 				C8CE00D51704299400558361 /* ISColumnsController.h */,
 				C8CE00D61704299400558361 /* ISColumnsController.m */,
@@ -821,6 +834,7 @@
 				C84D34CA171EA8B800FFBA18 /* TagBrandController.m in Sources */,
 				2BCF8CA8171FEC3B00B31E12 /* ImageUtil.m in Sources */,
 				C89AEB171725634100AD2EF0 /* MapViewController.m in Sources */,
+				C838CB741726A4CC00B9AC17 /* MyAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

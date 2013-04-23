@@ -10,7 +10,14 @@
 #import <MapKit/MapKit.h>
 
 @interface MapViewController : UIViewController <MKMapViewDelegate>
+{
+    NSMutableArray* annotations;
+}
 
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
+@property (nonatomic, strong) NSMutableArray* annotations;
+
+- (void)getLocations;
+- (void)setLocations;
 
 @end
