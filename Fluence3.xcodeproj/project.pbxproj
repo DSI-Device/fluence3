@@ -73,6 +73,9 @@
 		C897EEDA16F71A8F00AC1194 /* MYNSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EEC716F71A8F00AC1194 /* MYNSObject+JSON.m */; };
 		C897EEDD16F71B0C00AC1194 /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EEDB16F71B0B00AC1194 /* utils.m */; };
 		C897EEE316F7267900AC1194 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C897EEE216F7267800AC1194 /* SystemConfiguration.framework */; };
+		C89AEB171725634100AD2EF0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89AEB151725634100AD2EF0 /* MapViewController.m */; };
+		C89AEB181725634100AD2EF0 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C89AEB161725634100AD2EF0 /* MapViewController.xib */; };
+		C89AEB1B1725637100AD2EF0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89AEB1A1725637100AD2EF0 /* MapKit.framework */; };
 		C8A13E70170C12E90027C655 /* RemoveEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A13E6F170C12E90027C655 /* RemoveEventView.m */; };
 		C8A39B61171D926D00F7F44D /* TagCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A39B5F171D926D00F7F44D /* TagCategoryController.m */; };
 		C8A39B62171D926D00F7F44D /* TagCategoryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A39B60171D926D00F7F44D /* TagCategoryController.xib */; };
@@ -224,6 +227,10 @@
 		C897EEDB16F71B0B00AC1194 /* utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = utils.m; sourceTree = "<group>"; };
 		C897EEDC16F71B0B00AC1194 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		C897EEE216F7267800AC1194 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C89AEB141725634100AD2EF0 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		C89AEB151725634100AD2EF0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		C89AEB161725634100AD2EF0 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		C89AEB1A1725637100AD2EF0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C8A13E6E170C12E90027C655 /* RemoveEventView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveEventView.h; sourceTree = "<group>"; };
 		C8A13E6F170C12E90027C655 /* RemoveEventView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveEventView.m; sourceTree = "<group>"; };
 		C8A39B5E171D926D00F7F44D /* TagCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagCategoryController.h; sourceTree = "<group>"; };
@@ -288,6 +295,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C89AEB1B1725637100AD2EF0 /* MapKit.framework in Frameworks */,
 				C8D27A28170594F60069D983 /* CoreImage.framework in Frameworks */,
 				C8952FB516F99E7B004EDAD7 /* QuartzCore.framework in Frameworks */,
 				C897EEE316F7267900AC1194 /* SystemConfiguration.framework in Frameworks */,
@@ -368,6 +376,7 @@
 		C889BAC916F213370040CA39 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C89AEB1A1725637100AD2EF0 /* MapKit.framework */,
 				C8D27A27170594F60069D983 /* CoreImage.framework */,
 				C8952FB416F99E7B004EDAD7 /* QuartzCore.framework */,
 				C897EEE216F7267800AC1194 /* SystemConfiguration.framework */,
@@ -564,6 +573,9 @@
 				C8952FB716F9A25A004EDAD7 /* GalleryController.m */,
 				C88DC2B717031A6E002402BC /* GalleryNavController.h */,
 				C88DC2B817031A6E002402BC /* GalleryNavController.m */,
+				C89AEB141725634100AD2EF0 /* MapViewController.h */,
+				C89AEB151725634100AD2EF0 /* MapViewController.m */,
+				C89AEB161725634100AD2EF0 /* MapViewController.xib */,
 			);
 			name = pages;
 			sourceTree = "<group>";
@@ -753,6 +765,7 @@
 				C8A6196C1720229300190841 /* 12.png in Resources */,
 				C8A6196D1720229300190841 /* 13.png in Resources */,
 				C8A6196E1720229300190841 /* 110.png in Resources */,
+				C89AEB181725634100AD2EF0 /* MapViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -807,6 +820,7 @@
 				C8A39B61171D926D00F7F44D /* TagCategoryController.m in Sources */,
 				C84D34CA171EA8B800FFBA18 /* TagBrandController.m in Sources */,
 				2BCF8CA8171FEC3B00B31E12 /* ImageUtil.m in Sources */,
+				C89AEB171725634100AD2EF0 /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

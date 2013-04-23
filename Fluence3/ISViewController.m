@@ -3,12 +3,13 @@
 #import "MainViewController.h"
 #import "CameraImageController.h"
 #import "SelectListViewController.h"
+#import "MapViewController.h"
 
 @implementation ISViewController
 
 @synthesize gc;
 @synthesize mc;
-@synthesize nCameraImage,selectListView;
+@synthesize nCameraImage,selectListView,mapViewController;
 
 - (void)viewDidLoad
 {
@@ -65,6 +66,7 @@
     [mc release];
     [nCameraImage release];
     [selectListView release];
+    [mapViewController release];
     [super dealloc];
 }
 
@@ -101,5 +103,9 @@
     selectListView.title = @"Find People";
     [self.navigationController pushViewController:selectListView animated:true];
 }
-
+- (IBAction)mapViewClicked{
+    mapViewController = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil]autorelease];
+    selectListView.title = @"Map View";
+    [self.navigationController pushViewController:mapViewController animated:true];
+}
 @end

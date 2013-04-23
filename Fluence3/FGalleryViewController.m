@@ -471,13 +471,15 @@
         
         // start loading thumbs
         [self preloadThumbnailImages];
-        
+    
         // start on first image
         [self gotoImageByIndex:_currentIndex animated:NO];
         
         // layout
         [self layoutViews];
     }
+    _toolbar1.hidden = NO;
+    _toolbar1.alpha = 1;
 }
 
 - (FGalleryPhoto*)currentPhoto

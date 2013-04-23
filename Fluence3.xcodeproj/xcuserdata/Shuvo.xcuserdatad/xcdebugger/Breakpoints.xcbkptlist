@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Fluence3/FGalleryViewController.m"
-         timestampString = "387356157.195563"
+         timestampString = "388318523.609013"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1254"
-         endingLineNumber = "1254"
+         startingLineNumber = "1256"
+         endingLineNumber = "1256"
          landmarkName = "@implementation FGalleryViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -23,11 +23,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Fluence3/FGalleryViewController.m"
-         timestampString = "387356157.195563"
+         timestampString = "388318523.609013"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1270"
-         endingLineNumber = "1270"
+         startingLineNumber = "1272"
+         endingLineNumber = "1272"
          landmarkName = "-galleryPhoto:didLoadThumbnail:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -43,6 +43,20 @@
          startingLineNumber = "246"
          endingLineNumber = "246"
          landmarkName = "-addItemViewController:didFinishEnteringItem::"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Fluence3/MapViewController.m"
+         timestampString = "388393480.220868"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "90"
+         endingLineNumber = "90"
+         landmarkName = "-mapView:didUpdateUserLocation:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
