@@ -74,7 +74,7 @@
 }
 - (IBAction)selectPhotos
 {
-    /*@try 
+   /* @try
     {
         if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         {
@@ -121,6 +121,7 @@
     
     //[self dismissModalViewControllerAnimated:YES];
     cropButton.hidden = NO;
+
     
 }
 - (IBAction)cropping

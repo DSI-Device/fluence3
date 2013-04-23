@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "OBShapedButton.h"
 #import "TagCategoryController.h"
-
+@class ASIFormDataRequest;
 #define kCaptionPadding 3
 #define kToolbarHeight 40
 
@@ -115,9 +115,9 @@
     
     
 //set the button's title
-    [_saveButton setTitle:@"Save" forState:UIControlStateNormal];
+    [_saveButton setTitle:@"Upload" forState:UIControlStateNormal];
 //listen for clicks
-    [_saveButton addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [_saveButton addTarget:self action:@selector(uploadImage_asi) forControlEvents:UIControlEventTouchUpInside];
 //add the button to the view
     _cancelButton  = [UIButton buttonWithType:UIButtonTypeCustom];
 //set the position of the button
@@ -228,6 +228,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+
 #pragma mark Tag Related
 
 - (void)addItemViewController:(TagCategoryController *)controller didFinishEnteringItem:(NSString *)item:(NSString *)item2
@@ -335,6 +336,85 @@
     NSInteger y = point.y-25;
 
     _tag = [[NSMutableDictionary alloc] initWithObjectsAndKeys: @"0", @"tagId", @"0", @"imageId", @"Test", @"tagCaption", @"http://www.google.com", @"tagShopLink", [NSString stringWithFormat:@"%d", x], @"tagX", [NSString stringWithFormat:@"%d", y], @"tagY", @"testBrand", @"tagBrand", @"0", @"tagDeleted", nil];
+}
+
+#pragma mark Image Upload Code
+
+- (IBAction)uploadImage {
+	/*
+	 turning the image into a NSData object
+	 getting the image back out of the UIImageView
+	 setting the quality to 90
+     */
+	NSData *imageData = UIImageJPEGRepresentation(appdt.img, 90);
+	// setting up the URL to post to
+	NSString *urlString = @"http://103.4.147.139/fluence3/index.php/welcome/upload";
+	
+	// setting up the request object now
+	NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+	[request setURL:[NSURL URLWithString:urlString]];
+	[request setHTTPMethod:@"POST"];
+	
+	/*
+	 add some header info now
+	 we always need a boundary when we post a file
+	 also we need to set the content type
+	 
+	 You might want to generate a random boundary.. this is just the same
+	 as my output from wireshark on a valid html post
+     */
+	NSString *boundary = [NSString stringWithString:@"---------------------------14737809831466499882746641449"];
+	NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+	[request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+	
+	/*
+	 now lets create the body of the post
+     */
+	NSMutableData *body = [NSMutableData data];
+	[body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+	[body appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"userfile\"; filename=\"ipodfile.jpg\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+	[body appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+	[body appendData:[NSData dataWithData:imageData]];
+	[body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+	// setting the body of the post to the reqeust
+	[request setHTTPBody:body];
+	
+	// now lets make the connection to the web
+	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+	NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+	
+	NSLog(returnString);
+}
+
+#pragma mark Image Upload Code using ASIHTTPRequest
+
+- (IBAction)uploadImage_asi {
+	
+	NSString *strURL = @"http://103.4.147.139/fluence3/index.php/welcome/upload";
+    
+    //ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:strURL]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:strURL]]; // Upload a file on disk
+    NSString *filename1=[NSString stringWithFormat:@"ipodfile.jpg"];
+    NSData *imageData1=UIImageJPEGRepresentation(appdt.img, 1.0);
+    [request setData:imageData1 withFileName:filename1 andContentType:@"image/jpeg" forKey:@"ipodfile"];
+    [request setRequestMethod:@"POST"];
+    //[request appendPostData:body];
+    [request setDelegate:self];
+    [request setTimeOutSeconds:3.0];
+    //request.shouldAttemptPersistentConnection = NO;
+    [request setDidFinishSelector:@selector(uploadRequestFinished:)];
+    [request setDidFailSelector:@selector(uploadRequestFailed:)];
+    [request startAsynchronous];
+    
+}
+- (void)uploadRequestFinished:(ASIHTTPRequest *)request
+{
+    NSLog(@" Error - Statistics file upload finish: \"%@\"",[request responseString]);
+}
+
+- (void)uploadRequestFailed:(ASIHTTPRequest *)request{
+    NSLog(@" Error - Statistics file upload failed: \"%@\"",[[request error] localizedDescription]);
+    
 }
 
 @end
