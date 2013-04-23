@@ -94,10 +94,10 @@
     _plinkImage.image = appdt.img;
     
 //setup buttons
-    _saveButton  = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _saveButton  = [UIButton buttonWithType:UIButtonTypeCustom];
 
 //set the position of the button
-    _saveButton.frame = CGRectMake(5, 10, 40, 40);
+    _saveButton.frame = CGRectMake(5, 10, 60, 40);
 
 //background image
 //    UIImage *buttonImage = [UIImage imageNamed:@"heart-icon.png"];
@@ -105,22 +105,34 @@
 //create the button and assign the image addSubview:button
     
 //    [_saveButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [_saveButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    
+   
+    [_saveButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _saveButton.backgroundColor = [UIColor whiteColor];
+    _saveButton.layer.borderColor = [UIColor blackColor].CGColor;
+    _saveButton.layer.borderWidth = 0.5f;
+    _saveButton.layer.cornerRadius = 10.0f;
+    
     
 //set the button's title
     [_saveButton setTitle:@"Save" forState:UIControlStateNormal];
 //listen for clicks
     [_saveButton addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
 //add the button to the view
-    _cancelButton  = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _cancelButton  = [UIButton buttonWithType:UIButtonTypeCustom];
 //set the position of the button
-    _cancelButton.frame = CGRectMake(50, 10, 40, 40);
+    
+    _cancelButton.frame = CGRectMake(_container.frame.size.width-65, 10, 60, 40);
 //background image
 //    UIImage *buttonImage = [UIImage imageNamed:@"heart-icon.png"];
     
 //create the button and assign the image addSubview:button
 //    [_saveButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [_cancelButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [_cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _cancelButton.backgroundColor = [UIColor whiteColor];
+    _cancelButton.layer.borderColor = [UIColor blackColor].CGColor;
+    _cancelButton.layer.borderWidth = 0.5f;
+    _cancelButton.layer.cornerRadius = 10.0f;
     
 //set the button's title
     [_cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
@@ -260,7 +272,7 @@
 {
     OBShapedButton *button = (OBShapedButton *)sender;
     int bTag = button.tag;
-    _tagCaptionContainer.alpha = 0.5;
+    //_tagCaptionContainer.alpha = 0.5;
     _tag = [_tagItems objectAtIndex:bTag];
     
     float tagWidth = _container.frame.size.width-kCaptionPadding*2;
@@ -268,22 +280,28 @@
     NSUInteger numLines = ceilf( textSize.width / tagWidth );
     NSInteger height = ( textSize.height + kCaptionPadding ) * numLines;
     _tagCaption.numberOfLines = numLines;
-    _tagCaption.text = [_tag objectForKey:@"tagCaption"];
+    NSString *result;
+    result = [result stringByAppendingString:[_tag objectForKey:@"tagCaption"]];
+    result = [result stringByAppendingString:[_tag objectForKey:@"tagBrand"]];
+    _tagCaption.text = result;
 
     NSInteger containerHeight = height + kCaptionPadding*2;
     _tagCaptionContainer.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-    _tagCaptionContainer.frame = CGRectMake(0, _toolbar.frame.origin.y - 30, _container.frame.size.width, containerHeight);
+    _tagCaptionContainer.frame = CGRectMake(0, _toolbar.frame.origin.y - 40, _container.frame.size.width, containerHeight+12);
 //    _toolbar.frame                      = CGRectMake( 0, _container.frame.size.height-80, _container.frame.size.width, _container.frame.size.height );
-    _tagCaption.frame = CGRectMake(kCaptionPadding, kCaptionPadding, tagWidth-80, height);
+    _tagCaption.frame = CGRectMake(kCaptionPadding+20, kCaptionPadding+5, tagWidth-80, height);
     //_tagCaption.frame = CGRectMake(25, 10, 80, 20);
     CGSize tagSize = _tagCaption.frame.size;
             
-    OBShapedButton *buttonDelete = [[OBShapedButton buttonWithType:UIButtonTypeRoundedRect] retain];
-    buttonDelete.frame = CGRectMake(tagSize.width-40, kCaptionPadding-7, 50.0, 35.0);
+    OBShapedButton *buttonDelete = [[OBShapedButton buttonWithType:UIButtonTypeCustom] retain];
+    buttonDelete.frame = CGRectMake(tagSize.width+10, kCaptionPadding+5, 60.0, 30.0);
+    [buttonDelete setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [buttonDelete setTitle:@"Delete" forState:UIControlStateNormal];
-    buttonDelete.backgroundColor = [UIColor blueColor];
-    [buttonDelete setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal ];
-
+    buttonDelete.backgroundColor = [UIColor whiteColor];
+    buttonDelete.layer.borderColor = [UIColor blackColor].CGColor;
+    buttonDelete.layer.borderWidth = 0.5f;
+    buttonDelete.layer.cornerRadius = 10.0f;
+    
     [buttonDelete addTarget:self action:@selector(tappedDeleteBtn:) forControlEvents:UIControlEventTouchUpInside];
     buttonDelete.tag = bTag;
     [_tagCaptionContainer addSubview:buttonDelete]; //change container

@@ -107,8 +107,10 @@
     appdt.img = appdt.imgOptimized = [UIImage imageNamed:@"gavandme.jpg"];
     
     
+//    self.imageCropper.frame = CGRectMake(0, 0 ,300, 400);
     
-    self.imageCropper = [[[BJImageCropper alloc] initWithImage:appdt.img  andMaxSize:CGSizeMake(300, 240)]autorelease];
+    self.imageCropper = [[[BJImageCropper alloc] initWithImage:appdt.img andMaxSize:CGSizeMake(450, 340)]autorelease];
+//    self.imageCropper.frame = CGRectMake(0, 0 ,300, 400);
     [self.view addSubview:self.imageCropper];
     self.imageCropper.center = self.view.center;
     self.imageCropper.imageView.layer.shadowColor = [[UIColor blackColor] CGColor];
