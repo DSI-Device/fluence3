@@ -74,7 +74,7 @@
 }
 - (IBAction)selectPhotos
 {
-    @try 
+   /* @try
     {
         if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         {
@@ -101,10 +101,10 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Camera" message:@"Camera is not available  " delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
         [alert release];
-    }
+    } */
     
     self.image.hidden=YES;
-  /*  appdt.img = appdt.imgOptimized = [UIImage imageNamed:@"gavandme.jpg"];
+    appdt.img = appdt.imgOptimized = [UIImage imageNamed:@"gavandme.jpg"];
     
     
     
@@ -120,7 +120,7 @@
     
     //[self dismissModalViewControllerAnimated:YES];
     cropButton.hidden = NO;
-*/
+
     
     
 }
