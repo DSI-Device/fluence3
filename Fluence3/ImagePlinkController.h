@@ -10,6 +10,7 @@
 #import "Fluence3AppDelegate.h"
 #import "RemoveEventView.h"
 #import "TagCategoryController.h"
+#import "ASIHTTPRequest.h"
 
 @interface ImagePlinkController : UIViewController<TagCategoryControllerDelegate>{
     Fluence3AppDelegate *appdt;

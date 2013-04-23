@@ -101,11 +101,10 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Camera" message:@"Camera is not available  " delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
         [alert release];
-    } */
-    
+    }
+    */
     self.image.hidden=YES;
     appdt.img = appdt.imgOptimized = [UIImage imageNamed:@"gavandme.jpg"];
-    
     
 //    self.imageCropper.frame = CGRectMake(0, 0 ,300, 400);
     
@@ -123,7 +122,6 @@
     //[self dismissModalViewControllerAnimated:YES];
     cropButton.hidden = NO;
 
-    
     
 }
 - (IBAction)cropping
