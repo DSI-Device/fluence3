@@ -91,9 +91,9 @@
 - (void)getLocations
 {
     
-    NSDictionary *user1 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"9", @"userId", @"Naim", @"userName", @"37.786996", @"userLatitude", @"-122.419281", @"userLontitude",@"1", @"userCat", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic",nil];
+    NSDictionary *user1 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"3", @"userId", @"Naim", @"userName", @"37.786996", @"userLatitude", @"-122.419281", @"userLontitude",@"1", @"userCat", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic",nil];
     NSDictionary *user2 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"7", @"userId", @"Nazmul", @"userName", @"37.810000", @"userLatitude", @"-122.477989", @"userLontitude",@"1", @"userCat", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", nil];
-    NSDictionary *user3 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"3", @"userId", @"Shuvo", @"userName", @"37.760000", @"userLatitude", @"-122.447989", @"userLontitude",@"1", @"userCat", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", nil];
+    NSDictionary *user3 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"4", @"userId", @"Shuvo", @"userName", @"37.760000", @"userLatitude", @"-122.447989", @"userLontitude",@"1", @"userCat", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", nil];
     NSDictionary *user4 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"2", @"userId", @"Anik", @"userName", @"37.80000", @"userLatitude", @"-122.407989", @"userLontitude",@"1", @"userCat", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", nil];
     
     annotations = [[NSMutableArray alloc] initWithObjects:user1,user2, user3, user4,nil];
@@ -147,6 +147,9 @@
         myAnnotation1.title=str;
         myAnnotation1.subtitle=@"Send Message";
         
+        str = [NSString stringWithFormat:[row objectForKey:@"userPic"]];
+        myAnnotation1.imageUrl = str;
+        
         static NSString* AnnotationIdentifier = @"AnnotationIdentifier";
         MKPinAnnotationView* pinView = [[[MKPinAnnotationView alloc]
                                          initWithAnnotation:myAnnotation1 reuseIdentifier:AnnotationIdentifier] autorelease];
@@ -196,7 +199,7 @@
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
 	NSLog(@"welcome into the map view annotation");
-	
+	MyAnnotation *vma = (MyAnnotation *)annotation;
 	// if it's the user location, just return nil.
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
@@ -212,23 +215,39 @@
 	
 	UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 	[rightButton setTitle:annotation.title forState:UIControlStateNormal];
-	[rightButton addTarget:self
-					action:@selector(showDetails:)
-		  forControlEvents:UIControlEventTouchUpInside];
+//	[rightButton addTarget:self	action:@selector(calloutAccessoryControlTapped:) forControlEvents:UIControlEventTouchUpInside];
 	pinView.rightCalloutAccessoryView = rightButton;
 	
-//	UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
-//	pinView.leftCalloutAccessoryView = profileIconView;
-//	[profileIconView release];
-	
+	UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
+	pinView.leftCalloutAccessoryView = profileIconView;
+	[profileIconView release];
+    
+    dispatch_queue_t downloader = dispatch_queue_create("PicDownloader", NULL);
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:vma.imageUrl]];
+    dispatch_async(downloader, ^{
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        [profileIconView setImage:[UIImage imageWithData:data]];
+    });
 	
 	return pinView;
 }
 
--(IBAction)showDetails:(id)sender{
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view 
+calloutAccessoryControlTapped:(UIControl *)control
+{
+    id<MKAnnotation> selectedAnn = view.annotation;
     
-	NSLog(@"Annotation Click");
-	
+    if ([selectedAnn isKindOfClass:[MyAnnotation class]])
+    {
+        MyAnnotation *vma = (MyAnnotation *)selectedAnn;
+        NSLog(@"selected VMA = %@, blobkey=%@", vma, vma.uniqueId);
+    }
+    else
+    {
+        NSLog(@"selected annotation (not a VMA) = %@", selectedAnn);
+    }
+    
+    //do something with the selected annotation... 
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
