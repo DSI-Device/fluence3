@@ -5,7 +5,7 @@
 //  Created by Grant Davis on 5/19/10.
 //  Copyright 2011 Grant Davis Interactive, LLC. All rights reserved.
 //Fluence
-
+#import <FacebookSDK/FacebookSDK.h>
 #import "FGalleryViewController.h"
 #import "RemoveEventView.h"
 #import "OBShapedButton.h"
@@ -353,12 +353,12 @@
     
 	// set view
 	self.view = _container;
-    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(openSlidingNav)];// use custom styles and name
-    
-    
-    
-    self.navigationItem.leftBarButtonItem = left;
-    [left release];
+//    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(openSlidingNav)];// use custom styles and name
+//    
+//    
+//    
+//    self.navigationItem.leftBarButtonItem = left;
+//    [left release];
     
 	
 	// add items to their containers
