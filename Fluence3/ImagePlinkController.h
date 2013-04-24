@@ -11,6 +11,7 @@
 #import "RemoveEventView.h"
 #import "TagCategoryController.h"
 #import "ASIHTTPRequest.h"
+#import "utils.h"
 
 @interface ImagePlinkController : UIViewController<TagCategoryControllerDelegate>{
     Fluence3AppDelegate *appdt;
@@ -29,11 +30,13 @@
 	NSMutableArray *_tagItems;
     NSString* _tagCategory;
     NSInteger _currentIndex;
+    UIActivityIndicatorView *spinner;
+    
 }
 
 - (void)removeImageAtIndex:(NSUInteger)index;
 
 @property (nonatomic,retain) NSString *_tagCategory;
 @property (nonatomic,readonly) UIToolbar *toolBar;
-
+@property (nonatomic,readonly) UIActivityIndicatorView *spinner;
 @end

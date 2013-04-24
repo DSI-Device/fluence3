@@ -19,6 +19,7 @@
 @synthesize toolBar = _toolbar;
 @synthesize _tagCategory;
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -45,7 +46,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [spinner setCenter:CGPointMake(((self.view.frame.size.width/2.0)), ((self.view.frame.size.height/2.0)-80))]; 
+    
+    spinner.layer.backgroundColor = [[UIColor colorWithWhite:0.0f alpha:0.5f] CGColor];
+    spinner.hidesWhenStopped = YES;
+    spinner.frame = self.view.bounds;
+    
+    [self.view addSubview:spinner];
     // Do any additional setup after loading the view from its nib.
+    
 
 }
 - (void)loadView
@@ -170,6 +180,10 @@
 //
 //    CGSize piContS = _plinkImage.frame.size;
 //    CGPoint piContP = _plinkImage.frame.origin;
+    
+    
+    
+    
 
 }
 
@@ -182,6 +196,7 @@
     [_toolbar release], _toolbar = nil;
     [_tagContainer release], _tagContainer = nil;
     [_tag release], _tag = nil;
+    [spinner release];
     [super viewDidUnload];
 }
 
@@ -389,6 +404,8 @@
 #pragma mark Image Upload Code using ASIHTTPRequest
 
 - (IBAction)uploadImage_asi {
+    
+    [spinner startAnimating];
 	
 	NSString *strURL = @"http://103.4.147.139/fluence3/index.php/welcome/upload";
     
@@ -406,14 +423,18 @@
     [request setDidFailSelector:@selector(uploadRequestFailed:)];
     [request startAsynchronous];
     
+    self.navigationItem.hidesBackButton = YES;
+    
 }
 - (void)uploadRequestFinished:(ASIHTTPRequest *)request
 {
     NSLog(@" Error - Statistics file upload finish: \"%@\"",[request responseString]);
+    [spinner stopAnimating];
 }
 
 - (void)uploadRequestFailed:(ASIHTTPRequest *)request{
     NSLog(@" Error - Statistics file upload failed: \"%@\"",[[request error] localizedDescription]);
+    [spinner stopAnimating];
     
 }
 
