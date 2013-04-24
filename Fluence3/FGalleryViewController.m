@@ -9,6 +9,7 @@
 #import "FGalleryViewController.h"
 #import "RemoveEventView.h"
 #import "OBShapedButton.h"
+#import "TSPopoverController.h"
 
 #define kThumbnailSize 75
 #define kThumbnailSpacing 4
@@ -197,7 +198,7 @@
 }
 
 - (void) backButtonClicked: (id) sender{
-	[self dismissViewControllerAnimated:YES completion:nil];
+	//[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)loadView
@@ -228,7 +229,7 @@
     _toolbar1.backgroundColor			= [UIColor grayColor];
     _toolbar.tintColor					= [UIColor whiteColor];
     _toolbar1.tintColor					= [UIColor whiteColor];
-//    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    //    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     _container.backgroundColor			= [UIColor whiteColor];
     
     // listen for container frame changes so we can properly update the layout during auto-rotation or going in and out of fullscreen
@@ -246,12 +247,12 @@
     _captionContainer.userInteractionEnabled	= NO;
     _captionContainer.exclusiveTouch			= YES;
     _caption.font								= [UIFont systemFontOfSize:14.0];
-    _caption.textColor							= [UIColor whiteColor];
+    _caption.textColor							= [UIColor blackColor];
     _caption.backgroundColor					= [UIColor clearColor];
     _caption.textAlignment						= UITextAlignmentCenter;
-    _caption.shadowColor						= [UIColor blackColor];
+    _caption.shadowColor						= [UIColor clearColor];
     _caption.shadowOffset						= CGSizeMake( 1, 1 );
-
+    
     
     // setup user Info container
     _userInfoContainer.backgroundColor			= [UIColor clearColor];
@@ -259,10 +260,10 @@
     _userInfoContainer.userInteractionEnabled	= NO;
     _userInfoContainer.exclusiveTouch			= YES;
     _userInfoCaption.font						= [UIFont systemFontOfSize:14.0];
-    _userInfoCaption.textColor					= [UIColor whiteColor];
+    _userInfoCaption.textColor					= [UIColor blackColor];
     _userInfoCaption.backgroundColor			= [UIColor clearColor];
     _userInfoCaption.textAlignment				= UITextAlignmentCenter;
-    _userInfoCaption.shadowColor				= [UIColor blackColor];
+    _userInfoCaption.shadowColor				= [UIColor clearColor];
     _userInfoCaption.shadowOffset				= CGSizeMake( 1, 1 );
     _userProfileImage.contentMode = UIViewContentModeCenter;
     
@@ -294,6 +295,7 @@
     _thumbsView.contentInset					= UIEdgeInsetsMake( kThumbnailSpacing, kThumbnailSpacing, kThumbnailSpacing, kThumbnailSpacing);
     
     
+    
     _likeButton  = [UIButton buttonWithType:UIButtonTypeCustom];
     //set the position of the button
     _likeButton.frame = CGRectMake(5, 20, 40, 40);
@@ -308,6 +310,7 @@
     //listen for clicks
     [_likeButton addTarget:self action:@selector(likeButtonP:) forControlEvents:UIControlEventTouchUpInside];
     
+    
     //set the position of the button
     _likeNumber =  [[UILabel alloc] initWithFrame: CGRectMake(5, 60, 40, 20)];
     _likeNumber.textAlignment = UITextAlignmentCenter;
@@ -316,7 +319,7 @@
     //add the button to the view
     _shareButton  = [UIButton buttonWithType:UIButtonTypeCustom];
     //set the position of the button
-    _shareButton.frame = CGRectMake(5, 90, 40, 40);
+    _shareButton.frame = CGRectMake(5, 120, 40, 40);
     UIImage *buttonImage1 = [UIImage imageNamed:@"share.png"];
     
     //create the button and assign the image addSubview:button
@@ -331,7 +334,7 @@
     
     _commentButton  = [UIButton buttonWithType:UIButtonTypeCustom];
     //set the position of the button
-    _commentButton.frame = CGRectMake(5, 160, 40, 40);
+    _commentButton.frame = CGRectMake(5, 210, 40, 40);
     UIImage *buttonImage2 = [UIImage imageNamed:@"comment.png"];
     
     //create the button and assign the image addSubview:button
@@ -341,8 +344,9 @@
     
     //set the button's title
     //listen for clicks
-    [_commentButton addTarget:self action:@selector(buttonPressed)
-             forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [_commentButton addTarget:self action:@selector(commentButtonP:forEvent:) forControlEvents:UIControlEventTouchUpInside];
     
     
     
@@ -350,6 +354,13 @@
     
 	// set view
 	self.view = _container;
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(openSlidingNav)];// use custom styles and name
+    
+    
+    
+    self.navigationItem.leftBarButtonItem = left;
+    [left release];
+    
 	
 	// add items to their containers
 	[_container addSubview:_innerContainer];
@@ -361,12 +372,12 @@
     [_innerContainer addSubview:_toolbar1];
     [_innerContainer addSubview:_tagContainer];
     [_innerContainer addSubview:_tagCaptionContainer];
-        
+    
     [_toolbar1 addSubview:_likeButton];
     [_toolbar1 addSubview:_likeNumber];
     [_toolbar1 addSubview:_shareButton];
     [_toolbar1 addSubview:_commentButton];
-
+    
 	[_toolbar addSubview:_captionContainer];
 	[_captionContainer addSubview:_caption];
     
@@ -425,10 +436,10 @@
 
 - (void)destroyViews {
     //removes tag
-//    NSInteger t = [[_tagContainer subviews] count];
-//    for (int i = 0; i < [[_tagContainer subviews] count]; i++ ) {
-//        [[[_tagContainer subviews] objectAtIndex:i] removeFromSuperview];
-//    }
+    //    NSInteger t = [[_tagContainer subviews] count];
+    //    for (int i = 0; i < [[_tagContainer subviews] count]; i++ ) {
+    //        [[[_tagContainer subviews] objectAtIndex:i] removeFromSuperview];
+    //    }
     // remove previous photo views
     for (UIView *view in _photoViews) {
         [view removeFromSuperview];
@@ -471,15 +482,13 @@
         
         // start loading thumbs
         [self preloadThumbnailImages];
-    
+        
         // start on first image
         [self gotoImageByIndex:_currentIndex animated:NO];
         
         // layout
         [self layoutViews];
     }
-    _toolbar1.hidden = NO;
-    _toolbar1.alpha = 1;
 }
 
 - (FGalleryPhoto*)currentPhoto
@@ -1395,10 +1404,10 @@
 	
     [_captionContainer release];
     _captionContainer = nil;
-
+    
     [_userInfoContainer release];
     _userInfoContainer = nil;
-
+    
     [_userInfoCaption release];
     _userInfoCaption = nil;
     
@@ -1476,10 +1485,10 @@
             NSString* imageLike = [NSString stringWithFormat:[imageInfo objectForKey:@"imageLike"]];
             _likeNumber.text = imageLike;
             
-			}
-			
-		}
-	}
+        }
+        
+    }
+}
 
 
 
@@ -1501,7 +1510,7 @@
 		{
 			NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
 			
-//            NSString* userId   = [NSString stringWithFormat:[imageInfo objectForKey:@"userId"]];
+            //            NSString* userId   = [NSString stringWithFormat:[imageInfo objectForKey:@"userId"]];
             NSString* userName = [NSString stringWithFormat:[imageInfo objectForKey:@"userName"]];
             NSString* userPic  = [NSString stringWithFormat:[imageInfo objectForKey:@"userPic"]];
             
@@ -1514,31 +1523,31 @@
                 [_userProfileImage setBackgroundImage:[UIImage imageWithData:data] forState:UIControlStateNormal];
             });
             //enable caching loose-end
-/*          FGalleryPhoto *photoProfile;
-            NSString *thumbPath;
-            NSString *fullsizePath;
-            
-            thumbPath = userPic;
-            fullsizePath = userPic;
-            photoProfile = [[[FGalleryPhoto alloc] initWithThumbnailUrl:thumbPath fullsizeUrl:fullsizePath delegate:self] autorelease];
-            [photoProfile loadThumbnail];
-
-            [_userProfileImage setBackgroundImage:photoProfile.fullsize forState:UIControlStateNormal];
-//            photoView.imageView.image = photo.fullsize;
-            [photoProfile release];*/
+            /*          FGalleryPhoto *photoProfile;
+             NSString *thumbPath;
+             NSString *fullsizePath;
+             
+             thumbPath = userPic;
+             fullsizePath = userPic;
+             photoProfile = [[[FGalleryPhoto alloc] initWithThumbnailUrl:thumbPath fullsizeUrl:fullsizePath delegate:self] autorelease];
+             [photoProfile loadThumbnail];
+             
+             [_userProfileImage setBackgroundImage:photoProfile.fullsize forState:UIControlStateNormal];
+             //            photoView.imageView.image = photo.fullsize;
+             [photoProfile release];*/
             
             if([userName length] > 0 )
 			{
 				float captionWidth = _container.frame.size.width-kCaptionPadding*2-_userProfileImage.frame.size.width;
 				CGSize textSize = [userName sizeWithFont:_userInfoCaption.font];
 				NSUInteger numLines = ceilf( textSize.width / captionWidth );
-//				NSInteger height = ( textSize.height + kCaptionPadding ) * numLines;
+                //				NSInteger height = ( textSize.height + kCaptionPadding ) * numLines;
 				_userInfoCaption.numberOfLines = numLines;
 				_userInfoCaption.text = userName;
-//				NSInteger containerHeight = height+kCaptionPadding*2;
-//				_userInfoContainer.frame = CGRectMake(0, containerHeight-20, _container.frame.size.width, containerHeight );
+                //				NSInteger containerHeight = height+kCaptionPadding*2;
+                //				_userInfoContainer.frame = CGRectMake(0, containerHeight-20, _container.frame.size.width, containerHeight );
                 _userInfoContainer.frame = CGRectMake(0, 64, _container.frame.size.width, 50 );
-
+                
 				_userInfoCaption.frame = CGRectMake(_userProfileImage.frame.size.width+kCaptionPadding, kCaptionPadding, captionWidth, 42 );
                 _userProfileImage.frame = CGRectMake(kCaptionPadding, kCaptionPadding, 45, 45);
                 
@@ -1547,12 +1556,12 @@
                 
                 CALayer *rightBorder = [CALayer layer];
                 
-                rightBorder.frame = CGRectMake(0, 113, _container.frame.size.width, 2.0);
+                rightBorder.frame = CGRectMake(0, 48.5, _container.frame.size.width, 2.0);
                 
                 rightBorder.backgroundColor = [UIColor colorWithWhite:0.8f
                                                                 alpha:1.0f].CGColor;
                 
-                [_innerContainer.layer addSublayer:rightBorder];
+                [_userInfoContainer.layer addSublayer:rightBorder];
 			}
 			else {
 				// hide it if we don't have a caption.
@@ -1571,15 +1580,15 @@
 		if([_photoSource respondsToSelector:@selector(photoGallery:tagsForPhotoAtIndex:)])
 		{
             //removes tag
-//            NSInteger t = [[_tagContainer subviews] count];
+            NSInteger t = [[_tagContainer subviews] count];
             //for (int i = 0; i < [[_tagContainer subviews] count]; i++ ) {
-                //[[[_tagContainer subviews] objectAtIndex:i] removeFromSuperview];
-            for (OBShapedButton *btn in _tagContainer.subviews){     
-//                UIView *test = [[_tagContainer subviews] objectAtIndex:i];
+            //[[[_tagContainer subviews] objectAtIndex:i] removeFromSuperview];
+            for (OBShapedButton *btn in _tagContainer.subviews){
+                //                UIView *test = [[_tagContainer subviews] objectAtIndex:i];
                 [btn removeFromSuperview];
                 
             }
-
+            
             NSMutableArray *tag = [_photoSource photoGallery:self tagsForPhotoAtIndex:_currentIndex];
             NSInteger tagCount = [tag count];
             if(tagCount > 0 )
@@ -1638,14 +1647,14 @@
         _tag.numberOfLines = numLines;
         _tag.text = [tag objectForKey:@"tagCaption"];
         
-//        CGSize conSize = _container.frame.size;
-//        CGPoint conCord = _container.frame.origin;
-//        CGSize inConSize = _innerContainer.frame.size;
-//        CGPoint inConCord = _innerContainer.frame.origin;
-//        CGSize toolSize = _toolbar.frame.size;
-//        CGPoint toolCord = _toolbar.frame.origin;
-//        CGSize capSize = _captionContainer.frame.size;
-//        CGPoint capCord = _captionContainer.frame.origin;
+        //        CGSize conSize = _container.frame.size;
+        //        CGPoint conCord = _container.frame.origin;
+        //        CGSize inConSize = _innerContainer.frame.size;
+        //        CGPoint inConCord = _innerContainer.frame.origin;
+        //        CGSize toolSize = _toolbar.frame.size;
+        //        CGPoint toolCord = _toolbar.frame.origin;
+        //        CGSize capSize = _captionContainer.frame.size;
+        //        CGPoint capCord = _captionContainer.frame.origin;
         NSInteger containerHeight = height + kCaptionPadding*2;
         //NSInteger containerY = toolCord.y - 27 - capSize.height;
         _tagCaptionContainer.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
@@ -1699,15 +1708,17 @@
     //[utils showAlert:@"Warning !!" message:@"Activation Failed !! Please try again with correct credential." delegate:self];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate *dateFromStr = [dateFormatter dateFromString:self.currentDate];    
-    NSCalendar *calendar = [[[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar] autorelease];
-    NSDateComponents *components = [[[NSDateComponents alloc] init] autorelease];
+    NSDate *dateFromString = [[NSDate alloc] init];
+    dateFromString = [dateFormatter dateFromString:self.currentDate];
+    
+    NSCalendar*       calendar = [[[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar] autorelease];
+    NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
     components.day = 1;
-    NSDate *newDate = [calendar dateByAddingComponents: components toDate: dateFromStr options: 0];
+    NSDate* newDate = [calendar dateByAddingComponents: components toDate: dateFromString options: 0];
     
     [_photoSource photoGallery:self handleChangeDate:[dateFormatter stringFromDate:newDate]];
-    [dateFormatter release];
-
+    
+    
 }
 - (void) swipedScreenUp:(UISwipeGestureRecognizer*)swipeGesture {
     UIAlertView *alert = [[UIAlertView alloc]
@@ -1720,6 +1731,83 @@
     [alert release];
 }
 
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"Touches began!");
+    
+    /*UIView *hitView = [self.view hitTest:point withEvent:event];
+     
+     // If the hitView is THIS view, return the view that you want to receive the touch instead:
+     if (hitView == _tagContainer) {
+     return _innerContainer;
+     }
+     // Else return the hitView (as it could be one of this view's buttons):
+     return hitView;*/
+    //    UITouch *touch= [[event allTouches] anyObject];
+    //    CGPoint point= [touch locationInView:touch.view];
+    
+    /*UIImage *image = [UIImage imageNamed:@"BluePin.png"];
+     
+     
+     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+     [imageView setFrame: CGRectMake(point.x-(imageView.bounds.size.width/2), point.y-(imageView.bounds.size.width/2), imageView.bounds.size.width, imageView.bounds.size.height)];
+     [self.view addSubview: imageView];
+     //self.currentPins += 1;
+     
+     [UIView animateWithDuration:2.0 delay:1.0 options:UIViewAnimationOptionCurveLinear  animations:^{
+     [imageView setAlpha:0.0];
+     } completion:^(BOOL finished) {
+     [imageView removeFromSuperview];
+     //self.currentPins -= 1;
+     }];
+     
+     // for(;self.currentPins > 10; currentPins -= 1){
+     //     [[[self subviews] objectAtIndex:0] removeFromSuperview];
+     // }*/
+    
+}
+/*
+ // load the image
+ NSString *name = @"badge.png";
+ UIImage *img = [UIImage imageNamed:name];
+ 
+ // begin a new image context, to draw our colored image onto
+ UIGraphicsBeginImageContext(img.size);
+ 
+ // get a reference to that context we created
+ CGContextRef context = UIGraphicsGetCurrentContext();
+ 
+ // set the fill color
+ [color setFill];
+ 
+ // translate/flip the graphics context (for transforming from CG* coords to UI* coords
+ CGContextTranslateCTM(context, 0, img.size.height);
+ CGContextScaleCTM(context, 1.0, -1.0);
+ 
+ // set the blend mode to color burn, and the original image
+ CGContextSetBlendMode(context, kCGBlendModeColorBurn);
+ CGRect rect = CGRectMake(0, 0, img.size.width, img.size.height);
+ CGContextDrawImage(context, rect, img.CGImage);
+ 
+ // set a mask that matches the shape of the image, then draw (color burn) a colored rectangle
+ CGContextClipToMask(context, rect, img.CGImage);
+ CGContextAddRect(context, rect);
+ CGContextDrawPath(context,kCGPathFill);
+ 
+ // generate a new UIImage from the graphics context we drew onto
+ UIImage *coloredImg = UIGraphicsGetImageFromCurrentImageContext();
+ UIGraphicsEndImageContext();
+ 
+ //return the color-burned image
+ return coloredImg;
+ */
+
+
+#pragma mark Sliding Navigation
+- (void)openSlidingNav
+{
+	NSLog(@"[FGalleryViewController] openSlidingNav! clearing out cached images...");
+}
+
 
 #pragma mark LikeButtonPressed
 
@@ -1728,12 +1816,76 @@
     
     //            NSString* userId   = [NSString stringWithFormat:[imageInfo objectForKey:@"userId"]];
     NSString* imageLike = [NSString stringWithFormat:[imageInfo objectForKey:@"imageId"]];
-    [_photoSource photoGallery:self likeButtonClicked:imageLike:_currentIndex];
-    
+    int ret = [_photoSource photoGallery:self likeButtonClicked:imageLike:_currentIndex];
+    if(ret == 1)
+    {
+        NSInteger value = [_likeNumber.text intValue];
+        value = value + 1;
+        NSString *imglk = [NSString stringWithFormat:@"%d", value];
+        _likeNumber.text = imglk;
+        
+    }
     
 }
 
+#pragma mark CommentButtonPressed
 
+- (void)commentButtonP:(id)sender forEvent:(UIEvent*)event{
+    
+    UIViewController *commentViewController = [UIViewController alloc];
+    commentViewController.view.frame = CGRectMake(10,200, 300, 100);
+    popoverController = [[TSPopoverController alloc] initWithContentViewController:commentViewController];
+    
+    popoverController.cornerRadius = 5;
+    popoverController.titleColor = [UIColor blackColor];
+    popoverController.titleText = @"Comment";
+    popoverController.popoverBaseColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
+    popoverController.popoverGradient= NO;
+    //    popoverController.arrowPosition = TSPopoverArrowPositionHorizontal;
+    
+    _commentTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 200, 30)];
+    _commentTextField.borderStyle = UITextBorderStyleRoundedRect;
+    _commentTextField.font = [UIFont systemFontOfSize:15];
+    _commentTextField.placeholder = @"enter text";
+    _commentTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+    _commentTextField.keyboardType = UIKeyboardTypeDefault;
+    _commentTextField.returnKeyType = UIReturnKeyDone;
+    _commentTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    _commentTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    _commentTextField.delegate = self;
+    [commentViewController.view addSubview:_commentTextField];
+    [_commentTextField release];
+    
+    
+    
+    
+    UIButton *topButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [topButton addTarget:self action:@selector(commentDone:forEvent:) forControlEvents:UIControlEventTouchUpInside];
+    topButton.frame = CGRectMake(220,20, 80, 30);
+    [topButton setTitle:@"Send" forState:UIControlStateNormal];
+    topButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    [commentViewController.view addSubview:topButton];
+    [popoverController showPopoverWithTouch:event];
+}
+
+- (void)commentDone:(id)sender forEvent:(UIEvent*)event {
+    NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
+    
+    NSString* userId   = [NSString stringWithFormat:[imageInfo objectForKey:@"userId"]];
+    NSLog(_commentTextField.text);
+    NSString* imageID = [NSString stringWithFormat:[imageInfo objectForKey:@"imageId"]];
+    [_photoSource photoGallery:self commentButtonClicked:imageID:_commentTextField.text];
+    
+    _commentTextField.text = @"";
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    
+    [textField resignFirstResponder];
+    
+    return YES;
+}
 
 @end
 

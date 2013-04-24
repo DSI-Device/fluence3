@@ -11,8 +11,9 @@
 #import "FGalleryPhotoView.h"
 #import "FGalleryPhoto.h"
 #import "RemoveEventView.h"
+#import "TSPopoverController.h"
 
-
+@class DDMenuController;
 typedef enum
 {
 	FGalleryPhotoSizeThumbnail,
@@ -27,7 +28,7 @@ typedef enum
 
 @protocol FGalleryViewControllerDelegate;
 
-@interface FGalleryViewController : UIViewController <UIScrollViewDelegate,FGalleryPhotoDelegate,FGalleryPhotoViewDelegate> {
+@interface FGalleryViewController : UIViewController <UIScrollViewDelegate,FGalleryPhotoDelegate,FGalleryPhotoViewDelegate,UITextFieldDelegate> {
 	
 	BOOL _isActive;
 	BOOL _isFullscreen;
@@ -40,7 +41,8 @@ typedef enum
 	NSString *galleryID;
 	NSInteger _currentIndex;
     NSString *currentDate;
-	
+	TSPopoverController *popoverController;
+    
 	UIView *_container; // used as view for the controller
 	UIView *_innerContainer; // sized and placed to be fullscreen within the container
 	UIToolbar *_toolbar;
@@ -72,6 +74,7 @@ typedef enum
     UIButton *_likeButton;
     UIButton *_shareButton;
     UIButton *_commentButton;
+    UITextField *_commentTextField;
     
     UILabel *_likeNumber;
 }
@@ -98,7 +101,8 @@ typedef enum
 @property (nonatomic) BOOL useThumbnailView;
 @property (nonatomic) BOOL beginsInThumbnailView;
 @property (nonatomic) BOOL hideTitle;
-
+@property (strong, nonatomic) DDMenuController *menuController;
+@property (strong, nonatomic) UIWindow *window;
 @end
 
 
@@ -123,6 +127,7 @@ typedef enum
 - (void)photoGallery:(FGalleryViewController*)gallery handleChangeDate:(NSString*)date;
 
 //Date Related Datasource Change
-- (void)photoGallery:(FGalleryViewController*)gallery likeButtonClicked:(NSString*)imageId:(NSInteger)imgIndex;
+- (int)photoGallery:(FGalleryViewController*)gallery likeButtonClicked:(NSString*)imageId:(NSInteger)imgIndex;
+- (void)photoGallery:(FGalleryViewController*)gallery commentButtonClicked:(NSString*)imageId:(NSInteger)imgIndex;
 
 @end
