@@ -221,14 +221,7 @@
 	UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
 	pinView.leftCalloutAccessoryView = profileIconView;
 	[profileIconView release];
-    
-    dispatch_queue_t downloader = dispatch_queue_create("PicDownloader", NULL);
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:vma.imageUrl]];
-    dispatch_async(downloader, ^{
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        [profileIconView setImage:[UIImage imageWithData:data]];
-    });
-	
+   
 	return pinView;
 }
 
