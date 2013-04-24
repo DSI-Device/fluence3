@@ -329,8 +329,7 @@
     
     //set the button's title
     //listen for clicks
-    [_shareButton addTarget:self action:@selector(buttonPressed)
-           forControlEvents:UIControlEventTouchUpInside];
+    [_shareButton addTarget:self action:@selector(shareButtonP:forEvent:) forControlEvents:UIControlEventTouchUpInside];
     
     _commentButton  = [UIButton buttonWithType:UIButtonTypeCustom];
     //set the position of the button
@@ -1869,6 +1868,58 @@
 }
 
 - (void)commentDone:(id)sender forEvent:(UIEvent*)event {
+    NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
+    
+    NSString* userId   = [NSString stringWithFormat:[imageInfo objectForKey:@"userId"]];
+    NSLog(_commentTextField.text);
+    NSString* imageID = [NSString stringWithFormat:[imageInfo objectForKey:@"imageId"]];
+    [_photoSource photoGallery:self commentButtonClicked:imageID:_commentTextField.text];
+    
+    _commentTextField.text = @"";
+}
+
+#pragma mark shareButtonPressed
+
+- (void)shareButtonP:(id)sender forEvent:(UIEvent*)event{
+    
+    UIViewController *commentViewController = [UIViewController alloc];
+    commentViewController.view.frame = CGRectMake(10,200, 300, 100);
+    popoverController = [[TSPopoverController alloc] initWithContentViewController:commentViewController];
+    
+    popoverController.cornerRadius = 5;
+    popoverController.titleColor = [UIColor whiteColor];
+    popoverController.titleText = @"Share";
+    popoverController.popoverBaseColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
+    popoverController.popoverGradient= NO;
+    //    popoverController.arrowPosition = TSPopoverArrowPositionHorizontal;
+    
+    
+    _commentTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 200, 30)];
+    _commentTextField.borderStyle = UITextBorderStyleRoundedRect;
+    _commentTextField.font = [UIFont systemFontOfSize:15];
+    _commentTextField.placeholder = @"enter text";
+    _commentTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+    _commentTextField.keyboardType = UIKeyboardTypeDefault;
+    _commentTextField.returnKeyType = UIReturnKeyDone;
+    _commentTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    _commentTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    _commentTextField.delegate = self;
+    [commentViewController.view addSubview:_commentTextField];
+    [_commentTextField release];
+    
+    
+    
+    
+    UIButton *topButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [topButton addTarget:self action:@selector(shareDone:forEvent:) forControlEvents:UIControlEventTouchUpInside];
+    topButton.frame = CGRectMake(220,20, 80, 30);
+    [topButton setTitle:@"Share" forState:UIControlStateNormal];
+    topButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    [commentViewController.view addSubview:topButton];
+    [popoverController showPopoverWithTouch:event];
+}
+
+- (void)shareDone:(id)sender forEvent:(UIEvent*)event {
     NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
     
     NSString* userId   = [NSString stringWithFormat:[imageInfo objectForKey:@"userId"]];
