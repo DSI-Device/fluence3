@@ -44,7 +44,8 @@
     // Do any additional setup after loading the view from its nib.
     self.mapView.delegate = self;
     [self getLocations];
-    
+
+    //reload view loose end
 }
 
 - (void)viewDidUnload
