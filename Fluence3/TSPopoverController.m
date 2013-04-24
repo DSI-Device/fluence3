@@ -22,6 +22,10 @@
 
 @interface TSPopoverController ()
 
+- (CGPoint)senderPointFromSenderRect:(CGRect)senderRect;
+- (CGRect) contentFrameRect:(CGRect)contentFrame senderPoint:(CGPoint)senderPoint;
+- (CGRect)popoverFrameRect:(CGRect)contentFrame senderPoint:(CGPoint)senderPoint;
+
 @end
 
 @implementation TSPopoverController

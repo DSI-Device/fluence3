@@ -34,7 +34,7 @@
 
 - (void)drawRect:(CGRect)rect
 {    
-    UIImage *backgroundImage = self.backgroundImage;
+    UIImage *backgroundImage = [self backgroundImage];
     [backgroundImage drawInRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) blendMode:kCGBlendModeNormal alpha:1];
     
 }

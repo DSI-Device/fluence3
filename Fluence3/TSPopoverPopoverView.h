@@ -19,6 +19,6 @@
 @property (nonatomic, readwrite) TSPopoverArrowDirection arrowDirection;
 @property (nonatomic, readwrite) TSPopoverArrowPosition arrowPosition;
 
-
+-(UIImage*)backgroundImage;
 
 @end
