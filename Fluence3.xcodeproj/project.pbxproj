@@ -926,6 +926,15 @@
 				2BCF8CA8171FEC3B00B31E12 /* ImageUtil.m in Sources */,
 				C89AEB171725634100AD2EF0 /* MapViewController.m in Sources */,
 				C838CB741726A4CC00B9AC17 /* MyAnnotation.m in Sources */,
+				2BC20D221726C00B00EE2CCB /* ASIAuthenticationDialog.m in Sources */,
+				2BC20D231726C00B00EE2CCB /* ASIDataCompressor.m in Sources */,
+				2BC20D241726C00B00EE2CCB /* ASIDataDecompressor.m in Sources */,
+				2BC20D251726C00B00EE2CCB /* ASIDownloadCache.m in Sources */,
+				2BC20D261726C00B00EE2CCB /* ASIFormDataRequest.m in Sources */,
+				2BC20D271726C00B00EE2CCB /* ASIHTTPRequest.m in Sources */,
+				2BC20D281726C00B00EE2CCB /* ASIInputStream.m in Sources */,
+				2BC20D291726C00B00EE2CCB /* ASINetworkQueue.m in Sources */,
+				2BC20D2D1726C22900EE2CCB /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
