@@ -140,12 +140,23 @@
         str = [NSString stringWithFormat:[row objectForKey:@"userLatitude"]];
         theCoordinate1.latitude = [str doubleValue];
         str = [NSString stringWithFormat:[row objectForKey:@"userLontitude"]];
-        theCoordinate1.longitude = [str doubleValue];;
+        theCoordinate1.longitude = [str doubleValue];
         
         myAnnotation1.coordinate=theCoordinate1;
         str = [NSString stringWithFormat:[row objectForKey:@"userName"]];
         myAnnotation1.title=str;
         myAnnotation1.subtitle=@"Send Message";
+        
+        static NSString* AnnotationIdentifier = @"AnnotationIdentifier";
+        MKPinAnnotationView* pinView = [[[MKPinAnnotationView alloc]
+                                         initWithAnnotation:myAnnotation1 reuseIdentifier:AnnotationIdentifier] autorelease];
+        UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        [rightButton setTitle:myAnnotation1.title forState:UIControlStateNormal];
+        [rightButton addTarget:self
+                        action:@selector(showDetails:)
+              forControlEvents:UIControlEventTouchUpInside];
+        pinView.rightCalloutAccessoryView = rightButton;
+        
         [mapView addAnnotation:myAnnotation1];
         [myAnnotation1 release];
     }   

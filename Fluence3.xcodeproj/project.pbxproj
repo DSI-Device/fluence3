@@ -20,6 +20,9 @@
 		2B53EDE9170F039200C8C184 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE6170F039200C8C184 /* share.png */; };
 		2B53EDEA170F039200C8C184 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE7170F039200C8C184 /* comment.png */; };
 		2B53EDEB170F039200C8C184 /* heart-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE8170F039200C8C184 /* heart-icon.png */; };
+		2B98853A1727DD10000386E5 /* TSPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9885351727DD10000386E5 /* TSPopoverController.m */; };
+		2B98853B1727DD10000386E5 /* TSPopoverPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9885371727DD10000386E5 /* TSPopoverPopoverView.m */; };
+		2B98853C1727DD10000386E5 /* TSPopoverTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9885391727DD10000386E5 /* TSPopoverTouchView.m */; };
 		2BC20D2F1726C30B00EE2CCB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC20D2E1726C30B00EE2CCB /* CFNetwork.framework */; };
 		2BC20D311726C37A00EE2CCB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC20D301726C37A00EE2CCB /* MobileCoreServices.framework */; };
 		2BC20D331726C39700EE2CCB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC20D321726C39700EE2CCB /* Security.framework */; };
@@ -156,6 +159,13 @@
 		2B53EDE6170F039200C8C184 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		2B53EDE7170F039200C8C184 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
 		2B53EDE8170F039200C8C184 /* heart-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-icon.png"; sourceTree = "<group>"; };
+		2B9885341727DD10000386E5 /* TSPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverController.h; sourceTree = "<group>"; };
+		2B9885351727DD10000386E5 /* TSPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverController.m; sourceTree = "<group>"; };
+		2B9885361727DD10000386E5 /* TSPopoverPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverPopoverView.h; sourceTree = "<group>"; };
+		2B9885371727DD10000386E5 /* TSPopoverPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverPopoverView.m; sourceTree = "<group>"; };
+		2B9885381727DD10000386E5 /* TSPopoverTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverTouchView.h; sourceTree = "<group>"; };
+		2B9885391727DD10000386E5 /* TSPopoverTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverTouchView.m; sourceTree = "<group>"; };
+		2B98853D1727DEF3000386E5 /* TSPopoverTouchesDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverTouchesDelegate.h; sourceTree = "<group>"; };
 		2BC20D2E1726C30B00EE2CCB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		2BC20D301726C37A00EE2CCB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		2BC20D321726C39700EE2CCB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -361,6 +371,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B9885321727DCDD000386E5 /* TSPopOver */ = {
+			isa = PBXGroup;
+			children = (
+				2B98853D1727DEF3000386E5 /* TSPopoverTouchesDelegate.h */,
+				2B9885341727DD10000386E5 /* TSPopoverController.h */,
+				2B9885351727DD10000386E5 /* TSPopoverController.m */,
+				2B9885361727DD10000386E5 /* TSPopoverPopoverView.h */,
+				2B9885371727DD10000386E5 /* TSPopoverPopoverView.m */,
+				2B9885381727DD10000386E5 /* TSPopoverTouchView.h */,
+				2B9885391727DD10000386E5 /* TSPopoverTouchView.m */,
+			);
+			name = TSPopOver;
+			sourceTree = "<group>";
+		};
 		2BC20CDA1726BD0200EE2CCB /* ASIHTTPRequest */ = {
 			isa = PBXGroup;
 			children = (
@@ -638,6 +662,7 @@
 		C8C0E7F116F87F0600C92E99 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2B9885321727DCDD000386E5 /* TSPopOver */,
 				C8C0E7F516F88FAB00C92E99 /* FGallery */,
 				C8C0E7F416F88ED200C92E99 /* component */,
 				C8C0E7F316F87FEF00C92E99 /* pages */,
@@ -935,6 +960,9 @@
 				C8C9DE3B1727CAD900E678CD /* ASIInputStream.m in Sources */,
 				C8C9DE3C1727CAD900E678CD /* ASINetworkQueue.m in Sources */,
 				C8C9DE401727CB2200E678CD /* Reachability.m in Sources */,
+				2B98853A1727DD10000386E5 /* TSPopoverController.m in Sources */,
+				2B98853B1727DD10000386E5 /* TSPopoverPopoverView.m in Sources */,
+				2B98853C1727DD10000386E5 /* TSPopoverTouchView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

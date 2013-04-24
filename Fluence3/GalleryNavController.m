@@ -303,9 +303,9 @@
     [localGallery reloadGallery];
 }
 
--(void)photoGallery:(FGalleryViewController *)gallery likeButtonClicked:(NSString*)imageId:(NSInteger)imgIndex{
+-(int)photoGallery:(FGalleryViewController *)gallery likeButtonClicked:(NSString*)imageId:(NSInteger)imgIndex{
     
-     NSString * isLiked = [[imageArray objectAtIndex:imgIndex] objectForKey:@"imageLiked"];
+    NSString * isLiked = [[imageArray objectAtIndex:imgIndex] objectForKey:@"imageLiked"];
     if([isLiked isEqualToString:@"0"]){
         NSString * str = [[imageArray objectAtIndex:imgIndex] objectForKey:@"imageLike"];
         NSInteger value = [str intValue];
@@ -314,21 +314,34 @@
         [[imageArray objectAtIndex:imgIndex] setValue:imglk forKey:@"imageLike"];
         imglk = @"1";
         [[imageArray objectAtIndex:imgIndex] setValue:imglk forKey:@"imageLiked"];
-        [localGallery reloadGallery];
+        return 1;
     }
     else
     {
         UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle: @"Hello"
-                          message: @"You have already liked it once"
+                              initWithTitle: @"Hello"
+                              message: @"You have already liked it once"
+                              delegate: nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        return 0;
+    }
+    
+}
+
+-(void)photoGallery:(FGalleryViewController *)gallery commentButtonClicked:(NSString*)imageId:(NSString*)comment{
+    
+    
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle: [@"Image ID : " stringByAppendingString:imageId]
+                          message: comment
                           delegate: nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil];
-        [alert show];
-        [alert release];
-        
-    }
-    
+    [alert show];
+    [alert release];
 }
 
 @end
