@@ -15,6 +15,7 @@
 @synthesize uniqueId;
 @synthesize subtitle;
 @synthesize coordinate;
+@synthesize imageUrl;
 
 - (void)dealloc 
 {
@@ -22,5 +23,6 @@
 	self.title = nil;
 	self.subtitle = nil;
     self.uniqueId = nil;
+    self.imageUrl = nil;
 }
 @end
