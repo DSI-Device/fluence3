@@ -13,9 +13,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1256"
-         endingLineNumber = "1256"
-         landmarkName = "-galleryPhoto:willLoadThumbnailFromUrl:"
-         landmarkType = "5">
+         endingLineNumber = "1256">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -27,9 +25,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1272"
-         endingLineNumber = "1272"
-         landmarkName = "-galleryPhoto:didLoadThumbnail:"
-         landmarkType = "5">
+         endingLineNumber = "1272">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
