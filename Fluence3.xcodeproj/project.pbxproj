@@ -640,6 +640,7 @@
 		C8C0E7F016F87ED800C92E99 /* nibs */ = {
 			isa = PBXGroup;
 			children = (
+				C89AEB161725634100AD2EF0 /* MapViewController.xib */,
 				C8A39B60171D926D00F7F44D /* TagCategoryController.xib */,
 				C84D34C9171EA8B800FFBA18 /* TagBrandController.xib */,
 				C8AC7EE51716EE49007E035E /* ImagePlinkController.xib */,
@@ -701,7 +702,6 @@
 				C88DC2B817031A6E002402BC /* GalleryNavController.m */,
 				C89AEB141725634100AD2EF0 /* MapViewController.h */,
 				C89AEB151725634100AD2EF0 /* MapViewController.m */,
-				C89AEB161725634100AD2EF0 /* MapViewController.xib */,
 			);
 			name = pages;
 			sourceTree = "<group>";

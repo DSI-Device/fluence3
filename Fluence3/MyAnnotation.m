@@ -19,10 +19,23 @@
 
 - (void)dealloc 
 {
-	[super dealloc];
+	
 	self.title = nil;
 	self.subtitle = nil;
     self.uniqueId = nil;
     self.imageUrl = nil;
+    [self.uniqueId release];
+    [self.imageUrl release];
+    [super dealloc];
 }
+
+- (id)init 
+{
+    self = [super init]; 
+    if (self) 
+    { 
+        /* custom initialization here ... */ 
+    } 
+    return self;
+} 
 @end

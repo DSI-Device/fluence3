@@ -11,13 +11,15 @@
 
 @interface MapViewController : UIViewController <MKMapViewDelegate>
 {
-    NSMutableArray* annotations;
+    NSMutableArray* annotationsArray;
 }
 
-@property (nonatomic, strong) IBOutlet MKMapView *mapView;
-@property (nonatomic, strong) NSMutableArray* annotations;
+@property (nonatomic, retain) IBOutlet MKMapView *mapView;
+@property (nonatomic, retain) NSMutableArray* annotationsArray;
 
 - (void)getLocations;
 - (void)setLocations;
+- (void)gotoLocation;
+- (void)refreshMap;
 
 @end

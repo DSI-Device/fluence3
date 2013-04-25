@@ -11,7 +11,7 @@
 
 @implementation MapViewController
 
-@synthesize mapView,annotations;
+@synthesize mapView,annotationsArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +33,7 @@
 - (void)dealloc
 {
     [mapView release];
+    [annotationsArray release];
     [super dealloc];
 }
 
@@ -44,8 +45,9 @@
     // Do any additional setup after loading the view from its nib.
     self.mapView.delegate = self;
     [self getLocations];
-
-    //reload view loose end
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshMap)];
+//    [self.navigationItem.rightBarButtonItem setTitle:@"Refresh"];
+    //moving annotations maybe loose-end
 }
 
 - (void)viewDidUnload
@@ -63,6 +65,19 @@
 
 #pragma mark - Map Related
 
+- (void)refreshMap
+{
+    // start off by default in San Francisco
+    NSLog(@"asa");
+    id userAnnotation = self.mapView.userLocation;
+    
+    NSMutableArray *annotations1 = [NSMutableArray arrayWithArray:self.mapView.annotations];
+    [annotations1 removeObject:userAnnotation];
+    
+    [self.mapView removeAnnotations:annotations1];
+    [self getLocations];
+}
+
 - (void)gotoLocation
 {
     // start off by default in San Francisco
@@ -78,21 +93,15 @@
 - (void)getLocations
 {
     
+    mapView.delegate=self;
+    
     NSDictionary *user1 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"3", @"userId", @"Naim", @"userName", @"37.786996", @"userLatitude", @"-122.419281", @"userLontitude",@"1", @"userCat", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic",nil];
     NSDictionary *user2 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"7", @"userId", @"Nazmul", @"userName", @"37.810000", @"userLatitude", @"-122.477989", @"userLontitude",@"1", @"userCat", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", nil];
     NSDictionary *user3 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"4", @"userId", @"Shuvo", @"userName", @"37.760000", @"userLatitude", @"-122.447989", @"userLontitude",@"1", @"userCat", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", nil];
     NSDictionary *user4 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"2", @"userId", @"Anik", @"userName", @"37.80000", @"userLatitude", @"-122.407989", @"userLontitude",@"1", @"userCat", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", nil];
     
-    annotations = [[NSMutableArray alloc] initWithObjects:user1,user2, user3, user4,nil];
-    
-    CLLocation *userLoc = mapView.userLocation.location;
-    CLLocationCoordinate2D userCoordinate = userLoc.coordinate;
-	
-	NSLog(@"user latitude = %f",userCoordinate.latitude);
-	NSLog(@"user longitude = %f",userCoordinate.longitude);
-	
-	mapView.delegate=self;
-		
+    annotationsArray = [[NSMutableArray alloc] initWithObjects:user1,user2, user3, user4,nil];
+   
 	CLLocationCoordinate2D theCoordinate1;
     theCoordinate1.latitude = 37.786996;
     theCoordinate1.longitude = -122.419281;
@@ -115,10 +124,10 @@
 
 - (void)setLocations
 {
-    int annCount = [annotations count];
+    int annCount = [annotationsArray count];
     
     for (int i = 0; i < annCount; i++) {
-        id row = [annotations objectAtIndex:i];
+        id row = [annotationsArray objectAtIndex:i];
         MyAnnotation* myAnnotation1=[[MyAnnotation alloc] init];
         NSString * str = [NSString stringWithFormat:[row objectForKey:@"userId"]];
         myAnnotation1.uniqueId = str;
@@ -137,29 +146,14 @@
         str = [NSString stringWithFormat:[row objectForKey:@"userPic"]];
         myAnnotation1.imageUrl = str;
         
-        static NSString* AnnotationIdentifier = @"AnnotationIdentifier";
-        MKPinAnnotationView* pinView = [[[MKPinAnnotationView alloc]
-                                         initWithAnnotation:myAnnotation1 reuseIdentifier:AnnotationIdentifier] autorelease];
-        UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        [rightButton setTitle:myAnnotation1.title forState:UIControlStateNormal];
-        [rightButton addTarget:self
-                        action:@selector(showDetails:)
-              forControlEvents:UIControlEventTouchUpInside];
-        pinView.rightCalloutAccessoryView = rightButton;
-        
         [mapView addAnnotation:myAnnotation1];
         [myAnnotation1 release];
     }   
-    	
-	NSLog(@"%d",[annotations count]);
-	//[self gotoLocation];//to catch perticular area on screen
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-	
+
 	// Walk the list of overlays and annotations and create a MKMapRect that
     // bounds all of them and store it into flyTo.
     MKMapRect flyTo = MKMapRectNull;
-	for (id annotation in annotations) {
+	for (id annotation in annotationsArray) {
 		NSLog(@"fly to on");
         NSString * str;
         CLLocationCoordinate2D theCoordinate1;
@@ -186,7 +180,7 @@
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
 	NSLog(@"welcome into the map view annotation");
-	MyAnnotation *vma = (MyAnnotation *)annotation;
+//	MyAnnotation *vma = (MyAnnotation *)annotation;
 	// if it's the user location, just return nil.
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
@@ -232,6 +226,21 @@ calloutAccessoryControlTapped:(UIControl *)control
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
+
+//    MyAnnotation* myAnnotation1=[[MyAnnotation alloc] init];
+//    CLLocation *userLoc = userLocation.location;
+//    CLLocationCoordinate2D userCoordinate = userLoc.coordinate;
+//	NSLog(@"user latitude = %f",userCoordinate.latitude);
+//	NSLog(@"user longitude = %f",userCoordinate.longitude);
+//    
+//    myAnnotation1.title=@"";
+//    myAnnotation1.subtitle=@"Current Location";
+//    myAnnotation1.coordinate=userCoordinate;
+//    [self.mapView addAnnotation:myAnnotation1];
+//    [myAnnotation1 release];
+    
+    
+    
 //    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
 //    [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
 //    
