@@ -12,8 +12,9 @@
 #import "TagCategoryController.h"
 #import "ASIHTTPRequest.h"
 #import "utils.h"
+#import "LocationGetter.h"
 
-@interface ImagePlinkController : UIViewController<TagCategoryControllerDelegate>{
+@interface ImagePlinkController : UIViewController<TagCategoryControllerDelegate, LocationGetterDelegate>{
     Fluence3AppDelegate *appdt;
     UIView *_container; // used as view for the controller
 	UIView *_innerContainer; // sized and placed to be fullscreen within the container
@@ -31,12 +32,14 @@
     NSString* _tagCategory;
     NSInteger _currentIndex;
     UIActivityIndicatorView *spinner;
-    
+    CLLocation *lastKnownLocation;
 }
 
 - (void)removeImageAtIndex:(NSUInteger)index;
+- (void)retrieveWeatherForLocation:(CLLocation *)location orZipCode:(NSString *)zipCode;
 
 @property (nonatomic,retain) NSString *_tagCategory;
 @property (nonatomic,readonly) UIToolbar *toolBar;
 @property (nonatomic,readonly) UIActivityIndicatorView *spinner;
+@property (nonatomic, retain) CLLocation *lastKnownLocation;
 @end

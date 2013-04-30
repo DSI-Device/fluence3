@@ -82,6 +82,7 @@
 		C897EEDA16F71A8F00AC1194 /* MYNSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EEC716F71A8F00AC1194 /* MYNSObject+JSON.m */; };
 		C897EEDD16F71B0C00AC1194 /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EEDB16F71B0B00AC1194 /* utils.m */; };
 		C897EEE316F7267900AC1194 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C897EEE216F7267800AC1194 /* SystemConfiguration.framework */; };
+		C899C5CA172FB61000CD06B2 /* LocationGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = C899C5C8172FB61000CD06B2 /* LocationGetter.m */; };
 		C89AEB171725634100AD2EF0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89AEB151725634100AD2EF0 /* MapViewController.m */; };
 		C89AEB181725634100AD2EF0 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C89AEB161725634100AD2EF0 /* MapViewController.xib */; };
 		C89AEB1B1725637100AD2EF0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89AEB1A1725637100AD2EF0 /* MapKit.framework */; };
@@ -259,6 +260,8 @@
 		C897EEDB16F71B0B00AC1194 /* utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = utils.m; sourceTree = "<group>"; };
 		C897EEDC16F71B0B00AC1194 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		C897EEE216F7267800AC1194 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C899C5C8172FB61000CD06B2 /* LocationGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationGetter.m; sourceTree = "<group>"; };
+		C899C5C9172FB61000CD06B2 /* LocationGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationGetter.h; sourceTree = "<group>"; };
 		C89AEB141725634100AD2EF0 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		C89AEB151725634100AD2EF0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		C89AEB161725634100AD2EF0 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
@@ -608,6 +611,15 @@
 			name = "sqlite-amalgamation-3071000";
 			sourceTree = "<group>";
 		};
+		C899C5C6172FB5F500CD06B2 /* LocationGetter */ = {
+			isa = PBXGroup;
+			children = (
+				C899C5C8172FB61000CD06B2 /* LocationGetter.m */,
+				C899C5C9172FB61000CD06B2 /* LocationGetter.h */,
+			);
+			name = LocationGetter;
+			sourceTree = "<group>";
+		};
 		C8C0E7ED16F87EB700C92E99 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -709,6 +721,7 @@
 		C8C0E7F416F88ED200C92E99 /* component */ = {
 			isa = PBXGroup;
 			children = (
+				C899C5C6172FB5F500CD06B2 /* LocationGetter */,
 				C838CB701726A46500B9AC17 /* Annotation */,
 				C8E5097E1704732F00A1624A /* OBShapedButton */,
 				C8CE00D51704299400558361 /* ISColumnsController.h */,
@@ -963,6 +976,7 @@
 				2B98853A1727DD10000386E5 /* TSPopoverController.m in Sources */,
 				2B98853B1727DD10000386E5 /* TSPopoverPopoverView.m in Sources */,
 				2B98853C1727DD10000386E5 /* TSPopoverTouchView.m in Sources */,
+				C899C5CA172FB61000CD06B2 /* LocationGetter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
