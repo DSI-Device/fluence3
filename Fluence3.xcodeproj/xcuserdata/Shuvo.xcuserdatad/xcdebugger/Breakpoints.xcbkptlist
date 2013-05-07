@@ -33,13 +33,27 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Fluence3/ImagePlinkController.m"
-         timestampString = "388309162.507501"
+         timestampString = "389022308.749919"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "246"
-         endingLineNumber = "246"
-         landmarkName = "@implementation ImagePlinkController"
-         landmarkType = "3">
+         startingLineNumber = "608"
+         endingLineNumber = "608"
+         landmarkName = "-retrieveWeatherForLocation:orZipCode:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Fluence3/ImagePlinkController.m"
+         timestampString = "389021038.924297"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "528"
+         endingLineNumber = "528"
+         landmarkName = "-retrieveWeatherForLocation:orZipCode:"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
    <ExceptionBreakpoints>

@@ -10,14 +10,20 @@
 #import <QuartzCore/QuartzCore.h>
 #import "OBShapedButton.h"
 #import "TagCategoryController.h"
+#import "LocationGetter.h"
+#import "ASIFormDataRequest.h"
+
 @class ASIFormDataRequest;
+
 #define kCaptionPadding 3
 #define kToolbarHeight 40
 
 @implementation ImagePlinkController
 
+const NSString *kWundergroundKey = @"67b642d58e39c9cc";
+
 @synthesize toolBar = _toolbar;
-@synthesize _tagCategory;
+@synthesize _tagCategory,spinner,lastKnownLocation;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -56,6 +62,10 @@
     [self.view addSubview:spinner];
     // Do any additional setup after loading the view from its nib.
     
+    // get our physical location
+    LocationGetter *locationGetter = [[LocationGetter alloc] init];
+    locationGetter.delegate = self;
+    [locationGetter startUpdates];
 
 }
 - (void)loadView
@@ -227,6 +237,9 @@
     
     [_container release];
     _container = nil;
+    
+    [spinner release];
+    [lastKnownLocation release];
     
     [super dealloc];
 }
@@ -437,5 +450,191 @@
     [spinner stopAnimating];
     
 }
+
+# pragma mark LocationGetter Delegate Methods
+
+- (void)newPhysicalLocation:(CLLocation *)location {
+    
+    // Store for later use
+    self.lastKnownLocation = location;
+    [self retrieveWeatherForLocation:self.lastKnownLocation orZipCode:nil];
+
+    /*    
+    // Alert user
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location Found" message:[NSString stringWithFormat:@"Found physical location.  %f %f", self.lastKnownLocation.coordinate.latitude, self.lastKnownLocation.coordinate.longitude] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+    [alert release]; */ 
+}
+
+
+#pragma mark - Methods for retrieving weather from Wunderground
+
+- (void)retrieveWeatherForLocation:(CLLocation *)location orZipCode:(NSString *)zipCode
+{
+    NSString *urlString;
+    
+    // get URL for current conditions
+    
+    if (location)
+    {
+        // based upon longitude and latitude returned by CLLocationManager
+        
+        urlString = [NSString stringWithFormat:@"http://api.wunderground.com/api/%@/conditions/q/%+f,%+f.json",
+                     kWundergroundKey,
+                     location.coordinate.latitude,
+                     location.coordinate.longitude];
+    }
+    else if ([zipCode length] == 5)
+    {
+        // based upon the zip code
+        
+        urlString = [NSString stringWithFormat:@"http://api.wunderground.com/api/%@/conditions/q/%@.json",
+                     kWundergroundKey,
+                     zipCode];
+        
+    }
+    else
+    {
+        NSAssert(NO, @"You must provide a CLLocation object or five digit zip code");
+    }
+    
+    // Log it so you can see what the URL was for diagnostic purposes.
+    // It's often useful to pull this up in a web browser like FireFox
+    // so you can diagnose what's going on.
+    
+//    [self updateStatusMessage:@"Identified location; determining weather" stopActivityIndicator:NO stopLocationServices:NO logMessage:urlString];
+    
+    NSURL *url          = [NSURL URLWithString:urlString];
+    
+    NSData *weatherData = [NSData dataWithContentsOfURL:url];
+    
+    // make sure we were able to get some response from the URL; if not
+    // maybe your internet connection is not operational, or something
+    // like that.
+    
+    if (weatherData == nil)
+    {
+        // Alert user
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try again later" message:[NSString stringWithFormat:@"Unable to retrieve data from weather service.  %f %f", self.lastKnownLocation.coordinate.latitude, self.lastKnownLocation.coordinate.longitude] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        [alert release]; 
+        //[self updateStatusMessage:@"Unable to retrieve data from weather service" stopActivityIndicator:YES stopLocationServices:YES logMessage:@"weatherData is nil"];
+        return;
+    }
+    
+    // parse the JSON results
+    
+    NSError *error;
+    id weatherResults = [NSJSONSerialization JSONObjectWithData:weatherData options:0 error:&error];
+    
+    // if there was an error, report this
+    
+//    if(error != nil){
+//        NSString *desc = [error localizedFailureReason];
+//    }
+    if (error == nil)
+    { 
+        // Alert user
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try again later" message:[NSString stringWithFormat:@"Error parsing results from weather service.  %f %f", self.lastKnownLocation.coordinate.latitude, self.lastKnownLocation.coordinate.longitude] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        [alert release];
+        //[self updateStatusMessage:@"Error parsing results from weather service" stopActivityIndicator:YES stopLocationServices:YES logMessage:error];
+        return;
+    }
+    
+    // otherwise, let's make sure we got a NSDictionary like we expected
+    
+    else if (![weatherResults isKindOfClass:[NSDictionary class]])
+    {
+        // Alert user
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try again later" message:[NSString stringWithFormat:@"Unexpected results from weather service.  %f %f", self.lastKnownLocation.coordinate.latitude, self.lastKnownLocation.coordinate.longitude] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        [alert release];
+        //[self updateStatusMessage:@"Unexpected results from weather service" stopActivityIndicator:YES stopLocationServices:YES logMessage:weatherResults];
+        return;
+    }
+    NSDictionary *test = (NSDictionary *)weatherResults;
+    
+    // if we've gotten here, that means that we've parsed the JSON feed from Wunderground,
+    // so now let's see if we got the expected response
+    
+    NSDictionary *response = [test objectForKey:@"response"]; //weatherResults[@"response"];
+    if (response == nil || ![response isKindOfClass:[NSDictionary class]])
+    {
+        // Alert user
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try again later" message:[NSString stringWithFormat:@"Error parsing results from weather service.  %f %f", self.lastKnownLocation.coordinate.latitude, self.lastKnownLocation.coordinate.longitude] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        [alert release];
+        return;
+    }
+    
+    // now, let's see if that response reported any particular error
+    
+    NSDictionary *errorDictionary = [response objectForKey:@"error"];//response[@"error"];
+    if (errorDictionary != nil)
+    {
+        NSString *message = @"Error reported by weather service";
+        
+        if ([errorDictionary objectForKey:@"description"])//errorDictionary[@"description"])
+            message = [NSString stringWithFormat:@"%@: %@", message, [errorDictionary objectForKey:@"description"]];//errorDictionary[@"description"]];
+        // Alert user
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try again later" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        [alert release];
+        //        if ([errorDictionary[@"type"] isEqualToString:@"keynotfound"])
+        //        {
+        //            NSLog(@"%s You must get a key for your app from http://www.wunderground.com/weather/api/", __FUNCTION__);
+        //        }
+        return;
+    }
+    
+    // if no errors thus far, then we can now inspect the current_observation
+    
+    NSDictionary *currentObservation = [test objectForKey:@"current_observation"];//weatherResults[@"current_observation"];
+    
+    if (currentObservation == nil)
+    {
+        // if not found, let's tell the user
+        NSString *message = @"No observation data found";
+        // Alert user
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try again later" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        [alert release];
+        return;
+    }
+    
+    // otherwise, let's look up the barometer information
+    
+    NSString *statusMessage;
+    NSString *pressureMb = [currentObservation objectForKey:@"pressure_mb"];//[@"pressure_mb"];
+    
+    if (pressureMb)
+    {
+        statusMessage = @"Retrieved barometric pressure";
+        //self.pressureMbLabel.text = pressureMb;
+    }
+    else
+    {
+        statusMessage = @"No barometric information found";
+    }
+    
+    NSNumber *tempC      = [currentObservation objectForKey:@"temp_c"];//[@"temp_c"];
+    
+    if (tempC)
+    {
+        statusMessage = @"Retrieved temperature";
+//        self.tempCLabel.text = [tempC stringValue];
+    }
+    else
+    {
+        statusMessage = @"No temperature information found";
+    }
+    
+    // update the user interface status message
+    
+//    [self updateStatusMessage:statusMessage stopActivityIndicator:YES stopLocationServices:YES logMessage:weatherResults];
+}
+
+
 
 @end
