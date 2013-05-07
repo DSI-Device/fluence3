@@ -607,7 +607,7 @@ const NSString *kWundergroundKey = @"67b642d58e39c9cc";
     
     NSString *statusMessage;
     NSString *pressureMb = [currentObservation objectForKey:@"pressure_mb"];//[@"pressure_mb"];
-    
+    NSString *weather = [currentObservation objectForKey:@"weather"];//[@"pressure_mb"];
     if (pressureMb)
     {
         statusMessage = @"Retrieved barometric pressure";
