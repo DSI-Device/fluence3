@@ -14,7 +14,7 @@
 #import "CustomPeopleListCell.h"
 #import "viewMoreCell.h"
 
-@interface SelectListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate> {
+@interface PoseListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate> {
 	MYSBJsonStreamParser *parser;
 	MYSBJsonStreamParserAdapter *adapter;
 	NSMutableArray *dataSource;

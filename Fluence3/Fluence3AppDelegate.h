@@ -20,6 +20,7 @@
     BOOL isStylist;
     UIImage *img;
     UIImage *imgOptimized;
+    NSMutableArray *selectedPoseList;
 }
 
 extern NSString *const SessionStateChangedNotification;
@@ -37,6 +38,7 @@ extern NSString *const SessionStateChangedNotification;
 
 @property (nonatomic, strong) UIImage *img;
 @property (nonatomic, strong) UIImage *imgOptimized;
+@property (nonatomic, strong) NSMutableArray *selectedPoseList;
 //@property (strong, nonatomic) MainViewController *mainViewController;
 
 - (void)openSession;

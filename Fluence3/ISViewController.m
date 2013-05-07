@@ -4,7 +4,7 @@
 #import "CameraImageController.h"
 #import "SelectListViewController.h"
 #import "MapViewController.h"
-
+#import "SelectPoseListViewController.h"
 @implementation ISViewController
 
 @synthesize gc;
@@ -99,9 +99,15 @@
     [self.navigationController pushViewController:nCameraImage animated:true];
 }
 - (IBAction)findPeopleClicked{
+    
+    selectListView = [[[SelectPoseListViewController alloc] initWithNibName:@"SelectPoseListViewController" bundle:nil]autorelease];
+    selectListView.title = @"Find People";
+    [self.navigationController pushViewController:selectListView animated:true];
+    /*
     selectListView = [[[SelectListViewController alloc] initWithNibName:@"SelectListViewController" bundle:nil]autorelease];
     selectListView.title = @"Find People";
     [self.navigationController pushViewController:selectListView animated:true];
+     */
 }
 - (IBAction)mapViewClicked{
     mapViewController = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil]autorelease];

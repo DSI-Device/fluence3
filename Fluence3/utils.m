@@ -20,7 +20,7 @@
 
 + (NSString *) getServerURL {
 	//return @"http://www.irefermd.com/admin-v1/index.php?r=";
-	return @"http://www.irefermd.com/admin/index.php?r=";
+	return @"http://103.4.147.139/fluence3/";
 }
 
 + (UIColor *) getTableCellSelectionColor{

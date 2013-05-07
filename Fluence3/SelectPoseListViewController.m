@@ -6,12 +6,12 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "SelectListViewController.h"
+#import "SelectPoseListViewController.h"
 
 
-@implementation SelectListViewController
+@implementation SelectPoseListViewController
 
-@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit;
+@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,appdt,poseListView;
 
 - (void)loadView{
 	[super loadView];
@@ -27,7 +27,8 @@
     
 	[self.listTableView setHidden:YES];
 	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&limit=%d",self.currentLimit];
-    NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/fetch_teste_list/" ];
+	NSLog(@"serverUrl: %@", serverUrl);
 	//NSString *serverUrl=@"http://103.4.147.139/fluence3";
 	[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
 	//[utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
@@ -90,7 +91,7 @@
 		if ([self.dataSource count] < self.totalCount) {
 			[self.dataSource addObject:[[[NSDictionary alloc] initWithObjectsAndKeys:[NSString stringWithFormat:@"Showing %d out of %d",self.currentLimit,self.totalCount],@"count",nil] autorelease] ];
 		}
-		[self.dataSource addObject:[[[NSDictionary alloc] init] autorelease] ];//empty allocation in-order to able to select the last element
+		//[self.dataSource addObject:[[[NSDictionary alloc] init] autorelease] ];//empty allocation in-order to able to select the last element
 		[self.listTableView reloadData];
 		[self.spinner stopAnimating];
 		self.spinner.hidden = YES;
@@ -150,6 +151,9 @@
 }
 
 
+
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	NSLog(@"Count cellForRowAtIndexPath %u", [self.dataSource count]);
 	NSUInteger row = [indexPath row];
@@ -180,99 +184,46 @@
 		
 	}else {
 		
-		static NSString *cellTableIdentifier = @"CustomPeopleListCellIdentifier";
+		static NSString *cellTableIdentifier = @"CustomPoseSelectCellIdentifier";
 		
-		CustomPeopleListCell *cell = (CustomPeopleListCell *)[tableView dequeueReusableCellWithIdentifier:cellTableIdentifier];
+		CustomPoseSelectCell *cell = (CustomPoseSelectCell *)[tableView dequeueReusableCellWithIdentifier:cellTableIdentifier];
 		if (cell == nil) {
-			NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomPeopleListCell" owner:self options:nil];
+			NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomPoseSelectCell" owner:self options:nil];
 			cell = [nib objectAtIndex:0];
 			cell.selectedBackgroundView = [[[UIView alloc] init] autorelease];
 			[cell.selectedBackgroundView setBackgroundColor:[UIColor orangeColor]];
 		}
-		cell.userName.text = [rowData objectForKey:@"userName"];
-        cell.userID = [rowData objectForKey:@"userID"];
-		cell.followed.hidden = NO;
-        cell.followed.tag=[indexPath row];
-        followed_s = [rowData objectForKey:@"followed"];
-        [cell.followed addTarget:self action:@selector(tappedFollowBtn2:)  forControlEvents:UIControlEventTouchUpInside];
-        //NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
-		NSString *serverUrl = [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"images/%@",[rowData objectForKey:@"userImage"]];
-		
-		NSURL *url = [NSURL URLWithString:serverUrl];
-		
-		NSData *data = [[NSData alloc] initWithContentsOfURL:url];
-		
-		UIImage *tmpImage = [[UIImage alloc] initWithData:data];
-		
-		//yourImageView.image = tmpImage;
-		
-		
-		[cell.userImage setImage:tmpImage];
-		if ([followed_s isEqualToString:@"1"]) {
-			cell.isFollowed = YES;
-            [cell.followed setTitle:@"Unfollow" forState:UIControlStateNormal];
-		}else if([followed_s isEqualToString:@"0"]){
-			cell.isFollowed = NO;
-            [cell.followed setTitle:@"Follow" forState:UIControlStateNormal];
-			
-		}else {
-			cell.followed.hidden = YES;
-		}
-		
-		return cell;
 
+        cell.tasteID = [rowData objectForKey:@"tasteID"];
+		cell.tasteName.text = [rowData objectForKey:@"tasteName"];
+		cell.checked.hidden = NO;
+        cell.isSelected = NO;
+        [cell.checked setImage:[UIImage imageNamed:@"checkbox_not_ticked.png"]];
+        
+        /*
+		if ([utils isRowExistsOnList:selectedDataSource row:rowData]) {
+			cell.isSelected = YES;
+			[cell.checked setImage:[UIImage imageNamed:@"checkbox_ticked.png"]];
+		}else if(cell.tasteName.text != NULL && ![cell.tasteName.text isEqual:@""]){
+			cell.isSelected = NO;
+			[cell.checked setImage:[UIImage imageNamed:@"checkbox_not_ticked.png"]];
+		}else {
+			cell.checked.hidden = YES;
+		}
+         */
+		return cell;
 	}
 }
-//[objectWithOurMethod methodName:int1 ];
-- (void)tappedFollowBtn2:(id) sender
-{
-    NSLog(@"Button Clicked...");
-    NSLog(@"Count tappedFollowBtn2 %u", [self.dataSource count]);
-    //UIButton *senderButton = (UIButton *)sender;
-    NSIndexPath *indexPath = [listTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
-    NSUInteger row = [indexPath row];
-	NSDictionary *rowData = [self.dataSource objectAtIndex:row];
-	//NSString *qwe = [rowData JSONRepresentation];
-    //
-    CustomPeopleListCell *cell = (CustomPeopleListCell *) [listTableView cellForRowAtIndexPath:indexPath];
-	if (!cell.isFollowed) {
-        
-        [rowData setValue:@"1" forKey:@"followed"];
-        cell.isFollowed = YES;
-        [cell.followed setTitle:@"Unfollow" forState:UIControlStateNormal];
-		followed_s = @"1";
-        
-		
-    }else {
-        [rowData setValue:@"0" forKey:@"followed"];
-        cell.isFollowed = NO;
-        [cell.followed setTitle:@"Follow" forState:UIControlStateNormal];
-		followed_s = @"0";
-        
-    }
-	
-    
-	
-   	NSLog(@"Follower ID : %@ ",cell.userID);
-	NSString *myRequestString = [[NSString alloc] initWithFormat:@"userID=%@&followed=%@",cell.userID,followed_s];
-	NSLog(@"%@ ",myRequestString);
-	NSData *myRequestData = [ NSData dataWithBytes: [ myRequestString UTF8String ] length: [ myRequestString length ] ];
-	NSMutableURLRequest *request = [ [ NSMutableURLRequest alloc ] initWithURL: [ NSURL URLWithString: [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/follow/" ]]];
-   	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
-    [request setHTTPMethod: @"POST"];
-	[request setHTTPBody: myRequestData];
-	NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-	
-    if (conn) NSLog(@"Connection Successful");
-	[request release];//shuvo
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+	
+		return 55.0f;
 }
-     
-     // event handler after selecting a table row
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-     NSLog(@"Row selected...");
-     
-     /* NSUInteger row = [indexPath row];
+    NSLog(@"Row selected...");
+    
+     NSUInteger row = [indexPath row];
 	 NSDictionary *rowData = [self.dataSource objectAtIndex:row];
 	 if ([rowData objectForKey:@"count"] != NULL && ![[rowData objectForKey:@"count"] isEqual:@""] ) {
 	 viewMoreCell *cell = (viewMoreCell *)[tableView cellForRowAtIndexPath:indexPath];
@@ -289,32 +240,24 @@
 	 
 	 
 	 
-	 }else if ([rowData objectForKey:@"userName"] != NULL && ![[rowData objectForKey:@"userName"] isEqual:@""] ) {
+	 }else if ([rowData objectForKey:@"tasteName"] != NULL && ![[rowData objectForKey:@"tasteName"] isEqual:@""] ) {
 	 
-	 NSLog(@"option selected on select list");
-	 if( self.defaultElemId != nil && [self.defaultElemId isEqual:[rowData objectForKey:@"userID"]]){
-	 [utils showAlert:@"Warning !!" message:@"Default option can't be removed." delegate:nil];
-	 return;
-	 }
-	 CustomPeopleListCell *cell = (CustomPeopleListCell *)[tableView cellForRowAtIndexPath:indexPath];
-	 [cell.followed addTarget:self action:@selector(tappedFollowBtn2:) forControlEvents:UIControlEventTouchUpInside];
-	 if (!cell.isFollowed) {
-	 if (self.maxSelectionLimit > 0 && [selectedDataSource count] >= self.maxSelectionLimit) {
-	 [utils showAlert:@"Warning !!" message:@"Maximum selection limit exceeded." delegate:nil];
-	 return;
-	 }
-	 [selectedDataSource addObject:rowData];
-	 //cell.isFollowed = YES;
-	 //[cell.followed setTitle:@"Unfollow" forState:UIControlStateNormal];
-	 //[cell.userImage setImage:[UIImage imageNamed:@"checkbox_ticked.png"]];
+         NSLog(@"option selected on select list");
 	 
-	 }else {
-	 [utils deleteRowFromList:selectedDataSource row:rowData];
-	 //cell.isFollowed = NO;
-	 //[cell.followed setTitle:@"Follow" forState:UIControlStateNormal];
-	 //[cell.userImage setImage:[UIImage imageNamed:@"checkbox_not_ticked.png"]];
-	 }
-	 }*/
+         CustomPoseSelectCell *cell = (CustomPoseSelectCell *)[tableView cellForRowAtIndexPath:indexPath];
+	 
+         if (!cell.isSelected) {
+             [selectedDataSource addObject:rowData];
+             cell.isSelected = YES;
+             [cell.checked setImage:[UIImage imageNamed:@"checkbox_ticked.png"]];
+		 }
+         else
+         {
+             [utils deleteRowFromList:selectedDataSource row:rowData];
+             cell.isSelected = NO;
+             [cell.checked setImage:[UIImage imageNamed:@"checkbox_not_ticked.png"]];
+         }
+    }
 	[self hideKeyboard:nil];
 }
 
@@ -342,7 +285,12 @@
 }
 
 - (IBAction) selectionDone: (id) sender{
-	[self.filterView setSelectedOption:selectedDataSource delegate:self];
+	//[self.filterView setSelectedOption:selectedDataSource delegate:self];
+    appdt.selectedPoseList=selectedDataSource;
+    
+    poseListView = [[[PoseListViewController alloc] initWithNibName:@"PoseListViewController" bundle:nil]autorelease];
+    poseListView.title = @"Find People";
+    [self.navigationController pushViewController:poseListView animated:true];
 }
 
 - (NSString *) getSearchBarTitle{
@@ -379,7 +327,7 @@
 	[dataSource release];
 	[searchBar release];
 	[followed_s release];
-
+    
     [super dealloc];
 }
 

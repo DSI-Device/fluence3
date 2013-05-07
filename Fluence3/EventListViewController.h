@@ -11,10 +11,10 @@
 #import "utils.h"
 #import "searchDao.h"
 #import "SelectBoxProtocol.h"
-#import "CustomPeopleListCell.h"
+#import "CustomEventListCell.h"
 #import "viewMoreCell.h"
 
-@interface SelectListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate> {
+@interface EventListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate> {
 	MYSBJsonStreamParser *parser;
 	MYSBJsonStreamParserAdapter *adapter;
 	NSMutableArray *dataSource;

@@ -6,10 +6,10 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "SelectListViewController.h"
+#import "PoseListViewController.h"
 
 
-@implementation SelectListViewController
+@implementation PoseListViewController
 
 @synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit;
 
@@ -27,8 +27,8 @@
     
 	[self.listTableView setHidden:YES];
 	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&limit=%d",self.currentLimit];
-    NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
-	//NSString *serverUrl=@"http://103.4.147.139/fluence3";
+    //NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
+	NSString *serverUrl=@"http://103.4.147.139/fluence3";
 	[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
 	//[utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
 	
@@ -51,8 +51,8 @@
 	NSLog(@"inside searchContentChanged......");
 	self.currentLimit = 50;
 	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&doc_name=%@&limit=%d", self.searchBar.text, self.currentLimit];
-    NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
-	//NSString *serverUrl=@"http://103.4.147.139/fluence3";
+    //NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
+	NSString *serverUrl=@"http://103.4.147.139/fluence3";
 	[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
 }
 
@@ -195,8 +195,7 @@
         cell.followed.tag=[indexPath row];
         followed_s = [rowData objectForKey:@"followed"];
         [cell.followed addTarget:self action:@selector(tappedFollowBtn2:)  forControlEvents:UIControlEventTouchUpInside];
-        //NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
-		NSString *serverUrl = [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"images/%@",[rowData objectForKey:@"userImage"]];
+		NSString *serverUrl = [@"http://103.4.147.139/fluence3/images/" stringByAppendingFormat:@"%@",[rowData objectForKey:@"userImage"]];
 		
 		NSURL *url = [NSURL URLWithString:serverUrl];
 		
@@ -232,8 +231,7 @@
     NSIndexPath *indexPath = [listTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
     NSUInteger row = [indexPath row];
 	NSDictionary *rowData = [self.dataSource objectAtIndex:row];
-	//NSString *qwe = [rowData JSONRepresentation];
-    //
+	//
     CustomPeopleListCell *cell = (CustomPeopleListCell *) [listTableView cellForRowAtIndexPath:indexPath];
 	if (!cell.isFollowed) {
         
@@ -257,7 +255,7 @@
 	NSString *myRequestString = [[NSString alloc] initWithFormat:@"userID=%@&followed=%@",cell.userID,followed_s];
 	NSLog(@"%@ ",myRequestString);
 	NSData *myRequestData = [ NSData dataWithBytes: [ myRequestString UTF8String ] length: [ myRequestString length ] ];
-	NSMutableURLRequest *request = [ [ NSMutableURLRequest alloc ] initWithURL: [ NSURL URLWithString: [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/follow/" ]]];
+	NSMutableURLRequest *request = [ [ NSMutableURLRequest alloc ] initWithURL: [ NSURL URLWithString: @"http://103.4.147.139/fluence3/index.php/welcome/follow/" ] ];
    	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
     [request setHTTPMethod: @"POST"];
 	[request setHTTPBody: myRequestData];

@@ -11,10 +11,13 @@
 #import "utils.h"
 #import "searchDao.h"
 #import "SelectBoxProtocol.h"
-#import "CustomPeopleListCell.h"
+#import "CustomPoseSelectCell.h"
 #import "viewMoreCell.h"
+#import "Fluence3AppDelegate.h"
 
-@interface SelectListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate> {
+#import "PoseListViewController.h"
+
+@interface SelectPoseListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate> {
 	MYSBJsonStreamParser *parser;
 	MYSBJsonStreamParserAdapter *adapter;
 	NSMutableArray *dataSource;
@@ -35,6 +38,10 @@
 	int maxSelectionLimit;
 	UIViewController<SelectBoxProtocol> *filterView;
 	NSString *followed_s;
+    
+    Fluence3AppDelegate *appdt;
+    
+    PoseListViewController *poseListView;
 }
 
 @property(nonatomic, retain) UITextField *searchBar;
@@ -52,6 +59,8 @@
 @property(nonatomic, assign) int currentLimit;
 @property(nonatomic, assign) NSString *followed_s;
 @property(nonatomic, assign) int action_status;
+@property(nonatomic, assign) PoseListViewController *poseListView;
+@property(nonatomic, assign) Fluence3AppDelegate *appdt;
 - (IBAction) selectionDone:(id) sender;
 - (IBAction) searchContentChanged: (id) sender;
 - (IBAction) hideKeyboard: (id) sender;

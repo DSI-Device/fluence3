@@ -35,6 +35,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 @synthesize columnsController = _columnsController;
 @synthesize img;
 @synthesize imgOptimized;
+@synthesize selectedPoseList;
 
 - (void)dealloc {
     [_navigationController release];
