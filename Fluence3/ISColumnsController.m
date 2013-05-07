@@ -42,7 +42,7 @@
     titleView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     
     self.pageControl = [[[UIPageControl alloc] init] autorelease];
-    self.pageControl.numberOfPages = 3;
+    //self.pageControl.numberOfPages = 3;
     self.pageControl.frame = CGRectMake(0, 27, 150, 14);
     self.pageControl.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin|
                                          UIViewAutoresizingFlexibleBottomMargin|
@@ -76,7 +76,7 @@
     self.scrollView = [[[UIScrollView alloc] init] autorelease];
     self.scrollView.backgroundColor = [UIColor blackColor];
     self.scrollView.pagingEnabled = YES;
-    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.showsHorizontalScrollIndicator = YES;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.scrollsToTop = NO;
     self.scrollView.delegate = self;

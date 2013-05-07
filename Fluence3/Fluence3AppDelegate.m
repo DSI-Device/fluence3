@@ -205,7 +205,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
     self.navigationController.viewControllers = [NSArray arrayWithObject:self.columnsController];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor blackColor];
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
