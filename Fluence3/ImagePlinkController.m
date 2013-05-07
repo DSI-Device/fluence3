@@ -95,7 +95,8 @@ const NSString *kWundergroundKey = @"67b642d58e39c9cc";
     _innerContainer.frame               = innerContainerRect;
     _toolbar.frame                      = CGRectMake( 0, _container.frame.size.height-120, _container.frame.size.width, 60);
     _plinkImage.frame                   = CGRectMake(0, 0, _container.frame.size.width, 320);
-    
+    CGRect cr = _plinkImage.frame;
+    NSLog(@"asa");
 // setup tag
     _tagContainer.hidden				= NO;
     _tagContainer.backgroundColor       = [UIColor colorWithWhite:1.0 alpha:0.0];
@@ -104,20 +105,20 @@ const NSString *kWundergroundKey = @"67b642d58e39c9cc";
 // setup tag Caption
     _tagCaptionContainer.hidden				= YES;
     _tagCaptionContainer.backgroundColor    = [UIColor colorWithWhite:1.0 alpha:0.0];
-    _tagCaption.font								= [UIFont systemFontOfSize:14.0];
-    _tagCaption.textColor							= [UIColor whiteColor];
-    _tagCaption.backgroundColor					= [UIColor clearColor];
-    _tagCaption.textAlignment						= UITextAlignmentCenter;
-    _tagCaption.shadowColor						= [UIColor blackColor];
-    _tagCaption.shadowOffset						= CGSizeMake( 1, 1 );    
+    _tagCaption.font						= [UIFont systemFontOfSize:14.0];
+    _tagCaption.textColor					= [UIColor whiteColor];
+    _tagCaption.backgroundColor				= [UIColor clearColor];
+    _tagCaption.textAlignment				= UITextAlignmentCenter;
+    _tagCaption.shadowColor					= [UIColor blackColor];
+    _tagCaption.shadowOffset				= CGSizeMake( 1, 1 );    
 // setup Image view
-    _plinkImage.image = appdt.img;
+    _plinkImage.image                       = appdt.img;
     
 //setup buttons
-    _saveButton  = [UIButton buttonWithType:UIButtonTypeCustom];
+    _saveButton                             = [UIButton buttonWithType:UIButtonTypeCustom];
 
 //set the position of the button
-    _saveButton.frame = CGRectMake(5, 10, 60, 40);
+    _saveButton.frame                       = CGRectMake(5, 10, 60, 40);
 
 //background image
 //    UIImage *buttonImage = [UIImage imageNamed:@"heart-icon.png"];
@@ -419,6 +420,7 @@ const NSString *kWundergroundKey = @"67b642d58e39c9cc";
 - (IBAction)uploadImage_asi {
     
     [spinner startAnimating];
+    
 	
 	NSString *strURL = @"http://103.4.147.139/fluence3/index.php/welcome/upload";
     
@@ -441,7 +443,7 @@ const NSString *kWundergroundKey = @"67b642d58e39c9cc";
 }
 - (void)uploadRequestFinished:(ASIHTTPRequest *)request
 {
-    NSLog(@" Error - Statistics file upload finish: \"%@\"",[request responseString]);
+    NSLog(@" Statistics file upload finish: \"%@\"",[request responseString]);
     [spinner stopAnimating];
 }
 
@@ -607,7 +609,7 @@ const NSString *kWundergroundKey = @"67b642d58e39c9cc";
     
     NSString *statusMessage;
     NSString *pressureMb = [currentObservation objectForKey:@"pressure_mb"];//[@"pressure_mb"];
-    
+    NSString *weather = [currentObservation objectForKey:@"weather"];//[@"pressure_mb"];
     if (pressureMb)
     {
         statusMessage = @"Retrieved barometric pressure";

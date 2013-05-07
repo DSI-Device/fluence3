@@ -270,7 +270,7 @@
     // setup tag
     _tagContainer.hidden					    = NO;
     _tagContainer.backgroundColor               = [UIColor colorWithWhite:1.0 alpha:0.0];
-    _tagContainer.frame                         = CGRectMake(100, 114, 256, 278);
+    _tagContainer.frame                         = CGRectMake(100, 114, 270, 326);
     
     _tagCaptionContainer.hidden					= NO;
     _tagCaptionContainer.backgroundColor        = [UIColor colorWithWhite:1.0 alpha:0.0];
@@ -539,9 +539,11 @@
         NSUInteger i, count = [_photoViews count];
         float dx = 0;
         for (i = 0; i < count; i++) {
-            FGalleryPhotoView * photoView = [_photoViews objectAtIndex:i];
-            photoView.frame = CGRectMake(dx+50, 114, rect.size.width - 50,  _scroller.frame.size.height-(kToolbarHeight + 114)  );
+            FGalleryPhotoView * photoView = [_photoViews objectAtIndex:i]; 
+            photoView.frame = CGRectMake(dx+50, 114, rect.size.width - 50, 320);  //_scroller.frame.size.height-(kToolbarHeight + 114)  );
             dx += rect.size.width;
+            CGRect cr = photoView.frame;
+            NSLog(@"asa");
         }
     }
 }
@@ -1613,7 +1615,7 @@
 
 - (void)addMyButton:(NSInteger)index:(NSString*)caption:(UIView*)container:(NSInteger)xc:(NSInteger)yc{    // Method for creating button, with background image and other properties
     OBShapedButton *button = [[OBShapedButton buttonWithType:UIButtonTypeCustom] retain];
-    button.frame = CGRectMake(xc, yc, 25.0, 25.0);
+    button.frame = CGRectMake(xc-78, yc-1, 25.0, 25.0);
     [button setTitle:caption forState:UIControlStateNormal];
     button.backgroundColor = [UIColor clearColor];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal ];
