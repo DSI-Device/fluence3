@@ -21,6 +21,8 @@
 		2B53EDEA170F039200C8C184 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE7170F039200C8C184 /* comment.png */; };
 		2B53EDEB170F039200C8C184 /* heart-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE8170F039200C8C184 /* heart-icon.png */; };
 		2B7F19B4173A6F210049084C /* stylist.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7F19B3173A6F210049084C /* stylist.png */; };
+		2B7F19BD173AA77F0049084C /* YHCPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7F19BC173AA77F0049084C /* YHCPickerView.m */; };
+		2B7F19C2173AC4410049084C /* FGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E7F616F88FC900C92E99 /* FGalleryViewController.m */; };
 		2B98853A1727DD10000386E5 /* TSPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9885351727DD10000386E5 /* TSPopoverController.m */; };
 		2B98853B1727DD10000386E5 /* TSPopoverPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9885371727DD10000386E5 /* TSPopoverPopoverView.m */; };
 		2B98853C1727DD10000386E5 /* TSPopoverTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9885391727DD10000386E5 /* TSPopoverTouchView.m */; };
@@ -120,7 +122,6 @@
 		C8A6196E1720229300190841 /* 110.png in Resources */ = {isa = PBXBuildFile; fileRef = C8A6195F1720229300190841 /* 110.png */; };
 		C8AC7EE61716EE49007E035E /* ImagePlinkController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AC7EE41716EE49007E035E /* ImagePlinkController.m */; };
 		C8AC7EE71716EE49007E035E /* ImagePlinkController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8AC7EE51716EE49007E035E /* ImagePlinkController.xib */; };
-		C8C0E7FC16F88FC900C92E99 /* FGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E7F616F88FC900C92E99 /* FGalleryViewController.m */; };
 		C8C0E7FD16F88FC900C92E99 /* FGalleryPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E7F716F88FC900C92E99 /* FGalleryPhotoView.m */; };
 		C8C0E7FE16F88FC900C92E99 /* FGalleryPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E7F816F88FC900C92E99 /* FGalleryPhoto.m */; };
 		C8C0E80416F890A200C92E99 /* hawaii.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C8C0E80116F890A200C92E99 /* hawaii.jpeg */; };
@@ -175,6 +176,8 @@
 		2B53EDE7170F039200C8C184 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
 		2B53EDE8170F039200C8C184 /* heart-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-icon.png"; sourceTree = "<group>"; };
 		2B7F19B3173A6F210049084C /* stylist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stylist.png; sourceTree = "<group>"; };
+		2B7F19BB173AA77F0049084C /* YHCPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHCPickerView.h; sourceTree = "<group>"; };
+		2B7F19BC173AA77F0049084C /* YHCPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHCPickerView.m; sourceTree = "<group>"; };
 		2B9885341727DD10000386E5 /* TSPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverController.h; sourceTree = "<group>"; };
 		2B9885351727DD10000386E5 /* TSPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverController.m; sourceTree = "<group>"; };
 		2B9885361727DD10000386E5 /* TSPopoverPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverPopoverView.h; sourceTree = "<group>"; };
@@ -408,6 +411,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B7F19BA173AA7430049084C /* stylistSelect */ = {
+			isa = PBXGroup;
+			children = (
+				2B7F19BB173AA77F0049084C /* YHCPickerView.h */,
+				2B7F19BC173AA77F0049084C /* YHCPickerView.m */,
+			);
+			name = stylistSelect;
+			sourceTree = "<group>";
+		};
 		2B9885321727DCDD000386E5 /* TSPopOver */ = {
 			isa = PBXGroup;
 			children = (
@@ -728,6 +740,7 @@
 		C8C0E7F116F87F0600C92E99 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2B7F19BA173AA7430049084C /* stylistSelect */,
 				2B9885321727DCDD000386E5 /* TSPopOver */,
 				C8C0E7F516F88FAB00C92E99 /* FGallery */,
 				C8C0E7F416F88ED200C92E99 /* component */,
@@ -1002,7 +1015,6 @@
 				C897EED916F71A8F00AC1194 /* MYSBJsonParser.m in Sources */,
 				C897EEDA16F71A8F00AC1194 /* MYNSObject+JSON.m in Sources */,
 				C897EEDD16F71B0C00AC1194 /* utils.m in Sources */,
-				C8C0E7FC16F88FC900C92E99 /* FGalleryViewController.m in Sources */,
 				C8C0E7FD16F88FC900C92E99 /* FGalleryPhotoView.m in Sources */,
 				C8C0E7FE16F88FC900C92E99 /* FGalleryPhoto.m in Sources */,
 				C8952FB916F9A25A004EDAD7 /* GalleryController.m in Sources */,
@@ -1045,6 +1057,8 @@
 				2BC35F081738FFE300EF1A7C /* ComboBox.m in Sources */,
 				2BC35F1D173907FD00EF1A7C /* SelectPoseListViewController.m in Sources */,
 				2BC35F1E173907FD00EF1A7C /* CustomPoseSelectCell.m in Sources */,
+				2B7F19BD173AA77F0049084C /* YHCPickerView.m in Sources */,
+				2B7F19C2173AC4410049084C /* FGalleryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

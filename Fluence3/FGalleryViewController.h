@@ -13,6 +13,7 @@
 #import "RemoveEventView.h"
 #import "Fluence3AppDelegate.h"
 #import "TSPopoverController.h"
+#import "YHCPickerView.h"
 
 @class DDMenuController;
 typedef enum
@@ -35,6 +36,8 @@ typedef enum
 	BOOL _isFullscreen;
 	BOOL _isScrolling;
 	BOOL _isThumbViewShowing;
+    
+    NSMutableArray * countriesArray;
 	
 	UIStatusBarStyle _prevStatusStyle;
 	CGFloat _prevNextButtonSize;
@@ -121,6 +124,7 @@ typedef enum
 @optional
 - (NSString*)photoGallery:(FGalleryViewController*)gallery captionForPhotoAtIndex:(NSUInteger)index;
 - (NSMutableArray*)photoGallery:(FGalleryViewController *)gallery tagsForPhotoAtIndex:(NSUInteger)index;
+- (NSMutableArray*)stylistInfos;
 - (NSDictionary*)photoGallery:(FGalleryViewController *)gallery tagsForPhotoAtId:(NSUInteger)tagId:(NSUInteger)index;
 - (NSDictionary*)photoGallery:(FGalleryViewController*)gallery infoForPhotoAtIndex:(NSUInteger)index;
 
@@ -134,6 +138,7 @@ typedef enum
 
 //Date Related Datasource Change
 - (int)photoGallery:(FGalleryViewController*)gallery likeButtonClicked:(NSString*)imageId:(NSInteger)imgIndex;
-- (void)photoGallery:(FGalleryViewController*)gallery commentButtonClicked:(NSString*)imageId:(NSInteger)imgIndex;
+- (void)photoGallery:(FGalleryViewController*)gallery commentButtonClicked:(NSString*)imageId:(NSString*)comment;
+- (void)photoGallery:(FGalleryViewController*)gallery stylistButtonClicked:(NSInteger*)stylistId:(NSString*)userId:(NSString*)imageId;
 
 @end

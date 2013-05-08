@@ -195,6 +195,35 @@
     [[self view] addGestureRecognizer:swipeGestureUp];
     [swipeGestureDown release];
     [swipeGestureUp release];
+    
+    
+    
+    
+    countriesArray = [[NSMutableArray alloc] init];
+    
+    NSMutableArray *stylist = [_photoSource stylistInfos];
+    NSInteger t = [stylist count];
+    if(t > 0 )
+    {
+        for (int i = 0; i < t; i++) {
+            id row = [stylist objectAtIndex:i];
+            //for(id key in row) {
+            NSString* stylistId = [NSString stringWithFormat:[row objectForKey:@"stylistId"]];
+            NSString* stylistName = [NSString stringWithFormat:[row objectForKey:@"stylistName"]];
+            //                NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+            //
+            //                NSString *displayNameString = [locale displayNameForKey:NSLocaleCountryCode value:stylistId];
+            //                [countriesArray addObject:displayNameString];
+            //                [pool release];
+            [countriesArray addObject:stylistName];
+            NSLog(stylistName);
+        }
+    }
+    else {
+        // hide it if we don't have a tag.
+        _tagContainer.hidden = YES;
+    }
+    
     // Do any additional setup after loading the view from its nib.
     
 }
@@ -1935,10 +1964,25 @@
 
 - (void)stylizeButtonP:(id)sender forEvent:(UIEvent*)even{
     NSLog(@"Something Happened");
+    YHCPickerView *objYHCPickerView = [[YHCPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 480) withNSArray:countriesArray];
+    
+    objYHCPickerView.delegate = self;
+    [self.view addSubview:objYHCPickerView];
+    [objYHCPickerView showPicker];
     
 }
 
-
+-(void)selectedRow:(int)row withString:(NSString *)text{
+    
+    NSLog(@"%d",row);
+    NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
+    
+    NSString* userId   = appdt.userGalleryId;
+    NSString* imageID = [NSString stringWithFormat:[imageInfo objectForKey:@"imageId"]];
+    [_photoSource photoGallery:self stylistButtonClicked:row:userId:imageID];
+    
+    
+}
 
 #pragma mark shareButtonPressed
 

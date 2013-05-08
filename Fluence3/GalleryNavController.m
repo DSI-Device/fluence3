@@ -63,7 +63,16 @@
     
      NSMutableDictionary *localCollection2 = [[NSMutableDictionary  alloc] initWithObjectsAndKeys: @"3", @"imageId", @"Test", @"imageCaption", @"http://103.4.147.139/fluence3/uploads/ipodfile.jpg?121212", @"imageUrl", tagArray1, @"tags",@"11", @"imageLike", @"3", @"userId", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"userPic", @"Nahid", @"userName", @"0", @"imageLiked", nil];
     
-    
+    NSDictionary *stylist1 = [[NSDictionary alloc] initWithObjectsAndKeys: @"0", @"stylistId", @"Nahid", @"stylistName", nil];
+    NSDictionary *stylist2 = [[NSDictionary alloc] initWithObjectsAndKeys: @"1", @"stylistId", @"Naim", @"stylistName", nil];
+    NSDictionary *stylist3 = [[NSDictionary alloc] initWithObjectsAndKeys: @"2", @"stylistId", @"Shuvo", @"stylistName", nil];
+    NSDictionary *stylist4 = [[NSDictionary alloc] initWithObjectsAndKeys: @"3", @"stylistId", @"Rijwan", @"stylistName", nil];
+    NSDictionary *stylist5 = [[NSDictionary alloc] initWithObjectsAndKeys: @"4", @"stylistId", @"Mushraful", @"stylistName", nil];
+    NSDictionary *stylist6 = [[NSDictionary alloc] initWithObjectsAndKeys: @"5", @"stylistId", @"Tanveer", @"stylistName", nil];
+    NSDictionary *stylist7 = [[NSDictionary alloc] initWithObjectsAndKeys: @"6", @"stylistId", @"Rubel", @"stylistName", nil];
+    stylistArray = [[NSMutableArray alloc] initWithObjects:stylist1,stylist2,stylist3,stylist4,stylist5,stylist6,stylist7,nil];
+    NSMutableDictionary *stdic = [[NSMutableDictionary  alloc] initWithObjectsAndKeys: stylistArray, @"stylists", nil];
+    stylists = [[NSMutableArray alloc] initWithObjects:stdic,nil];
     imageArray = [[NSMutableArray alloc] initWithObjects:localCollection,localCollection1,localCollection2,nil];
     
     [tagCollection release];
@@ -72,6 +81,14 @@
     [tagCollection3 release];
     [localCollection release];
     [localCollection1 release];
+    [localCollection2 release];
+    [stylist1 release];
+    [stylist2 release];
+    [stylist3 release];
+    [stylist4 release];
+    [stylist5 release];
+    [stylist6 release];
+    [stylist7 release];
 }
 
 
@@ -243,6 +260,14 @@
     return tag;
 }
 
+- (NSMutableArray*)stylistInfos
+{
+    //tagCollection
+    NSMutableArray *stlst;
+    stlst = [[stylists objectAtIndex:0] objectForKey:@"stylists"];
+    return stlst;
+}
+
 - (NSDictionary*)photoGallery:(FGalleryViewController *)gallery tagsForPhotoAtId:(NSUInteger)tagId:(NSUInteger)photoIndex
 {
     //tagCollection
@@ -333,6 +358,20 @@
         return 0;
     }
     
+}
+
+
+-(void)photoGallery:(FGalleryViewController *)gallery stylistButtonClicked:(NSInteger*)stylistId:(NSString*)userId:(NSString*)imageId{
+    
+    NSString * text = [[stylistArray objectAtIndex:stylistId] objectForKey:@"stylistName"];
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle: [[[@"Current Image ID : " stringByAppendingString:imageId] stringByAppendingString:@" User ID : "] stringByAppendingString: userId]
+                          message: text
+                          delegate: nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
+    [alert release];
 }
 
 -(void)photoGallery:(FGalleryViewController *)gallery commentButtonClicked:(NSString*)imageId:(NSString*)comment{
