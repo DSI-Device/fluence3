@@ -216,6 +216,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
         // No, display the login page.
         [self showLoginView];
     }
+    selectedPoseList = [[NSMutableArray alloc] init];
     return YES;
 }
 

@@ -7,7 +7,7 @@
 //
 
 #import "SelectPoseListViewController.h"
-
+#import "Fluence3AppDelegate.h"
 
 @implementation SelectPoseListViewController
 
@@ -24,7 +24,7 @@
 	parser.delegate = adapter;
 	parser.multi = YES;
     [utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
-    
+    selectedDataSource = [[NSMutableArray alloc] init];
 	[self.listTableView setHidden:YES];
 	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&limit=%d",self.currentLimit];
     NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/fetch_teste_list/" ];
@@ -32,7 +32,7 @@
 	//NSString *serverUrl=@"http://103.4.147.139/fluence3";
 	[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
 	//[utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
-	
+	appdt = [[UIApplication sharedApplication]delegate];
 }
 
 - (void) triggerAsyncronousRequest: (NSString *)url {
@@ -247,18 +247,16 @@
          CustomPoseSelectCell *cell = (CustomPoseSelectCell *)[tableView cellForRowAtIndexPath:indexPath];
 	 
          if (!cell.isSelected) {
-             NSMutableDictionary *testD = [rowData mutableCopy];
-             [selectedDataSource initWithObjects:testD, nil];
-             NSMutableArray *testArr;
-             [testArr initWithObjects:testD,nil];
-             [selectedDataSource addObject:rowData];
-             NSDictionary *test = [selectedDataSource objectAtIndex:0];
+             
+             [self.selectedDataSource addObject:rowData];
+             NSLog(@"selectedDataSource Count = %i", [self.selectedDataSource count]);
              cell.isSelected = YES;
              [cell.checked setImage:[UIImage imageNamed:@"checkbox_ticked.png"]];
 		 }
          else
          {
-             [utils deleteRowFromList:selectedDataSource row:rowData];
+             [utils deletePoseFromList:self.selectedDataSource row:rowData];
+             NSLog(@"selectedDataSource Count = %i", [self.selectedDataSource count]);
              cell.isSelected = NO;
              [cell.checked setImage:[UIImage imageNamed:@"checkbox_not_ticked.png"]];
          }
@@ -291,7 +289,12 @@
 
 - (IBAction) selectionDone: (id) sender{
 	//[self.filterView setSelectedOption:selectedDataSource delegate:self];
-    appdt.selectedPoseList=selectedDataSource;
+    
+    appdt.selectedPoseList = self.selectedDataSource;
+    
+    NSLog(@"appdt.selectedPoseList Count = %i", [appdt.selectedPoseList count]);
+    NSLog(@"selectedDataSource Count = %i", [self.selectedDataSource count]);
+    
     
     poseListView = [[[PoseListViewController alloc] initWithNibName:@"PoseListViewController" bundle:nil]autorelease];
     poseListView.title = @"Find People";
