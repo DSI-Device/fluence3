@@ -82,7 +82,7 @@
 @synthesize startingIndex = _startingIndex;
 @synthesize beginsInThumbnailView = _beginsInThumbnailView;
 @synthesize hideTitle = _hideTitle;
-@synthesize currentDate;
+@synthesize currentDate,appdt;
 
 #pragma mark - Public Methods
 
@@ -100,7 +100,7 @@
         _useThumbnailView                   = YES;
 		_prevStatusStyle					= [[UIApplication sharedApplication] statusBarStyle];
         _hideTitle                          = NO;
-		
+		appdt                       = [[UIApplication sharedApplication] delegate];
 		// create storage objects
 		_currentIndex						= 0;
         _startingIndex                      = 0;
@@ -108,6 +108,8 @@
 		_photoViews							= [[NSMutableArray alloc] init];
 		_photoThumbnailViews				= [[NSMutableArray alloc] init];
 		_barItems							= [[NSMutableArray alloc] init];
+        
+        
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -210,7 +212,7 @@
     _scroller							= [[UIScrollView alloc] initWithFrame:CGRectZero];
     _thumbsView							= [[UIScrollView alloc] initWithFrame:CGRectZero];
     
-    _toolbar1							= [[UIToolbar alloc] initWithFrame:CGRectZero];
+   
     _toolbar							= [[UIToolbar alloc] initWithFrame:CGRectZero];
     _toolbar1							= [[UIToolbar alloc] initWithFrame:CGRectZero];
     _captionContainer					= [[UIView alloc] initWithFrame:CGRectZero];
@@ -295,7 +297,21 @@
     _thumbsView.contentInset					= UIEdgeInsetsMake( kThumbnailSpacing, kThumbnailSpacing, kThumbnailSpacing, kThumbnailSpacing);
     
     
+    _stylistButton  = [UIButton buttonWithType:UIButtonTypeCustom];
+    //set the position of the button
+    _stylistButton.frame = CGRectMake(kCaptionPadding+235, kCaptionPadding+45, 80, 40);
+    UIImage *buttonImage0 = [UIImage imageNamed:@"stylist.png"];
     
+    //create the button and assign the image addSubview:button
+    
+    [_stylistButton setBackgroundImage:buttonImage0 forState:UIControlStateNormal];
+    [_stylistButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    _stylistButton.alpha = 0.7;
+    //set the button's title
+    //listen for clicks
+    [_stylistButton addTarget:self action:@selector(stylizeButtonP:forEvent:) forControlEvents:UIControlEventTouchUpInside];
+    
+       
     _likeButton  = [UIButton buttonWithType:UIButtonTypeCustom];
     //set the position of the button
     _likeButton.frame = CGRectMake(5, 20, 40, 40);
@@ -379,6 +395,7 @@
     
 	[_toolbar addSubview:_captionContainer];
 	[_captionContainer addSubview:_caption];
+    [_container addSubview:_stylistButton];
     
     [_tagCaptionContainer addSubview:_tag];
 	[_userInfoContainer addSubview:_userInfoCaption];
@@ -428,7 +445,8 @@
     [_userInfoContainer release], _userInfoContainer = nil;
     [_userInfoCaption release], _userInfoCaption = nil;
     [_userProfileImage release], _userProfileImage = nil;
-    
+    [_stylistButton release], _stylistButton = nil;
+     [appdt release], appdt = nil;
     [super viewDidUnload];
 }
 
@@ -766,6 +784,7 @@
         [UIView beginAnimations:@"galleryOut" context:nil];
         [UIView setAnimationDelegate:self];
         [UIView setAnimationDidStopSelector:@selector(enableApp)];
+        _stylistButton.hidden = YES;
         _toolbar.alpha = 0.0;
         _toolbar1.alpha = 0.0;
         _captionContainer.alpha = 0.0;
@@ -790,7 +809,18 @@
 - (void)exitFullscreen
 {
 	_isFullscreen = NO;
-    
+    NSString *currentUserId = appdt.userGalleryId;
+    NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
+    NSString* currentid = [NSString stringWithFormat:[imageInfo objectForKey:@"userId"]];
+    if([currentUserId isEqualToString:currentid] == YES)
+    {
+        
+        _stylistButton.hidden = NO;
+    }
+    else
+    {
+        _stylistButton.hidden = YES;
+    }
 	[self disableApp];
     
 	UIApplication* application = [UIApplication sharedApplication];
@@ -848,6 +878,8 @@
 
 - (void)updateCaption
 {
+   
+    
 	if([_photoSource numberOfPhotosForPhotoGallery:self] > 0 )
 	{
 		if([_photoSource respondsToSelector:@selector(photoGallery:captionForPhotoAtIndex:)])
@@ -1200,8 +1232,7 @@
 
 
 - (void)scrollingHasEnded {
-	
-	_isScrolling = NO;
+		_isScrolling = NO;
 	
 	NSUInteger newIndex = floor( _scroller.contentOffset.x / _scroller.frame.size.width );
 	
@@ -1301,10 +1332,12 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    
 	_isScrolling = YES;
     _toolbar1.alpha = 0.0;
     _tagContainer.alpha = 0.0;
     _tagCaptionContainer.alpha = 0.0;
+    _stylistButton.hidden = YES;
 }
 
 
@@ -1324,7 +1357,18 @@
     {
         _toolbar1.alpha = 1.0;
         _tagContainer.alpha = 1.0;
-        
+        NSString *currentUserId = appdt.userGalleryId;
+        NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
+        NSString* currentid = [NSString stringWithFormat:[imageInfo objectForKey:@"userId"]];        
+        if([currentUserId isEqualToString:currentid] == YES)
+        {
+            
+            _stylistButton.hidden = NO;
+        }
+        else
+        {
+            _stylistButton.hidden = YES;
+        }
     }
 }
 
@@ -1396,6 +1440,9 @@
     
     [_tag release];
     _tag = nil;
+    
+    [appdt release];
+    appdt = nil;
 	
     [_tagContainer release];
     _tagContainer = nil;
@@ -1466,6 +1513,11 @@
 	
     [_commentButton release];
     _commentButton = nil;
+    
+    [_stylistButton release];
+    _stylistButton = nil;
+    
+    
 	
     [super dealloc];
 }
@@ -1484,8 +1536,7 @@
 			
             //            NSString* userId   = [NSString stringWithFormat:[imageInfo objectForKey:@"userId"]];
             NSString* imageLike = [NSString stringWithFormat:[imageInfo objectForKey:@"imageLike"]];
-            _likeNumber.text = imageLike;
-            
+            _likeNumber.text = imageLike;            
         }
         
     }
@@ -1731,41 +1782,41 @@
     [alert show];
     [alert release];
 }
-
-- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    NSLog(@"Touches began!");
-    
-    /*UIView *hitView = [self.view hitTest:point withEvent:event];
-     
-     // If the hitView is THIS view, return the view that you want to receive the touch instead:
-     if (hitView == _tagContainer) {
-     return _innerContainer;
-     }
-     // Else return the hitView (as it could be one of this view's buttons):
-     return hitView;*/
-    //    UITouch *touch= [[event allTouches] anyObject];
-    //    CGPoint point= [touch locationInView:touch.view];
-    
-    /*UIImage *image = [UIImage imageNamed:@"BluePin.png"];
-     
-     
-     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-     [imageView setFrame: CGRectMake(point.x-(imageView.bounds.size.width/2), point.y-(imageView.bounds.size.width/2), imageView.bounds.size.width, imageView.bounds.size.height)];
-     [self.view addSubview: imageView];
-     //self.currentPins += 1;
-     
-     [UIView animateWithDuration:2.0 delay:1.0 options:UIViewAnimationOptionCurveLinear  animations:^{
-     [imageView setAlpha:0.0];
-     } completion:^(BOOL finished) {
-     [imageView removeFromSuperview];
-     //self.currentPins -= 1;
-     }];
-     
-     // for(;self.currentPins > 10; currentPins -= 1){
-     //     [[[self subviews] objectAtIndex:0] removeFromSuperview];
-     // }*/
-    
-}
+//
+//- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+//    NSLog(@"Touches began!");
+//    
+//    /*UIView *hitView = [self.view hitTest:point withEvent:event];
+//     
+//     // If the hitView is THIS view, return the view that you want to receive the touch instead:
+//     if (hitView == _tagContainer) {
+//     return _innerContainer;
+//     }
+//     // Else return the hitView (as it could be one of this view's buttons):
+//     return hitView;*/
+//    //    UITouch *touch= [[event allTouches] anyObject];
+//    //    CGPoint point= [touch locationInView:touch.view];
+//    
+//    /*UIImage *image = [UIImage imageNamed:@"BluePin.png"];
+//     
+//     
+//     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+//     [imageView setFrame: CGRectMake(point.x-(imageView.bounds.size.width/2), point.y-(imageView.bounds.size.width/2), imageView.bounds.size.width, imageView.bounds.size.height)];
+//     [self.view addSubview: imageView];
+//     //self.currentPins += 1;
+//     
+//     [UIView animateWithDuration:2.0 delay:1.0 options:UIViewAnimationOptionCurveLinear  animations:^{
+//     [imageView setAlpha:0.0];
+//     } completion:^(BOOL finished) {
+//     [imageView removeFromSuperview];
+//     //self.currentPins -= 1;
+//     }];
+//     
+//     // for(;self.currentPins > 10; currentPins -= 1){
+//     //     [[[self subviews] objectAtIndex:0] removeFromSuperview];
+//     // }*/
+//    
+//}
 /*
  // load the image
  NSString *name = @"badge.png";
@@ -1879,6 +1930,15 @@
     
     _commentTextField.text = @"";
 }
+
+#pragma mark stylistButtonPressed
+
+- (void)stylizeButtonP:(id)sender forEvent:(UIEvent*)even{
+    NSLog(@"Something Happened");
+    
+}
+
+
 
 #pragma mark shareButtonPressed
 

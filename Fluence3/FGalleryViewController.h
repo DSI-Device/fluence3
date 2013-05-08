@@ -11,6 +11,7 @@
 #import "FGalleryPhotoView.h"
 #import "FGalleryPhoto.h"
 #import "RemoveEventView.h"
+#import "Fluence3AppDelegate.h"
 #import "TSPopoverController.h"
 
 @class DDMenuController;
@@ -74,10 +75,14 @@ typedef enum
     UIButton *_likeButton;
     UIButton *_shareButton;
     UIButton *_commentButton;
+    UIButton *_stylistButton;
     UITextField *_commentTextField;
     
     UILabel *_likeNumber;
+    
+    Fluence3AppDelegate *appdt;
 }
+
 
 - (id)initWithPhotoSource:(NSObject<FGalleryViewControllerDelegate>*)photoSrc;
 - (id)initWithPhotoSource:(NSObject<FGalleryViewControllerDelegate>*)photoSrc barItems:(NSArray*)items;
@@ -103,6 +108,7 @@ typedef enum
 @property (nonatomic) BOOL hideTitle;
 @property (strong, nonatomic) DDMenuController *menuController;
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) Fluence3AppDelegate *appdt;
 @end
 
 
