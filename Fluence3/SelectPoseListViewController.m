@@ -247,7 +247,12 @@
          CustomPoseSelectCell *cell = (CustomPoseSelectCell *)[tableView cellForRowAtIndexPath:indexPath];
 	 
          if (!cell.isSelected) {
+             NSMutableDictionary *testD = [rowData mutableCopy];
+             [selectedDataSource initWithObjects:testD, nil];
+             NSMutableArray *testArr;
+             [testArr initWithObjects:testD,nil];
              [selectedDataSource addObject:rowData];
+             NSDictionary *test = [selectedDataSource objectAtIndex:0];
              cell.isSelected = YES;
              [cell.checked setImage:[UIImage imageNamed:@"checkbox_ticked.png"]];
 		 }

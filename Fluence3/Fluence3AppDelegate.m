@@ -27,6 +27,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 //@synthesize mainViewController = _mainViewController;
 //@synthesize navController = _navController;
 @synthesize userId;
+@synthesize userGalleryId;
 @synthesize userName;
 @synthesize userProfileImage;
 @synthesize accessToken;
@@ -45,6 +46,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
     [_window release];
     [_session release];
     [userId release];
+    [userGalleryId release];
     [userName release];
     [userProfileImage release];
     [accessToken release];
@@ -234,6 +236,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
                                               viewController1,
                                               viewController2,
                                               viewController3, nil];
+    self.userGalleryId = @"1";
 }
 
 -(void)logoutButtonWasPressed {
