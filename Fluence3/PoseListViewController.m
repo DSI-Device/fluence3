@@ -11,7 +11,7 @@
 
 @implementation PoseListViewController
 
-@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit;
+@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,appdt;
 
 - (void)loadView{
 	[super loadView];
@@ -28,10 +28,37 @@
 	[self.listTableView setHidden:YES];
 	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&limit=%d",self.currentLimit];
     //NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
-	NSString *serverUrl=@"http://103.4.147.139/fluence3";
-	[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
+	//NSString *serverUrl=@"http://103.4.147.139/fluence3";
+	//[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
 	//[utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
-	
+    NSDictionary *jsonDict = [NSDictionary dictionaryWithObject:appdt.selectedPoseList forKey:@"postData"];
+
+    NSString *jsonRequest = [jsonDict JSONRepresentation];
+    
+    NSLog(@"jsonRequest is %@", jsonRequest);
+    
+    NSURL *url = [NSURL URLWithString:[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/catchPostedDataOfPoseList/" ]];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    
+    
+    NSData *requestData = [NSData dataWithBytes:[jsonRequest UTF8String] length:[jsonRequest length]];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[NSString stringWithFormat:@"%d", [requestData length]] forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody: requestData];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    
+    if (connection){
+        
+        NSLog(@"Connection Successful");
+    }
+	[request release];//shuvo
+
 }
 
 - (void) triggerAsyncronousRequest: (NSString *)url {
@@ -51,8 +78,8 @@
 	NSLog(@"inside searchContentChanged......");
 	self.currentLimit = 50;
 	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&doc_name=%@&limit=%d", self.searchBar.text, self.currentLimit];
-    //NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
-	NSString *serverUrl=@"http://103.4.147.139/fluence3";
+    NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
+	//NSString *serverUrl=@"http://103.4.147.139/fluence3";
 	[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
 }
 
