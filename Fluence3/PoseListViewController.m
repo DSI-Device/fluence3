@@ -57,6 +57,7 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
     
+    NSData *requestData = [NSData dataWithBytes:[jsonRequest UTF8String] length:[jsonRequest length]];
     
     
     [request setHTTPMethod:@"POST"];
