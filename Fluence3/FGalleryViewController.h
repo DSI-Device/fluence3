@@ -13,6 +13,8 @@
 #import "RemoveEventView.h"
 #import "Fluence3AppDelegate.h"
 #import "TSPopoverController.h"
+#import <FacebookSDK/FacebookSDK.h>
+#import "Fluence3AppDelegate.h"
 #import "YHCPickerView.h"
 
 @class DDMenuController;
@@ -76,10 +78,12 @@ typedef enum
     
     
     UIButton *_likeButton;
+    UIButton *_topButton;
     UIButton *_shareButton;
     UIButton *_commentButton;
     UIButton *_stylistButton;
     UITextField *_commentTextField;
+    UILabel *_shareloading;
     
     UILabel *_likeNumber;
     

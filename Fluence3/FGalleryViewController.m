@@ -2003,6 +2003,11 @@
     //    popoverController.arrowPosition = TSPopoverArrowPositionHorizontal;
     
     
+    _shareloading = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 200, 30)];
+    _shareloading.font = [UIFont systemFontOfSize:22];
+    _shareloading.text = @"Uploading.....";
+    _shareloading.textColor = [UIColor whiteColor];
+    
     _commentTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 200, 30)];
     _commentTextField.borderStyle = UITextBorderStyleRoundedRect;
     _commentTextField.font = [UIFont systemFontOfSize:15];
@@ -2013,30 +2018,36 @@
     _commentTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     _commentTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     _commentTextField.delegate = self;
+    _commentTextField.hidden = NO;
+    _topButton.hidden = NO;
+    _shareloading.hidden = YES;
     [commentViewController.view addSubview:_commentTextField];
+    [commentViewController.view addSubview:_shareloading];
     [_commentTextField release];
     
     
     
     
-    UIButton *topButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [topButton addTarget:self action:@selector(shareDone:forEvent:) forControlEvents:UIControlEventTouchUpInside];
-    topButton.frame = CGRectMake(220,20, 80, 30);
-    [topButton setTitle:@"Share" forState:UIControlStateNormal];
-    topButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    [commentViewController.view addSubview:topButton];
+    _topButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [_topButton addTarget:self action:@selector(shareDone:forEvent:) forControlEvents:UIControlEventTouchUpInside];
+    _topButton.frame = CGRectMake(220,20, 80, 30);
+    [_topButton setTitle:@"Share" forState:UIControlStateNormal];
+    _topButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    [commentViewController.view addSubview:_topButton];
     [popoverController showPopoverWithTouch:event];
 }
 
 - (void)shareDone:(id)sender forEvent:(UIEvent*)event {
+    _commentTextField.hidden = YES;
+    _topButton.hidden = YES;
+    _shareloading.hidden = NO;
     NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
     
     NSString* userId   = [NSString stringWithFormat:[imageInfo objectForKey:@"userId"]];
     NSLog(_commentTextField.text);
     NSString* imageID = [NSString stringWithFormat:[imageInfo objectForKey:@"imageId"]];
-    [_photoSource photoGallery:self commentButtonClicked:imageID:_commentTextField.text];
     
-    _commentTextField.text = @"";
+    
     
     // First, check whether the Facebook Session is open or not 
     
@@ -2086,10 +2097,14 @@
 }
 
 -(void)promptUserWithAccountName {
+    NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
     
+    //            NSString* userId   = [NSString stringWithFormat:[imageInfo objectForKey:@"userId"]];
+    NSString* imageurl = [NSString stringWithFormat:[imageInfo objectForKey:@"imageUrl"]];
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageurl]]];
     NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
     [params setObject:_commentTextField.text forKey:@"message"];
-    UIImage *buttonImagePressed = [UIImage imageNamed:@"shop.png"];
+    UIImage *buttonImagePressed = image;
     [params setObject:UIImagePNGRepresentation(buttonImagePressed) forKey:@"picture"];
     _shareButton.enabled = NO; //for not allowing multiple hits
     
@@ -2111,6 +2126,7 @@
              
              [tmp show];
              [tmp release];
+             _shareloading.text = @"Sorry, Some Error Occured. Please Try Again";
          } 
          else
          {
@@ -2123,6 +2139,7 @@
              
              [tmp show];
              [tmp release];
+             _shareloading.text = @"Successfully Posted";
          }
          _shareButton.enabled = YES;
      }];
