@@ -11,6 +11,7 @@
 #import "OBShapedButton.h"
 #import "TSPopoverController.h"
 #import "Fluence3AppDelegate.h"
+#import "SelectListViewController.h"
 
 #define kThumbnailSize 75
 #define kThumbnailSpacing 4
@@ -365,35 +366,35 @@
     
     
     //add the button to the view
-    _shareButton  = [UIButton buttonWithType:UIButtonTypeCustom];
-    //set the position of the button
-    _shareButton.frame = CGRectMake(5, 120, 40, 40);
-    UIImage *buttonImage1 = [UIImage imageNamed:@"share.png"];
-    
-    //create the button and assign the image addSubview:button
-    
-    [_shareButton setBackgroundImage:buttonImage1 forState:UIControlStateNormal];
-    [_shareButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    
-    //set the button's title
-    //listen for clicks
-    [_shareButton addTarget:self action:@selector(shareButtonP:forEvent:) forControlEvents:UIControlEventTouchUpInside];
-    
     _commentButton  = [UIButton buttonWithType:UIButtonTypeCustom];
     //set the position of the button
-    _commentButton.frame = CGRectMake(5, 210, 40, 40);
-    UIImage *buttonImage2 = [UIImage imageNamed:@"comment.png"];
+    _commentButton.frame = CGRectMake(5, 120, 40, 40);
+    UIImage *buttonImage1 = [UIImage imageNamed:@"comment.png"];
     
     //create the button and assign the image addSubview:button
     
-    [_commentButton setBackgroundImage:buttonImage2 forState:UIControlStateNormal];
+    [_commentButton setBackgroundImage:buttonImage1 forState:UIControlStateNormal];
     [_commentButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     
     //set the button's title
     //listen for clicks
-    
-    
     [_commentButton addTarget:self action:@selector(commentButtonP:forEvent:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _shareButton  = [UIButton buttonWithType:UIButtonTypeCustom];
+    //set the position of the button
+    _shareButton.frame = CGRectMake(5, 210, 40, 40);
+    UIImage *buttonImage2 = [UIImage imageNamed:@"share.png"];
+    
+    //create the button and assign the image addSubview:button
+    
+    [_shareButton setBackgroundImage:buttonImage2 forState:UIControlStateNormal];
+    [_shareButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    
+    //set the button's title
+    //listen for clicks
+    
+    
+    [_shareButton addTarget:self action:@selector(shareButtonP:forEvent:) forControlEvents:UIControlEventTouchUpInside];
     
     
     
@@ -1927,7 +1928,7 @@
     popoverController.popoverGradient= NO;
     //    popoverController.arrowPosition = TSPopoverArrowPositionHorizontal;
     
-    _commentTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 200, 30)];
+    _commentTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 40, 200, 30)];
     _commentTextField.borderStyle = UITextBorderStyleRoundedRect;
     _commentTextField.font = [UIFont systemFontOfSize:15];
     _commentTextField.placeholder = @"enter text";
@@ -1940,16 +1941,38 @@
     [commentViewController.view addSubview:_commentTextField];
     [_commentTextField release];
     
-    
+    UIButton *topButton1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [topButton1 addTarget:self action:@selector(showTablePopover:forEvent:) forControlEvents:UIControlEventTouchUpInside];
+    topButton1.frame = CGRectMake(30,5, 150, 30);
+    [topButton1 setTitle:@"View Comments" forState:UIControlStateNormal];
+    topButton1.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    [commentViewController.view addSubview:topButton1];
     
     
     UIButton *topButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [topButton addTarget:self action:@selector(commentDone:forEvent:) forControlEvents:UIControlEventTouchUpInside];
-    topButton.frame = CGRectMake(220,20, 80, 30);
+    topButton.frame = CGRectMake(220,40, 80, 30);
     [topButton setTitle:@"Send" forState:UIControlStateNormal];
     topButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [commentViewController.view addSubview:topButton];
     [popoverController showPopoverWithTouch:event];
+}
+
+-(void)showTablePopover:(id)sender forEvent:(UIEvent*)event
+{
+    SelectListViewController *my = [[SelectListViewController alloc] initWithNibName:@"SelectListViewController" bundle:nil] ;
+    //SelectListViewController *my = [[UIApplication sharedApplication] delegate];
+    //UITableViewController *tableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
+    my.view.frame = CGRectMake(0,0, 320, 400);
+    TSPopoverController *popoverController = [[TSPopoverController alloc] initWithContentViewController:my];
+    
+    popoverController.cornerRadius = 5;
+    popoverController.titleText = @"Comments";
+    popoverController.popoverBaseColor = [UIColor lightGrayColor];
+    popoverController.popoverGradient= NO;
+    //    popoverController.arrowPosition = TSPopoverArrowPositionHorizontal;
+    [popoverController showPopoverWithTouch:event];
+    
 }
 
 - (void)commentDone:(id)sender forEvent:(UIEvent*)event {
