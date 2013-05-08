@@ -7,7 +7,7 @@
 //
 
 #import "PoseListViewController.h"
-
+#import "Fluence3AppDelegate.h"
 
 @implementation PoseListViewController
 
@@ -24,32 +24,47 @@
 	parser.delegate = adapter;
 	parser.multi = YES;
     [utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
+    appdt = [[UIApplication sharedApplication]delegate];
+    [self.spinner startAnimating];
+	self.spinner.hidden = NO;
+	self.spinnerBg.hidden = NO;
     
+    
+    NSLog(@"appdt.selectedPoseList Count = %i", [appdt.selectedPoseList count]);
 	[self.listTableView setHidden:YES];
-	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&limit=%d",self.currentLimit];
-    //NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
-	//NSString *serverUrl=@"http://103.4.147.139/fluence3";
-	//[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
-	//[utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
-    NSDictionary *jsonDict = [NSDictionary dictionaryWithObject:appdt.selectedPoseList forKey:@"postData"];
-
-    NSString *jsonRequest = [jsonDict JSONRepresentation];
+	
+    NSString *jsonRequest = [appdt.selectedPoseList JSONRepresentation];
+    
+    
+    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+    [dictionnary setObject:appdt.selectedPoseList forKey:@"postData"];
+    
+    
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionnary
+                                                       options:kNilOptions
+                                                         error:&error];
+    
+    
+    
     
     NSLog(@"jsonRequest is %@", jsonRequest);
     
+    
+    
     NSURL *url = [NSURL URLWithString:[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/catchPostedDataOfPoseList/" ]];
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
-                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
     
     NSData *requestData = [NSData dataWithBytes:[jsonRequest UTF8String] length:[jsonRequest length]];
     
+    
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:[NSString stringWithFormat:@"%d", [requestData length]] forHTTPHeaderField:@"Content-Length"];
-    [request setHTTPBody: requestData];
+    [request setValue:[NSString stringWithFormat:@"%d", [jsonData length]] forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody: jsonData];
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     
@@ -77,9 +92,9 @@
 	
 	NSLog(@"inside searchContentChanged......");
 	self.currentLimit = 50;
-	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&doc_name=%@&limit=%d", self.searchBar.text, self.currentLimit];
+
     NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
-	//NSString *serverUrl=@"http://103.4.147.139/fluence3";
+
 	[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
 }
 
@@ -87,6 +102,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
 	NSLog(@"Connection didReceiveResponse: %@ - %@", response, [response MIMEType]);
+    
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
@@ -95,7 +111,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
 	NSLog(@"Connection didReceiveData of length: %u", data.length);
-	
+	NSLog(@"String sent from server %@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 	MYSBJsonStreamParserStatus status = [parser parse:data];
 	
 	if (status == MYSBJsonStreamParserError) {
@@ -222,7 +238,8 @@
         cell.followed.tag=[indexPath row];
         followed_s = [rowData objectForKey:@"followed"];
         [cell.followed addTarget:self action:@selector(tappedFollowBtn2:)  forControlEvents:UIControlEventTouchUpInside];
-		NSString *serverUrl = [@"http://103.4.147.139/fluence3/images/" stringByAppendingFormat:@"%@",[rowData objectForKey:@"userImage"]];
+        //NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
+		NSString *serverUrl = [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"images/%@",[rowData objectForKey:@"userImage"]];
 		
 		NSURL *url = [NSURL URLWithString:serverUrl];
 		
@@ -246,7 +263,7 @@
 		}
 		
 		return cell;
-
+        
 	}
 }
 //[objectWithOurMethod methodName:int1 ];
@@ -258,7 +275,8 @@
     NSIndexPath *indexPath = [listTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
     NSUInteger row = [indexPath row];
 	NSDictionary *rowData = [self.dataSource objectAtIndex:row];
-	//
+	//NSString *qwe = [rowData JSONRepresentation];
+    //
     CustomPeopleListCell *cell = (CustomPeopleListCell *) [listTableView cellForRowAtIndexPath:indexPath];
 	if (!cell.isFollowed) {
         
@@ -280,9 +298,9 @@
 	
    	NSLog(@"Follower ID : %@ ",cell.userID);
 	NSString *myRequestString = [[NSString alloc] initWithFormat:@"userID=%@&followed=%@",cell.userID,followed_s];
-	NSLog(@"%@ ",myRequestString);
+	NSLog(@"myRequestString %@ ",myRequestString);
 	NSData *myRequestData = [ NSData dataWithBytes: [ myRequestString UTF8String ] length: [ myRequestString length ] ];
-	NSMutableURLRequest *request = [ [ NSMutableURLRequest alloc ] initWithURL: [ NSURL URLWithString: @"http://103.4.147.139/fluence3/index.php/welcome/follow/" ] ];
+	NSMutableURLRequest *request = [ [ NSMutableURLRequest alloc ] initWithURL: [ NSURL URLWithString: [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/follow/" ]]];
    	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
     [request setHTTPMethod: @"POST"];
 	[request setHTTPBody: myRequestData];
@@ -290,14 +308,14 @@
 	
     if (conn) NSLog(@"Connection Successful");
 	[request release];//shuvo
-
+    
 }
-     
-     // event handler after selecting a table row
+
+// event handler after selecting a table row
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-     NSLog(@"Row selected...");
-     
-     /* NSUInteger row = [indexPath row];
+    NSLog(@"Row selected...");
+    
+    /* NSUInteger row = [indexPath row];
 	 NSDictionary *rowData = [self.dataSource objectAtIndex:row];
 	 if ([rowData objectForKey:@"count"] != NULL && ![[rowData objectForKey:@"count"] isEqual:@""] ) {
 	 viewMoreCell *cell = (viewMoreCell *)[tableView cellForRowAtIndexPath:indexPath];
@@ -404,7 +422,7 @@
 	[dataSource release];
 	[searchBar release];
 	[followed_s release];
-
+    
     [super dealloc];
 }
 

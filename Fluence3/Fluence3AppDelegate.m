@@ -26,7 +26,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 @synthesize window = _window;
 //@synthesize mainViewController = _mainViewController;
 //@synthesize navController = _navController;
-@synthesize userId;
+@synthesize userId,loggedInUser;
 @synthesize userGalleryId;
 @synthesize userName;
 @synthesize userProfileImage;
@@ -103,6 +103,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
                                                id<FBGraphUser> user,
                                                NSError *error) {
                  if(!error) {
+                     self.loggedInUser = user;
                      self.userId = user.id;
                      self.userName = user.name;
                      dispatch_queue_t downloader = dispatch_queue_create("PicDownloader", NULL);
@@ -150,28 +151,32 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 - (void)openSession
 {
     //FBSession *session = [[FBSession alloc] initWithAppID:nil permissions:nil urlSchemeSuffix:@"foo" tokenCacheStrategy:nil];
-    [FBSession openActiveSessionWithPermissions:nil
-                                   allowLoginUI:YES
-                              completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
-                                  [self sessionStateChanged:session state:state error:error];
-                                  [FBRequestConnection
-                                   startForMeWithCompletionHandler:^(FBRequestConnection *connection,
-                                                                     id<FBGraphUser> user,
-                                                                     NSError *error) {
-                                       if(!error) {
-                                           self.userId = user.id;
-                                           self.userName = user.name;
-                                           dispatch_queue_t downloader = dispatch_queue_create("PicDownloader", NULL);
-                                           NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=normal", user.id]];
-                                           dispatch_async(downloader, ^{
-                                               NSData *data = [NSData dataWithContentsOfURL:url];
-                                               self.userProfileImage = [UIImage imageWithData:data];
-                                           });
-                                           self.accessToken = FBSession.activeSession.accessToken;
-                                           NSLog(@"--UserId: %@, Token: %@",user.id, FBSession.activeSession.accessToken);
-                                       }
-                                   }];
-                              }];
+    NSArray *permissions = [[NSArray alloc] initWithObjects:
+                            @"publish_stream",
+                            nil];
+    [FBSession openActiveSessionWithPermissions:permissions
+               allowLoginUI:YES
+               completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+                  [self sessionStateChanged:session state:state error:error];
+                  [FBRequestConnection
+                   startForMeWithCompletionHandler:^(FBRequestConnection *connection,
+                                                     id<FBGraphUser> user,
+                                                     NSError *error) {
+                       if(!error) {
+                           self.loggedInUser = user;
+                           self.userId = user.id;
+                           self.userName = user.name;
+                           dispatch_queue_t downloader = dispatch_queue_create("PicDownloader", NULL);
+                           NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=normal", user.id]];
+                           dispatch_async(downloader, ^{
+                               NSData *data = [NSData dataWithContentsOfURL:url];
+                               self.userProfileImage = [UIImage imageWithData:data];
+                           });
+                           self.accessToken = FBSession.activeSession.accessToken;
+                           NSLog(@"--UserId: %@, Token: %@",user.id, FBSession.activeSession.accessToken);
+                       }
+                   }];
+              }];
     //result = session.isOpen;
 }
 
@@ -218,6 +223,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
         // No, display the login page.
         [self showLoginView];
     }
+    selectedPoseList = [[NSMutableArray alloc] init];
     return YES;
 }
 

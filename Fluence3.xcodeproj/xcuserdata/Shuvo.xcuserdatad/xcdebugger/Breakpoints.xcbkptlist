@@ -9,12 +9,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Fluence3/FGalleryViewController.m"
-         timestampString = "389621869.810976"
+         timestampString = "389705267.855218"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1258"
-         endingLineNumber = "1258"
-         landmarkName = "-galleryPhoto:willLoadThumbnailFromUrl:"
+         startingLineNumber = "1261"
+         endingLineNumber = "1261"
+         landmarkName = "-scrollingHasEnded"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -23,12 +23,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Fluence3/FGalleryViewController.m"
-         timestampString = "389621869.810976"
+         timestampString = "389705267.855218"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1274"
-         endingLineNumber = "1274"
-         landmarkName = "-galleryPhoto:didLoadThumbnail:"
+         startingLineNumber = "1277"
+         endingLineNumber = "1277"
+         landmarkName = "-galleryPhoto:willLoadThumbnailFromPath:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -57,6 +57,20 @@
          startingLineNumber = "99"
          endingLineNumber = "99"
          landmarkName = "-loadView"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Fluence3/FGalleryViewController.m"
+         timestampString = "389780901.076095"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "2154"
+         endingLineNumber = "2154"
+         landmarkName = "-alertView:clickedButtonAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

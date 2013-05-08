@@ -67,7 +67,6 @@
 		C889BADB16F213370040CA39 /* Fluence3AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C889BADA16F213370040CA39 /* Fluence3AppDelegate.m */; };
 		C889BADE16F213370040CA39 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C889BADD16F213370040CA39 /* MainViewController.m */; };
 		C889BAE116F213370040CA39 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C889BADF16F213370040CA39 /* MainViewController.xib */; };
-		C889BAE816F213670040CA39 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889BAE716F213670040CA39 /* Accounts.framework */; };
 		C889BAEA16F2137F0040CA39 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889BAE916F2137F0040CA39 /* CoreLocation.framework */; };
 		C889BAEC16F213AF0040CA39 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C889BAEB16F213AF0040CA39 /* FacebookSDKResources.bundle */; };
 		C889BAEE16F213BF0040CA39 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889BAED16F213BF0040CA39 /* FacebookSDK.framework */; };
@@ -78,6 +77,7 @@
 		C8952FB516F99E7B004EDAD7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8952FB416F99E7B004EDAD7 /* QuartzCore.framework */; };
 		C8952FB916F9A25A004EDAD7 /* GalleryController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8952FB716F9A25A004EDAD7 /* GalleryController.m */; };
 		C8952FBA16F9A25A004EDAD7 /* GalleryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8952FB816F9A25A004EDAD7 /* GalleryController.xib */; };
+		C8962246173A5E0800D16FD0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889BAE716F213670040CA39 /* Accounts.framework */; };
 		C897EE7016F709EA00AC1194 /* setupDao.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EE6616F709EA00AC1194 /* setupDao.m */; };
 		C897EE7116F709EA00AC1194 /* searchDao.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EE6716F709EA00AC1194 /* searchDao.m */; };
 		C897EE7216F709EA00AC1194 /* registrationDao.m in Sources */ = {isa = PBXBuildFile; fileRef = C897EE6816F709EA00AC1194 /* registrationDao.m */; };
@@ -389,6 +389,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8962246173A5E0800D16FD0 /* Accounts.framework in Frameworks */,
 				2BC20D371726C44F00EE2CCB /* libxml2.dylib in Frameworks */,
 				2BC20D351726C44200EE2CCB /* libz.dylib in Frameworks */,
 				C897EEE316F7267900AC1194 /* SystemConfiguration.framework in Frameworks */,
@@ -400,7 +401,6 @@
 				C8952FB516F99E7B004EDAD7 /* QuartzCore.framework in Frameworks */,
 				C897EE7E16F70AF300AC1194 /* libsqlite3.dylib in Frameworks */,
 				C889BAEA16F2137F0040CA39 /* CoreLocation.framework in Frameworks */,
-				C889BAE816F213670040CA39 /* Accounts.framework in Frameworks */,
 				C889BACB16F213370040CA39 /* UIKit.framework in Frameworks */,
 				C889BACD16F213370040CA39 /* Foundation.framework in Frameworks */,
 				C889BACF16F213370040CA39 /* CoreGraphics.framework in Frameworks */,
@@ -564,6 +564,8 @@
 		C889BAC916F213370040CA39 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C889BAED16F213BF0040CA39 /* FacebookSDK.framework */,
+				C889BAEB16F213AF0040CA39 /* FacebookSDKResources.bundle */,
 				2BC20D361726C44E00EE2CCB /* libxml2.dylib */,
 				2BC20D341726C44100EE2CCB /* libz.dylib */,
 				2BC20D321726C39700EE2CCB /* Security.framework */,
@@ -574,8 +576,6 @@
 				C8952FB416F99E7B004EDAD7 /* QuartzCore.framework */,
 				C897EEE216F7267800AC1194 /* SystemConfiguration.framework */,
 				C897EE7D16F70AF300AC1194 /* libsqlite3.dylib */,
-				C889BAED16F213BF0040CA39 /* FacebookSDK.framework */,
-				C889BAEB16F213AF0040CA39 /* FacebookSDKResources.bundle */,
 				C889BAE916F2137F0040CA39 /* CoreLocation.framework */,
 				C889BAE716F213670040CA39 /* Accounts.framework */,
 				C889BACA16F213370040CA39 /* UIKit.framework */,
@@ -982,7 +982,6 @@
 				2BC35F1B173907FD00EF1A7C /* CustomPoseSelectCell.xib in Resources */,
 				2BC35F1C173907FD00EF1A7C /* SelectPoseListViewController.xib in Resources */,
 				2BC52767173A47AD00DE8BF9 /* ISViewController.xib in Resources */,
-				2B7F19B4173A6F210049084C /* stylist.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1148,7 +1147,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fluence3/Fluence3-Prefix.pch";
 				INFOPLIST_FILE = "Fluence3/Fluence3-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-lsqlite3.0",
 					"-ObjC",
@@ -1174,7 +1173,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fluence3/Fluence3-Prefix.pch";
 				INFOPLIST_FILE = "Fluence3/Fluence3-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-lsqlite3.0",
 					"-ObjC",

@@ -5,6 +5,7 @@
 @class CameraImageController;
 @class SelectListViewController;
 @class MapViewController;
+@class SelectPoseListViewController;
 
 @interface ISViewController : UIViewController
 {
@@ -13,6 +14,7 @@
     CameraImageController *nCameraImage;
     SelectListViewController *selectListView;
     MapViewController *mapViewController;
+    SelectPoseListViewController *selectPoseListView;
 }
 
 @property (strong, nonatomic) GalleryController *gc;
@@ -20,6 +22,7 @@
 @property (strong, nonatomic) CameraImageController *nCameraImage;
 @property (strong, nonatomic) SelectListViewController *selectListView;
 @property (strong, nonatomic) MapViewController *mapViewController;
+@property (strong, nonatomic) SelectPoseListViewController *selectPoseListView;
 - (IBAction)pushViewController;
 - (IBAction)galleryClicked;
 - (IBAction)profileClicked;
