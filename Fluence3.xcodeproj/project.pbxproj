@@ -20,6 +20,7 @@
 		2B53EDE9170F039200C8C184 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE6170F039200C8C184 /* share.png */; };
 		2B53EDEA170F039200C8C184 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE7170F039200C8C184 /* comment.png */; };
 		2B53EDEB170F039200C8C184 /* heart-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE8170F039200C8C184 /* heart-icon.png */; };
+		2B7F19B4173A6F210049084C /* stylist.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7F19B3173A6F210049084C /* stylist.png */; };
 		2B98853A1727DD10000386E5 /* TSPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9885351727DD10000386E5 /* TSPopoverController.m */; };
 		2B98853B1727DD10000386E5 /* TSPopoverPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9885371727DD10000386E5 /* TSPopoverPopoverView.m */; };
 		2B98853C1727DD10000386E5 /* TSPopoverTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9885391727DD10000386E5 /* TSPopoverTouchView.m */; };
@@ -41,10 +42,10 @@
 		2BC35F1C173907FD00EF1A7C /* SelectPoseListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BC35F16173907FC00EF1A7C /* SelectPoseListViewController.xib */; };
 		2BC35F1D173907FD00EF1A7C /* SelectPoseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC35F17173907FC00EF1A7C /* SelectPoseListViewController.m */; };
 		2BC35F1E173907FD00EF1A7C /* CustomPoseSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC35F1A173907FD00EF1A7C /* CustomPoseSelectCell.m */; };
+		2BC52767173A47AD00DE8BF9 /* ISViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BC52766173A47AD00DE8BF9 /* ISViewController.xib */; };
 		2BCF8CA8171FEC3B00B31E12 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCF8CA7171FEC3B00B31E12 /* ImageUtil.m */; };
 		C838CB741726A4CC00B9AC17 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C838CB731726A4CC00B9AC17 /* MyAnnotation.m */; };
 		C849D17A17048DEC003D18A5 /* menu7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C849D17917048DEC003D18A5 /* menu7.jpg */; };
-		C849D18417049246003D18A5 /* ISViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C849D18317049246003D18A5 /* ISViewController.xib */; };
 		C849D18617049419003D18A5 /* fb-login-button.png in Resources */ = {isa = PBXBuildFile; fileRef = C849D18517049419003D18A5 /* fb-login-button.png */; };
 		C849D19117049995003D18A5 /* CameraImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = C849D18917049995003D18A5 /* CameraImageController.m */; };
 		C849D19217049995003D18A5 /* CameraImageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C849D18A17049995003D18A5 /* CameraImageController.xib */; };
@@ -173,6 +174,7 @@
 		2B53EDE6170F039200C8C184 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		2B53EDE7170F039200C8C184 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
 		2B53EDE8170F039200C8C184 /* heart-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-icon.png"; sourceTree = "<group>"; };
+		2B7F19B3173A6F210049084C /* stylist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stylist.png; sourceTree = "<group>"; };
 		2B9885341727DD10000386E5 /* TSPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverController.h; sourceTree = "<group>"; };
 		2B9885351727DD10000386E5 /* TSPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverController.m; sourceTree = "<group>"; };
 		2B9885361727DD10000386E5 /* TSPopoverPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverPopoverView.h; sourceTree = "<group>"; };
@@ -204,13 +206,13 @@
 		2BC35F18173907FD00EF1A7C /* SelectPoseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectPoseListViewController.h; path = Fluence3/SelectPoseListViewController.h; sourceTree = "<group>"; };
 		2BC35F19173907FD00EF1A7C /* CustomPoseSelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomPoseSelectCell.h; path = Fluence3/CustomPoseSelectCell.h; sourceTree = "<group>"; };
 		2BC35F1A173907FD00EF1A7C /* CustomPoseSelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomPoseSelectCell.m; path = Fluence3/CustomPoseSelectCell.m; sourceTree = "<group>"; };
+		2BC52766173A47AD00DE8BF9 /* ISViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ISViewController.xib; sourceTree = "<group>"; };
 		2BCF8CA5171FEC3B00B31E12 /* ColorMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMatrix.h; sourceTree = "<group>"; };
 		2BCF8CA6171FEC3B00B31E12 /* ImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtil.h; sourceTree = "<group>"; };
 		2BCF8CA7171FEC3B00B31E12 /* ImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtil.m; sourceTree = "<group>"; };
 		C838CB721726A4CC00B9AC17 /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
 		C838CB731726A4CC00B9AC17 /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
 		C849D17917048DEC003D18A5 /* menu7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu7.jpg; sourceTree = "<group>"; };
-		C849D18317049246003D18A5 /* ISViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ISViewController.xib; sourceTree = "<group>"; };
 		C849D18517049419003D18A5 /* fb-login-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fb-login-button.png"; sourceTree = "<group>"; };
 		C849D18817049995003D18A5 /* CameraImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraImageController.h; sourceTree = "<group>"; };
 		C849D18917049995003D18A5 /* CameraImageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraImageController.m; sourceTree = "<group>"; };
@@ -703,6 +705,7 @@
 		C8C0E7F016F87ED800C92E99 /* nibs */ = {
 			isa = PBXGroup;
 			children = (
+				2BC52766173A47AD00DE8BF9 /* ISViewController.xib */,
 				C89AEB161725634100AD2EF0 /* MapViewController.xib */,
 				C8A39B60171D926D00F7F44D /* TagCategoryController.xib */,
 				C84D34C9171EA8B800FFBA18 /* TagBrandController.xib */,
@@ -714,7 +717,6 @@
 				C849D19017049995003D18A5 /* TakeCameraPhoto.xib */,
 				C849D18D17049995003D18A5 /* ShowCropedImage.xib */,
 				C849D18A17049995003D18A5 /* CameraImageController.xib */,
-				C849D18317049246003D18A5 /* ISViewController.xib */,
 				C88DC2B917031A6E002402BC /* GalleryNavController.xib */,
 				C8952FB816F9A25A004EDAD7 /* GalleryController.xib */,
 				C889BADF16F213370040CA39 /* MainViewController.xib */,
@@ -809,6 +811,7 @@
 		C8CE00DE17042C2200558361 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				2B7F19B3173A6F210049084C /* stylist.png */,
 				2B18F10F17145A09008432D6 /* shop.png */,
 				2B53EDE6170F039200C8C184 /* share.png */,
 				2B53EDE7170F039200C8C184 /* comment.png */,
@@ -922,7 +925,6 @@
 				C8E5098717047B3400A1624A /* button-highlighted.png in Resources */,
 				C8E5098817047B3400A1624A /* button-normal.png in Resources */,
 				C849D17A17048DEC003D18A5 /* menu7.jpg in Resources */,
-				C849D18417049246003D18A5 /* ISViewController.xib in Resources */,
 				C849D18617049419003D18A5 /* fb-login-button.png in Resources */,
 				C849D19217049995003D18A5 /* CameraImageController.xib in Resources */,
 				C849D19417049995003D18A5 /* ShowCropedImage.xib in Resources */,
@@ -966,6 +968,7 @@
 				2BC35F101739055C00EF1A7C /* PoseListViewController.xib in Resources */,
 				2BC35F1B173907FD00EF1A7C /* CustomPoseSelectCell.xib in Resources */,
 				2BC35F1C173907FD00EF1A7C /* SelectPoseListViewController.xib in Resources */,
+				2BC52767173A47AD00DE8BF9 /* ISViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

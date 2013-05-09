@@ -11,6 +11,7 @@
 #import "FGalleryPhotoView.h"
 #import "FGalleryPhoto.h"
 #import "RemoveEventView.h"
+#import "Fluence3AppDelegate.h"
 #import "TSPopoverController.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "Fluence3AppDelegate.h"
@@ -76,12 +77,14 @@ typedef enum
     UIButton *_likeButton;
     UIButton *_shareButton;
     UIButton *_commentButton;
+    UIButton *_stylistButton;
     UITextField *_commentTextField;
     
     UILabel *_likeNumber;
     
     Fluence3AppDelegate *appdt;
 }
+
 
 - (id)initWithPhotoSource:(NSObject<FGalleryViewControllerDelegate>*)photoSrc;
 - (id)initWithPhotoSource:(NSObject<FGalleryViewControllerDelegate>*)photoSrc barItems:(NSArray*)items;

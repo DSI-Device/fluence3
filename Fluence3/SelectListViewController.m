@@ -27,9 +27,8 @@
     
 	[self.listTableView setHidden:YES];
 	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&limit=%d",self.currentLimit];
-    NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
-	//NSString *serverUrl=@"http://103.4.147.139/fluence3";
-	[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/index2/" ];
+		[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
 	//[utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
 	
 }
@@ -90,7 +89,7 @@
 		if ([self.dataSource count] < self.totalCount) {
 			[self.dataSource addObject:[[[NSDictionary alloc] initWithObjectsAndKeys:[NSString stringWithFormat:@"Showing %d out of %d",self.currentLimit,self.totalCount],@"count",nil] autorelease] ];
 		}
-		[self.dataSource addObject:[[[NSDictionary alloc] init] autorelease] ];//empty allocation in-order to able to select the last element
+		//[self.dataSource addObject:[[[NSDictionary alloc] init] autorelease] ];//empty allocation in-order to able to select the last element
 		[self.listTableView reloadData];
 		[self.spinner stopAnimating];
 		self.spinner.hidden = YES;

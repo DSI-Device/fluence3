@@ -28,6 +28,7 @@ extern NSString *const SessionStateChangedNotification;
 
 @property (strong, nonatomic) id<FBGraphUser> loggedInUser;
 @property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong) NSString *userGalleryId;
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) UIImage *userProfileImage;
 @property (nonatomic, strong) NSString *accessToken;

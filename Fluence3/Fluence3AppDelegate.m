@@ -45,6 +45,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
     [_window release];
     [_session release];
     [userId release];
+    [userGalleryId release];
     [userName release];
     [userProfileImage release];
     [accessToken release];
@@ -218,6 +219,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
         // No, display the login page.
         [self showLoginView];
     }
+    selectedPoseList = [[NSMutableArray alloc] init];
     return YES;
 }
 
@@ -236,6 +238,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
                                               viewController1,
                                               viewController2,
                                               viewController3, nil];
+    self.userGalleryId = @"1";
 }
 
 -(void)logoutButtonWasPressed {

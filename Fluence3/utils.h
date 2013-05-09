@@ -32,6 +32,8 @@
 
 + (BOOL) deleteRowFromList:(NSMutableArray *)list row:(NSDictionary *)dataSet;
 
++ (BOOL) deletePoseFromList:(NSMutableArray *)list row:(NSDictionary *)dataSet;
+
 + (NSString *) getIdsFromList: (NSMutableArray *)list;
 
 + (void)generateRatingBar:(UIView *)ratingView value:(NSString *)rankValue;

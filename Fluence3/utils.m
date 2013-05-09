@@ -81,7 +81,16 @@
 	}
 	return NO;	
 }
-
++ (BOOL) deletePoseFromList:(NSMutableArray *)list row:(NSDictionary *)dataSet{
+	for(NSDictionary *dict in list){
+		
+		if([[dict objectForKey:@"tasteID"] isEqual:[dataSet objectForKey:@"tasteID"]] && [[dict objectForKey:@"tasteName"] isEqual:[dataSet objectForKey:@"tasteName"]]){
+			[list removeObject:dict];
+			return YES;
+		}
+	}
+	return NO;
+}
 + (NSString *) getIdsFromList: (NSMutableArray *)list{
 	NSString *ids = @"";
 	for(NSDictionary *dict in list){
