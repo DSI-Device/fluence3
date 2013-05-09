@@ -27,6 +27,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 //@synthesize mainViewController = _mainViewController;
 //@synthesize navController = _navController;
 @synthesize userId,loggedInUser;
+@synthesize userGalleryId;
 @synthesize userName;
 @synthesize userProfileImage;
 @synthesize accessToken;
