@@ -6,31 +6,34 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "PoseListViewController.h"
+#import "GalleryCommentViewController.h"
 
 
-@implementation PoseListViewController
+@implementation GalleryCommentViewController
 
-@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,appdt;
+@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit;
 
 - (void)loadView{
-    [super loadView];
-    dao = [[searchDao alloc] init];
-    self.searchBar.placeholder = [self getSearchBarTitle];
-    self.currentLimit = 50;
-    adapter = [MYSBJsonStreamParserAdapter new];
-    adapter.delegate = self;
-    parser = [MYSBJsonStreamParser new];
-    parser.delegate = adapter;
-    parser.multi = YES;
+	[super loadView];
+	dao = [[searchDao alloc] init];
+	self.searchBar.placeholder = [self getSearchBarTitle];
+	self.currentLimit = 50;
+	adapter = [MYSBJsonStreamParserAdapter new];
+	adapter.delegate = self;
+	parser = [MYSBJsonStreamParser new];
+	parser.delegate = adapter;
+	parser.multi = YES;
     [utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
-    appdt = [[UIApplication sharedApplication]delegate];
-    [self.listTableView setHidden:YES];
-    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/catchPostedDataOfPoseList/" ];
-    [self performSelector:@selector(triggerAsyncronousRequest2:) withObject: serverUrl];
+    
+	[self.listTableView setHidden:YES];
+	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&limit=%d",self.currentLimit];
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/index/" ];
+    [self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
+	//[utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
+	
 }
 
-- (void) triggerAsyncronousRequest1: (NSString *)url {
+- (void) triggerAsyncronousRequest: (NSString *)url {
 	
 	[self.spinner startAnimating];
 	self.spinner.hidden = NO;
@@ -40,65 +43,6 @@
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];//asynchronous call
 	[[NSURLConnection alloc] initWithRequest:request delegate:self];
 	
-}
-
-- (void) triggerAsyncronousRequest2: (NSString *)url {
-	
-	[self.spinner startAnimating];
-	self.spinner.hidden = NO;
-	self.spinnerBg.hidden = NO;
-	
-	url = [url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-	    
-    
-    
-    NSLog(@"appdt.selectedPoseList Count = %i", [appdt.selectedPoseList count]);
-    [self.listTableView setHidden:YES];
-    NSString *jsonRequest = [appdt.selectedPoseList JSONRepresentation];
-    
-    
-    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
-    [dictionnary setObject:appdt.selectedPoseList forKey:@"postData"];
-    
-    NSString *jsonStr = [dictionnary JSONRepresentation];
-    
-    //NSError *error = nil;
-    //NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionnary                                                       options:kNilOptions                                                         error:&error];
-    
-    NSLog(@"jsonRequest is %@", jsonRequest);
-    
-    NSURL *nsurl = [NSURL URLWithString:url ];
-    /*
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl];
-    
-    
-
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:[NSString stringWithFormat:@"%d", [jsonData length]] forHTTPHeaderField:@"Content-Length"];
-    [request setHTTPBody: jsonData];
-    
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-    [request release];//shuvo */
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl
-                                    
-                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                    
-                                                       timeoutInterval:60.0];
-    
-    [request setHTTPMethod:@"POST"];
-    
-    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-    /*if (theConnection) {
-        
-        receiveData = [NSMutableData data];   
-        
-    }}*/
 }
 
 - (IBAction) searchContentChanged: (id) sender{
@@ -235,11 +179,11 @@
 		
 	}else {
 		
-		static NSString *cellTableIdentifier = @"CustomPeopleListCellIdentifier";
-		
-		CustomPeopleListCell *cell = (CustomPeopleListCell *)[tableView dequeueReusableCellWithIdentifier:cellTableIdentifier];
+		static NSString *cellTableIdentifier = @"CustomGalleryCommentCellIdentifier";
+		//CustomGalleryCommentCell
+		CustomGalleryCommentCell *cell = (CustomGalleryCommentCell *)[tableView dequeueReusableCellWithIdentifier:cellTableIdentifier];
 		if (cell == nil) {
-			NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomPeopleListCell" owner:self options:nil];
+			NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomGalleryCommentCell" owner:self options:nil];
 			cell = [nib objectAtIndex:0];
 			cell.selectedBackgroundView = [[[UIView alloc] init] autorelease];
 			[cell.selectedBackgroundView setBackgroundColor:[UIColor orangeColor]];
@@ -250,7 +194,7 @@
         cell.followed.tag=[indexPath row];
         followed_s = [rowData objectForKey:@"followed"];
         [cell.followed addTarget:self action:@selector(tappedFollowBtn2:)  forControlEvents:UIControlEventTouchUpInside];
-       
+        //NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
 		NSString *serverUrl = [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"images/%@",[rowData objectForKey:@"userImage"]];
 		
 		NSURL *url = [NSURL URLWithString:serverUrl];
@@ -289,7 +233,7 @@
 	NSDictionary *rowData = [self.dataSource objectAtIndex:row];
 	//NSString *qwe = [rowData JSONRepresentation];
     //
-    CustomPeopleListCell *cell = (CustomPeopleListCell *) [listTableView cellForRowAtIndexPath:indexPath];
+    CustomGalleryCommentCell *cell = (CustomGalleryCommentCell *) [listTableView cellForRowAtIndexPath:indexPath];
 	if (!cell.isFollowed) {
         
         [rowData setValue:@"1" forKey:@"followed"];
@@ -351,7 +295,7 @@
 	 [utils showAlert:@"Warning !!" message:@"Default option can't be removed." delegate:nil];
 	 return;
 	 }
-	 CustomPeopleListCell *cell = (CustomPeopleListCell *)[tableView cellForRowAtIndexPath:indexPath];
+	 CustomGalleryCommentCell *cell = (CustomGalleryCommentCell *)[tableView cellForRowAtIndexPath:indexPath];
 	 [cell.followed addTarget:self action:@selector(tappedFollowBtn2:) forControlEvents:UIControlEventTouchUpInside];
 	 if (!cell.isFollowed) {
 	 if (self.maxSelectionLimit > 0 && [selectedDataSource count] >= self.maxSelectionLimit) {

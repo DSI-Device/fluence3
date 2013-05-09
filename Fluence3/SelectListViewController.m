@@ -27,7 +27,7 @@
     
 	[self.listTableView setHidden:YES];
 	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&limit=%d",self.currentLimit];
-    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/index2/" ];
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/index/" ];
 		[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
 	//[utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
 	
@@ -67,7 +67,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
 	NSLog(@"Connection didReceiveData of length: %u", data.length);
-	
+	NSLog(@"String sent from server %@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 	MYSBJsonStreamParserStatus status = [parser parse:data];
 	
 	if (status == MYSBJsonStreamParserError) {

@@ -43,6 +43,10 @@
 		2BC35F1E173907FD00EF1A7C /* CustomPoseSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC35F1A173907FD00EF1A7C /* CustomPoseSelectCell.m */; };
 		2BC52767173A47AD00DE8BF9 /* ISViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BC52766173A47AD00DE8BF9 /* ISViewController.xib */; };
 		2BCF8CA8171FEC3B00B31E12 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCF8CA7171FEC3B00B31E12 /* ImageUtil.m */; };
+		2BE93ADB173BD82B0086D98E /* GalleryCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE93AD5173BD8290086D98E /* GalleryCommentViewController.m */; };
+		2BE93ADC173BD82B0086D98E /* CustomGalleryCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE93AD8173BD82B0086D98E /* CustomGalleryCommentCell.m */; };
+		2BE93ADF173BDB4F0086D98E /* CustomGalleryCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BE93ADD173BDB4F0086D98E /* CustomGalleryCommentCell.xib */; };
+		2BE93AE0173BDB4F0086D98E /* GalleryCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BE93ADE173BDB4F0086D98E /* GalleryCommentViewController.xib */; };
 		C838CB741726A4CC00B9AC17 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C838CB731726A4CC00B9AC17 /* MyAnnotation.m */; };
 		C849D17A17048DEC003D18A5 /* menu7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C849D17917048DEC003D18A5 /* menu7.jpg */; };
 		C849D18617049419003D18A5 /* fb-login-button.png in Resources */ = {isa = PBXBuildFile; fileRef = C849D18517049419003D18A5 /* fb-login-button.png */; };
@@ -209,6 +213,12 @@
 		2BCF8CA5171FEC3B00B31E12 /* ColorMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMatrix.h; sourceTree = "<group>"; };
 		2BCF8CA6171FEC3B00B31E12 /* ImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtil.h; sourceTree = "<group>"; };
 		2BCF8CA7171FEC3B00B31E12 /* ImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtil.m; sourceTree = "<group>"; };
+		2BE93AD5173BD8290086D98E /* GalleryCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GalleryCommentViewController.m; path = Fluence3/GalleryCommentViewController.m; sourceTree = "<group>"; };
+		2BE93AD6173BD8290086D98E /* GalleryCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GalleryCommentViewController.h; path = Fluence3/GalleryCommentViewController.h; sourceTree = "<group>"; };
+		2BE93AD7173BD82A0086D98E /* CustomGalleryCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomGalleryCommentCell.h; path = Fluence3/CustomGalleryCommentCell.h; sourceTree = "<group>"; };
+		2BE93AD8173BD82B0086D98E /* CustomGalleryCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomGalleryCommentCell.m; path = Fluence3/CustomGalleryCommentCell.m; sourceTree = "<group>"; };
+		2BE93ADD173BDB4F0086D98E /* CustomGalleryCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomGalleryCommentCell.xib; path = Fluence3/CustomGalleryCommentCell.xib; sourceTree = "<group>"; };
+		2BE93ADE173BDB4F0086D98E /* GalleryCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GalleryCommentViewController.xib; path = Fluence3/GalleryCommentViewController.xib; sourceTree = "<group>"; };
 		C838CB721726A4CC00B9AC17 /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
 		C838CB731726A4CC00B9AC17 /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
 		C849D17917048DEC003D18A5 /* menu7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu7.jpg; sourceTree = "<group>"; };
@@ -514,6 +524,12 @@
 		C889BABB16F213370040CA39 = {
 			isa = PBXGroup;
 			children = (
+				2BE93ADD173BDB4F0086D98E /* CustomGalleryCommentCell.xib */,
+				2BE93ADE173BDB4F0086D98E /* GalleryCommentViewController.xib */,
+				2BE93AD5173BD8290086D98E /* GalleryCommentViewController.m */,
+				2BE93AD6173BD8290086D98E /* GalleryCommentViewController.h */,
+				2BE93AD7173BD82A0086D98E /* CustomGalleryCommentCell.h */,
+				2BE93AD8173BD82B0086D98E /* CustomGalleryCommentCell.m */,
 				2BC35F15173907FC00EF1A7C /* CustomPoseSelectCell.xib */,
 				2BC35F16173907FC00EF1A7C /* SelectPoseListViewController.xib */,
 				2BC35F17173907FC00EF1A7C /* SelectPoseListViewController.m */,
@@ -968,6 +984,8 @@
 				2BC35F1B173907FD00EF1A7C /* CustomPoseSelectCell.xib in Resources */,
 				2BC35F1C173907FD00EF1A7C /* SelectPoseListViewController.xib in Resources */,
 				2BC52767173A47AD00DE8BF9 /* ISViewController.xib in Resources */,
+				2BE93ADF173BDB4F0086D98E /* CustomGalleryCommentCell.xib in Resources */,
+				2BE93AE0173BDB4F0086D98E /* GalleryCommentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1043,6 +1061,8 @@
 				2BC35F081738FFE300EF1A7C /* ComboBox.m in Sources */,
 				2BC35F1D173907FD00EF1A7C /* SelectPoseListViewController.m in Sources */,
 				2BC35F1E173907FD00EF1A7C /* CustomPoseSelectCell.m in Sources */,
+				2BE93ADB173BD82B0086D98E /* GalleryCommentViewController.m in Sources */,
+				2BE93ADC173BD82B0086D98E /* CustomGalleryCommentCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
