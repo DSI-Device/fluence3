@@ -11,7 +11,7 @@
 #import "OBShapedButton.h"
 #import "TSPopoverController.h"
 #import "Fluence3AppDelegate.h"
-#import "SelectListViewController.h"
+#import "GalleryCommentViewController.h"
 
 #define kThumbnailSize 75
 #define kThumbnailSpacing 4
@@ -1960,7 +1960,7 @@
 
 -(void)showTablePopover:(id)sender forEvent:(UIEvent*)event
 {
-    SelectListViewController *my = [[SelectListViewController alloc] initWithNibName:@"SelectListViewController" bundle:nil] ;
+    GalleryCommentViewController *my = [[GalleryCommentViewController alloc] initWithNibName:@"GalleryCommentViewController" bundle:nil] ;
     //SelectListViewController *my = [[UIApplication sharedApplication] delegate];
     //UITableViewController *tableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
     my.view.frame = CGRectMake(0,0, 320, 400);

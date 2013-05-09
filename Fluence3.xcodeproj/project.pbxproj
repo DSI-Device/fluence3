@@ -1076,6 +1076,8 @@
 				2BC35F1E173907FD00EF1A7C /* CustomPoseSelectCell.m in Sources */,
 				2BE93ADB173BD82B0086D98E /* GalleryCommentViewController.m in Sources */,
 				2BE93ADC173BD82B0086D98E /* CustomGalleryCommentCell.m in Sources */,
+				2B7F19BD173AA77F0049084C /* YHCPickerView.m in Sources */,
+				2B7F19C2173AC4410049084C /* FGalleryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
