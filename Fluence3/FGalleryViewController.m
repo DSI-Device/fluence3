@@ -10,6 +10,7 @@
 #import "RemoveEventView.h"
 #import "OBShapedButton.h"
 #import "TSPopoverController.h"
+#import "Fluence3AppDelegate.h"
 
 #define kThumbnailSize 75
 #define kThumbnailSpacing 4
@@ -83,6 +84,7 @@
 @synthesize beginsInThumbnailView = _beginsInThumbnailView;
 @synthesize hideTitle = _hideTitle;
 @synthesize currentDate;
+@synthesize appdt;
 
 #pragma mark - Public Methods
 
@@ -108,6 +110,7 @@
 		_photoViews							= [[NSMutableArray alloc] init];
 		_photoThumbnailViews				= [[NSMutableArray alloc] init];
 		_barItems							= [[NSMutableArray alloc] init];
+        appdt                               = [[UIApplication sharedApplication] delegate]; 
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -542,8 +545,8 @@
             FGalleryPhotoView * photoView = [_photoViews objectAtIndex:i]; 
             photoView.frame = CGRectMake(dx+50, 114, rect.size.width - 50, 320);  //_scroller.frame.size.height-(kToolbarHeight + 114)  );
             dx += rect.size.width;
-            CGRect cr = photoView.frame;
-            NSLog(@"asa");
+//            CGRect cr = photoView.frame;
+//            NSLog(@"asa");
         }
     }
 }
@@ -1581,7 +1584,7 @@
 		if([_photoSource respondsToSelector:@selector(photoGallery:tagsForPhotoAtIndex:)])
 		{
             //removes tag
-            NSInteger t = [[_tagContainer subviews] count];
+//            NSInteger t = [[_tagContainer subviews] count];
             //for (int i = 0; i < [[_tagContainer subviews] count]; i++ ) {
             //[[[_tagContainer subviews] objectAtIndex:i] removeFromSuperview];
             for (OBShapedButton *btn in _tagContainer.subviews){
@@ -1930,7 +1933,175 @@
     [_photoSource photoGallery:self commentButtonClicked:imageID:_commentTextField.text];
     
     _commentTextField.text = @"";
+    
+    // First, check whether the Facebook Session is open or not 
+    
+    if (FBSession.activeSession.isOpen) {
+        
+        // Yes, we are open, so lets make a request for user details so we can get the user name.
+        
+        [self promptUserWithAccountName];// a custom method - see below:
+        
+        
+        
+    } else {
+        
+        // We don't have an active session in this app, so lets open a new
+        // facebook session with the appropriate permissions!
+        
+        // Firstly, construct a permission array.
+        // you can find more "permissions strings" at http://developers.facebook.com/docs/authentication/permissions/
+        // In this example, we will just request a publish_stream which is required to publish status or photos.
+        
+        NSArray *permissions = [[NSArray alloc] initWithObjects:
+                                @"publish_stream",
+                                nil];
+        
+        // OPEN Session!
+        [self controlStatusUsable:NO];
+        [FBSession openActiveSessionWithPermissions:permissions
+                                       allowLoginUI:YES
+                                  completionHandler:^(FBSession *session, 
+                                                      FBSessionState status, 
+                                                      NSError *error) {
+                                      // if login fails for any reason, we alert
+                                      if (error) {
+                                          
+                                          // show error to user.
+                                          
+                                      } else if (FB_ISSESSIONOPENWITHSTATE(status)) {
+                                          
+                                          // no error, so we proceed with requesting user details of current facebook session.
+                                          
+                                          [self promptUserWithAccountName];   // a custom method - see below:                              
+                                      }
+                                      [self controlStatusUsable:YES];
+                                  }];
+    }
+
 }
+
+-(void)promptUserWithAccountName {
+    [self controlStatusUsable:NO];
+    [[FBRequest requestForMe] startWithCompletionHandler:
+     ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
+         if (!error) {
+             
+             UIAlertView *tmp = [[UIAlertView alloc] 
+                                 initWithTitle:@"Upload to FB?" 
+                                 message:[NSString stringWithFormat:@"Upload to ""%@"" Account?", user.name]
+                                 delegate:self 
+                                 cancelButtonTitle:nil
+                                 otherButtonTitles:@"No",@"Yes", nil];
+             tmp.tag = 100; // We are also setting the tag to this alert so we can identify it in delegate method later
+             [tmp show];
+             [tmp release];
+             
+         }
+         [self controlStatusUsable:YES]; // whether error occur or not, enable back the UI
+     }];  
+    [[FBRequest requestForMe] startWithCompletionHandler:
+     ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
+         if (!error) {
+             
+             UIAlertView *tmp = [[UIAlertView alloc] 
+                                 initWithTitle:@"Publish to FB?" 
+                                 message:[NSString stringWithFormat:@"Publish status to ""%@"" Account?", user.name]
+                                 delegate:self 
+                                 cancelButtonTitle:nil
+                                 otherButtonTitles:@"No",@"Yes", nil];
+             tmp.tag = 100; // to update status
+             [tmp show];
+             [tmp release];
+             
+         }
+         
+         [self controlStatusUsable:YES];
+     }];  
+}
+
+-(void)controlStatusUsable:(BOOL)usable {
+    if (usable) {
+//        
+//        self.activity.hidden = YES;
+//        [self.activity stopAnimating];
+    } else {
+//        btnUploadImg.userInteractionEnabled = NO;
+//        btnUpdateStatus.userInteractionEnabled = NO;
+//        self.activity.hidden = NO;
+//        [self.activity startAnimating];
+    }
+    
+}
+
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex==1) { // yes answer
+        UIImage *img = [UIImage imageNamed:@"audi.jpg"];
+        UIImage *buttonImagePressed = [UIImage imageNamed:@"shop.png"];
+        // did the alert responded to is the one prompting about user name? if so, upload!
+        if (alertView.tag==100) {
+            [FBRequestConnection startForPostStatusUpdate:@"asasas" completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                if (!error) {
+                    UIAlertView *tmp = [[UIAlertView alloc] 
+                                        initWithTitle:@"Success" 
+                                        message:@"Status Posted"
+                                        delegate:self 
+                                        cancelButtonTitle:nil
+                                        otherButtonTitles:@"Ok", nil];
+                    
+                    [tmp show];
+                    [tmp release];
+                } else {
+                    UIAlertView *tmp = [[UIAlertView alloc] 
+                                        initWithTitle:@"Error" 
+                                        message:@"Some error happened"
+                                        delegate:self 
+                                        cancelButtonTitle:nil
+                                        otherButtonTitles:@"Ok", nil];
+                    
+                    [tmp show];
+                    [tmp release];
+                }
+            }];
+            // then upload
+            [self controlStatusUsable:NO];
+            
+            // Here is where the UPLOADING HAPPENS!
+            [FBRequestConnection startForUploadPhoto:buttonImagePressed 
+                                   completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                                       if (!error) {
+                                           UIAlertView *tmp = [[UIAlertView alloc] 
+                                                               initWithTitle:@"Success" 
+                                                               message:@"Photo Uploaded"
+                                                               delegate:self 
+                                                               cancelButtonTitle:nil
+                                                               otherButtonTitles:@"Ok", nil];
+                                           
+                                           [tmp show];
+                                           [tmp release];
+                                       } else {
+                                           UIAlertView *tmp = [[UIAlertView alloc] 
+                                                               initWithTitle:@"Error" 
+                                                               message:@"Some error happened"
+                                                               delegate:self 
+                                                               cancelButtonTitle:nil
+                                                               otherButtonTitles:@"Ok", nil];
+                                           
+                                           [tmp show];
+                                           [tmp release];
+                                       }
+                                       
+                                       [self controlStatusUsable:YES];
+                                   }];
+            
+        }
+        
+    }
+    
+}
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {

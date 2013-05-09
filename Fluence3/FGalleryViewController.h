@@ -12,6 +12,8 @@
 #import "FGalleryPhoto.h"
 #import "RemoveEventView.h"
 #import "TSPopoverController.h"
+#import <FacebookSDK/FacebookSDK.h>
+#import "Fluence3AppDelegate.h"
 
 @class DDMenuController;
 typedef enum
@@ -77,6 +79,8 @@ typedef enum
     UITextField *_commentTextField;
     
     UILabel *_likeNumber;
+    
+    Fluence3AppDelegate *appdt;
 }
 
 - (id)initWithPhotoSource:(NSObject<FGalleryViewControllerDelegate>*)photoSrc;
@@ -90,6 +94,7 @@ typedef enum
 - (FGalleryPhoto*)currentPhoto;
 - (void)addMyButton:(NSInteger)index:(NSString*)caption:(UIView*)container:(NSInteger)xc:(NSInteger)yc;
 
+@property (nonatomic, retain) Fluence3AppDelegate *appdt;
 @property (nonatomic,retain) NSString *currentDate;
 @property NSInteger currentIndex;
 @property NSInteger startingIndex;
@@ -101,8 +106,11 @@ typedef enum
 @property (nonatomic) BOOL useThumbnailView;
 @property (nonatomic) BOOL beginsInThumbnailView;
 @property (nonatomic) BOOL hideTitle;
-@property (strong, nonatomic) DDMenuController *menuController;
-@property (strong, nonatomic) UIWindow *window;
+//@property (strong, nonatomic) DDMenuController *menuController;
+//@property (strong, nonatomic) UIWindow *window;
+-(void)promptUserWithAccountName;
+-(void)controlStatusUsable:(BOOL)usable;
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 @end
 
 
