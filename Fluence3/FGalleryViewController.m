@@ -2042,25 +2042,74 @@
 }
 
 -(void)promptUserWithAccountName {
-    [self controlStatusUsable:NO];
-    [[FBRequest requestForMe] startWithCompletionHandler:
-     ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
-         if (!error) {
-             
+    
+    NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
+    [params setObject:_commentTextField.text forKey:@"message"];
+    UIImage *buttonImagePressed = [UIImage imageNamed:@"shop.png"];
+    [params setObject:UIImagePNGRepresentation(buttonImagePressed) forKey:@"picture"];
+    _shareButton.enabled = NO; //for not allowing multiple hits
+    
+    [FBRequestConnection startWithGraphPath:@"me/photos"
+                                 parameters:params
+                                 HTTPMethod:@"POST"
+                          completionHandler:^(FBRequestConnection *connection,
+                                              id result,
+                                              NSError *error) 
+     {
+         if (error) 
+         {
              UIAlertView *tmp = [[UIAlertView alloc] 
-                                 initWithTitle:@"Upload to FB?" 
-                                 message:[NSString stringWithFormat:@"Upload to ""%@"" Account?", user.name]
+                                 initWithTitle:@"Error" 
+                                 message:@"Some error happened"
                                  delegate:self 
                                  cancelButtonTitle:nil
-                                 otherButtonTitles:@"No",@"Yes", nil];
-             tmp.tag = 100; // We are also setting the tag to this alert so we can identify it in delegate method later
+                                 otherButtonTitles:@"Ok", nil];
+             
              [tmp show];
              [tmp release];
+         } 
+         else
+         {
+             UIAlertView *tmp = [[UIAlertView alloc] 
+                                 initWithTitle:@"Success" 
+                                 message:@"Status Posted"
+                                 delegate:self 
+                                 cancelButtonTitle:nil
+                                 otherButtonTitles:@"Ok", nil];
              
+             [tmp show];
+             [tmp release];
          }
-         [self controlStatusUsable:YES]; // whether error occur or not, enable back the UI
-     }];  
-    [[FBRequest requestForMe] startWithCompletionHandler:
+         _shareButton.enabled = YES;
+     }];
+    
+    /*[self controlStatusUsable:NO];
+    _commentTextField.text = @"Test SDK";
+    [FBRequestConnection startForPostStatusUpdate:_commentTextField.text completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        if (!error) {
+            UIAlertView *tmp = [[UIAlertView alloc] 
+                                initWithTitle:@"Success" 
+                                message:@"Status Posted"
+                                delegate:self 
+                                cancelButtonTitle:nil
+                                otherButtonTitles:@"Ok", nil];
+            
+            [tmp show];
+            [tmp release];
+        } else {
+            UIAlertView *tmp = [[UIAlertView alloc] 
+                                initWithTitle:@"Error" 
+                                message:@"Some error happened"
+                                delegate:self 
+                                cancelButtonTitle:nil
+                                otherButtonTitles:@"Ok", nil];
+            
+            [tmp show];
+            [tmp release];
+        }
+    }];*/
+  
+    /*[[FBRequest requestForMe] startWithCompletionHandler:
      ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
          if (!error) {
              
@@ -2077,7 +2126,7 @@
          }
          
          [self controlStatusUsable:YES];
-     }];  
+     }];  */
 }
 
 -(void)controlStatusUsable:(BOOL)usable {
@@ -2098,11 +2147,12 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     if (buttonIndex==1) { // yes answer
+        _commentTextField.text = @"testing";
         UIImage *img = [UIImage imageNamed:@"audi.jpg"];
         UIImage *buttonImagePressed = [UIImage imageNamed:@"shop.png"];
         // did the alert responded to is the one prompting about user name? if so, upload!
         if (alertView.tag==100) {
-            [FBRequestConnection startForPostStatusUpdate:@"asasas" completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+            [FBRequestConnection startForPostStatusUpdate:_commentTextField.text completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                 if (!error) {
                     UIAlertView *tmp = [[UIAlertView alloc] 
                                         initWithTitle:@"Success" 
@@ -2128,7 +2178,7 @@
             // then upload
             [self controlStatusUsable:NO];
             
-            // Here is where the UPLOADING HAPPENS!
+            /*// Here is where the UPLOADING HAPPENS!
             [FBRequestConnection startForUploadPhoto:buttonImagePressed 
                                    completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                                        if (!error) {
@@ -2154,7 +2204,7 @@
                                        }
                                        
                                        [self controlStatusUsable:YES];
-                                   }];
+                                   }];*/
             
         }
         

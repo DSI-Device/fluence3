@@ -151,7 +151,10 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 - (void)openSession
 {
     //FBSession *session = [[FBSession alloc] initWithAppID:nil permissions:nil urlSchemeSuffix:@"foo" tokenCacheStrategy:nil];
-    [FBSession openActiveSessionWithPermissions:nil
+    NSArray *permissions = [[NSArray alloc] initWithObjects:
+                            @"publish_stream",
+                            nil];
+    [FBSession openActiveSessionWithPermissions:permissions
                allowLoginUI:YES
                completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                   [self sessionStateChanged:session state:state error:error];
