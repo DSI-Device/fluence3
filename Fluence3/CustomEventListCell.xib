@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">528</int>
-		<string key="IBDocument.SystemVersion">12A269</string>
+		<string key="IBDocument.SystemVersion">12C54</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
-		<string key="IBDocument.AppKitVersion">1187</string>
-		<string key="IBDocument.HIToolboxVersion">624.00</string>
+		<string key="IBDocument.AppKitVersion">1187.34</string>
+		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">1930</string>
@@ -95,10 +95,9 @@
 							<object class="IBUIButton" id="702835447">
 								<reference key="NSNextResponder" ref="658469383"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{242, -2}, {68, 44}}</string>
+								<string key="NSFrame">{{242, 2}, {68, 36}}</string>
 								<reference key="NSSuperview" ref="658469383"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -163,27 +162,27 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">userImage</string>
+						<string key="label">eventImage</string>
 						<reference key="source" ref="677438758"/>
 						<reference key="destination" ref="1047476028"/>
 					</object>
-					<int key="connectionID">9</int>
+					<int key="connectionID">15</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">userName</string>
+						<string key="label">eventName</string>
 						<reference key="source" ref="677438758"/>
 						<reference key="destination" ref="77528204"/>
 					</object>
-					<int key="connectionID">10</int>
+					<int key="connectionID">16</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">followed</string>
+						<string key="label">joined</string>
 						<reference key="source" ref="677438758"/>
 						<reference key="destination" ref="702835447"/>
 					</object>
-					<int key="connectionID">12</int>
+					<int key="connectionID">17</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -214,8 +213,8 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="77528204"/>
-							<reference ref="702835447"/>
 							<reference ref="1047476028"/>
+							<reference ref="702835447"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -273,7 +272,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">14</int>
+			<int key="maxID">17</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -296,45 +295,45 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>followed</string>
-							<string>userID</string>
-							<string>userImage</string>
-							<string>userName</string>
+							<string>eventID</string>
+							<string>eventImage</string>
+							<string>eventName</string>
+							<string>joined</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>UIButton</string>
 							<string>NSString</string>
 							<string>UIImageView</string>
 							<string>UILabel</string>
+							<string>UIButton</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>followed</string>
-							<string>userID</string>
-							<string>userImage</string>
-							<string>userName</string>
+							<string>eventID</string>
+							<string>eventImage</string>
+							<string>eventName</string>
+							<string>joined</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
-								<string key="name">followed</string>
-								<string key="candidateClassName">UIButton</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">userID</string>
+								<string key="name">eventID</string>
 								<string key="candidateClassName">NSString</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">userImage</string>
+								<string key="name">eventImage</string>
 								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">userName</string>
+								<string key="name">eventName</string>
 								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">joined</string>
+								<string key="candidateClassName">UIButton</string>
 							</object>
 						</object>
 					</object>

@@ -20,7 +20,6 @@
 		2B53EDE9170F039200C8C184 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE6170F039200C8C184 /* share.png */; };
 		2B53EDEA170F039200C8C184 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE7170F039200C8C184 /* comment.png */; };
 		2B53EDEB170F039200C8C184 /* heart-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE8170F039200C8C184 /* heart-icon.png */; };
-		2B7F19B4173A6F210049084C /* stylist.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7F19B3173A6F210049084C /* stylist.png */; };
 		2B7F19BD173AA77F0049084C /* YHCPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7F19BC173AA77F0049084C /* YHCPickerView.m */; };
 		2B7F19C2173AC4410049084C /* FGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E7F616F88FC900C92E99 /* FGalleryViewController.m */; };
 		2B98853A1727DD10000386E5 /* TSPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9885351727DD10000386E5 /* TSPopoverController.m */; };
@@ -31,6 +30,8 @@
 		2BC20D331726C39700EE2CCB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC20D321726C39700EE2CCB /* Security.framework */; };
 		2BC20D351726C44200EE2CCB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC20D341726C44100EE2CCB /* libz.dylib */; };
 		2BC20D371726C44F00EE2CCB /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC20D361726C44E00EE2CCB /* libxml2.dylib */; };
+		2BC31E80173CE322002E5981 /* SelectTasteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC31E7E173CE322002E5981 /* SelectTasteListViewController.m */; };
+		2BC31E81173CE322002E5981 /* SelectTasteListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BC31E7F173CE322002E5981 /* SelectTasteListViewController.xib */; };
 		2BC35EF81738F78600EF1A7C /* CustomEventListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BC35EF51738F78600EF1A7C /* CustomEventListCell.xib */; };
 		2BC35EF91738F78600EF1A7C /* CustomEventListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC35EF71738F78600EF1A7C /* CustomEventListCell.m */; };
 		2BC35EFD1738F8A500EF1A7C /* EventListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC35EFA1738F8A500EF1A7C /* EventListViewController.m */; };
@@ -194,6 +195,9 @@
 		2BC20D321726C39700EE2CCB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		2BC20D341726C44100EE2CCB /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		2BC20D361726C44E00EE2CCB /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		2BC31E7D173CE322002E5981 /* SelectTasteListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectTasteListViewController.h; path = Fluence3/SelectTasteListViewController.h; sourceTree = "<group>"; };
+		2BC31E7E173CE322002E5981 /* SelectTasteListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectTasteListViewController.m; path = Fluence3/SelectTasteListViewController.m; sourceTree = "<group>"; };
+		2BC31E7F173CE322002E5981 /* SelectTasteListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectTasteListViewController.xib; path = Fluence3/SelectTasteListViewController.xib; sourceTree = "<group>"; };
 		2BC35EF51738F78600EF1A7C /* CustomEventListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomEventListCell.xib; path = Fluence3/CustomEventListCell.xib; sourceTree = "<group>"; };
 		2BC35EF61738F78600EF1A7C /* CustomEventListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomEventListCell.h; path = Fluence3/CustomEventListCell.h; sourceTree = "<group>"; };
 		2BC35EF71738F78600EF1A7C /* CustomEventListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomEventListCell.m; path = Fluence3/CustomEventListCell.m; sourceTree = "<group>"; };
@@ -537,6 +541,9 @@
 		C889BABB16F213370040CA39 = {
 			isa = PBXGroup;
 			children = (
+				2BC31E7D173CE322002E5981 /* SelectTasteListViewController.h */,
+				2BC31E7E173CE322002E5981 /* SelectTasteListViewController.m */,
+				2BC31E7F173CE322002E5981 /* SelectTasteListViewController.xib */,
 				2BE93ADD173BDB4F0086D98E /* CustomGalleryCommentCell.xib */,
 				2BE93ADE173BDB4F0086D98E /* GalleryCommentViewController.xib */,
 				2BE93AD5173BD8290086D98E /* GalleryCommentViewController.m */,
@@ -1000,6 +1007,7 @@
 				2BC52767173A47AD00DE8BF9 /* ISViewController.xib in Resources */,
 				2BE93ADF173BDB4F0086D98E /* CustomGalleryCommentCell.xib in Resources */,
 				2BE93AE0173BDB4F0086D98E /* GalleryCommentViewController.xib in Resources */,
+				2BC31E81173CE322002E5981 /* SelectTasteListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1078,6 +1086,7 @@
 				2BE93ADC173BD82B0086D98E /* CustomGalleryCommentCell.m in Sources */,
 				2B7F19BD173AA77F0049084C /* YHCPickerView.m in Sources */,
 				2B7F19C2173AC4410049084C /* FGalleryViewController.m in Sources */,
+				2BC31E80173CE322002E5981 /* SelectTasteListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

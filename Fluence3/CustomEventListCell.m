@@ -10,7 +10,7 @@
 
 @implementation CustomEventListCell
 
-@synthesize userID, userName, followed,userImage,isFollowed;
+@synthesize eventID, eventName, joined,eventImage,isJoined;
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
@@ -27,25 +27,25 @@
 }
 
 - (void)dealloc {
-    [userID release];
-	[userName release];
-	[followed release];
-	[userImage release];
+    [eventID release];
+	[eventName release];
+	[joined release];
+	[eventImage release];
     [super dealloc];
 }
 
 -(IBAction)cellButtonClick:(id)sender{
     NSLog(@"Cell Button Clicked...");
-	if (!self.isFollowed) {
+	if (!self.isJoined) {
         
-        self.isFollowed = YES;
-        [self.followed setTitle:@"Unfollow" forState:UIControlStateNormal];
+        self.isJoined = YES;
+        [self.joined setTitle:@"Unfollow" forState:UIControlStateNormal];
         
 		
     }else {
         
-        self.isFollowed = NO;
-        [self.followed setTitle:@"Follow" forState:UIControlStateNormal];
+        self.isJoined = NO;
+        [self.joined setTitle:@"Follow" forState:UIControlStateNormal];
         
     }
 }

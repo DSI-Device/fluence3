@@ -11,17 +11,17 @@
 
 @interface CustomEventListCell : UITableViewCell {
 	
-	IBOutlet NSString *userID;
-    IBOutlet UILabel *userName;
-    IBOutlet UIButton *followed;
-	IBOutlet UIImageView *userImage;
-	BOOL isFollowed;
+	IBOutlet NSString *eventID;
+    IBOutlet UILabel *eventName;
+    IBOutlet UIButton *joined;
+	IBOutlet UIImageView *eventImage;
+	BOOL isJoined;
 }
 
-@property(nonatomic, retain) NSString *userID;
-@property(nonatomic, retain) UILabel *userName;
-@property(nonatomic, retain) UIButton *followed;
-@property(nonatomic, retain) UIImageView *userImage;
-@property(nonatomic, assign) BOOL isFollowed;
+@property(nonatomic, retain) NSString *eventID;
+@property(nonatomic, retain) UILabel *eventName;
+@property(nonatomic, retain) UIButton *joined;
+@property(nonatomic, retain) UIImageView *eventImage;
+@property(nonatomic, assign) BOOL isJoined;
 -(IBAction)cellButtonClick:(id)sender;
 @end

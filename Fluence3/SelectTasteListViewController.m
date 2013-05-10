@@ -6,30 +6,36 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "EventListViewController.h"
+#import "SelectTasteListViewController.h"
+#import "Fluence3AppDelegate.h"
 
+@implementation SelectTasteListViewController
 
-@implementation EventListViewController
-@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,appdt;
+@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,appdt,eventListView;
 
 - (void)loadView{
-    [super loadView];
-    dao = [[searchDao alloc] init];
-    self.searchBar.placeholder = [self getSearchBarTitle];
-    self.currentLimit = 50;
-    adapter = [MYSBJsonStreamParserAdapter new];
-    adapter.delegate = self;
-    parser = [MYSBJsonStreamParser new];
-    parser.delegate = adapter;
-    parser.multi = YES;
+	[super loadView];
+	dao = [[searchDao alloc] init];
+	self.searchBar.placeholder = [self getSearchBarTitle];
+	self.currentLimit = 50;
+	adapter = [MYSBJsonStreamParserAdapter new];
+	adapter.delegate = self;
+	parser = [MYSBJsonStreamParser new];
+	parser.delegate = adapter;
+	parser.multi = YES;
     [utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
-    appdt = [[UIApplication sharedApplication]delegate];
-    [self.listTableView setHidden:YES];
-    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/catchPostedDataOfEventList/" ];
-    [self performSelector:@selector(triggerAsyncronousRequest2:) withObject: serverUrl];
+    selectedDataSource = [[NSMutableArray alloc] init];
+	[self.listTableView setHidden:YES];
+	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&limit=%d",self.currentLimit];
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/fetch_teste_list/" ];
+	NSLog(@"serverUrl: %@", serverUrl);
+	//NSString *serverUrl=@"http://103.4.147.139/fluence3";
+	[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
+	//[utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
+	appdt = [[UIApplication sharedApplication]delegate];
 }
 
-- (void) triggerAsyncronousRequest1: (NSString *)url {
+- (void) triggerAsyncronousRequest: (NSString *)url {
 	
 	[self.spinner startAnimating];
 	self.spinner.hidden = NO;
@@ -39,65 +45,6 @@
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];//asynchronous call
 	[[NSURLConnection alloc] initWithRequest:request delegate:self];
 	
-}
-
-- (void) triggerAsyncronousRequest2: (NSString *)url {
-	
-	[self.spinner startAnimating];
-	self.spinner.hidden = NO;
-	self.spinnerBg.hidden = NO;
-	
-	url = [url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    
-    
-    
-    NSLog(@"appdt.selectedPoseList Count = %i", [appdt.selectedPoseList count]);
-    [self.listTableView setHidden:YES];
-    NSString *jsonRequest = [appdt.selectedPoseList JSONRepresentation];
-    
-    
-    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
-    [dictionnary setObject:appdt.selectedPoseList forKey:@"postData"];
-    
-    NSString *jsonStr = [dictionnary JSONRepresentation];
-    
-    //NSError *error = nil;
-    //NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionnary                                                       options:kNilOptions                                                         error:&error];
-    
-    NSLog(@"jsonRequest is %@", jsonRequest);
-    
-    NSURL *nsurl = [NSURL URLWithString:url ];
-    /*
-     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl];
-     
-     
-     
-     [request setHTTPMethod:@"POST"];
-     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-     [request setValue:[NSString stringWithFormat:@"%d", [jsonData length]] forHTTPHeaderField:@"Content-Length"];
-     [request setHTTPBody: jsonData];
-     
-     [[NSURLConnection alloc] initWithRequest:request delegate:self];
-     
-     [request release];//shuvo */
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl
-                                    
-                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                    
-                                                       timeoutInterval:60.0];
-    
-    [request setHTTPMethod:@"POST"];
-    
-    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-    /*if (theConnection) {
-     
-     receiveData = [NSMutableData data];
-     
-     }}*/
 }
 
 - (IBAction) searchContentChanged: (id) sender{
@@ -122,7 +69,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
 	NSLog(@"Connection didReceiveData of length: %u", data.length);
-	NSLog(@"String sent from server %@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+	
 	MYSBJsonStreamParserStatus status = [parser parse:data];
 	
 	if (status == MYSBJsonStreamParserError) {
@@ -204,6 +151,9 @@
 }
 
 
+
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	NSLog(@"Count cellForRowAtIndexPath %u", [self.dataSource count]);
 	NSUInteger row = [indexPath row];
@@ -234,99 +184,46 @@
 		
 	}else {
 		
-		static NSString *cellTableIdentifier = @"CustomEventListCellIdentifier";
+		static NSString *cellTableIdentifier = @"CustomPoseSelectCellIdentifier";
 		
-		CustomEventListCell *cell = (CustomEventListCell *)[tableView dequeueReusableCellWithIdentifier:cellTableIdentifier];
+		CustomPoseSelectCell *cell = (CustomPoseSelectCell *)[tableView dequeueReusableCellWithIdentifier:cellTableIdentifier];
 		if (cell == nil) {
-			NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomPeopleListCell" owner:self options:nil];
+			NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomPoseSelectCell" owner:self options:nil];
 			cell = [nib objectAtIndex:0];
 			cell.selectedBackgroundView = [[[UIView alloc] init] autorelease];
 			[cell.selectedBackgroundView setBackgroundColor:[UIColor orangeColor]];
 		}
-		cell.eventName.text = [rowData objectForKey:@"eventName"];
-        cell.eventID = [rowData objectForKey:@"eventID"];
-		cell.joined.hidden = NO;
-        cell.joined.tag=[indexPath row];
-        followed_s = [rowData objectForKey:@"joined"];
-        [cell.joined addTarget:self action:@selector(tappedFollowBtn2:)  forControlEvents:UIControlEventTouchUpInside];
+
+        cell.tasteID = [rowData objectForKey:@"tasteID"];
+		cell.tasteName.text = [rowData objectForKey:@"tasteName"];
+		cell.checked.hidden = NO;
+        cell.isSelected = NO;
+        [cell.checked setImage:[UIImage imageNamed:@"checkbox_not_ticked.png"]];
         
-		NSString *serverUrl = [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"images/%@",[rowData objectForKey:@"eventImage"]];
-		
-		NSURL *url = [NSURL URLWithString:serverUrl];
-		
-		NSData *data = [[NSData alloc] initWithContentsOfURL:url];
-		
-		UIImage *tmpImage = [[UIImage alloc] initWithData:data];
-		
-		//yourImageView.image = tmpImage;
-		
-		
-		[cell.eventImage setImage:tmpImage];
-		if ([followed_s isEqualToString:@"1"]) {
-			cell.isJoined = YES;
-            [cell.joined setTitle:@"Cancel" forState:UIControlStateNormal];
-		}else if([followed_s isEqualToString:@"0"]){
-			cell.isJoined = NO;
-            [cell.joined setTitle:@"Join" forState:UIControlStateNormal];
-			
+        /*
+		if ([utils isRowExistsOnList:selectedDataSource row:rowData]) {
+			cell.isSelected = YES;
+			[cell.checked setImage:[UIImage imageNamed:@"checkbox_ticked.png"]];
+		}else if(cell.tasteName.text != NULL && ![cell.tasteName.text isEqual:@""]){
+			cell.isSelected = NO;
+			[cell.checked setImage:[UIImage imageNamed:@"checkbox_not_ticked.png"]];
 		}else {
-			cell.joined.hidden = YES;
+			cell.checked.hidden = YES;
 		}
-		
+         */
 		return cell;
-        
 	}
 }
-//[objectWithOurMethod methodName:int1 ];
-- (void)tappedFollowBtn2:(id) sender
-{
-    NSLog(@"Button Clicked...");
-    NSLog(@"Count tappedFollowBtn2 %u", [self.dataSource count]);
-    //UIButton *senderButton = (UIButton *)sender;
-    NSIndexPath *indexPath = [listTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
-    NSUInteger row = [indexPath row];
-	NSDictionary *rowData = [self.dataSource objectAtIndex:row];
-	//NSString *qwe = [rowData JSONRepresentation];
-    //
-    CustomEventListCell *cell = (CustomEventListCell *) [listTableView cellForRowAtIndexPath:indexPath];
-	if (!cell.isJoined) {
-        
-        [rowData setValue:@"1" forKey:@"joined"];
-        cell.isJoined = YES;
-        [cell.joined setTitle:@"Cancel" forState:UIControlStateNormal];
-		followed_s = @"1";
-        
-		
-    }else {
-        [rowData setValue:@"0" forKey:@"joined"];
-        cell.isJoined = NO;
-        [cell.joined setTitle:@"Join" forState:UIControlStateNormal];
-		followed_s = @"0";
-        
-    }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
-    
-	
-   	NSLog(@"Follower ID : %@ ",cell.eventID);
-	NSString *myRequestString = [[NSString alloc] initWithFormat:@"EventID=%@&joined=%@",cell.eventID,followed_s];
-	NSLog(@"%@ ",myRequestString);
-	NSData *myRequestData = [ NSData dataWithBytes: [ myRequestString UTF8String ] length: [ myRequestString length ] ];
-	NSMutableURLRequest *request = [ [ NSMutableURLRequest alloc ] initWithURL: [ NSURL URLWithString: [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/eventJoin/" ]]];
-   	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
-    [request setHTTPMethod: @"POST"];
-	[request setHTTPBody: myRequestData];
-	//NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-	
-    //if (conn) NSLog(@"Connection Successful");
-	[request release];//shuvo
-    
+		return 55.0f;
 }
 
-// event handler after selecting a table row
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"Row selected...");
     
-    /* NSUInteger row = [indexPath row];
+     NSUInteger row = [indexPath row];
 	 NSDictionary *rowData = [self.dataSource objectAtIndex:row];
 	 if ([rowData objectForKey:@"count"] != NULL && ![[rowData objectForKey:@"count"] isEqual:@""] ) {
 	 viewMoreCell *cell = (viewMoreCell *)[tableView cellForRowAtIndexPath:indexPath];
@@ -343,32 +240,27 @@
 	 
 	 
 	 
-	 }else if ([rowData objectForKey:@"userName"] != NULL && ![[rowData objectForKey:@"userName"] isEqual:@""] ) {
+	 }else if ([rowData objectForKey:@"tasteName"] != NULL && ![[rowData objectForKey:@"tasteName"] isEqual:@""] ) {
 	 
-	 NSLog(@"option selected on select list");
-	 if( self.defaultElemId != nil && [self.defaultElemId isEqual:[rowData objectForKey:@"userID"]]){
-	 [utils showAlert:@"Warning !!" message:@"Default option can't be removed." delegate:nil];
-	 return;
-	 }
-	 CustomPeopleListCell *cell = (CustomPeopleListCell *)[tableView cellForRowAtIndexPath:indexPath];
-	 [cell.followed addTarget:self action:@selector(tappedFollowBtn2:) forControlEvents:UIControlEventTouchUpInside];
-	 if (!cell.isFollowed) {
-	 if (self.maxSelectionLimit > 0 && [selectedDataSource count] >= self.maxSelectionLimit) {
-	 [utils showAlert:@"Warning !!" message:@"Maximum selection limit exceeded." delegate:nil];
-	 return;
-	 }
-	 [selectedDataSource addObject:rowData];
-	 //cell.isFollowed = YES;
-	 //[cell.followed setTitle:@"Unfollow" forState:UIControlStateNormal];
-	 //[cell.userImage setImage:[UIImage imageNamed:@"checkbox_ticked.png"]];
+         NSLog(@"option selected on select list");
 	 
-	 }else {
-	 [utils deleteRowFromList:selectedDataSource row:rowData];
-	 //cell.isFollowed = NO;
-	 //[cell.followed setTitle:@"Follow" forState:UIControlStateNormal];
-	 //[cell.userImage setImage:[UIImage imageNamed:@"checkbox_not_ticked.png"]];
-	 }
-	 }*/
+         CustomPoseSelectCell *cell = (CustomPoseSelectCell *)[tableView cellForRowAtIndexPath:indexPath];
+	 
+         if (!cell.isSelected) {
+             
+             [self.selectedDataSource addObject:rowData];
+             NSLog(@"selectedDataSource Count = %i", [self.selectedDataSource count]);
+             cell.isSelected = YES;
+             [cell.checked setImage:[UIImage imageNamed:@"checkbox_ticked.png"]];
+		 }
+         else
+         {
+             [utils deletePoseFromList:self.selectedDataSource row:rowData];
+             NSLog(@"selectedDataSource Count = %i", [self.selectedDataSource count]);
+             cell.isSelected = NO;
+             [cell.checked setImage:[UIImage imageNamed:@"checkbox_not_ticked.png"]];
+         }
+    }
 	[self hideKeyboard:nil];
 }
 
@@ -396,7 +288,17 @@
 }
 
 - (IBAction) selectionDone: (id) sender{
-	[self.filterView setSelectedOption:selectedDataSource delegate:self];
+	//[self.filterView setSelectedOption:selectedDataSource delegate:self];
+    
+    appdt.selectedPoseList = self.selectedDataSource;
+    
+    NSLog(@"appdt.selectedPoseList Count = %i", [appdt.selectedPoseList count]);
+    NSLog(@"selectedDataSource Count = %i", [self.selectedDataSource count]);
+    
+    
+    eventListView = [[[EventListViewController alloc] initWithNibName:@"EventListViewController" bundle:nil]autorelease];
+    eventListView.title = @"Find People";
+    [self.navigationController pushViewController:eventListView animated:true];
 }
 
 - (NSString *) getSearchBarTitle{
