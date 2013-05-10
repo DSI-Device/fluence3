@@ -22,6 +22,8 @@
     
     NSMutableArray *tagArray;
     NSMutableArray *tagArray1;
+    NSMutableArray *stylistArray;
+    NSMutableArray *stylists;
     NSMutableArray *imageArray;
     
     FGalleryViewController *localGallery;

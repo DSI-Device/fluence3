@@ -11,6 +11,7 @@
 #import "OBShapedButton.h"
 #import "TSPopoverController.h"
 #import "Fluence3AppDelegate.h"
+#import "GalleryCommentViewController.h"
 
 #define kThumbnailSize 75
 #define kThumbnailSpacing 4
@@ -198,6 +199,35 @@
     [[self view] addGestureRecognizer:swipeGestureUp];
     [swipeGestureDown release];
     [swipeGestureUp release];
+    
+    
+    
+    
+    countriesArray = [[NSMutableArray alloc] init];
+    
+    NSMutableArray *stylist = [_photoSource stylistInfos];
+    NSInteger t = [stylist count];
+    if(t > 0 )
+    {
+        for (int i = 0; i < t; i++) {
+            id row = [stylist objectAtIndex:i];
+            //for(id key in row) {
+            NSString* stylistId = [NSString stringWithFormat:[row objectForKey:@"stylistId"]];
+            NSString* stylistName = [NSString stringWithFormat:[row objectForKey:@"stylistName"]];
+            //                NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+            //
+            //                NSString *displayNameString = [locale displayNameForKey:NSLocaleCountryCode value:stylistId];
+            //                [countriesArray addObject:displayNameString];
+            //                [pool release];
+            [countriesArray addObject:stylistName];
+            NSLog(stylistName);
+        }
+    }
+    else {
+        // hide it if we don't have a tag.
+        _tagContainer.hidden = YES;
+    }
+    
     // Do any additional setup after loading the view from its nib.
     
 }
@@ -336,35 +366,35 @@
     
     
     //add the button to the view
-    _shareButton  = [UIButton buttonWithType:UIButtonTypeCustom];
-    //set the position of the button
-    _shareButton.frame = CGRectMake(5, 120, 40, 40);
-    UIImage *buttonImage1 = [UIImage imageNamed:@"share.png"];
-    
-    //create the button and assign the image addSubview:button
-    
-    [_shareButton setBackgroundImage:buttonImage1 forState:UIControlStateNormal];
-    [_shareButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    
-    //set the button's title
-    //listen for clicks
-    [_shareButton addTarget:self action:@selector(shareButtonP:forEvent:) forControlEvents:UIControlEventTouchUpInside];
-    
     _commentButton  = [UIButton buttonWithType:UIButtonTypeCustom];
     //set the position of the button
-    _commentButton.frame = CGRectMake(5, 210, 40, 40);
-    UIImage *buttonImage2 = [UIImage imageNamed:@"comment.png"];
+    _commentButton.frame = CGRectMake(5, 120, 40, 40);
+    UIImage *buttonImage1 = [UIImage imageNamed:@"comment.png"];
     
     //create the button and assign the image addSubview:button
     
-    [_commentButton setBackgroundImage:buttonImage2 forState:UIControlStateNormal];
+    [_commentButton setBackgroundImage:buttonImage1 forState:UIControlStateNormal];
     [_commentButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     
     //set the button's title
     //listen for clicks
-    
-    
     [_commentButton addTarget:self action:@selector(commentButtonP:forEvent:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _shareButton  = [UIButton buttonWithType:UIButtonTypeCustom];
+    //set the position of the button
+    _shareButton.frame = CGRectMake(5, 210, 40, 40);
+    UIImage *buttonImage2 = [UIImage imageNamed:@"share.png"];
+    
+    //create the button and assign the image addSubview:button
+    
+    [_shareButton setBackgroundImage:buttonImage2 forState:UIControlStateNormal];
+    [_shareButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    
+    //set the button's title
+    //listen for clicks
+    
+    
+    [_shareButton addTarget:self action:@selector(shareButtonP:forEvent:) forControlEvents:UIControlEventTouchUpInside];
     
     
     
@@ -1898,7 +1928,7 @@
     popoverController.popoverGradient= NO;
     //    popoverController.arrowPosition = TSPopoverArrowPositionHorizontal;
     
-    _commentTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 200, 30)];
+    _commentTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 40, 200, 30)];
     _commentTextField.borderStyle = UITextBorderStyleRoundedRect;
     _commentTextField.font = [UIFont systemFontOfSize:15];
     _commentTextField.placeholder = @"enter text";
@@ -1911,16 +1941,38 @@
     [commentViewController.view addSubview:_commentTextField];
     [_commentTextField release];
     
-    
+    UIButton *topButton1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [topButton1 addTarget:self action:@selector(showTablePopover:forEvent:) forControlEvents:UIControlEventTouchUpInside];
+    topButton1.frame = CGRectMake(30,5, 150, 30);
+    [topButton1 setTitle:@"View Comments" forState:UIControlStateNormal];
+    topButton1.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    [commentViewController.view addSubview:topButton1];
     
     
     UIButton *topButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [topButton addTarget:self action:@selector(commentDone:forEvent:) forControlEvents:UIControlEventTouchUpInside];
-    topButton.frame = CGRectMake(220,20, 80, 30);
+    topButton.frame = CGRectMake(220,40, 80, 30);
     [topButton setTitle:@"Send" forState:UIControlStateNormal];
     topButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [commentViewController.view addSubview:topButton];
     [popoverController showPopoverWithTouch:event];
+}
+
+-(void)showTablePopover:(id)sender forEvent:(UIEvent*)event
+{
+    GalleryCommentViewController *my = [[GalleryCommentViewController alloc] initWithNibName:@"GalleryCommentViewController" bundle:nil] ;
+    //SelectListViewController *my = [[UIApplication sharedApplication] delegate];
+    //UITableViewController *tableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
+    my.view.frame = CGRectMake(0,0, 320, 400);
+    TSPopoverController *popoverController = [[TSPopoverController alloc] initWithContentViewController:my];
+    
+    popoverController.cornerRadius = 5;
+    popoverController.titleText = @"Comments";
+    popoverController.popoverBaseColor = [UIColor lightGrayColor];
+    popoverController.popoverGradient= NO;
+    //    popoverController.arrowPosition = TSPopoverArrowPositionHorizontal;
+    [popoverController showPopoverWithTouch:event];
+    
 }
 
 - (void)commentDone:(id)sender forEvent:(UIEvent*)event {
@@ -1938,10 +1990,25 @@
 
 - (void)stylizeButtonP:(id)sender forEvent:(UIEvent*)even{
     NSLog(@"Something Happened");
+    YHCPickerView *objYHCPickerView = [[YHCPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 480) withNSArray:countriesArray];
+    
+    objYHCPickerView.delegate = self;
+    [self.view addSubview:objYHCPickerView];
+    [objYHCPickerView showPicker];
     
 }
 
-
+-(void)selectedRow:(int)row withString:(NSString *)text{
+    
+    NSLog(@"%d",row);
+    NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
+    
+    NSString* userId   = appdt.userGalleryId;
+    NSString* imageID = [NSString stringWithFormat:[imageInfo objectForKey:@"imageId"]];
+    [_photoSource photoGallery:self stylistButtonClicked:row:userId:imageID];
+    
+    
+}
 
 #pragma mark shareButtonPressed
 
@@ -1959,6 +2026,11 @@
     //    popoverController.arrowPosition = TSPopoverArrowPositionHorizontal;
     
     
+    _shareloading = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 200, 30)];
+    _shareloading.font = [UIFont systemFontOfSize:22];
+    _shareloading.text = @"Uploading.....";
+    _shareloading.textColor = [UIColor whiteColor];
+    
     _commentTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 200, 30)];
     _commentTextField.borderStyle = UITextBorderStyleRoundedRect;
     _commentTextField.font = [UIFont systemFontOfSize:15];
@@ -1969,30 +2041,36 @@
     _commentTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     _commentTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     _commentTextField.delegate = self;
+    _commentTextField.hidden = NO;
+    _topButton.hidden = NO;
+    _shareloading.hidden = YES;
     [commentViewController.view addSubview:_commentTextField];
+    [commentViewController.view addSubview:_shareloading];
     [_commentTextField release];
     
     
     
     
-    UIButton *topButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [topButton addTarget:self action:@selector(shareDone:forEvent:) forControlEvents:UIControlEventTouchUpInside];
-    topButton.frame = CGRectMake(220,20, 80, 30);
-    [topButton setTitle:@"Share" forState:UIControlStateNormal];
-    topButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    [commentViewController.view addSubview:topButton];
+    _topButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [_topButton addTarget:self action:@selector(shareDone:forEvent:) forControlEvents:UIControlEventTouchUpInside];
+    _topButton.frame = CGRectMake(220,20, 80, 30);
+    [_topButton setTitle:@"Share" forState:UIControlStateNormal];
+    _topButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    [commentViewController.view addSubview:_topButton];
     [popoverController showPopoverWithTouch:event];
 }
 
 - (void)shareDone:(id)sender forEvent:(UIEvent*)event {
+    _commentTextField.hidden = YES;
+    _topButton.hidden = YES;
+    _shareloading.hidden = NO;
     NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
     
     NSString* userId   = [NSString stringWithFormat:[imageInfo objectForKey:@"userId"]];
     NSLog(_commentTextField.text);
     NSString* imageID = [NSString stringWithFormat:[imageInfo objectForKey:@"imageId"]];
-    [_photoSource photoGallery:self commentButtonClicked:imageID:_commentTextField.text];
     
-    _commentTextField.text = @"";
+    
     
     // First, check whether the Facebook Session is open or not 
     
@@ -2042,10 +2120,14 @@
 }
 
 -(void)promptUserWithAccountName {
+    NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
     
+    //            NSString* userId   = [NSString stringWithFormat:[imageInfo objectForKey:@"userId"]];
+    NSString* imageurl = [NSString stringWithFormat:[imageInfo objectForKey:@"imageUrl"]];
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageurl]]];
     NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
     [params setObject:_commentTextField.text forKey:@"message"];
-    UIImage *buttonImagePressed = [UIImage imageNamed:@"shop.png"];
+    UIImage *buttonImagePressed = image;
     [params setObject:UIImagePNGRepresentation(buttonImagePressed) forKey:@"picture"];
     _shareButton.enabled = NO; //for not allowing multiple hits
     
@@ -2067,6 +2149,7 @@
              
              [tmp show];
              [tmp release];
+             _shareloading.text = @"Sorry, Some Error Occured. Please Try Again";
          } 
          else
          {
@@ -2079,6 +2162,7 @@
              
              [tmp show];
              [tmp release];
+             _shareloading.text = @"Successfully Posted";
          }
          _shareButton.enabled = YES;
      }];
