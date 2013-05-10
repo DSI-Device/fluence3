@@ -6,6 +6,7 @@
 @class SelectListViewController;
 @class MapViewController;
 @class SelectPoseListViewController;
+@class SelectTasteListViewController;
 
 @interface ISViewController : UIViewController
 {
@@ -15,6 +16,7 @@
     SelectListViewController *selectListView;
     MapViewController *mapViewController;
     SelectPoseListViewController *selectPoseListView;
+    SelectTasteListViewController *selectTasteListView;
 }
 
 @property (strong, nonatomic) GalleryController *gc;
@@ -23,6 +25,7 @@
 @property (strong, nonatomic) SelectListViewController *selectListView;
 @property (strong, nonatomic) MapViewController *mapViewController;
 @property (strong, nonatomic) SelectPoseListViewController *selectPoseListView;
+@property (strong, nonatomic) SelectTasteListViewController *selectTasteListView;
 - (IBAction)pushViewController;
 - (IBAction)galleryClicked;
 - (IBAction)profileClicked;

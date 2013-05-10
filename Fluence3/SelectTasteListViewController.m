@@ -297,7 +297,7 @@
     
     
     eventListView = [[[EventListViewController alloc] initWithNibName:@"EventListViewController" bundle:nil]autorelease];
-    eventListView.title = @"Find People";
+    eventListView.title = @"Event List";
     [self.navigationController pushViewController:eventListView animated:true];
 }
 

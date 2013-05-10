@@ -32,6 +32,8 @@
 		2BC20D371726C44F00EE2CCB /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC20D361726C44E00EE2CCB /* libxml2.dylib */; };
 		2BC31E80173CE322002E5981 /* SelectTasteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC31E7E173CE322002E5981 /* SelectTasteListViewController.m */; };
 		2BC31E81173CE322002E5981 /* SelectTasteListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BC31E7F173CE322002E5981 /* SelectTasteListViewController.xib */; };
+		2BC31E85173CEA50002E5981 /* checkbox_not_ticked.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BC31E83173CEA4F002E5981 /* checkbox_not_ticked.png */; };
+		2BC31E86173CEA50002E5981 /* checkbox_ticked.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BC31E84173CEA4F002E5981 /* checkbox_ticked.png */; };
 		2BC35EF81738F78600EF1A7C /* CustomEventListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BC35EF51738F78600EF1A7C /* CustomEventListCell.xib */; };
 		2BC35EF91738F78600EF1A7C /* CustomEventListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC35EF71738F78600EF1A7C /* CustomEventListCell.m */; };
 		2BC35EFD1738F8A500EF1A7C /* EventListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC35EFA1738F8A500EF1A7C /* EventListViewController.m */; };
@@ -198,6 +200,8 @@
 		2BC31E7D173CE322002E5981 /* SelectTasteListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectTasteListViewController.h; path = Fluence3/SelectTasteListViewController.h; sourceTree = "<group>"; };
 		2BC31E7E173CE322002E5981 /* SelectTasteListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectTasteListViewController.m; path = Fluence3/SelectTasteListViewController.m; sourceTree = "<group>"; };
 		2BC31E7F173CE322002E5981 /* SelectTasteListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectTasteListViewController.xib; path = Fluence3/SelectTasteListViewController.xib; sourceTree = "<group>"; };
+		2BC31E83173CEA4F002E5981 /* checkbox_not_ticked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkbox_not_ticked.png; path = Fluence3/checkbox_not_ticked.png; sourceTree = "<group>"; };
+		2BC31E84173CEA4F002E5981 /* checkbox_ticked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkbox_ticked.png; path = Fluence3/checkbox_ticked.png; sourceTree = "<group>"; };
 		2BC35EF51738F78600EF1A7C /* CustomEventListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomEventListCell.xib; path = Fluence3/CustomEventListCell.xib; sourceTree = "<group>"; };
 		2BC35EF61738F78600EF1A7C /* CustomEventListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomEventListCell.h; path = Fluence3/CustomEventListCell.h; sourceTree = "<group>"; };
 		2BC35EF71738F78600EF1A7C /* CustomEventListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomEventListCell.m; path = Fluence3/CustomEventListCell.m; sourceTree = "<group>"; };
@@ -541,6 +545,8 @@
 		C889BABB16F213370040CA39 = {
 			isa = PBXGroup;
 			children = (
+				2BC31E83173CEA4F002E5981 /* checkbox_not_ticked.png */,
+				2BC31E84173CEA4F002E5981 /* checkbox_ticked.png */,
 				2BC31E7D173CE322002E5981 /* SelectTasteListViewController.h */,
 				2BC31E7E173CE322002E5981 /* SelectTasteListViewController.m */,
 				2BC31E7F173CE322002E5981 /* SelectTasteListViewController.xib */,
@@ -1008,6 +1014,8 @@
 				2BE93ADF173BDB4F0086D98E /* CustomGalleryCommentCell.xib in Resources */,
 				2BE93AE0173BDB4F0086D98E /* GalleryCommentViewController.xib in Resources */,
 				2BC31E81173CE322002E5981 /* SelectTasteListViewController.xib in Resources */,
+				2BC31E85173CEA50002E5981 /* checkbox_not_ticked.png in Resources */,
+				2BC31E86173CEA50002E5981 /* checkbox_ticked.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
