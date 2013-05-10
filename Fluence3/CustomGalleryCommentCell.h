@@ -11,17 +11,19 @@
 
 @interface CustomGalleryCommentCell : UITableViewCell {
 	
-	IBOutlet NSString *userID;
-    IBOutlet UILabel *userName;
-    IBOutlet UIButton *followed;
-	IBOutlet UIImageView *userImage;
+	IBOutlet NSString *commentID;
+    IBOutlet UILabel *commentName;
+    IBOutlet UILabel *commentDate;
+    IBOutlet UILabel *commentBody;
+	IBOutlet UIImageView *commentImage;
 	BOOL isFollowed;
 }
 
-@property(nonatomic, retain) NSString *userID;
-@property(nonatomic, retain) UILabel *userName;
-@property(nonatomic, retain) UIButton *followed;
-@property(nonatomic, retain) UIImageView *userImage;
+@property(nonatomic, retain) NSString *commentID;
+@property(nonatomic, retain) UILabel *commentName;
+@property(nonatomic, retain) UILabel *commentDate;
+@property(nonatomic, retain) UILabel *commentBody;
+@property(nonatomic, retain) UIImageView *commentImage;
 @property(nonatomic, assign) BOOL isFollowed;
 -(IBAction)cellButtonClick:(id)sender;
 @end
