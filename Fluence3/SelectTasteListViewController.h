@@ -11,11 +11,13 @@
 #import "utils.h"
 #import "searchDao.h"
 #import "SelectBoxProtocol.h"
-#import "CustomEventListCell.h"
+#import "CustomPoseSelectCell.h"
 #import "viewMoreCell.h"
 #import "Fluence3AppDelegate.h"
 
-@interface EventListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate> {
+#import "EventListViewController.h"
+
+@interface SelectTasteListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate> {
 	MYSBJsonStreamParser *parser;
 	MYSBJsonStreamParserAdapter *adapter;
 	NSMutableArray *dataSource;
@@ -38,6 +40,8 @@
 	NSString *followed_s;
     
     Fluence3AppDelegate *appdt;
+    
+    EventListViewController *eventListView;
 }
 
 @property(nonatomic, retain) UITextField *searchBar;
@@ -55,6 +59,7 @@
 @property(nonatomic, assign) int currentLimit;
 @property(nonatomic, assign) NSString *followed_s;
 @property(nonatomic, assign) int action_status;
+@property(nonatomic, assign) EventListViewController *eventListView;
 @property(nonatomic, assign) Fluence3AppDelegate *appdt;
 - (IBAction) selectionDone:(id) sender;
 - (IBAction) searchContentChanged: (id) sender;

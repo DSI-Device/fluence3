@@ -297,7 +297,7 @@
     
     
     poseListView = [[[PoseListViewController alloc] initWithNibName:@"PoseListViewController" bundle:nil]autorelease];
-    poseListView.title = @"Find People";
+    poseListView.title = @"People List";
     [self.navigationController pushViewController:poseListView animated:true];
 }
 

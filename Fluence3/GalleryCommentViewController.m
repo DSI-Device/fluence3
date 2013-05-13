@@ -27,7 +27,7 @@
     
 	[self.listTableView setHidden:YES];
 	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&limit=%d",self.currentLimit];
-    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/index/" ];
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getComment/" ];
     [self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
 	//[utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
 	
@@ -112,7 +112,10 @@
 	
 }
 
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+	
+    return 75.0f;
+}
 //methods for json parser protocol
 
 - (void)parser:(MYSBJsonStreamParser *)parser foundArray:(NSArray *)array {
@@ -188,14 +191,14 @@
 			cell.selectedBackgroundView = [[[UIView alloc] init] autorelease];
 			[cell.selectedBackgroundView setBackgroundColor:[UIColor orangeColor]];
 		}
-		cell.userName.text = [rowData objectForKey:@"userName"];
-        cell.userID = [rowData objectForKey:@"userID"];
-		cell.followed.hidden = NO;
-        cell.followed.tag=[indexPath row];
+		cell.commentName.text = [rowData objectForKey:@"commentName"];
+        cell.commentID = [rowData objectForKey:@"commentID"];
+		cell.commentDate.text = [rowData objectForKey:@"commentDate"];
+        cell.commentBody.text = [rowData objectForKey:@"commentBody"];
         followed_s = [rowData objectForKey:@"followed"];
-        [cell.followed addTarget:self action:@selector(tappedFollowBtn2:)  forControlEvents:UIControlEventTouchUpInside];
+        
         //NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
-		NSString *serverUrl = [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"images/%@",[rowData objectForKey:@"userImage"]];
+		NSString *serverUrl = [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"images/%@",[rowData objectForKey:@"commentImage"]];
 		
 		NSURL *url = [NSURL URLWithString:serverUrl];
 		
@@ -206,17 +209,8 @@
 		//yourImageView.image = tmpImage;
 		
 		
-		[cell.userImage setImage:tmpImage];
-		if ([followed_s isEqualToString:@"1"]) {
-			cell.isFollowed = YES;
-            [cell.followed setTitle:@"Unfollow" forState:UIControlStateNormal];
-		}else if([followed_s isEqualToString:@"0"]){
-			cell.isFollowed = NO;
-            [cell.followed setTitle:@"Follow" forState:UIControlStateNormal];
-			
-		}else {
-			cell.followed.hidden = YES;
-		}
+		[cell.commentImage setImage:tmpImage];
+		
 		
 		return cell;
         
@@ -226,44 +220,7 @@
 - (void)tappedFollowBtn2:(id) sender
 {
     NSLog(@"Button Clicked...");
-    NSLog(@"Count tappedFollowBtn2 %u", [self.dataSource count]);
-    //UIButton *senderButton = (UIButton *)sender;
-    NSIndexPath *indexPath = [listTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
-    NSUInteger row = [indexPath row];
-	NSDictionary *rowData = [self.dataSource objectAtIndex:row];
-	//NSString *qwe = [rowData JSONRepresentation];
-    //
-    CustomGalleryCommentCell *cell = (CustomGalleryCommentCell *) [listTableView cellForRowAtIndexPath:indexPath];
-	if (!cell.isFollowed) {
-        
-        [rowData setValue:@"1" forKey:@"followed"];
-        cell.isFollowed = YES;
-        [cell.followed setTitle:@"Unfollow" forState:UIControlStateNormal];
-		followed_s = @"1";
-        
-		
-    }else {
-        [rowData setValue:@"0" forKey:@"followed"];
-        cell.isFollowed = NO;
-        [cell.followed setTitle:@"Follow" forState:UIControlStateNormal];
-		followed_s = @"0";
-        
-    }
-	
-    
-	
-   	NSLog(@"Follower ID : %@ ",cell.userID);
-	NSString *myRequestString = [[NSString alloc] initWithFormat:@"userID=%@&followed=%@",cell.userID,followed_s];
-	NSLog(@"%@ ",myRequestString);
-	NSData *myRequestData = [ NSData dataWithBytes: [ myRequestString UTF8String ] length: [ myRequestString length ] ];
-	NSMutableURLRequest *request = [ [ NSMutableURLRequest alloc ] initWithURL: [ NSURL URLWithString: [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/follow/" ]]];
-   	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
-    [request setHTTPMethod: @"POST"];
-	[request setHTTPBody: myRequestData];
-	NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-	
-    if (conn) NSLog(@"Connection Successful");
-	[request release];//shuvo
+
     
 }
 

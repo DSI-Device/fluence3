@@ -10,7 +10,7 @@
 
 @implementation CustomGalleryCommentCell
 
-@synthesize userID, userName, followed,userImage,isFollowed;
+@synthesize commentID, commentName, commentBody,commentDate,commentImage,isFollowed;
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
@@ -27,27 +27,15 @@
 }
 
 - (void)dealloc {
-    [userID release];
-	[userName release];
-	[followed release];
-	[userImage release];
+    [commentID release];
+	[commentName release];
+	[commentBody release];
+	[commentImage release];
     [super dealloc];
 }
 
 -(IBAction)cellButtonClick:(id)sender{
     NSLog(@"Cell Button Clicked...");
-	if (!self.isFollowed) {
-        
-        self.isFollowed = YES;
-        [self.followed setTitle:@"Unfollow" forState:UIControlStateNormal];
-        
-		
-    }else {
-        
-        self.isFollowed = NO;
-        [self.followed setTitle:@"Follow" forState:UIControlStateNormal];
-        
-    }
 }
 
 @end
