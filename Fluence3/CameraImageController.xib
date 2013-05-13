@@ -210,6 +210,15 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">cameraTimerAction</string>
+						<reference key="source" ref="54830163"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">28</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">openPlinkingController</string>
 						<reference key="source" ref="554791909"/>
 						<reference key="destination" ref="372490531"/>
@@ -292,7 +301,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">27</int>
+			<int key="maxID">28</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -300,10 +309,15 @@
 					<string key="className">CameraImageController</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="cameraTimerAction">id</string>
 						<string key="openPlinkingController">id</string>
 						<string key="view01Action">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="cameraTimerAction">
+							<string key="name">cameraTimerAction</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="openPlinkingController">
 							<string key="name">openPlinkingController</string>
 							<string key="candidateClassName">id</string>

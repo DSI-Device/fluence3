@@ -146,7 +146,15 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    if(appdt.isStylist)
+    {
+        return 4;
+    }
+    else
+    {
+        return 3;
+        
+    }
 }
 
 
@@ -170,7 +178,9 @@
 	else if( indexPath.row == 2 ) {
 		cell.textLabel.text = @"Popular Gallery";//popular gallery
 	}
-    
+    else if( indexPath.row == 3 ) {
+		cell.textLabel.text = @"Stylist Gallery";//popular gallery
+	}
     return cell;
 }
 
@@ -196,6 +206,18 @@
         [topVC.navigationController pushViewController:networkGallery animated:YES];        
     }
 	else if( indexPath.row == 2 ) {
+		UIImage *trashIcon = [UIImage imageNamed:@"photo-gallery-trashcan.png"];
+		UIImage *captionIcon = [UIImage imageNamed:@"photo-gallery-edit-caption.png"];
+		UIBarButtonItem *trashButton = [[[UIBarButtonItem alloc] initWithImage:trashIcon style:UIBarButtonItemStylePlain target:self action:@selector(handleTrashButtonTouch:)] autorelease];
+		UIBarButtonItem *editCaptionButton = [[[UIBarButtonItem alloc] initWithImage:captionIcon style:UIBarButtonItemStylePlain target:self action:@selector(handleEditCaptionButtonTouch:)] autorelease];
+		NSArray *barItems = [NSArray arrayWithObjects:editCaptionButton, trashButton, nil];
+		
+		localGallery = [[FGalleryViewController alloc] initWithPhotoSource:self barItems:barItems];
+        //        [self.navigationController pushViewController:localGallery animated:YES];
+        UIViewController *topVC = (UIViewController *)self.navigationController.delegate;
+        [topVC.navigationController pushViewController:localGallery animated:YES];        
+    }
+    else if( indexPath.row == 3 ) {
 		UIImage *trashIcon = [UIImage imageNamed:@"photo-gallery-trashcan.png"];
 		UIImage *captionIcon = [UIImage imageNamed:@"photo-gallery-edit-caption.png"];
 		UIBarButtonItem *trashButton = [[[UIBarButtonItem alloc] initWithImage:trashIcon style:UIBarButtonItemStylePlain target:self action:@selector(handleTrashButtonTouch:)] autorelease];

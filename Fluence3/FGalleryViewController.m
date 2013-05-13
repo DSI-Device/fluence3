@@ -333,7 +333,7 @@
     _stylistButton  = [UIButton buttonWithType:UIButtonTypeCustom];
     //set the position of the button
     _stylistButton.frame = CGRectMake(kCaptionPadding+235, kCaptionPadding+45, 80, 40);
-    UIImage *buttonImage0 = [UIImage imageNamed:@"stylist.png"];
+    UIImage *buttonImage0 = [UIImage imageNamed:@"stylist1.png"];
     
     //create the button and assign the image addSubview:button
     

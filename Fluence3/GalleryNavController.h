@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FGalleryViewController.h"
+#import "Fluence3AppDelegate.h"
 
 @class Fluence3AppDelegate;
 

@@ -14,10 +14,11 @@
 
 @interface Fluence3AppDelegate : UIResponder <UIApplicationDelegate>{
     NSString *userId;
+    NSString *userGalleryId;
     NSString *userName;
     NSString *accessToken;
     UIImage *userProfileImage;
-    BOOL isStylist;
+    BOOL *isStylist;
     UIImage *img;
     UIImage *imgOptimized;
     NSMutableArray *selectedPoseList;
@@ -40,6 +41,7 @@ extern NSString *const SessionStateChangedNotification;
 @property (retain, nonatomic) ISColumnsController *columnsController;
 
 @property (nonatomic, strong) UIImage *img;
+@property BOOL *isStylist;
 @property (nonatomic, strong) UIImage *imgOptimized;
 @property (nonatomic, strong) NSMutableArray *selectedPoseList;
 //@property (strong, nonatomic) MainViewController *mainViewController;

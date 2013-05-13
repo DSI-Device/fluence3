@@ -28,6 +28,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 //@synthesize navController = _navController;
 @synthesize userId,loggedInUser;
 @synthesize userGalleryId;
+@synthesize isStylist;
 @synthesize userName;
 @synthesize userProfileImage;
 @synthesize accessToken;
@@ -70,7 +71,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
     UIViewController *topViewController = [self.navigationController topViewController];
     UIViewController *modalViewController = [topViewController modalViewController];
     
-    // If the login screen is not already displayed, display it. If the login screen is 
+    // If the login screen is not already displayed, display it. If the login screen is   563130931
     // displayed, then getting back here means the login in progress did not successfully 
     // complete. In that case, notify the login view so it can update its UI appropriately. 
     if (![modalViewController isKindOfClass:[LoginViewController class]]) {
@@ -243,6 +244,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
                                               viewController2,
                                               viewController3, nil];
     self.userGalleryId = @"1";
+    self.isStylist = TRUE;
 }
 
 -(void)logoutButtonWasPressed {

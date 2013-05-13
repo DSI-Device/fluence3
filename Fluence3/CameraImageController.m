@@ -9,11 +9,13 @@
 #import "CameraImageController.h"
 #import "TakeCameraPhoto.h"
 #import "ImagePlinkController.h"
+#import "AROverlayViewController.h"
 @interface CameraImageController ()
 
 @end
 
 @implementation CameraImageController
+@synthesize counterTimer,captureManager,scanningLabel,counterLabel,arOverlayView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,6 +50,17 @@
     [self.navigationController pushViewController:nextView animated:YES];
     [nextView release];
 }
+
+- (IBAction)cameraTimerAction
+{
+    
+    arOverlayView = [[[AROverlayViewController alloc] initWithNibName:nil bundle:nil]autorelease];
+    arOverlayView.title = @"Capture Photo";
+    [self.navigationController pushViewController:arOverlayView animated:true];
+
+}
+
+
 
 @end
 
