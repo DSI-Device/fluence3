@@ -5,10 +5,10 @@
 @synthesize captureManager;
 @synthesize scanningLabel;
 @synthesize counterLabel;
-@synthesize counterTimer;
+@synthesize counterTimer,appdt;
 
 - (void)viewDidLoad {
-  
+    appdt = [[UIApplication sharedApplication]delegate];
 	[self setCaptureManager:[[[CaptureSessionManager alloc] init] autorelease]];
   
 	[[self captureManager] addVideoInput];
@@ -124,11 +124,26 @@ int counter = 5;
     
     if(counter == 0)
     {
+        /*
         UIGraphicsBeginImageContext(self.view.bounds.size);
         [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
         UIImage *screenshotImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         UIImageWriteToSavedPhotosAlbum(screenshotImage, nil, nil, nil);
+         */
+        
+        UIWindow *theScreen = [[UIApplication sharedApplication].windows objectAtIndex:0];     
+        UIGraphicsBeginImageContext(theScreen.frame.size);  
+        [[theScreen layer] renderInContext:UIGraphicsGetCurrentContext()];   
+        UIImage *screenshot = UIGraphicsGetImageFromCurrentImageContext();    
+        UIGraphicsEndImageContext();  
+        
+        
+        appdt.img = appdt.imgOptimized = screenshot;
+        
+        
+        //[self doSomethingWith:screenshot]; 
+        
         /*
         [[self captureManager] addStillImageOutput];
         
