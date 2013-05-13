@@ -2116,7 +2116,7 @@
                                       [self controlStatusUsable:YES];
                                   }];
     }
-
+    [popoverController dismissPopoverAnimatd:YES];
 }
 
 -(void)promptUserWithAccountName {
