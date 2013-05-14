@@ -6,23 +6,60 @@
 #import "MapViewController.h"
 #import "SelectPoseListViewController.h"
 #import "SelectTasteListViewController.h"
+#import "Fluence3AppDelegate.h"
+
 
 @implementation ISViewController
 
 @synthesize gc;
 @synthesize mc;
+@synthesize notiImage,notiNumber,appdt;
 @synthesize nCameraImage,selectListView,mapViewController,selectPoseListView,selectTasteListView;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     NSLog(@"[%@ %@]", [self class], NSStringFromSelector(_cmd));
+    
+    
+    appdt = [[UIApplication sharedApplication] delegate];
+    int x = [appdt.notification intValue];
+    if( x > 0)
+    {
+        notiImage.hidden = NO;
+        notiNumber.hidden = NO;
+        notiNumber.text = appdt.notification;
+        
+    }
+    else
+    {
+        notiImage.hidden = YES;
+        notiNumber.hidden = YES;
+        
+    }
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     NSLog(@"[%@ %@]", [self class], NSStringFromSelector(_cmd));
+    appdt = [[UIApplication sharedApplication] delegate];
+    int x = [appdt.notification intValue];
+    if( x > 0)
+    {
+        notiImage.hidden = NO;
+        notiNumber.hidden = NO;
+        notiNumber.text = appdt.notification;
+        
+    }
+    else
+    {
+        notiImage.hidden = YES;
+        notiNumber.hidden = YES;
+        
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -58,6 +95,8 @@
 - (void)viewDidUnload
 {
     NSLog(@"[%@ %@]", [self class], NSStringFromSelector(_cmd));
+    [self setNotiNumber:nil];
+    [self setNotiImage:nil];
     [super viewDidUnload];
 }
 
@@ -69,6 +108,9 @@
     [nCameraImage release];
     [selectListView release];
     [mapViewController release];
+    [notiNumber release];
+    [notiImage release];
+    [appdt release];
     [super dealloc];
 }
 

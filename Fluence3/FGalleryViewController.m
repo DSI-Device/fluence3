@@ -103,7 +103,6 @@
         _useThumbnailView                   = YES;
 		_prevStatusStyle					= [[UIApplication sharedApplication] statusBarStyle];
         _hideTitle                          = NO;
-		appdt                       = [[UIApplication sharedApplication] delegate];
 		// create storage objects
 		_currentIndex						= 0;
         _startingIndex                      = 0;
@@ -2212,6 +2211,8 @@
          [self controlStatusUsable:YES];
      }];  */
 }
+
+
 
 -(void)controlStatusUsable:(BOOL)usable {
     if (usable) {

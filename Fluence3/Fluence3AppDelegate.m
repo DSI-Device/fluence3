@@ -38,6 +38,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 @synthesize img;
 @synthesize imgOptimized;
 @synthesize selectedPoseList;
+@synthesize notification;
 
 - (void)dealloc {
     [_navigationController release];
@@ -48,6 +49,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
     [_session release];
     [userId release];
     [userGalleryId release];
+    [notification release];
     [userName release];
     [userProfileImage release];
     [accessToken release];
@@ -230,6 +232,9 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 
 - (void)reloadViewControllers
 {
+    self.userGalleryId = @"1";
+    self.isStylist = TRUE;
+    self.notification = @"3";
     ISViewController *viewController1 = [[[ISViewController alloc] init] autorelease];
     viewController1.navigationItem.title = @"Fluence";
     
@@ -243,8 +248,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
                                               viewController1,
                                               viewController2,
                                               viewController3, nil];
-    self.userGalleryId = @"1";
-    self.isStylist = TRUE;
+    
 }
 
 -(void)logoutButtonWasPressed {

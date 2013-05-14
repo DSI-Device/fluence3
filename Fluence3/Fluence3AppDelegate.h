@@ -17,6 +17,7 @@
     NSString *userGalleryId;
     NSString *userName;
     NSString *accessToken;
+    NSString *notification;
     UIImage *userProfileImage;
     BOOL *isStylist;
     UIImage *img;
@@ -33,6 +34,7 @@ extern NSString *const SessionStateChangedNotification;
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) UIImage *userProfileImage;
 @property (nonatomic, strong) NSString *accessToken;
+@property (nonatomic, strong) NSString *notification;
 
 @property (strong, nonatomic) FBSession *session;
 @property (strong, nonatomic) UIWindow *window;

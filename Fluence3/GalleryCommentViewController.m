@@ -175,6 +175,7 @@
 		if ((self.totalCount - self.currentLimit) > 50 || (self.totalCount - self.currentLimit) < 0) {
 			cell.moreCountMessage.text = @"Show 50 More";
 		}else {
+            
 			cell.moreCountMessage.text = [NSString stringWithFormat:@"Show %d More",(self.totalCount - self.currentLimit)];
 		}
 		[cell setUserInteractionEnabled:YES];

@@ -72,40 +72,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UISwipeGestureRecognizer *swipeGestureDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedScreenDown:)];
-    swipeGestureDown.numberOfTouchesRequired = 1;
-    swipeGestureDown.direction = (UISwipeGestureRecognizerDirectionDown);
-    [[self view] addGestureRecognizer:swipeGestureDown];
-    [swipeGestureDown release];
-    UISwipeGestureRecognizer *swipeGestureUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedScreenUp:)];
-    swipeGestureUp.numberOfTouchesRequired = 1;
-    swipeGestureUp.direction = (UISwipeGestureRecognizerDirectionUp);
-    [[self view] addGestureRecognizer:swipeGestureUp];
-    [swipeGestureUp release];
+    
 
     // Do any additional setup after loading the view from its nib.
 }
-- (void) swipedScreenDown:(UISwipeGestureRecognizer*)swipeGesture {
-    //[utils showAlert:@"Warning !!" message:@"Activation Failed !! Please try again with correct credential." delegate:self];
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle: @"Next Date"
-                          message: @"Next date selected!"
-                          delegate: nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil];
-    [alert show];
-    [alert release];
-}
-- (void) swipedScreenUp:(UISwipeGestureRecognizer*)swipeGesture {
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle: @"Previous Date"
-                          message: @"Previous date selected!"
-                          delegate: nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil];
-    [alert show];
-    [alert release];
-}
+
 
 
 - (void)viewDidUnload
