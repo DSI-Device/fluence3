@@ -59,7 +59,7 @@
     
     
     UIViewController *commentViewController = [UIViewController alloc];
-    commentViewController.view.frame = CGRectMake(0,0,self.view.frame.size.width, 400);   UITextField* _commentTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 40, 100, 30)];
+    commentViewController.view.frame = CGRectMake(0,0,300, 400);   UITextField* _commentTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 40, 300, 30)];
     _commentTextField.borderStyle = UITextBorderStyleRoundedRect;
     _commentTextField.font = [UIFont systemFontOfSize:15];
     _commentTextField.placeholder = @"enter text";
@@ -77,9 +77,9 @@
     
     UIButton *topButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [topButton addTarget:self action:@selector(commentDone:forEvent:) forControlEvents:UIControlEventTouchUpInside];
-    topButton.frame = CGRectMake(50,40, 80, 30);
-    [topButton setTitle:@"Send" forState:UIControlStateNormal];
-    topButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    topButton.frame = CGRectMake(10, 80, 100, 30);
+    [topButton setTitle:@"Comment" forState:UIControlStateNormal];
+    
     [commentViewController.view addSubview:topButton];
     
     
@@ -106,11 +106,15 @@
     parallaxView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     parallaxView.backgroundHeight = 400.0f;
     parallaxView.scrollView.scrollsToTop = YES;
-    parallaxView.backgroundInteractionEnabled = YES;
+    parallaxView.backgroundInteractionEnabled = NO;
     parallaxView.scrollViewDelegate = self;
     [self.view addSubview:parallaxView];
 }
 
+
+- (void)commentDone:(id)sender forEvent:(UIEvent*)event {
+    
+}
 
 #pragma mark - UIScrollViewDelegate Protocol Methods
 
