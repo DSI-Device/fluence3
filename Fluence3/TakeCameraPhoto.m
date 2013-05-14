@@ -57,7 +57,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)img editingInfo:(NSDictionary *)editInfo {
     //image.image = img;
-    self.imageCropper = [[[BJImageCropper alloc] initWithImage:img andMaxSize:CGSizeMake(300, 300)]autorelease];
+    self.imageCropper = [[[BJImageCropper alloc] initWithImage:img andMaxSize:CGSizeMake(450, 340)]autorelease];
     [self.view addSubview:self.imageCropper];
     self.imageCropper.center = self.view.center;
     self.imageCropper.imageView.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -134,7 +134,7 @@
     //    nextView.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     //    [self presentViewController:nextView animated:YES completion:nil];
     
-    cropButton.hidden = YES;
+    cropButton.hidden = NO;
     
     [self.navigationController pushViewController:nextView animated:YES];
     [nextView release];
@@ -171,6 +171,38 @@
     NSString* path = [documentsDirectory stringByAppendingPathComponent:
                       [NSString stringWithString: @"test.png"] ];
     appdt.img = appdt.imgOptimized = self.image.image = [UIImage imageWithContentsOfFile:path];
+    
+    @try
+    {
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+        {
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];  
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;  
+            //picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            
+            picker.delegate = self; 
+            
+            [self presentModalViewController:picker animated:YES];
+            [picker release];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"The device does not have camera" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            [alert release];
+        }
+        
+        
+    }
+    @catch (NSException *exception) 
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Camera" message:@"Camera is not available  " delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+    
+    self.image.hidden=YES;
+    
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -223,7 +255,7 @@
     
     
     
-    self.imageCropper = [[[BJImageCropper alloc] initWithImage:appdt.img  andMaxSize:CGSizeMake(300, 240)]autorelease];
+    self.imageCropper = [[[BJImageCropper alloc] initWithImage:appdt.img  andMaxSize:CGSizeMake(450, 340)]autorelease];
     [self.view addSubview:self.imageCropper];
     self.imageCropper.center = self.view.center;
     self.imageCropper.imageView.layer.shadowColor = [[UIColor blackColor] CGColor];

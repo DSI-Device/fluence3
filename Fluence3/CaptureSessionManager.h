@@ -12,12 +12,10 @@
 @property (retain) AVCaptureStillImageOutput *stillImageOutput;
 @property (nonatomic, retain) UIImage *stillImage;
 
-
-
+- (void)addVideoPreviewLayer;
+- (void)addVideoInputFrontCamera:(BOOL)front;
 - (void)addStillImageOutput;
 - (void)captureStillImage;
-
-- (void)addVideoPreviewLayer;
 - (void)addVideoInput;
 
 @end
