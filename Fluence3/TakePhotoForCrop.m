@@ -6,7 +6,7 @@
 //
 //
 
-#import "TakeCameraPhoto.h"
+#import "TakePhotoForCrop.h"
 #import "ShowCropedImage.h"
 #import "ColorViewController.h"
 
@@ -29,11 +29,11 @@
 #ifndef CGOriginY
 #define CGOriginY(rect)                 rect.origin.y
 #endif
-@interface TakeCameraPhoto ()
+@interface TakePhotoForCrop ()
 
 @end
 
-@implementation TakeCameraPhoto
+@implementation TakePhotoForCrop
 
 @synthesize image,button,cropButton,appdt;
 @synthesize imageCropper;
@@ -74,7 +74,7 @@
 }
 - (IBAction)selectPhotos
 {
-    @try
+   /* @try
     {
         if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         {
@@ -102,11 +102,9 @@
         [alert show];
         [alert release];
     }
-    
+    */
     self.image.hidden=YES;
-    
-    /*
-    appdt.img = appdt.imgOptimized = [UIImage imageNamed:@"gavandme.jpg"];
+    //appdt.img = appdt.imgOptimized = [UIImage imageNamed:@"gavandme.jpg"];
     
 //    self.imageCropper.frame = CGRectMake(0, 0 ,300, 400);
     
@@ -123,7 +121,7 @@
     
     //[self dismissModalViewControllerAnimated:YES];
     cropButton.hidden = NO;
-    */
+
     
 }
 - (IBAction)cropping
@@ -166,11 +164,35 @@
      self.image.layer.borderWidth = 2.0;
      //[self.view addSubview:self.preview];
      }*/
+    
+    /*
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString* path = [documentsDirectory stringByAppendingPathComponent:
                       [NSString stringWithString: @"test.png"] ];
     appdt.img = appdt.imgOptimized = self.image.image = [UIImage imageWithContentsOfFile:path];
+    */
+    
+    self.image.hidden=YES;
+    //appdt.img = appdt.imgOptimized = [UIImage imageNamed:@"gavandme.jpg"];
+    
+    //    self.imageCropper.frame = CGRectMake(0, 0 ,300, 400);
+    
+    self.imageCropper = [[[BJImageCropper alloc] initWithImage:appdt.img andMaxSize:CGSizeMake(450, 340)]autorelease];
+    //    self.imageCropper.frame = CGRectMake(0, 0 ,300, 400);
+    [self.view addSubview:self.imageCropper];
+    self.imageCropper.center = self.view.center;
+    self.imageCropper.imageView.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.imageCropper.imageView.layer.shadowRadius = 3.0f;
+    self.imageCropper.imageView.layer.shadowOpacity = 0.8f;
+    self.imageCropper.imageView.layer.shadowOffset = CGSizeMake(1, 1);
+    
+    [self.imageCropper addObserver:self forKeyPath:@"crop" options:NSKeyValueObservingOptionNew context:nil];
+    
+    //[self dismissModalViewControllerAnimated:YES];
+    cropButton.hidden = NO;
+
+    
     
     // Do any additional setup after loading the view from its nib.
 }

@@ -1,13 +1,15 @@
 #import "AROverlayViewController.h"
+#import "TakePhotoForCrop.h"
 
 @implementation AROverlayViewController
 
 @synthesize captureManager;
 @synthesize scanningLabel;
 @synthesize counterLabel;
-@synthesize counterTimer,appdt;
+@synthesize counterTimer,appdt,counter;
 
 - (void)viewDidLoad {
+    counter = 5;
     appdt = [[UIApplication sharedApplication]delegate];
 	[self setCaptureManager:[[[CaptureSessionManager alloc] init] autorelease]];
   
@@ -101,7 +103,7 @@
 
 }
 
-int counter = 5;
+
 
 - (void) showCounter:(NSTimer *) timer {
 	UILabel *tempLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(105, 90, 300, 200)];
@@ -140,6 +142,10 @@ int counter = 5;
         
         
         appdt.img = appdt.imgOptimized = screenshot;
+        
+        TakePhotoForCrop *nextView = [[TakePhotoForCrop alloc]initWithNibName:@"TakePhotoForCrop" bundle:[NSBundle mainBundle]];
+        [self.navigationController pushViewController:nextView animated:YES];
+        [nextView release];
         
         
         //[self doSomethingWith:screenshot]; 

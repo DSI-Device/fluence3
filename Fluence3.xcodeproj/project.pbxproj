@@ -109,6 +109,8 @@
 		C897EEE316F7267900AC1194 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C897EEE216F7267800AC1194 /* SystemConfiguration.framework */; };
 		C899C5CA172FB61000CD06B2 /* LocationGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = C899C5C8172FB61000CD06B2 /* LocationGetter.m */; };
 		C899E8CA1740C95900A0DD3C /* stylist1.png in Resources */ = {isa = PBXBuildFile; fileRef = C899E8C91740C95900A0DD3C /* stylist1.png */; };
+		C89AA22C1742042E000E7D6B /* TakePhotoForCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = C89AA2291742042E000E7D6B /* TakePhotoForCrop.m */; };
+		C89AA22D1742042E000E7D6B /* TakePhotoForCrop.xib in Resources */ = {isa = PBXBuildFile; fileRef = C89AA22A1742042E000E7D6B /* TakePhotoForCrop.xib */; };
 		C89AEB171725634100AD2EF0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89AEB151725634100AD2EF0 /* MapViewController.m */; };
 		C89AEB181725634100AD2EF0 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C89AEB161725634100AD2EF0 /* MapViewController.xib */; };
 		C89AEB1B1725637100AD2EF0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89AEB1A1725637100AD2EF0 /* MapKit.framework */; };
@@ -327,6 +329,9 @@
 		C899C5C8172FB61000CD06B2 /* LocationGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationGetter.m; sourceTree = "<group>"; };
 		C899C5C9172FB61000CD06B2 /* LocationGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationGetter.h; sourceTree = "<group>"; };
 		C899E8C91740C95900A0DD3C /* stylist1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stylist1.png; sourceTree = "<group>"; };
+		C89AA2291742042E000E7D6B /* TakePhotoForCrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TakePhotoForCrop.m; path = Fluence3/TakePhotoForCrop.m; sourceTree = "<group>"; };
+		C89AA22A1742042E000E7D6B /* TakePhotoForCrop.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TakePhotoForCrop.xib; path = Fluence3/TakePhotoForCrop.xib; sourceTree = "<group>"; };
+		C89AA22B1742042E000E7D6B /* TakePhotoForCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TakePhotoForCrop.h; path = Fluence3/TakePhotoForCrop.h; sourceTree = "<group>"; };
 		C89AEB141725634100AD2EF0 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		C89AEB151725634100AD2EF0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		C89AEB161725634100AD2EF0 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
@@ -561,6 +566,9 @@
 		C889BABB16F213370040CA39 = {
 			isa = PBXGroup;
 			children = (
+				C89AA2291742042E000E7D6B /* TakePhotoForCrop.m */,
+				C89AA22A1742042E000E7D6B /* TakePhotoForCrop.xib */,
+				C89AA22B1742042E000E7D6B /* TakePhotoForCrop.h */,
 				C8A4177017411BED00439DBA /* ImageIO.framework */,
 				C8A4176E17411BBD00439DBA /* AVFoundation.framework */,
 				C8A4176B17411B3000439DBA /* CoreMedia.framework */,
@@ -1040,6 +1048,7 @@
 				2BC31E85173CEA50002E5981 /* checkbox_not_ticked.png in Resources */,
 				2BC31E86173CEA50002E5981 /* checkbox_ticked.png in Resources */,
 				C899E8CA1740C95900A0DD3C /* stylist1.png in Resources */,
+				C89AA22D1742042E000E7D6B /* TakePhotoForCrop.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1121,6 +1130,7 @@
 				2BC31E80173CE322002E5981 /* SelectTasteListViewController.m in Sources */,
 				C8840F4A1741170900965915 /* CaptureSessionManager.m in Sources */,
 				C8840F4D1741191D00965915 /* AROverlayViewController.m in Sources */,
+				C89AA22C1742042E000E7D6B /* TakePhotoForCrop.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
