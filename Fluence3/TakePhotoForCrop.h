@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BJImageCropper.h"
 #import "Fluence3AppDelegate.h"
+#import "AROverlayViewController.h"
 
 @interface TakePhotoForCrop : UIViewController <UINavigationControllerDelegate>
 {
@@ -18,6 +19,7 @@
 
     Fluence3AppDelegate *appdt;
     BJImageCropper *imageCropper;
+    AROverlayViewController *arOverlayView;
     
 }
 
@@ -26,7 +28,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *cropButton;
 @property (nonatomic, retain) IBOutlet Fluence3AppDelegate *appdt;
 @property (nonatomic, strong) BJImageCropper *imageCropper;
-
+@property (nonatomic, strong) AROverlayViewController *arOverlayView;
 - (IBAction)selectPhotos;
 - (IBAction)cropping;
 

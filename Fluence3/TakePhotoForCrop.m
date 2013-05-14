@@ -9,6 +9,7 @@
 #import "TakePhotoForCrop.h"
 #import "ShowCropedImage.h"
 #import "ColorViewController.h"
+#import "AROverlayViewController.h"
 
 #define SHOW_PREVIEW NO
 
@@ -36,7 +37,7 @@
 @implementation TakePhotoForCrop
 
 @synthesize image,button,cropButton,appdt;
-@synthesize imageCropper;
+@synthesize imageCropper,arOverlayView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -74,53 +75,9 @@
 }
 - (IBAction)selectPhotos
 {
-   /* @try
-    {
-        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-        {
-            UIImagePickerController *picker = [[UIImagePickerController alloc] init];  
-            picker.sourceType = UIImagePickerControllerSourceTypeCamera;  
-            //picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            
-            picker.delegate = self; 
-            
-            [self presentModalViewController:picker animated:YES];
-            [picker release];
-        }
-        else
-        {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"The device does not have camera" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alert show];
-            [alert release];
-        }
-        
-        
-    }
-    @catch (NSException *exception) 
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Camera" message:@"Camera is not available  " delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
-        [alert release];
-    }
-    */
-    self.image.hidden=YES;
-    //appdt.img = appdt.imgOptimized = [UIImage imageNamed:@"gavandme.jpg"];
-    
-//    self.imageCropper.frame = CGRectMake(0, 0 ,300, 400);
-    
-    self.imageCropper = [[[BJImageCropper alloc] initWithImage:appdt.img andMaxSize:CGSizeMake(450, 340)]autorelease];
-//    self.imageCropper.frame = CGRectMake(0, 0 ,300, 400);
-    [self.view addSubview:self.imageCropper];
-    self.imageCropper.center = self.view.center;
-    self.imageCropper.imageView.layer.shadowColor = [[UIColor blackColor] CGColor];
-    self.imageCropper.imageView.layer.shadowRadius = 3.0f;
-    self.imageCropper.imageView.layer.shadowOpacity = 0.8f;
-    self.imageCropper.imageView.layer.shadowOffset = CGSizeMake(1, 1);
-    
-    [self.imageCropper addObserver:self forKeyPath:@"crop" options:NSKeyValueObservingOptionNew context:nil];
-    
-    //[self dismissModalViewControllerAnimated:YES];
-    cropButton.hidden = NO;
+    arOverlayView = [[[AROverlayViewController alloc] initWithNibName:nil bundle:nil]autorelease];
+    arOverlayView.title = @"Capture Photo";
+    [self.navigationController pushViewController:arOverlayView animated:true];
 
     
 }
@@ -132,7 +89,7 @@
     //    nextView.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     //    [self presentViewController:nextView animated:YES completion:nil];
     
-    cropButton.hidden = YES;
+    cropButton.hidden = NO;
     
     [self.navigationController pushViewController:nextView animated:YES];
     [nextView release];
@@ -245,7 +202,7 @@
     
     
     
-    self.imageCropper = [[[BJImageCropper alloc] initWithImage:appdt.img  andMaxSize:CGSizeMake(300, 240)]autorelease];
+    self.imageCropper = [[[BJImageCropper alloc] initWithImage:appdt.img  andMaxSize:CGSizeMake(450, 340)]autorelease];
     [self.view addSubview:self.imageCropper];
     self.imageCropper.center = self.view.center;
     self.imageCropper.imageView.layer.shadowColor = [[UIColor blackColor] CGColor];
