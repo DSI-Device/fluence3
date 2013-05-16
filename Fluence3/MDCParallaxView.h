@@ -42,6 +42,15 @@
 /// @param foregroundView The view to be displayed in the foreground. This view scrolls normally, and should be the one users primarily interact with.
 /// @return An initialized view object or nil if the object couldn't be created.
 - (id)initWithBackgroundView:(UIView *)backgroundView
-              foregroundView:(UIView *)foregroundView;
+foregroundView:(UIView *)foregroundView;
+- (void)addFrameObservers;
+- (void)removeFrameObservers;
+- (CGRect)frameForObject:(id)frameObject;
+- (void)updateForegroundFrameIfDifferent:(CGRect)oldFrame;
+- (void)updateBackgroundFrameIfDifferent:(CGRect)oldFrame;
+- (void)setBackgroundHeight:(CGFloat)backgroundHeight;
+- (void)updateBackgroundFrame;
+- (void)updateForegroundFrame;
+- (void)updateContentOffset;
 
 @end

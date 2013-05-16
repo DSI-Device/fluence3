@@ -39,7 +39,14 @@ static CGFloat const kMDCParallaxViewDefaultHeight = 0.0f;
 
 
 @implementation MDCParallaxView
+@synthesize scrollViewDelegate;
 
+@synthesize backgroundView = _backgroundView;
+@synthesize foregroundView = _foregroundView;
+@synthesize backgroundHeight = _backgroundHeight;
+@synthesize backgroundScrollView = _backgroundScrollView;
+@synthesize foregroundScrollView = _foregroundScrollView;
+@synthesize backgroundInteractionEnabled = _backgroundInteractionEnabled;
 
 #pragma mark - Object Lifecycle
 
@@ -49,7 +56,7 @@ static CGFloat const kMDCParallaxViewDefaultHeight = 0.0f;
         _backgroundHeight = kMDCParallaxViewDefaultHeight;
         _backgroundView = backgroundView;
         _foregroundView = foregroundView;
-
+        
         _backgroundScrollView = [UIScrollView new];
         _backgroundScrollView.backgroundColor = [UIColor clearColor];
         _backgroundScrollView.showsHorizontalScrollIndicator = NO;
@@ -57,7 +64,7 @@ static CGFloat const kMDCParallaxViewDefaultHeight = 0.0f;
         _backgroundScrollView.scrollsToTop = NO;
         [_backgroundScrollView addSubview:_backgroundView];
         [self addSubview:_backgroundScrollView];
-
+        
         _foregroundScrollView = [UIScrollView new];
         _foregroundScrollView.backgroundColor = [UIColor clearColor];
         _foregroundScrollView.delegate = self;
@@ -124,13 +131,13 @@ static CGFloat const kMDCParallaxViewDefaultHeight = 0.0f;
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     if ([self.backgroundView pointInside:point withEvent:event] && _backgroundInteractionEnabled){
-//        CGFloat visibleBackgroundViewHeight = self.backgroundHeight - self.foregroundScrollView.contentOffset.y;
-//        if (point.y < visibleBackgroundViewHeight){
+        //        CGFloat visibleBackgroundViewHeight = self.backgroundHeight - self.foregroundScrollView.contentOffset.y;
+        //        if (point.y < visibleBackgroundViewHeight){
         if (point.y < 0){
             return [self.backgroundView hitTest:point withEvent:event];
         }
     }
-
+    
     return [super hitTest:point withEvent:event];
 }
 
@@ -202,12 +209,12 @@ static CGFloat const kMDCParallaxViewDefaultHeight = 0.0f;
     self.backgroundScrollView.contentSize = CGSizeMake(self.frame.size.width,
                                                        self.frame.size.height);
     self.backgroundScrollView.contentOffset	= CGPointZero;
-
+    
     self.backgroundView.frame =
-        CGRectMake(0.0f,
-                   floorf((self.backgroundHeight - self.backgroundView.frame.size.height)/2),
-                   self.frame.size.width,
-                   self.backgroundView.frame.size.height);
+    CGRectMake(0.0f,
+               floorf((self.backgroundHeight - self.backgroundView.frame.size.height)/2),
+               self.frame.size.width,
+               self.backgroundView.frame.size.height);
 }
 
 - (void)updateForegroundFrame {
@@ -215,18 +222,18 @@ static CGFloat const kMDCParallaxViewDefaultHeight = 0.0f;
                                            self.backgroundHeight,
                                            self.foregroundView.frame.size.width,
                                            self.foregroundView.frame.size.height);
-
+    
     self.foregroundScrollView.frame = self.bounds;
     
     self.foregroundScrollView.contentSize =
-        CGSizeMake(self.foregroundScrollView.contentSize.width,
-                   self.foregroundView.frame.size.height + self.backgroundHeight);
+    CGSizeMake(self.foregroundScrollView.contentSize.width,
+               self.foregroundView.frame.size.height + self.backgroundHeight);
 }
 
 - (void)updateContentOffset {
     CGFloat offsetY   = self.foregroundScrollView.contentOffset.y;
     CGFloat threshold = self.backgroundView.frame.size.height - self.backgroundHeight;
-
+    
     if (offsetY > -threshold && offsetY < 0.0f) {
         self.backgroundScrollView.contentOffset = CGPointMake(0.0f, floorf(offsetY/2));
     } else if (offsetY < 0.0f) {
