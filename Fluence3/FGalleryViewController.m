@@ -1805,14 +1805,20 @@
     
 }
 - (void) swipedScreenUp:(UISwipeGestureRecognizer*)swipeGesture {
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle: @"Previous Date"
-                          message: @"Previous date selected!"
-                          delegate: nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil];
-    [alert show];
-    [alert release];
+//    UIAlertView *alert = [[UIAlertView alloc]
+//                          initWithTitle: @"Previous Date"
+//                          message: @"Previous date selected!!!!!!"
+//                          delegate: nil
+//                          cancelButtonTitle:@"OK"
+//                          otherButtonTitles:nil];
+//    [alert show];
+//    [alert release];
+    NSLog(@"Something Happened");
+    galleryDateSelect *objYHCPickerView = [[galleryDateSelect alloc] initWithFrame:CGRectMake(0, 0, 320, 480) withNSArray:countriesArray];
+    
+    objYHCPickerView.delegate = self;
+    [self.view addSubview:objYHCPickerView];
+    [objYHCPickerView showPicker];
 }
 //
 //- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -2008,6 +2014,31 @@
     
     
 }
+
+#pragma mark dateChanged
+-(void)dateChanged:(NSDate *)selectedDate{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd-MM-yyyy"];
+    
+    NSString *stringFromDate = [formatter stringFromDate:selectedDate];
+    
+    [formatter release];
+    UIAlertView *tmp = [[UIAlertView alloc] 
+                        initWithTitle:@"DATE DONE" 
+                        message:stringFromDate
+                        delegate:self 
+                        cancelButtonTitle:nil
+                        otherButtonTitles:@"Ok", nil];
+    
+    [tmp show];
+    [tmp release];
+    
+    
+}
+
+
+
 
 #pragma mark shareButtonPressed
 

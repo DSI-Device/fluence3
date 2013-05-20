@@ -40,8 +40,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES];
-    UIImage *backgroundImage = [UIImage imageNamed:@"background.png"];
-    CGRect backgroundRect = CGRectMake(0, 0, self.view.frame.size.width, backgroundImage.size.height);
+    UIImage *backgroundImage = [UIImage imageNamed:@"red-banner-web3.jpg"];
+    CGRect backgroundRect = CGRectMake(0, 0, self.view.frame.size.width, 30);
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:backgroundRect];
     backgroundImageView.image = backgroundImage;
     backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -53,13 +53,18 @@
     
     
     
-    
-    
-    
-    
-    
     UIViewController *commentViewController = [UIViewController alloc];
-    commentViewController.view.frame = CGRectMake(0,0,300, 400);   UITextField* _commentTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 40, 300, 30)];
+    commentViewController.view.frame = CGRectMake(0,0,300, 400);
+    
+    
+    
+    UIImage *Image1 = [UIImage imageNamed:@"background.png"];
+    CGRect backgroundRect1 = CGRectMake(0, 0, self.view.frame.size.width, Image1.size.height);
+    UIImageView *backgroundImageView1 = [[UIImageView alloc] initWithFrame:backgroundRect1];
+    backgroundImageView1.image = Image1;
+    backgroundImageView1.contentMode = UIViewContentModeScaleAspectFill;
+    [commentViewController.view addSubview:backgroundImageView1];
+    UITextField* _commentTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, Image1.size.height + 40, 300, 30)];
     _commentTextField.borderStyle = UITextBorderStyleRoundedRect;
     _commentTextField.font = [UIFont systemFontOfSize:15];
     _commentTextField.placeholder = @"enter text";
@@ -77,15 +82,19 @@
     
     UIButton *topButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [topButton addTarget:self action:@selector(commentDone:forEvent:) forControlEvents:UIControlEventTouchUpInside];
-    topButton.frame = CGRectMake(10, 80, 100, 30);
+    topButton.frame = CGRectMake(10, Image1.size.height + 80, 100, 30);
     [topButton setTitle:@"Comment" forState:UIControlStateNormal];
     
     [commentViewController.view addSubview:topButton];
     
     
     
-    
-    
+//    CALayer *rightBorder = [CALayer layer];
+//    
+//    rightBorder.frame = CGRectMake(0, 48.5, commentViewController.view.frame.size.width, 2.0);
+//    
+//    rightBorder.backgroundColor = [UIColor colorWithWhite:0.8f
+//                                                    alpha:1.0f].CGColor;    
     
     
     
@@ -104,7 +113,7 @@
                                                                      foregroundView:commentViewController.view];
     parallaxView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     parallaxView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    parallaxView.backgroundHeight = 400.0f;
+    parallaxView.backgroundHeight = 30.0f;
     parallaxView.scrollView.scrollsToTop = YES;
     parallaxView.backgroundInteractionEnabled = NO;
     parallaxView.scrollViewDelegate = self;

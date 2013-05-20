@@ -17,6 +17,7 @@
 @interface YHCPickerView : UIView<UIActionSheetDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UISearchBarDelegate>{
     
     UIPickerView *pickerView;
+    
     UIToolbar *picketToolbar;
     UISearchBar *txtSearch;
     NSArray *arrRecords;

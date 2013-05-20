@@ -16,6 +16,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "Fluence3AppDelegate.h"
 #import "YHCPickerView.h"
+#import "galleryDateSelect.h"
 
 @class DDMenuController;
 typedef enum
