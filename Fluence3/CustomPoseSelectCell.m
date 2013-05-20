@@ -10,7 +10,7 @@
 
 @implementation CustomPoseSelectCell
 
-@synthesize tasteID,tasteName, checked, isSelected;
+@synthesize tasteID,tasteName, checked, isSelected,description;
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {

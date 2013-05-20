@@ -13,11 +13,12 @@
 	IBOutlet NSString *tasteID;
 	IBOutlet UILabel *tasteName;
 	IBOutlet UIImageView *checked;
+    NSString *description;
 	BOOL isSelected;
 }
 @property(nonatomic, retain) NSString *tasteID;
 @property(nonatomic, retain) UILabel *tasteName;
 @property(nonatomic, retain) UIImageView *checked;
+@property(nonatomic, assign) NSString *description;
 @property(nonatomic, assign) BOOL isSelected;
-
 @end

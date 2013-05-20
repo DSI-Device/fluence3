@@ -14,11 +14,13 @@
 	IBOutlet NSString *userID;
     IBOutlet UILabel *userName;
     IBOutlet UIButton *followed;
+    IBOutlet NSString *userFb;
 	IBOutlet UIImageView *userImage;
 	BOOL isFollowed;
 }
 
 @property(nonatomic, retain) NSString *userID;
+@property(nonatomic, retain) NSString *userFb;
 @property(nonatomic, retain) UILabel *userName;
 @property(nonatomic, retain) UIButton *followed;
 @property(nonatomic, retain) UIImageView *userImage;

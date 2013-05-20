@@ -10,7 +10,7 @@
 
 @implementation CustomPeopleListCell
 
-@synthesize userID, userName, followed,userImage,isFollowed;
+@synthesize userID, userName, userFb, followed,userImage,isFollowed;
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {

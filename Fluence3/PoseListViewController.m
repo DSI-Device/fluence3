@@ -56,16 +56,17 @@
     [self.listTableView setHidden:YES];
     NSString *jsonRequest = [appdt.selectedPoseList JSONRepresentation];
     
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userId , @"Fb",appdt.selectedPoseList , @"styleList", nil];
     
     NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
-    [dictionnary setObject:appdt.selectedPoseList forKey:@"postData"];
+    [dictionnary setObject:jsoning forKey:@"postData"];
     
     NSString *jsonStr = [dictionnary JSONRepresentation];
     
     //NSError *error = nil;
     //NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionnary                                                       options:kNilOptions                                                         error:&error];
     
-    NSLog(@"jsonRequest is %@", jsonRequest);
+    NSLog(@"jsonRequest is %@", jsonStr);
     
     NSURL *nsurl = [NSURL URLWithString:url ];
     /*
@@ -244,14 +245,17 @@
 			cell.selectedBackgroundView = [[[UIView alloc] init] autorelease];
 			[cell.selectedBackgroundView setBackgroundColor:[UIColor orangeColor]];
 		}
-		cell.userName.text = [rowData objectForKey:@"userName"];
-        cell.userID = [rowData objectForKey:@"userID"];
+		cell.userName.text = [rowData objectForKey:@"Name"];
+        cell.userID = [rowData objectForKey:@"ID"];
+        cell.userFb = [rowData objectForKey:@"Fb"];
 		cell.followed.hidden = NO;
         cell.followed.tag=[indexPath row];
         followed_s = [rowData objectForKey:@"followed"];
         [cell.followed addTarget:self action:@selector(tappedFollowBtn2:)  forControlEvents:UIControlEventTouchUpInside];
        
-		NSString *serverUrl = [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"images/%@",[rowData objectForKey:@"userImage"]];
+		NSString *serverUrl = [@"http://graph.facebook.com/" stringByAppendingFormat:@"%@/picture?type=small",[rowData objectForKey:@"Fb"]];
+        
+        //[[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"images/%@",[rowData objectForKey:@"userImage"]];
 		
 		NSURL *url = [NSURL URLWithString:serverUrl];
 		
