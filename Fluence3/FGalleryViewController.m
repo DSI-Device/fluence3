@@ -12,6 +12,9 @@
 #import "TSPopoverController.h"
 #import "Fluence3AppDelegate.h"
 #import "GalleryCommentViewController.h"
+#import "UAExampleModalPanel.h"
+#import "UANoisyGradientBackground.h"
+#import "UAGradientBackground.h"
 
 #define kThumbnailSize 75
 #define kThumbnailSpacing 4
@@ -1922,45 +1925,102 @@
 
 - (void)commentButtonP:(id)sender forEvent:(UIEvent*)event{
     
-    UIViewController *commentViewController = [UIViewController alloc];
-    commentViewController.view.frame = CGRectMake(10,200, 300, 100);
-    popoverController = [[TSPopoverController alloc] initWithContentViewController:commentViewController];
+//    UIViewController *commentViewController = [UIViewController alloc];
+//    commentViewController.view.frame = CGRectMake(10,200, 300, 100);
+//    popoverController = [[TSPopoverController alloc] initWithContentViewController:commentViewController];
+//    
+//    popoverController.cornerRadius = 5;
+//    popoverController.titleColor = [UIColor blackColor];
+//    popoverController.titleText = @"Comment";
+//    popoverController.popoverBaseColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
+//    popoverController.popoverGradient= NO;
+//    //    popoverController.arrowPosition = TSPopoverArrowPositionHorizontal;
+//    
+//    _commentTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 40, 200, 30)];
+//    _commentTextField.borderStyle = UITextBorderStyleRoundedRect;
+//    _commentTextField.font = [UIFont systemFontOfSize:15];
+//    _commentTextField.placeholder = @"enter text";
+//    _commentTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+//    _commentTextField.keyboardType = UIKeyboardTypeDefault;
+//    _commentTextField.returnKeyType = UIReturnKeyDone;
+//    _commentTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+//    _commentTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+//    _commentTextField.delegate = self;
+//    [commentViewController.view addSubview:_commentTextField];
+//    [_commentTextField release];
+//    
+//    UIButton *topButton1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    [topButton1 addTarget:self action:@selector(showTablePopover:forEvent:) forControlEvents:UIControlEventTouchUpInside];
+//    topButton1.frame = CGRectMake(30,5, 150, 30);
+//    [topButton1 setTitle:@"View Comments" forState:UIControlStateNormal];
+//    topButton1.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+//    [commentViewController.view addSubview:topButton1];
+//    
+//    
+//    UIButton *topButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    [topButton addTarget:self action:@selector(commentDone:forEvent:) forControlEvents:UIControlEventTouchUpInside];
+//    topButton.frame = CGRectMake(220,40, 80, 30);
+//    [topButton setTitle:@"Send" forState:UIControlStateNormal];
+//    topButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+//    [commentViewController.view addSubview:topButton];
+//    [popoverController showPopoverWithTouch:event];
     
-    popoverController.cornerRadius = 5;
-    popoverController.titleColor = [UIColor blackColor];
-    popoverController.titleText = @"Comment";
-    popoverController.popoverBaseColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
-    popoverController.popoverGradient= NO;
-    //    popoverController.arrowPosition = TSPopoverArrowPositionHorizontal;
-    
-    _commentTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 40, 200, 30)];
-    _commentTextField.borderStyle = UITextBorderStyleRoundedRect;
-    _commentTextField.font = [UIFont systemFontOfSize:15];
-    _commentTextField.placeholder = @"enter text";
-    _commentTextField.autocorrectionType = UITextAutocorrectionTypeNo;
-    _commentTextField.keyboardType = UIKeyboardTypeDefault;
-    _commentTextField.returnKeyType = UIReturnKeyDone;
-    _commentTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    _commentTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    _commentTextField.delegate = self;
-    [commentViewController.view addSubview:_commentTextField];
-    [_commentTextField release];
-    
-    UIButton *topButton1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [topButton1 addTarget:self action:@selector(showTablePopover:forEvent:) forControlEvents:UIControlEventTouchUpInside];
-    topButton1.frame = CGRectMake(30,5, 150, 30);
-    [topButton1 setTitle:@"View Comments" forState:UIControlStateNormal];
-    topButton1.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    [commentViewController.view addSubview:topButton1];
     
     
-    UIButton *topButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [topButton addTarget:self action:@selector(commentDone:forEvent:) forControlEvents:UIControlEventTouchUpInside];
-    topButton.frame = CGRectMake(220,40, 80, 30);
-    [topButton setTitle:@"Send" forState:UIControlStateNormal];
-    topButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    [commentViewController.view addSubview:topButton];
-    [popoverController showPopoverWithTouch:event];
+    UAExampleModalPanel *modalPanel = [[[UAExampleModalPanel alloc] initWithFrame:self.view.bounds title:[(UIButton *)sender titleForState:UIControlStateNormal]] autorelease];
+    
+    /////////////////////////////////
+    // Randomly use the blocks method, delgate methods, or neither of them
+    int blocksDelegateOrNone = arc4random() % 3;
+    
+    
+    ////////////////////////
+    // USE BLOCKS
+    if (0 == blocksDelegateOrNone) {
+        ///////////////////////////////////////////
+        // The block is responsible for closing the panel,
+        //   either with -[UAModalPanel hide] or -[UAModalPanel hideWithOnComplete:]
+        //   Panel is a reference to the modalPanel
+        modalPanel.onClosePressed = ^(UAModalPanel* panel) {
+            // [panel hide];
+            [panel hideWithOnComplete:^(BOOL finished) {
+                [panel removeFromSuperview];
+            }];
+            UADebugLog(@"onClosePressed block called from panel: %@", modalPanel);
+        };
+        
+        ///////////////////////////////////////////
+        //   Panel is a reference to the modalPanel
+        modalPanel.onActionPressed = ^(UAModalPanel* panel) {
+            UADebugLog(@"onActionPressed block called from panel: %@", modalPanel);
+        };
+        
+        UADebugLog(@"UAModalView will display using blocks: %@", modalPanel);
+        
+        ////////////////////////
+        // USE DELEGATE
+    } else if (1 == blocksDelegateOrNone) {
+        ///////////////////////////////////
+        // Add self as the delegate so we know how to close the panel
+        modalPanel.delegate = self;
+        
+        UADebugLog(@"UAModalView will display using delegate methods: %@", modalPanel);
+        
+        ////////////////////////
+        // USE NOTHING
+    } else {
+        // no-op. No delegate or blocks
+        UADebugLog(@"UAModalView will display without blocks or delegate methods: %@", modalPanel);
+    }
+    
+    
+    ///////////////////////////////////
+    // Add the panel to our view
+    [self.view addSubview:modalPanel];
+    
+    ///////////////////////////////////
+    // Show the panel from the center of the button that was pressed
+    [modalPanel showFromPoint:[sender center]];
 }
 
 -(void)showTablePopover:(id)sender forEvent:(UIEvent*)event
@@ -2146,7 +2206,7 @@
                                       [self controlStatusUsable:YES];
                                   }];
     }
-    [popoverController dismissPopoverAnimatd:YES];
+//    [popoverController dismissPopoverAnimatd:YES];
 }
 
 -(void)promptUserWithAccountName {
@@ -2183,15 +2243,15 @@
          } 
          else
          {
-             UIAlertView *tmp = [[UIAlertView alloc] 
-                                 initWithTitle:@"Success" 
-                                 message:@"Status Posted"
-                                 delegate:self 
-                                 cancelButtonTitle:nil
-                                 otherButtonTitles:@"Ok", nil];
-             
-             [tmp show];
-             [tmp release];
+//             UIAlertView *tmp = [[UIAlertView alloc] 
+//                                 initWithTitle:@"Success" 
+//                                 message:@"Status Posted"
+//                                 delegate:self 
+//                                 cancelButtonTitle:nil
+//                                 otherButtonTitles:@"Ok", nil];
+//             
+//             [tmp show];
+//             [tmp release];
              _shareloading.text = @"Successfully Posted";
          }
          _shareButton.enabled = YES;

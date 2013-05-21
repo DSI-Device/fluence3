@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Fluence3/FGalleryViewController.m"
-         timestampString = "389705267.855218"
+         timestampString = "390824115.228915"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1261"
-         endingLineNumber = "1261"
+         startingLineNumber = "1264"
+         endingLineNumber = "1264"
          landmarkName = "-createGalleryPhotoForIndex:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -23,11 +23,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Fluence3/FGalleryViewController.m"
-         timestampString = "389705267.855218"
+         timestampString = "390824115.228915"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1277"
-         endingLineNumber = "1277"
+         startingLineNumber = "1280"
+         endingLineNumber = "1280"
          landmarkName = "-scrollingHasEnded"
          landmarkType = "5">
       </FileBreakpoint>
