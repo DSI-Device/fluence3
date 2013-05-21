@@ -48,6 +48,8 @@
 		2BC35F1E173907FD00EF1A7C /* CustomPoseSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC35F1A173907FD00EF1A7C /* CustomPoseSelectCell.m */; };
 		2BC52767173A47AD00DE8BF9 /* ISViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BC52766173A47AD00DE8BF9 /* ISViewController.xib */; };
 		2BCF8CA8171FEC3B00B31E12 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCF8CA7171FEC3B00B31E12 /* ImageUtil.m */; };
+		2BD1837E174B081700B198A1 /* red-banner-web3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2BD1837D174B081700B198A1 /* red-banner-web3.jpg */; };
+		2BD18380174B08A400B198A1 /* tactile_noise.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD1837F174B08A400B198A1 /* tactile_noise.png */; };
 		2BE93ADB173BD82B0086D98E /* GalleryCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE93AD5173BD8290086D98E /* GalleryCommentViewController.m */; };
 		2BE93ADC173BD82B0086D98E /* CustomGalleryCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE93AD8173BD82B0086D98E /* CustomGalleryCommentCell.m */; };
 		2BE93ADF173BDB4F0086D98E /* CustomGalleryCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BE93ADD173BDB4F0086D98E /* CustomGalleryCommentCell.xib */; };
@@ -62,7 +64,6 @@
 		C849D19517049995003D18A5 /* TakeCameraPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = C849D18F17049995003D18A5 /* TakeCameraPhoto.m */; };
 		C849D19617049995003D18A5 /* TakeCameraPhoto.xib in Resources */ = {isa = PBXBuildFile; fileRef = C849D19017049995003D18A5 /* TakeCameraPhoto.xib */; };
 		C849D199170499B1003D18A5 /* gavandme.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C849D197170499B1003D18A5 /* gavandme.jpg */; };
-		C849D19A170499B1003D18A5 /* tactile_noise.png in Resources */ = {isa = PBXBuildFile; fileRef = C849D198170499B1003D18A5 /* tactile_noise.png */; };
 		C84D34CA171EA8B800FFBA18 /* TagBrandController.m in Sources */ = {isa = PBXBuildFile; fileRef = C84D34C8171EA8B800FFBA18 /* TagBrandController.m */; };
 		C84D34CB171EA8B800FFBA18 /* TagBrandController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C84D34C9171EA8B800FFBA18 /* TagBrandController.xib */; };
 		C8840F4A1741170900965915 /* CaptureSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C8840F491741170900965915 /* CaptureSessionManager.m */; };
@@ -147,7 +148,6 @@
 		C8A4176C17411B3000439DBA /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A4176B17411B3000439DBA /* CoreMedia.framework */; };
 		C8A4176F17411BBD00439DBA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A4176E17411BBD00439DBA /* AVFoundation.framework */; };
 		C8A4177117411BED00439DBA /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A4177017411BED00439DBA /* ImageIO.framework */; };
-		C8AAC0771748B6940020632D /* red-banner-web3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8AAC0761748B6940020632D /* red-banner-web3.jpg */; };
 		C8AAC0831748C1BD0020632D /* galleryDateSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AAC0821748C1BD0020632D /* galleryDateSelect.m */; };
 		C8AC7EE61716EE49007E035E /* ImagePlinkController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AC7EE41716EE49007E035E /* ImagePlinkController.m */; };
 		C8AC7EE71716EE49007E035E /* ImagePlinkController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8AC7EE51716EE49007E035E /* ImagePlinkController.xib */; };
@@ -237,6 +237,8 @@
 		2BCF8CA5171FEC3B00B31E12 /* ColorMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMatrix.h; sourceTree = "<group>"; };
 		2BCF8CA6171FEC3B00B31E12 /* ImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtil.h; sourceTree = "<group>"; };
 		2BCF8CA7171FEC3B00B31E12 /* ImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtil.m; sourceTree = "<group>"; };
+		2BD1837D174B081700B198A1 /* red-banner-web3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "red-banner-web3.jpg"; sourceTree = "<group>"; };
+		2BD1837F174B08A400B198A1 /* tactile_noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tactile_noise.png; path = photos/tactile_noise.png; sourceTree = "<group>"; };
 		2BE93AD5173BD8290086D98E /* GalleryCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryCommentViewController.m; sourceTree = "<group>"; };
 		2BE93AD6173BD8290086D98E /* GalleryCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryCommentViewController.h; sourceTree = "<group>"; };
 		2BE93AD7173BD82A0086D98E /* CustomGalleryCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomGalleryCommentCell.h; sourceTree = "<group>"; };
@@ -257,7 +259,6 @@
 		C849D18F17049995003D18A5 /* TakeCameraPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeCameraPhoto.m; sourceTree = "<group>"; };
 		C849D19017049995003D18A5 /* TakeCameraPhoto.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TakeCameraPhoto.xib; sourceTree = "<group>"; };
 		C849D197170499B1003D18A5 /* gavandme.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gavandme.jpg; sourceTree = "<group>"; };
-		C849D198170499B1003D18A5 /* tactile_noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tactile_noise.png; sourceTree = "<group>"; };
 		C84D34C7171EA8B800FFBA18 /* TagBrandController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagBrandController.h; sourceTree = "<group>"; };
 		C84D34C8171EA8B800FFBA18 /* TagBrandController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagBrandController.m; sourceTree = "<group>"; };
 		C84D34C9171EA8B800FFBA18 /* TagBrandController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagBrandController.xib; sourceTree = "<group>"; };
@@ -391,7 +392,6 @@
 		C8A4176B17411B3000439DBA /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		C8A4176E17411BBD00439DBA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C8A4177017411BED00439DBA /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		C8AAC0761748B6940020632D /* red-banner-web3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "red-banner-web3.jpg"; path = "../../../Users/Shuvo/Desktop/red-banner-web3.jpg"; sourceTree = "<group>"; };
 		C8AAC0811748C1BD0020632D /* galleryDateSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = galleryDateSelect.h; sourceTree = "<group>"; };
 		C8AAC0821748C1BD0020632D /* galleryDateSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = galleryDateSelect.m; sourceTree = "<group>"; };
 		C8AC7EE31716EE49007E035E /* ImagePlinkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePlinkController.h; sourceTree = "<group>"; };
@@ -743,6 +743,7 @@
 		C8C0E7EF16F87ECF00C92E99 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				2BD1837F174B08A400B198A1 /* tactile_noise.png */,
 				2B5D0CA317427A5C003521A2 /* background.png */,
 				2B5D0CA417427A5C003521A2 /* comment_bubble.png */,
 				C89AA23C1742720E000E7D6B /* flogo1.png */,
@@ -763,7 +764,6 @@
 				C89AA24B1742720E000E7D6B /* 1.png */,
 				C89AA24C1742720E000E7D6B /* 0.png */,
 				C849D197170499B1003D18A5 /* gavandme.jpg */,
-				C849D198170499B1003D18A5 /* tactile_noise.png */,
 				C849D18517049419003D18A5 /* fb-login-button.png */,
 				C8E5098517047B3400A1624A /* button-highlighted.png */,
 				C8E5098617047B3400A1624A /* button-normal.png */,
@@ -923,7 +923,7 @@
 		C8CE00DE17042C2200558361 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				C8AAC0761748B6940020632D /* red-banner-web3.jpg */,
+				2BD1837D174B081700B198A1 /* red-banner-web3.jpg */,
 				C899E8C91740C95900A0DD3C /* stylist1.png */,
 				2B18F10F17145A09008432D6 /* shop.png */,
 				2B53EDE6170F039200C8C184 /* share.png */,
@@ -1044,7 +1044,6 @@
 				C849D19417049995003D18A5 /* ShowCropedImage.xib in Resources */,
 				C849D19617049995003D18A5 /* TakeCameraPhoto.xib in Resources */,
 				C849D199170499B1003D18A5 /* gavandme.jpg in Resources */,
-				C849D19A170499B1003D18A5 /* tactile_noise.png in Resources */,
 				C8D27A2617058F5A0069D983 /* ColorViewController.xib in Resources */,
 				2B53EDE9170F039200C8C184 /* share.png in Resources */,
 				2B53EDEA170F039200C8C184 /* comment.png in Resources */,
@@ -1091,7 +1090,8 @@
 				C89AA25D1742720E000E7D6B /* 0.png in Resources */,
 				2B5D0CA517427A5C003521A2 /* background.png in Resources */,
 				2B5D0CA617427A5C003521A2 /* comment_bubble.png in Resources */,
-				C8AAC0771748B6940020632D /* red-banner-web3.jpg in Resources */,
+				2BD1837E174B081700B198A1 /* red-banner-web3.jpg in Resources */,
+				2BD18380174B08A400B198A1 /* tactile_noise.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
