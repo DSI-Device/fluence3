@@ -193,7 +193,7 @@
 			cell.selectedBackgroundView = [[[UIView alloc] init] autorelease];
 			[cell.selectedBackgroundView setBackgroundColor:[UIColor orangeColor]];
 		}
-
+        
         cell.tasteID = [rowData objectForKey:@"ID"];
 		cell.tasteName.text = [rowData objectForKey:@"Name"];
         cell.description = [rowData objectForKey:@"Description"];
@@ -202,15 +202,15 @@
         [cell.checked setImage:[UIImage imageNamed:@"checkbox_not_ticked.png"]];
         
         /*
-		if ([utils isRowExistsOnList:selectedDataSource row:rowData]) {
-			cell.isSelected = YES;
-			[cell.checked setImage:[UIImage imageNamed:@"checkbox_ticked.png"]];
-		}else if(cell.tasteName.text != NULL && ![cell.tasteName.text isEqual:@""]){
-			cell.isSelected = NO;
-			[cell.checked setImage:[UIImage imageNamed:@"checkbox_not_ticked.png"]];
-		}else {
-			cell.checked.hidden = YES;
-		}
+         if ([utils isRowExistsOnList:selectedDataSource row:rowData]) {
+         cell.isSelected = YES;
+         [cell.checked setImage:[UIImage imageNamed:@"checkbox_ticked.png"]];
+         }else if(cell.tasteName.text != NULL && ![cell.tasteName.text isEqual:@""]){
+         cell.isSelected = NO;
+         [cell.checked setImage:[UIImage imageNamed:@"checkbox_not_ticked.png"]];
+         }else {
+         cell.checked.hidden = YES;
+         }
          */
 		return cell;
 	}
@@ -218,49 +218,49 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
-		return 55.0f;
+    return 55.0f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"Row selected...");
     
-     NSUInteger row = [indexPath row];
-	 NSDictionary *rowData = [self.dataSource objectAtIndex:row];
-	 if ([rowData objectForKey:@"count"] != NULL && ![[rowData objectForKey:@"count"] isEqual:@""] ) {
-	 viewMoreCell *cell = (viewMoreCell *)[tableView cellForRowAtIndexPath:indexPath];
-	 [cell setUserInteractionEnabled:NO];
-	 self.currentLimit += 50;
-	 if (self.isSearchFromOnline) {
-	 NSString *serverUrl = [utils performSelector:@selector(getServerURL)];
-	 serverUrl = [serverUrl stringByAppendingFormat:@"&limit=%d",self.currentLimit];
-	 [self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
-	 }else {
-	 
-	 [NSThread detachNewThreadSelector:@selector(loadLocalRows) toTarget:self withObject:nil];
-	 }
-	 
-	 
-	 
-	 }else if ([rowData objectForKey:@"Name"] != NULL && ![[rowData objectForKey:@"Name"] isEqual:@""] ) {
-	 
-         NSLog(@"option selected on select list");
-	 
-         CustomPoseSelectCell *cell = (CustomPoseSelectCell *)[tableView cellForRowAtIndexPath:indexPath];
-	 
-         if (!cell.isSelected) {
-             
-             [self.selectedDataSource addObject:rowData];
-             NSLog(@"selectedDataSource Count = %i", [self.selectedDataSource count]);
-             cell.isSelected = YES;
-             [cell.checked setImage:[UIImage imageNamed:@"checkbox_ticked.png"]];
-		 }
-         else
-         {
-             [utils deletePoseFromList:self.selectedDataSource row:rowData];
-             NSLog(@"selectedDataSource Count = %i", [self.selectedDataSource count]);
-             cell.isSelected = NO;
-             [cell.checked setImage:[UIImage imageNamed:@"checkbox_not_ticked.png"]];
-         }
+    NSUInteger row = [indexPath row];
+    NSDictionary *rowData = [self.dataSource objectAtIndex:row];
+    if ([rowData objectForKey:@"count"] != NULL && ![[rowData objectForKey:@"count"] isEqual:@""] ) {
+        viewMoreCell *cell = (viewMoreCell *)[tableView cellForRowAtIndexPath:indexPath];
+        [cell setUserInteractionEnabled:NO];
+        self.currentLimit += 50;
+        if (self.isSearchFromOnline) {
+            NSString *serverUrl = [utils performSelector:@selector(getServerURL)];
+            serverUrl = [serverUrl stringByAppendingFormat:@"&limit=%d",self.currentLimit];
+            [self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
+        }else {
+            
+            [NSThread detachNewThreadSelector:@selector(loadLocalRows) toTarget:self withObject:nil];
+        }
+        
+        
+        
+    }else if ([rowData objectForKey:@"Name"] != NULL && ![[rowData objectForKey:@"Name"] isEqual:@""] ) {
+        
+        NSLog(@"option selected on select list");
+        
+        CustomPoseSelectCell *cell = (CustomPoseSelectCell *)[tableView cellForRowAtIndexPath:indexPath];
+        
+        if (!cell.isSelected) {
+            
+            [self.selectedDataSource addObject:rowData];
+            NSLog(@"selectedDataSource Count = %i", [self.selectedDataSource count]);
+            cell.isSelected = YES;
+            [cell.checked setImage:[UIImage imageNamed:@"checkbox_ticked.png"]];
+        }
+        else
+        {
+            [utils deletePoseFromList:self.selectedDataSource row:rowData];
+            NSLog(@"selectedDataSource Count = %i", [self.selectedDataSource count]);
+            cell.isSelected = NO;
+            [cell.checked setImage:[UIImage imageNamed:@"checkbox_not_ticked.png"]];
+        }
     }
 	[self hideKeyboard:nil];
 }

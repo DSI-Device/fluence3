@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "utils.h"
 #import <FacebookSDK/FacebookSDK.h>
 
 @class MainViewController;
@@ -19,6 +20,7 @@
     NSString *accessToken;
     NSString *notification;
     UIImage *userProfileImage;
+    NSMutableData *responseData;
     BOOL *isStylist;
     UIImage *img;
     UIImage *imgOptimized;
@@ -35,7 +37,7 @@ extern NSString *const SessionStateChangedNotification;
 @property (nonatomic, strong) UIImage *userProfileImage;
 @property (nonatomic, strong) NSString *accessToken;
 @property (nonatomic, strong) NSString *notification;
-
+@property (nonatomic, strong) NSMutableData *responseData;
 @property (strong, nonatomic) FBSession *session;
 @property (strong, nonatomic) UIWindow *window;
 
