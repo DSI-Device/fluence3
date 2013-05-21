@@ -312,18 +312,45 @@
 	
     
 	
-   	NSLog(@"Follower ID : %@ ",cell.userID);
-	NSString *myRequestString = [[NSString alloc] initWithFormat:@"userID=%@&followed=%@",cell.userID,followed_s];
-	NSLog(@"%@ ",myRequestString);
-	NSData *myRequestData = [ NSData dataWithBytes: [ myRequestString UTF8String ] length: [ myRequestString length ] ];
-	NSMutableURLRequest *request = [ [ NSMutableURLRequest alloc ] initWithURL: [ NSURL URLWithString: [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/follow/" ]]];
-   	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
-    [request setHTTPMethod: @"POST"];
-	[request setHTTPBody: myRequestData];
-	NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-	
-    if (conn) NSLog(@"Connection Successful");
-	[request release];//shuvo
+//   	NSLog(@"Follower ID : %@ ",cell.userID);
+//	NSString *myRequestString = [[NSString alloc] initWithFormat:@"FollowerUserId=%@&FollowUserId=%@&action=%@",appdt.userId,cell.userFb,followed_s];
+//	NSLog(@"%@ ",myRequestString);
+//	NSData *myRequestData = [ NSData dataWithBytes: [ myRequestString UTF8String ] length: [ myRequestString length ] ];
+//	NSMutableURLRequest *request = [ [ NSMutableURLRequest alloc ] initWithURL: [ NSURL URLWithString: [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/follow/" ]]];
+//   	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
+//    [request setHTTPMethod: @"POST"];
+//	[request setHTTPBody: myRequestData];
+//	NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+//	
+//    if (conn) NSLog(@"Connection Successful");
+//	[request release];//shuvo
+    
+    
+    
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userId , @"FollowerUserId",cell.userFb , @"FollowUserId", followed_s , @"action", nil];
+    
+    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+    [dictionnary setObject:jsoning forKey:@"postData"];
+    
+    NSString *jsonStr = [dictionnary JSONRepresentation];
+    
+    //NSError *error = nil;
+    //NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionnary                                                       options:kNilOptions                                                         error:&error];
+    
+    NSLog(@"Follow/Unfollow jsonRequest is %@", jsonStr);
+    
+    NSURL *nsurl = [ NSURL URLWithString: [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/follow/" ]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl
+                                    
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                    
+                                                       timeoutInterval:60.0];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
 }
 
