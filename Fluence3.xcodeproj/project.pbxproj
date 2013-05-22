@@ -147,9 +147,13 @@
 		C8A4176F17411BBD00439DBA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A4176E17411BBD00439DBA /* AVFoundation.framework */; };
 		C8A4177117411BED00439DBA /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A4177017411BED00439DBA /* ImageIO.framework */; };
 		C8AAC0831748C1BD0020632D /* galleryDateSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AAC0821748C1BD0020632D /* galleryDateSelect.m */; };
+		C8AB1684174CE567004E2463 /* StylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AB167E174CE567004E2463 /* StylistViewController.m */; };
+		C8AB1685174CE567004E2463 /* StylistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8AB1680174CE567004E2463 /* StylistViewController.xib */; };
+		C8AB1686174CE567004E2463 /* CustomStylistCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8AB1681174CE567004E2463 /* CustomStylistCell.xib */; };
+		C8AB1687174CE567004E2463 /* CustomStylistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AB1682174CE567004E2463 /* CustomStylistCell.m */; };
 		C8AC7EE61716EE49007E035E /* ImagePlinkController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AC7EE41716EE49007E035E /* ImagePlinkController.m */; };
 		C8AC7EE71716EE49007E035E /* ImagePlinkController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8AC7EE51716EE49007E035E /* ImagePlinkController.xib */; };
-		C8B5A491174B5D68001C1574 /* UAExampleModalPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B5A48F174B5D68001C1574 /* UAExampleModalPanel.m */; };
+		C8B5A491174B5D68001C1574 /* commentPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B5A48F174B5D68001C1574 /* commentPanel.m */; };
 		C8B5A4AA174B61C5001C1574 /* UAGradientBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B5A496174B61C5001C1574 /* UAGradientBackground.m */; };
 		C8B5A4AB174B61C5001C1574 /* UANoisyGradientBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B5A498174B61C5001C1574 /* UANoisyGradientBackground.m */; };
 		C8B5A4AC174B61C5001C1574 /* UARoundedRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B5A49A174B61C5001C1574 /* UARoundedRectView.m */; };
@@ -406,11 +410,17 @@
 		C8A4177017411BED00439DBA /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		C8AAC0811748C1BD0020632D /* galleryDateSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = galleryDateSelect.h; sourceTree = "<group>"; };
 		C8AAC0821748C1BD0020632D /* galleryDateSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = galleryDateSelect.m; sourceTree = "<group>"; };
+		C8AB167E174CE567004E2463 /* StylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StylistViewController.m; sourceTree = "<group>"; };
+		C8AB167F174CE567004E2463 /* StylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StylistViewController.h; sourceTree = "<group>"; };
+		C8AB1680174CE567004E2463 /* StylistViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StylistViewController.xib; sourceTree = "<group>"; };
+		C8AB1681174CE567004E2463 /* CustomStylistCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomStylistCell.xib; sourceTree = "<group>"; };
+		C8AB1682174CE567004E2463 /* CustomStylistCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomStylistCell.m; sourceTree = "<group>"; };
+		C8AB1683174CE567004E2463 /* CustomStylistCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomStylistCell.h; sourceTree = "<group>"; };
 		C8AC7EE31716EE49007E035E /* ImagePlinkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePlinkController.h; sourceTree = "<group>"; };
 		C8AC7EE41716EE49007E035E /* ImagePlinkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePlinkController.m; sourceTree = "<group>"; };
 		C8AC7EE51716EE49007E035E /* ImagePlinkController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImagePlinkController.xib; sourceTree = "<group>"; };
-		C8B5A48F174B5D68001C1574 /* UAExampleModalPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAExampleModalPanel.m; sourceTree = "<group>"; };
-		C8B5A490174B5D68001C1574 /* UAExampleModalPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAExampleModalPanel.h; sourceTree = "<group>"; };
+		C8B5A48F174B5D68001C1574 /* commentPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commentPanel.m; sourceTree = "<group>"; };
+		C8B5A490174B5D68001C1574 /* commentPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentPanel.h; sourceTree = "<group>"; };
 		C8B5A495174B61C5001C1574 /* UAGradientBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAGradientBackground.h; sourceTree = "<group>"; };
 		C8B5A496174B61C5001C1574 /* UAGradientBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAGradientBackground.m; sourceTree = "<group>"; };
 		C8B5A497174B61C5001C1574 /* UANoisyGradientBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UANoisyGradientBackground.h; sourceTree = "<group>"; };
@@ -573,6 +583,12 @@
 		2BD59775174248A000E426B5 /* stylistGroup */ = {
 			isa = PBXGroup;
 			children = (
+				C8AB167E174CE567004E2463 /* StylistViewController.m */,
+				C8AB167F174CE567004E2463 /* StylistViewController.h */,
+				C8AB1680174CE567004E2463 /* StylistViewController.xib */,
+				C8AB1681174CE567004E2463 /* CustomStylistCell.xib */,
+				C8AB1682174CE567004E2463 /* CustomStylistCell.m */,
+				C8AB1683174CE567004E2463 /* CustomStylistCell.h */,
 				2B5D0CAB17427AC5003521A2 /* MDCParallaxView.m */,
 				2B5D0CAC17427AC5003521A2 /* MDCParallaxView.h */,
 				2B5D0CA817427AAC003521A2 /* ImageViewController.m */,
@@ -771,8 +787,8 @@
 				C8B5A49B174B61C5001C1574 /* Panels */,
 				C8B5A4A0174B61C5001C1574 /* Images */,
 				C8B5A4A7174B61C5001C1574 /* Categories */,
-				C8B5A48F174B5D68001C1574 /* UAExampleModalPanel.m */,
-				C8B5A490174B5D68001C1574 /* UAExampleModalPanel.h */,
+				C8B5A48F174B5D68001C1574 /* commentPanel.m */,
+				C8B5A490174B5D68001C1574 /* commentPanel.h */,
 			);
 			name = PopOverPanel;
 			sourceTree = "<group>";
@@ -1191,6 +1207,8 @@
 				C8B5A4B3174B61C5001C1574 /* modalButton.png in Resources */,
 				C8B5A4B4174B61C5001C1574 /* modalButton@2x.png in Resources */,
 				C8B5A4B7174B6251001C1574 /* UAExampleView.xib in Resources */,
+				C8AB1685174CE567004E2463 /* StylistViewController.xib in Resources */,
+				C8AB1686174CE567004E2463 /* CustomStylistCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1276,13 +1294,15 @@
 				2B5D0CAA17427AAC003521A2 /* ImageViewController.m in Sources */,
 				2B5D0CAD17427AC5003521A2 /* MDCParallaxView.m in Sources */,
 				C8AAC0831748C1BD0020632D /* galleryDateSelect.m in Sources */,
-				C8B5A491174B5D68001C1574 /* UAExampleModalPanel.m in Sources */,
+				C8B5A491174B5D68001C1574 /* commentPanel.m in Sources */,
 				C8B5A4AA174B61C5001C1574 /* UAGradientBackground.m in Sources */,
 				C8B5A4AB174B61C5001C1574 /* UANoisyGradientBackground.m in Sources */,
 				C8B5A4AC174B61C5001C1574 /* UARoundedRectView.m in Sources */,
 				C8B5A4AD174B61C5001C1574 /* UAModalPanel.m in Sources */,
 				C8B5A4AE174B61C5001C1574 /* UATitledModalPanel.m in Sources */,
 				C8B5A4B5174B61C5001C1574 /* UIView+JMNoise.m in Sources */,
+				C8AB1684174CE567004E2463 /* StylistViewController.m in Sources */,
+				C8AB1687174CE567004E2463 /* CustomStylistCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

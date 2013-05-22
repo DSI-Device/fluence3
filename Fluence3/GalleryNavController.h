@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FGalleryViewController.h"
 #import "Fluence3AppDelegate.h"
+#import "StylistViewController.h"
 #import "ImageViewController.h"
 
 @class Fluence3AppDelegate;
@@ -27,12 +28,13 @@
     NSMutableArray *stylistArray;
     NSMutableArray *stylists;
     NSMutableArray *imageArray;
-    ImageViewController *imgviewCntrllr;
+//    ImageViewController *imgviewCntrllr;
+     StylistViewController *imgviewCntrllr;
     
     FGalleryViewController *localGallery;
     FGalleryViewController *networkGallery;
     
 }
-@property (strong, nonatomic) ImageViewController *imgviewCntrllr;
+@property (strong, nonatomic) StylistViewController *imgviewCntrllr;
 
 @end

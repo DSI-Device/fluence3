@@ -11,7 +11,7 @@
 
 @implementation GalleryCommentViewController
 
-@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,commentTextField;
+@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,commentTextField,fgc;
 
 - (void)loadView{
 	[super loadView];
@@ -299,6 +299,11 @@
 }
 
 - (IBAction)commentTextButton:(id)sender {
+    NSString *string = commentTextField.text;
+    commentTextField.text = @"";
+    fgc = [[FGalleryViewController alloc] initWithNibName:nil bundle:nil];
+    [fgc commentDone:string];
+    
 }
 
 - (IBAction) selectionDone: (id) sender{
