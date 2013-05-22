@@ -11,10 +11,14 @@
 #import "Fluence3AppDelegate.h"
 #import "StylistViewController.h"
 #import "ImageViewController.h"
-
+#import "MYJSON.h"
 @class Fluence3AppDelegate;
 
-@interface GalleryNavController : UITableViewController<FGalleryViewControllerDelegate>{
+@interface GalleryNavController : UITableViewController<FGalleryViewControllerDelegate,MYSBJsonStreamParserAdapterDelegate>{
+    MYSBJsonStreamParser *parser;
+	MYSBJsonStreamParserAdapter *adapter;
+	NSMutableArray *dataSource;
+	NSMutableArray *selectedDataSource;
     Fluence3AppDelegate *appdt;
     NSArray *localCaptions;
     NSArray *localImages;
