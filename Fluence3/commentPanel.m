@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Urban Apps. All rights reserved.
 //
 
-#import "UAExampleModalPanel.h"
+#import "commentPanel.h"
 #import "GalleryCommentViewController.h"
 #define BLACK_BAR_COMPONENTS				{ 0.22, 0.22, 0.22, 1.0, 0.07, 0.07, 0.07, 1.0 }
 
@@ -21,6 +21,7 @@
 		[self.titleBar setColorComponents:colors];
 		self.headerLabel.text = title;
 		commentTextField.delegate = self;
+        
         
 		
 		////////////////////////////////////
@@ -46,13 +47,6 @@
         //SelectListViewController *my = [[UIApplication sharedApplication] delegate];
         //UITableViewController *tableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
         my.view.frame = CGRectMake(0, 0, 0, 0);
-		
-		[[NSBundle mainBundle] loadNibNamed:@"UAExampleView" owner:self options:nil];
-		
-		NSArray *contentArray = [NSArray arrayWithObjects:viewLoadedFromXib, nil];
-		
-		int i = arc4random() % [contentArray count];
-		v = [[contentArray objectAtIndex:i] retain];
 		[self.contentView addSubview:my.view];
 		
 	}	

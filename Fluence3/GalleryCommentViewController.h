@@ -13,6 +13,8 @@
 #import "SelectBoxProtocol.h"
 #import "CustomGalleryCommentCell.h"
 #import "viewMoreCell.h"
+#import "FGalleryViewController.h"
+
 @interface GalleryCommentViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate> {
 	MYSBJsonStreamParser *parser;
 	MYSBJsonStreamParserAdapter *adapter;
@@ -28,12 +30,14 @@
 	IBOutlet UIActivityIndicatorView *spinner;
 	IBOutlet UIScrollView *spinnerBg;
 	IBOutlet UILabel *countText;
+    IBOutlet UITextField *commentTextField;
 	
 	searchDao *dao;
 	BOOL *isSearchFromOnline;
 	int maxSelectionLimit;
 	UIViewController<SelectBoxProtocol> *filterView;
 	NSString *followed_s;
+    FGalleryViewController *fgc;
 }
 
 @property(nonatomic, retain) UITextField *searchBar;
@@ -51,11 +55,14 @@
 @property(nonatomic, assign) int currentLimit;
 @property(nonatomic, assign) NSString *followed_s;
 @property(nonatomic, assign) int action_status;
+@property(nonatomic, assign) UITextField *commentTextField;
+@property(nonatomic, strong) FGalleryViewController *fgc;
 - (IBAction) selectionDone:(id) sender;
 - (IBAction) searchContentChanged: (id) sender;
 - (IBAction) hideKeyboard: (id) sender;
 - (IBAction) clearAllBtnClicked: (id) sender;
-
+- (IBAction)commentTextButton:(id)sender;
+-(IBAction)userDoneEnteringText:(id)sender;
 - (NSString *) getSearchBarTitle;
 
 @end

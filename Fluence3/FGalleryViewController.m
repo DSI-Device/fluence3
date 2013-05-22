@@ -12,7 +12,7 @@
 #import "TSPopoverController.h"
 #import "Fluence3AppDelegate.h"
 #import "GalleryCommentViewController.h"
-#import "UAExampleModalPanel.h"
+#import "commentPanel.h"
 #import "UANoisyGradientBackground.h"
 #import "UAGradientBackground.h"
 
@@ -1973,7 +1973,10 @@
     // Randomly use the blocks method, delgate methods, or neither of them
     int blocksDelegateOrNone = arc4random() % 3;
     
-    
+    NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
+        //    
+       NSString* imageID = [NSString stringWithFormat:[imageInfo objectForKey:@"imageId"]];
+    appdt.currentImageGallery = imageID;
     ////////////////////////
     // USE BLOCKS
     if (0 == blocksDelegateOrNone) {
@@ -2040,15 +2043,16 @@
     
 }
 
-- (void)commentDone:(id)sender forEvent:(UIEvent*)event {
-    NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
+- (void)commentDone:(NSString*)comment {
+    UIAlertView *tmp = [[UIAlertView alloc] 
+                        initWithTitle:comment
+                        message:appdt.currentImageGallery
+                        delegate:self 
+                        cancelButtonTitle:nil
+                        otherButtonTitles:@"Ok", nil];
     
-    NSString* userId   = [NSString stringWithFormat:[imageInfo objectForKey:@"userId"]];
-    NSLog(_commentTextField.text);
-    NSString* imageID = [NSString stringWithFormat:[imageInfo objectForKey:@"imageId"]];
-    [_photoSource photoGallery:self commentButtonClicked:imageID:_commentTextField.text];
-    
-    _commentTextField.text = @"";
+    [tmp show];
+    [_photoSource photoGallery:self commentButtonClicked:appdt.currentImageGallery:comment];
 }
 
 #pragma mark stylistButtonPressed

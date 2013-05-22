@@ -102,6 +102,7 @@ typedef enum
 - (void)reloadGallery;
 - (FGalleryPhoto*)currentPhoto;
 - (void)addMyButton:(NSInteger)index:(NSString*)caption:(UIView*)container:(NSInteger)xc:(NSInteger)yc;
+- (void)commentDone:(NSString*)comment;
 
 @property (nonatomic, retain) Fluence3AppDelegate *appdt;
 @property (nonatomic,retain) NSString *currentDate;
@@ -146,7 +147,7 @@ typedef enum
 
 //Date Related Datasource Change
 - (int)photoGallery:(FGalleryViewController*)gallery likeButtonClicked:(NSString*)imageId:(NSInteger)imgIndex;
-- (void)photoGallery:(FGalleryViewController*)gallery commentButtonClicked:(NSString*)imageId:(NSString*)comment;
+- (void)commentButtonClicked:(NSString*)imageId:(NSString*)comment;
 - (void)photoGallery:(FGalleryViewController*)gallery stylistButtonClicked:(NSInteger*)stylistId:(NSString*)userId:(NSString*)imageId;
 
 @end

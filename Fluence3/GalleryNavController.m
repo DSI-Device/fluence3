@@ -8,7 +8,7 @@
 
 #import "GalleryNavController.h"
 #import "Fluence3AppDelegate.h"
-#import "ImageViewController.h"
+#import "StylistViewController.h"
 #import "CameraImageController.h"
 
 @implementation GalleryNavController
@@ -232,7 +232,7 @@
     else if( indexPath.row == 3 )
     {
         appdt.notification = @"0";
-		imgviewCntrllr = [[[ImageViewController alloc] initWithNibName:nil bundle:nil]autorelease];
+		imgviewCntrllr = [[[StylistViewController alloc] initWithNibName:@"StylistViewController" bundle:nil]autorelease];
         [self.navigationController pushViewController:imgviewCntrllr animated:true];
     }
 }
@@ -402,7 +402,7 @@
     [alert release];
 }
 
--(void)photoGallery:(FGalleryViewController *)gallery commentButtonClicked:(NSString*)imageId:(NSString*)comment{
+-(void)commentButtonClicked:(NSString*)imageId:(NSString*)comment{
     
     
     UIAlertView *alert = [[UIAlertView alloc]

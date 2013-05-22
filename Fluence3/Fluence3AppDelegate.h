@@ -26,6 +26,7 @@
     UIImage *imgOptimized;
     NSMutableArray *selectedPoseList;
     id<FBGraphUser> loggedInUser;
+    NSString *currentImageGallery;
 }
 
 extern NSString *const SessionStateChangedNotification;
@@ -38,6 +39,7 @@ extern NSString *const SessionStateChangedNotification;
 @property (nonatomic, strong) NSString *accessToken;
 @property (nonatomic, strong) NSString *notification;
 @property (nonatomic, strong) NSMutableData *responseData;
+@property (nonatomic, strong) NSString *currentImageGallery;
 @property (strong, nonatomic) FBSession *session;
 @property (strong, nonatomic) UIWindow *window;
 
