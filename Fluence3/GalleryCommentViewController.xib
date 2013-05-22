@@ -284,6 +284,14 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">commentTextField</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="252798572"/>
+					</object>
+					<int key="connectionID">33</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">dataSource</string>
 						<reference key="source" ref="173655112"/>
 						<reference key="destination" ref="372490531"/>
@@ -297,6 +305,24 @@
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">20</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">userDoneEnteringText:</string>
+						<reference key="source" ref="252798572"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">20</int>
+					</object>
+					<int key="connectionID">35</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">commentTextButton:</string>
+						<reference key="source" ref="854153327"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">34</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -432,7 +458,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">32</int>
+			<int key="maxID">35</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -445,12 +471,16 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>clearAllBtnClicked:</string>
+							<string>commentTextButton:</string>
 							<string>hideKeyboard:</string>
 							<string>searchContentChanged:</string>
 							<string>selectionDone:</string>
+							<string>userDoneEnteringText:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -462,14 +492,20 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>clearAllBtnClicked:</string>
+							<string>commentTextButton:</string>
 							<string>hideKeyboard:</string>
 							<string>searchContentChanged:</string>
 							<string>selectionDone:</string>
+							<string>userDoneEnteringText:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBActionInfo">
 								<string key="name">clearAllBtnClicked:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">commentTextButton:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -484,12 +520,17 @@
 								<string key="name">selectionDone:</string>
 								<string key="candidateClassName">id</string>
 							</object>
+							<object class="IBActionInfo">
+								<string key="name">userDoneEnteringText:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>commentTextField</string>
 							<string>countText</string>
 							<string>listTableView</string>
 							<string>searchBar</string>
@@ -498,6 +539,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UITextField</string>
 							<string>UILabel</string>
 							<string>UITableView</string>
 							<string>UITextField</string>
@@ -509,6 +551,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>commentTextField</string>
 							<string>countText</string>
 							<string>listTableView</string>
 							<string>searchBar</string>
@@ -517,6 +560,10 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">commentTextField</string>
+								<string key="candidateClassName">UITextField</string>
+							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">countText</string>
 								<string key="candidateClassName">UILabel</string>

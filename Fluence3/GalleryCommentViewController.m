@@ -11,7 +11,7 @@
 
 @implementation GalleryCommentViewController
 
-@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit;
+@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,commentTextField;
 
 - (void)loadView{
 	[super loadView];
@@ -298,6 +298,9 @@
 	[self.listTableView reloadData];
 }
 
+- (IBAction)commentTextButton:(id)sender {
+}
+
 - (IBAction) selectionDone: (id) sender{
 	[self.filterView setSelectedOption:selectedDataSource delegate:self];
 }
@@ -314,6 +317,8 @@
 }
 
 - (void)viewDidUnload {
+    [commentTextField release];
+    commentTextField = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -337,8 +342,15 @@
 	[searchBar release];
 	[followed_s release];
     
+    [commentTextField release];
     [super dealloc];
 }
 
+
+-(IBAction)userDoneEnteringText:(id)sender
+{
+    commentTextField = (UITextField*)sender;
+    // do whatever you want with this text field
+}
 
 @end

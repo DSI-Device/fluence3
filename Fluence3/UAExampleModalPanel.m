@@ -22,6 +22,7 @@
 		self.headerLabel.text = title;
 		commentTextField.delegate = self;
         
+        
 		
 		////////////////////////////////////
 		// RANDOMLY CUSTOMIZE IT
