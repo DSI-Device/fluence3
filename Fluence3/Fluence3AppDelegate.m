@@ -31,7 +31,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 @synthesize isStylist;
 @synthesize userName;
 @synthesize userProfileImage;
-@synthesize accessToken;
+@synthesize accessToken,responseData;
 @synthesize session = _session;
 @synthesize navigationController = _navigationController;
 @synthesize columnsController = _columnsController;
@@ -43,8 +43,8 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 - (void)dealloc {
     [_navigationController release];
     [_columnsController release];
-//	[_navController release];
-//  [_mainViewController release];
+    //	[_navController release];
+    //  [_mainViewController release];
     [_window release];
     [_session release];
     [userId release];
@@ -60,36 +60,36 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 
 #pragma mark Facebook Login
 
-- (BOOL)application:(UIApplication *)application 
+- (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication 
-         annotation:(id)annotation 
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
 {
-    return [FBSession.activeSession handleOpenURL:url]; 
+    return [FBSession.activeSession handleOpenURL:url];
 }
 
-- (void)showLoginView 
+- (void)showLoginView
 {
     UIViewController *topViewController = [self.navigationController topViewController];
     UIViewController *modalViewController = [topViewController modalViewController];
     
     // If the login screen is not already displayed, display it. If the login screen is   563130931
-    // displayed, then getting back here means the login in progress did not successfully 
-    // complete. In that case, notify the login view so it can update its UI appropriately. 
+    // displayed, then getting back here means the login in progress did not successfully
+    // complete. In that case, notify the login view so it can update its UI appropriately.
     if (![modalViewController isKindOfClass:[LoginViewController class]]) {
         LoginViewController* loginViewController = [[LoginViewController alloc]
-                                                      initWithNibName:@"LoginViewController" 
-                                                      bundle:nil];
+                                                    initWithNibName:@"LoginViewController"
+                                                    bundle:nil];
         [topViewController presentViewController:loginViewController animated:NO completion:nil];
         [loginViewController release];
     } else {
         LoginViewController* loginViewController = (LoginViewController*)modalViewController;
         [loginViewController loginFailed];
     }
-
+    
 }
 
-- (void)sessionStateChanged:(FBSession *)session 
+- (void)sessionStateChanged:(FBSession *)session
                       state:(FBSessionState) state
                       error:(NSError *)error
 {
@@ -106,6 +106,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
                                                id<FBGraphUser> user,
                                                NSError *error) {
                  if(!error) {
+                     responseData = [[NSMutableData data] retain];
                      self.loggedInUser = user;
                      self.userId = user.id;
                      self.userName = user.name;
@@ -117,13 +118,14 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
                      });
                      self.accessToken = FBSession.activeSession.accessToken;
                      NSLog(@"--UserId: %@, Token: %@",url, FBSession.activeSession.accessToken);
+                     //[self getUserId];
                  }
              }];
         }
-        break;
+            break;
         case FBSessionStateClosed:
         case FBSessionStateClosedLoginFailed:
-            // Once the user has logged in, we want them to 
+            // Once the user has logged in, we want them to
             // be looking at the root view.
             [self.navigationController popToRootViewControllerAnimated:NO];
             
@@ -144,7 +146,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
                                   otherButtonTitles:nil];
         [alertView show];
         [alertView release];
-    }    
+    }
 }
 
 /*
@@ -158,29 +160,86 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
                             @"publish_stream",
                             nil];
     [FBSession openActiveSessionWithPermissions:permissions
-               allowLoginUI:YES
-               completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
-                  [self sessionStateChanged:session state:state error:error];
-                  [FBRequestConnection
-                   startForMeWithCompletionHandler:^(FBRequestConnection *connection,
-                                                     id<FBGraphUser> user,
-                                                     NSError *error) {
-                       if(!error) {
-                           self.loggedInUser = user;
-                           self.userId = user.id;
-                           self.userName = user.name;
-                           dispatch_queue_t downloader = dispatch_queue_create("PicDownloader", NULL);
-                           NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=normal", user.id]];
-                           dispatch_async(downloader, ^{
-                               NSData *data = [NSData dataWithContentsOfURL:url];
-                               self.userProfileImage = [UIImage imageWithData:data];
-                           });
-                           self.accessToken = FBSession.activeSession.accessToken;
-                           NSLog(@"--UserId: %@, Token: %@",user.id, FBSession.activeSession.accessToken);
-                       }
-                   }];
-              }];
+                                   allowLoginUI:YES
+                              completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+                                  [self sessionStateChanged:session state:state error:error];
+                                  [FBRequestConnection
+                                   startForMeWithCompletionHandler:^(FBRequestConnection *connection,
+                                                                     id<FBGraphUser> user,
+                                                                     NSError *error) {
+                                       if(!error) {
+                                           self.loggedInUser = user;
+                                           self.userId = user.id;
+                                           self.userName = user.name;
+                                           dispatch_queue_t downloader = dispatch_queue_create("PicDownloader", NULL);
+                                           NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=normal", user.id]];
+                                           dispatch_async(downloader, ^{
+                                               NSData *data = [NSData dataWithContentsOfURL:url];
+                                               self.userProfileImage = [UIImage imageWithData:data];
+                                           });
+                                           self.accessToken = FBSession.activeSession.accessToken;
+                                           NSLog(@"--UserId: %@, Token: %@",user.id, FBSession.activeSession.accessToken);
+                                           [self getUserId];
+                                       }
+                                   }];
+                              }];
     //result = session.isOpen;
+}
+
+- (void)getUserId
+{
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: self.userId , @"Fb", nil];
+    
+    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+    [dictionnary setObject:jsoning forKey:@"postData"];
+    
+    NSString *jsonStr = [dictionnary JSONRepresentation];
+    
+    NSLog(@"jsonRequest is %@", jsonStr);
+    
+    NSURL *nsurl = [ NSURL URLWithString: [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getAppId/" ]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl
+                                    
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                    
+                                                       timeoutInterval:60.0];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+}
+
+// methods for NSURLConnection delegate
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+	[connection release];
+    
+	NSString *responseString = [[NSString alloc]
+                                initWithData:responseData encoding:NSUTF8StringEncoding];
+    
+	NSDictionary *dict = [responseString JSONValue];
+    NSDictionary *dict2 = [dict objectAtIndex:0];
+    self.userGalleryId = [NSString stringWithFormat:@"%d", [[dict2 objectForKey:@"AppID"] intValue]];
+    NSLog(@"Got json: %d",
+          [[dict2 objectForKey:@"AppID"] intValue]
+          );
+    
+	[responseData release];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+	[responseData setLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+	[responseData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {;
+	NSLog([NSString stringWithFormat:@"Connection failed: %@", [error description]]);
 }
 
 #pragma mark Default Delegate Functions
@@ -188,22 +247,22 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     /*self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]autorelease];
-    // Override point for customization after application launch.
-    self.mainViewController = [[[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil]autorelease];
-    self.navController = [[[UINavigationController alloc] initWithRootViewController:self.mainViewController]autorelease];
-    self.window.rootViewController = self.navController;
-    [self.window makeKeyAndVisible];
-    
-    // See if we have a valid token for the current state.
-    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
-        // To-do, show logged in view
-        [self openSession];
-    } else {
-        // No, display the login page.
-        [self showLoginView];
-    }
-    
-    return YES;*/
+     // Override point for customization after application launch.
+     self.mainViewController = [[[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil]autorelease];
+     self.navController = [[[UINavigationController alloc] initWithRootViewController:self.mainViewController]autorelease];
+     self.window.rootViewController = self.navController;
+     [self.window makeKeyAndVisible];
+     
+     // See if we have a valid token for the current state.
+     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+     // To-do, show logged in view
+     [self openSession];
+     } else {
+     // No, display the login page.
+     [self showLoginView];
+     }
+     
+     return YES;*/
     self.columnsController = [[[ISColumnsController alloc] init] autorelease];
     self.columnsController.navigationItem.rightBarButtonItem =
     [[[UIBarButtonItem alloc] initWithTitle:@"Logout"
@@ -267,7 +326,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     /*
-     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
 }
@@ -281,7 +340,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-
+    
     if (FBSession.activeSession.state == FBSessionStateCreatedOpening) {
         // BUG: for the iOS 6 preview we comment this line out to compensate for a race-condition in our
         // state transition handling for integrated Facebook Login; production code should close a

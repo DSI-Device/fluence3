@@ -49,14 +49,14 @@
 	self.spinnerBg.hidden = NO;
 	
 	url = [url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-	    
+    
     
     
     NSLog(@"appdt.selectedPoseList Count = %i", [appdt.selectedPoseList count]);
     [self.listTableView setHidden:YES];
     NSString *jsonRequest = [appdt.selectedPoseList JSONRepresentation];
     
-    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userId , @"Fb",appdt.selectedPoseList , @"styleList", nil];
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"AppID",appdt.selectedPoseList , @"styleList", nil];
     
     NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
     [dictionnary setObject:jsoning forKey:@"postData"];
@@ -70,19 +70,19 @@
     
     NSURL *nsurl = [NSURL URLWithString:url ];
     /*
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl];
-    
-    
-
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:[NSString stringWithFormat:@"%d", [jsonData length]] forHTTPHeaderField:@"Content-Length"];
-    [request setHTTPBody: jsonData];
-    
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-    [request release];//shuvo */
+     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl];
+     
+     
+     
+     [request setHTTPMethod:@"POST"];
+     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+     [request setValue:[NSString stringWithFormat:@"%d", [jsonData length]] forHTTPHeaderField:@"Content-Length"];
+     [request setHTTPBody: jsonData];
+     
+     [[NSURLConnection alloc] initWithRequest:request delegate:self];
+     
+     [request release];//shuvo */
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl
                                     
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -96,10 +96,10 @@
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
     /*if (theConnection) {
-        
-        receiveData = [NSMutableData data];   
-        
-    }}*/
+     
+     receiveData = [NSMutableData data];
+     
+     }}*/
 }
 
 - (IBAction) searchContentChanged: (id) sender{
@@ -252,7 +252,7 @@
         cell.followed.tag=[indexPath row];
         followed_s = [rowData objectForKey:@"followed"];
         [cell.followed addTarget:self action:@selector(tappedFollowBtn2:)  forControlEvents:UIControlEventTouchUpInside];
-       
+        
 		NSString *serverUrl = [@"http://graph.facebook.com/" stringByAppendingFormat:@"%@/picture?type=small",[rowData objectForKey:@"Fb"]];
         
         //[[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"images/%@",[rowData objectForKey:@"userImage"]];
@@ -312,22 +312,22 @@
 	
     
 	
-//   	NSLog(@"Follower ID : %@ ",cell.userID);
-//	NSString *myRequestString = [[NSString alloc] initWithFormat:@"FollowerUserId=%@&FollowUserId=%@&action=%@",appdt.userId,cell.userFb,followed_s];
-//	NSLog(@"%@ ",myRequestString);
-//	NSData *myRequestData = [ NSData dataWithBytes: [ myRequestString UTF8String ] length: [ myRequestString length ] ];
-//	NSMutableURLRequest *request = [ [ NSMutableURLRequest alloc ] initWithURL: [ NSURL URLWithString: [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/follow/" ]]];
-//   	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
-//    [request setHTTPMethod: @"POST"];
-//	[request setHTTPBody: myRequestData];
-//	NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-//	
-//    if (conn) NSLog(@"Connection Successful");
-//	[request release];//shuvo
+    //   	NSLog(@"Follower ID : %@ ",cell.userID);
+    //	NSString *myRequestString = [[NSString alloc] initWithFormat:@"FollowerUserId=%@&FollowUserId=%@&action=%@",appdt.userId,cell.userFb,followed_s];
+    //	NSLog(@"%@ ",myRequestString);
+    //	NSData *myRequestData = [ NSData dataWithBytes: [ myRequestString UTF8String ] length: [ myRequestString length ] ];
+    //	NSMutableURLRequest *request = [ [ NSMutableURLRequest alloc ] initWithURL: [ NSURL URLWithString: [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/follow/" ]]];
+    //   	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
+    //    [request setHTTPMethod: @"POST"];
+    //	[request setHTTPBody: myRequestData];
+    //	NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    //
+    //    if (conn) NSLog(@"Connection Successful");
+    //	[request release];//shuvo
     
     
     
-    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userId , @"FollowerUserId",cell.userFb , @"FollowUserId", followed_s , @"action", nil];
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"FollowerUserId",cell.userID , @"FollowUserId", followed_s , @"action", nil];
     
     NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
     [dictionnary setObject:jsoning forKey:@"postData"];
