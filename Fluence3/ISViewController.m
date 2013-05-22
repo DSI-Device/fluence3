@@ -143,21 +143,21 @@
     [self.navigationController pushViewController:nCameraImage animated:true];
 }
 - (IBAction)findPeopleClicked{
-    
+    /*
     selectPoseListView = [[[SelectPoseListViewController alloc] initWithNibName:@"SelectPoseListViewController" bundle:nil]autorelease];
     selectPoseListView.title = @"Find People";
     [self.navigationController pushViewController:selectPoseListView animated:true];
-    
+    */
     /*
     selectListView = [[[SelectListViewController alloc] initWithNibName:@"SelectListViewController" bundle:nil]autorelease];
     selectListView.title = @"Find People";
     [self.navigationController pushViewController:selectListView animated:true];
     */
-    /*
+    
     selectTasteListView = [[[SelectTasteListViewController alloc] initWithNibName:@"SelectTasteListViewController" bundle:nil]autorelease];
     selectTasteListView.title = @"Find Event";
     [self.navigationController pushViewController:selectTasteListView animated:true];
-    */ 
+     
 }
 - (IBAction)mapViewClicked{
     mapViewController = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil]autorelease];
