@@ -40,7 +40,9 @@
 	[super loadView];
     appdt = [[UIApplication sharedApplication] delegate];
     
-   	NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId", nil];
+    
+    
+   	NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId", @"1" , @"gallertType", nil];
     
     NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
     [dictionnary setObject:jsoning forKey:@"postData"];
