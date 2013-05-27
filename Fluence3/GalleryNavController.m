@@ -40,14 +40,33 @@
 	[super loadView];
     appdt = [[UIApplication sharedApplication] delegate];
     
+    
+    
+   	NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId", nil];
+    
+    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+    [dictionnary setObject:jsoning forKey:@"postData"];
+    
+    NSString *jsonStr = [dictionnary JSONRepresentation];
+
+    
     NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getGallery/" ];
     //[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverUrl]];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
     NSError *theError = nil;
     NSURLResponse *theResponse =[[NSURLResponse alloc]init];
     NSData *data = [[NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&theError] autorelease];
     NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"Json back %@", string);
+    
     NSMutableArray *imageArray2  = [string JSONValue];
 	
     //localCaptions = [[NSArray alloc] initWithObjects:@"Lava", @"Hawaii", @"Audi", @"Happy New Year!",@"Frosty Web",nil];
