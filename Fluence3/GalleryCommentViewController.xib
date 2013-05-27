@@ -131,7 +131,6 @@
 							<reference key="NSCustomColorSpace" ref="579093638"/>
 						</object>
 						<bool key="IBUIOpaque">NO</bool>
-						<float key="IBUIAlpha">0.40140846371650696</float>
 						<int key="IBUIContentMode">4</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>

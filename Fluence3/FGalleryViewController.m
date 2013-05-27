@@ -1967,7 +1967,7 @@
     
     
     
-    UAExampleModalPanel *modalPanel = [[[UAExampleModalPanel alloc] initWithFrame:self.view.bounds title:@"Comment"] autorelease];
+    commentPanel *modalPanel = [[[commentPanel alloc] initWithFrame:self.view.bounds title:@"Comment"] autorelease];
     
     /////////////////////////////////
     // Randomly use the blocks method, delgate methods, or neither of them

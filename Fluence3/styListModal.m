@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Urban Apps. All rights reserved.
 //
 
-#import "commentPanel.h"
-#import "GalleryCommentViewController.h"
+#import "stylistModal.h"
+#import "stylistImageViewController.h"
 #define BLACK_BAR_COMPONENTS				{ 0.22, 0.22, 0.22, 1.0, 0.07, 0.07, 0.07, 1.0 }
 
-@implementation commentPanel
+@implementation stylistModal
 
 @synthesize viewLoadedFromXib,commentTextField,fg;
 
@@ -28,22 +28,22 @@
 		// RANDOMLY CUSTOMIZE IT
 		////////////////////////////////////
 		// Show the defaults mostly, but once in awhile show a completely random funky one
-		        
+        
         
 		//////////////////////////////////////
 		// SETUP RANDOM CONTENT
 		//////////////////////////////////////
-//		UIWebView *wv = [[[UIWebView alloc] initWithFrame:CGRectZero] autorelease];
-//		[wv loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://urbanapps.com/product_list"]]];
-//		
-//		UITableView *tv = [[[UITableView alloc] initWithFrame:CGRectZero] autorelease];
-//		[tv setDataSource:self];
-//		
-//		UIImageView *iv = [[[UIImageView alloc] initWithFrame:CGRectZero] autorelease];
-//		[iv setImage:[UIImage imageNamed:@"UrbanApps.png"]];
-//		[iv setContentMode:UIViewContentModeScaleAspectFit];
+        //		UIWebView *wv = [[[UIWebView alloc] initWithFrame:CGRectZero] autorelease];
+        //		[wv loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://urbanapps.com/product_list"]]];
+        //		
+        //		UITableView *tv = [[[UITableView alloc] initWithFrame:CGRectZero] autorelease];
+        //		[tv setDataSource:self];
+        //		
+        //		UIImageView *iv = [[[UIImageView alloc] initWithFrame:CGRectZero] autorelease];
+        //		[iv setImage:[UIImage imageNamed:@"UrbanApps.png"]];
+        //		[iv setContentMode:UIViewContentModeScaleAspectFit];
         
-        GalleryCommentViewController *my = [[GalleryCommentViewController alloc] initWithNibName:@"GalleryCommentViewController" bundle:nil] ;
+        stylistImageViewController *my = [[stylistImageViewController alloc] initWithNibName:@"stylistImageViewController" bundle:nil] ;
         //SelectListViewController *my = [[UIApplication sharedApplication] delegate];
         //UITableViewController *tableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
         my.view.frame = CGRectMake(0, 0, 0, 0);

@@ -10,7 +10,6 @@
 #import "FGalleryViewController.h"
 #import "Fluence3AppDelegate.h"
 #import "StylistViewController.h"
-#import "ImageViewController.h"
 
 @class Fluence3AppDelegate;
 

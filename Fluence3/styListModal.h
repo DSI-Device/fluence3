@@ -8,7 +8,7 @@
 #import "FGalleryViewController.h"
 #import "UATitledModalPanel.h"
 
-@interface commentPanel : UATitledModalPanel <UITableViewDataSource> {
+@interface stylistModal : UATitledModalPanel <UITableViewDataSource> {
 	UIView			*v;
 	IBOutlet UIView	*viewLoadedFromXib;
     IBOutlet UITextField *commentTextField;

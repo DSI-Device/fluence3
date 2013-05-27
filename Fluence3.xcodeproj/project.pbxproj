@@ -20,8 +20,6 @@
 		2B53EDEB170F039200C8C184 /* heart-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE8170F039200C8C184 /* heart-icon.png */; };
 		2B5D0CA517427A5C003521A2 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B5D0CA317427A5C003521A2 /* background.png */; };
 		2B5D0CA617427A5C003521A2 /* comment_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B5D0CA417427A5C003521A2 /* comment_bubble.png */; };
-		2B5D0CAA17427AAC003521A2 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5D0CA817427AAC003521A2 /* ImageViewController.m */; };
-		2B5D0CAD17427AC5003521A2 /* MDCParallaxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5D0CAB17427AC5003521A2 /* MDCParallaxView.m */; };
 		2B7F19BD173AA77F0049084C /* YHCPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7F19BC173AA77F0049084C /* YHCPickerView.m */; };
 		2B7F19C2173AC4410049084C /* FGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E7F616F88FC900C92E99 /* FGalleryViewController.m */; };
 		2B98853A1727DD10000386E5 /* TSPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9885351727DD10000386E5 /* TSPopoverController.m */; };
@@ -146,6 +144,11 @@
 		C8A4176C17411B3000439DBA /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A4176B17411B3000439DBA /* CoreMedia.framework */; };
 		C8A4176F17411BBD00439DBA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A4176E17411BBD00439DBA /* AVFoundation.framework */; };
 		C8A4177117411BED00439DBA /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A4177017411BED00439DBA /* ImageIO.framework */; };
+		C8A6C1A6175349BA007B0092 /* styListModal.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A6C1A5175349B9007B0092 /* styListModal.m */; };
+		C8A6C1B317536477007B0092 /* stylistImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A6C1AD17536476007B0092 /* stylistImageViewController.m */; };
+		C8A6C1B517536477007B0092 /* stylistGalleryCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A6C1B017536477007B0092 /* stylistGalleryCommentCell.xib */; };
+		C8A6C1B617536477007B0092 /* stylistGalleryCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A6C1B117536477007B0092 /* stylistGalleryCommentCell.m */; };
+		C8A6C1BD17536989007B0092 /* stylistImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A6C1BC17536989007B0092 /* stylistImageViewController.xib */; };
 		C8AAC0831748C1BD0020632D /* galleryDateSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AAC0821748C1BD0020632D /* galleryDateSelect.m */; };
 		C8AB1684174CE567004E2463 /* StylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AB167E174CE567004E2463 /* StylistViewController.m */; };
 		C8AB1685174CE567004E2463 /* StylistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8AB1680174CE567004E2463 /* StylistViewController.xib */; };
@@ -211,10 +214,6 @@
 		2B53EDE8170F039200C8C184 /* heart-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-icon.png"; sourceTree = "<group>"; };
 		2B5D0CA317427A5C003521A2 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		2B5D0CA417427A5C003521A2 /* comment_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment_bubble.png; sourceTree = "<group>"; };
-		2B5D0CA817427AAC003521A2 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
-		2B5D0CA917427AAC003521A2 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
-		2B5D0CAB17427AC5003521A2 /* MDCParallaxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCParallaxView.m; sourceTree = "<group>"; };
-		2B5D0CAC17427AC5003521A2 /* MDCParallaxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCParallaxView.h; sourceTree = "<group>"; };
 		2B7F19BB173AA77F0049084C /* YHCPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHCPickerView.h; sourceTree = "<group>"; };
 		2B7F19BC173AA77F0049084C /* YHCPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHCPickerView.m; sourceTree = "<group>"; };
 		2B9885341727DD10000386E5 /* TSPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverController.h; sourceTree = "<group>"; };
@@ -408,6 +407,14 @@
 		C8A4176B17411B3000439DBA /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		C8A4176E17411BBD00439DBA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C8A4177017411BED00439DBA /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		C8A6C1A4175349B9007B0092 /* styListModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = styListModal.h; sourceTree = "<group>"; };
+		C8A6C1A5175349B9007B0092 /* styListModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = styListModal.m; sourceTree = "<group>"; };
+		C8A6C1AD17536476007B0092 /* stylistImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stylistImageViewController.m; sourceTree = "<group>"; };
+		C8A6C1AE17536476007B0092 /* stylistImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stylistImageViewController.h; sourceTree = "<group>"; };
+		C8A6C1B017536477007B0092 /* stylistGalleryCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = stylistGalleryCommentCell.xib; sourceTree = "<group>"; };
+		C8A6C1B117536477007B0092 /* stylistGalleryCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stylistGalleryCommentCell.m; sourceTree = "<group>"; };
+		C8A6C1B217536477007B0092 /* stylistGalleryCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stylistGalleryCommentCell.h; sourceTree = "<group>"; };
+		C8A6C1BC17536989007B0092 /* stylistImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = stylistImageViewController.xib; sourceTree = "<group>"; };
 		C8AAC0811748C1BD0020632D /* galleryDateSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = galleryDateSelect.h; sourceTree = "<group>"; };
 		C8AAC0821748C1BD0020632D /* galleryDateSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = galleryDateSelect.m; sourceTree = "<group>"; };
 		C8AB167E174CE567004E2463 /* StylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StylistViewController.m; sourceTree = "<group>"; };
@@ -583,16 +590,18 @@
 		2BD59775174248A000E426B5 /* stylistGroup */ = {
 			isa = PBXGroup;
 			children = (
+				C8A6C1BC17536989007B0092 /* stylistImageViewController.xib */,
+				C8A6C1AD17536476007B0092 /* stylistImageViewController.m */,
+				C8A6C1AE17536476007B0092 /* stylistImageViewController.h */,
+				C8A6C1B017536477007B0092 /* stylistGalleryCommentCell.xib */,
+				C8A6C1B117536477007B0092 /* stylistGalleryCommentCell.m */,
+				C8A6C1B217536477007B0092 /* stylistGalleryCommentCell.h */,
 				C8AB167E174CE567004E2463 /* StylistViewController.m */,
 				C8AB167F174CE567004E2463 /* StylistViewController.h */,
 				C8AB1680174CE567004E2463 /* StylistViewController.xib */,
 				C8AB1681174CE567004E2463 /* CustomStylistCell.xib */,
 				C8AB1682174CE567004E2463 /* CustomStylistCell.m */,
 				C8AB1683174CE567004E2463 /* CustomStylistCell.h */,
-				2B5D0CAB17427AC5003521A2 /* MDCParallaxView.m */,
-				2B5D0CAC17427AC5003521A2 /* MDCParallaxView.h */,
-				2B5D0CA817427AAC003521A2 /* ImageViewController.m */,
-				2B5D0CA917427AAC003521A2 /* ImageViewController.h */,
 			);
 			name = stylistGroup;
 			sourceTree = "<group>";
@@ -789,6 +798,8 @@
 				C8B5A4A7174B61C5001C1574 /* Categories */,
 				C8B5A48F174B5D68001C1574 /* commentPanel.m */,
 				C8B5A490174B5D68001C1574 /* commentPanel.h */,
+				C8A6C1A4175349B9007B0092 /* styListModal.h */,
+				C8A6C1A5175349B9007B0092 /* styListModal.m */,
 			);
 			name = PopOverPanel;
 			sourceTree = "<group>";
@@ -1209,6 +1220,8 @@
 				C8B5A4B7174B6251001C1574 /* UAExampleView.xib in Resources */,
 				C8AB1685174CE567004E2463 /* StylistViewController.xib in Resources */,
 				C8AB1686174CE567004E2463 /* CustomStylistCell.xib in Resources */,
+				C8A6C1B517536477007B0092 /* stylistGalleryCommentCell.xib in Resources */,
+				C8A6C1BD17536989007B0092 /* stylistImageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1291,8 +1304,6 @@
 				C89AA27D17427263000E7D6B /* ASIDataDecompressor.m in Sources */,
 				C89AA27E17427263000E7D6B /* ASIDataCompressor.m in Sources */,
 				C89AA27F17427263000E7D6B /* ASIAuthenticationDialog.m in Sources */,
-				2B5D0CAA17427AAC003521A2 /* ImageViewController.m in Sources */,
-				2B5D0CAD17427AC5003521A2 /* MDCParallaxView.m in Sources */,
 				C8AAC0831748C1BD0020632D /* galleryDateSelect.m in Sources */,
 				C8B5A491174B5D68001C1574 /* commentPanel.m in Sources */,
 				C8B5A4AA174B61C5001C1574 /* UAGradientBackground.m in Sources */,
@@ -1303,6 +1314,9 @@
 				C8B5A4B5174B61C5001C1574 /* UIView+JMNoise.m in Sources */,
 				C8AB1684174CE567004E2463 /* StylistViewController.m in Sources */,
 				C8AB1687174CE567004E2463 /* CustomStylistCell.m in Sources */,
+				C8A6C1A6175349BA007B0092 /* styListModal.m in Sources */,
+				C8A6C1B317536477007B0092 /* stylistImageViewController.m in Sources */,
+				C8A6C1B617536477007B0092 /* stylistGalleryCommentCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

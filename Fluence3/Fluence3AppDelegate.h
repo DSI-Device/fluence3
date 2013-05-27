@@ -27,6 +27,7 @@
     NSMutableArray *selectedPoseList;
     id<FBGraphUser> loggedInUser;
     NSString *currentImageGallery;
+    NSString *currentStylistImage;
 }
 
 extern NSString *const SessionStateChangedNotification;
@@ -35,6 +36,7 @@ extern NSString *const SessionStateChangedNotification;
 @property (nonatomic, strong) NSString *userId;
 @property (nonatomic, strong) NSString *userGalleryId;
 @property (nonatomic, strong) NSString *userName;
+@property (nonatomic, strong) NSString *currentStylistImage;
 @property (nonatomic, strong) UIImage *userProfileImage;
 @property (nonatomic, strong) NSString *accessToken;
 @property (nonatomic, strong) NSString *notification;
