@@ -44,13 +44,6 @@
     //localImages = [[NSArray alloc] initWithObjects: @"lava.jpeg", @"hawaii.jpeg", @"audi.jpg",nil];
     //localTags = [[NSArray alloc] initWithObjects:@"TestTag1", @"TestTag2", @"TestTag3", @"Happy New Year!",@"Frosty Web",nil];
     
-    adapter = [MYSBJsonStreamParserAdapter new];
-	adapter.delegate = self;
-	parser = [MYSBJsonStreamParser new];
-	parser.delegate = adapter;
-	parser.multi = YES;
-
-    
     networkCaptions = [[NSArray alloc] initWithObjects:@"Happy New Year!",@"Frosty Web",nil];
     networkImages = [[NSArray alloc] initWithObjects:@"http://farm9.staticflickr.com/8111/8660669674_490f367358.jpg", 
                      @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg",nil];

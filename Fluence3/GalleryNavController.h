@@ -13,11 +13,7 @@
 
 @class Fluence3AppDelegate;
 
-@interface GalleryNavController : UITableViewController<FGalleryViewControllerDelegate,MYSBJsonStreamParserAdapterDelegate>{
-    MYSBJsonStreamParser *parser;
-	MYSBJsonStreamParserAdapter *adapter;
-	NSMutableArray *dataSource;
-	NSMutableArray *selectedDataSource;
+@interface GalleryNavController : UITableViewController<FGalleryViewControllerDelegate>{
     Fluence3AppDelegate *appdt;
     NSArray *localCaptions;
     NSArray *localImages;
