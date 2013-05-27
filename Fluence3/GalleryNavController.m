@@ -39,6 +39,16 @@
 - (void)loadView {
 	[super loadView];
     appdt = [[UIApplication sharedApplication] delegate];
+    
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getGallery/" ];
+    //[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverUrl]];
+    NSError *theError = nil;
+    NSURLResponse *theResponse =[[NSURLResponse alloc]init];
+    NSData *data = [[NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&theError] autorelease];
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSMutableArray *imageArray2  = [string JSONValue];
 	
     //localCaptions = [[NSArray alloc] initWithObjects:@"Lava", @"Hawaii", @"Audi", @"Happy New Year!",@"Frosty Web",nil];
     //localImages = [[NSArray alloc] initWithObjects: @"lava.jpeg", @"hawaii.jpeg", @"audi.jpg",nil];
@@ -49,21 +59,7 @@
                      @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg",nil];
     networkTags = [[NSArray alloc] initWithObjects:@"Lava", @"Hawaii", @"Audi", @"NetTestTag1",@"NetTestTag2",nil];    
     
-    NSDictionary *tagCollection = [[NSDictionary alloc] initWithObjectsAndKeys: @"1", @"tagId", @"1", @"imageId", @"Test Tag 1", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"100", @"tagX", @"150", @"tagY", nil];
-    NSDictionary *tagCollection1 = [[NSDictionary alloc] initWithObjectsAndKeys: @"2", @"tagId", @"1", @"imageId", @"Test Tag 2", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"100", @"tagX", @"200", @"tagY", nil];
     
-    tagArray = [[NSMutableArray alloc] initWithObjects:tagCollection,tagCollection1,nil];    
-
-    
-    //tagCollection
-    NSDictionary *tagCollection2 = [[NSDictionary alloc] initWithObjectsAndKeys: @"3", @"tagId", @"2", @"imageId", @"LLLLLLLTest Tag 1", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"157", @"tagX", @"267", @"tagY", nil];
-    NSDictionary *tagCollection3 = [[NSDictionary alloc] initWithObjectsAndKeys: @"4", @"tagId", @"2", @"imageId", @"KKKKKTest Tag 2", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"115", @"tagX", @"188", @"tagY", nil];
-    NSDictionary *tagCollection4 = [[NSDictionary alloc] initWithObjectsAndKeys: @"24", @"tagId", @"22", @"imageId", @"rE Tag 3", @"tagCaption", @"http://www.google.com", @"tagShopLink", @"191", @"tagX", @"191", @"tagY", nil];
-    NSMutableDictionary *localCollection = [[NSMutableDictionary  alloc] initWithObjectsAndKeys: @"1", @"imageId", @"Lava", @"imageCaption", @"http://farm9.staticflickr.com/8111/8660669674_490f367358.jpg", @"imageUrl", tagArray, @"tags",@"12", @"imageLike", @"1", @"userId", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", @"Nazmul", @"userName", @"0", @"imageLiked",nil];
-    NSMutableDictionary *localCollection1 = [[NSMutableDictionary  alloc] initWithObjectsAndKeys: @"2", @"imageId", @"Hawaii", @"imageCaption", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"imageUrl", tagArray, @"tags",@"11", @"imageLike", @"2", @"userId", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"userPic", @"Nahid", @"userName", @"0", @"imageLiked", nil];
-    tagArray1 = [[NSMutableArray alloc] initWithObjects:tagCollection2,tagCollection3,tagCollection4,nil];
-    
-     NSMutableDictionary *localCollection2 = [[NSMutableDictionary  alloc] initWithObjectsAndKeys: @"3", @"imageId", @"Test", @"imageCaption", @"http://103.4.147.139/fluence3/uploads/ipodfile.jpg?121212", @"imageUrl", tagArray1, @"tags",@"11", @"imageLike", @"3", @"userId", @"http://farm6.static.flickr.com/5007/5311573633_3cae940638.jpg", @"userPic", @"Nahid", @"userName", @"0", @"imageLiked", nil];
     
     NSDictionary *stylist1 = [[NSDictionary alloc] initWithObjectsAndKeys: @"0", @"stylistId", @"Nahid", @"stylistName", nil];
     NSDictionary *stylist2 = [[NSDictionary alloc] initWithObjectsAndKeys: @"1", @"stylistId", @"Naim", @"stylistName", nil];
@@ -75,15 +71,13 @@
     stylistArray = [[NSMutableArray alloc] initWithObjects:stylist1,stylist2,stylist3,stylist4,stylist5,stylist6,stylist7,nil];
     NSMutableDictionary *stdic = [[NSMutableDictionary  alloc] initWithObjectsAndKeys: stylistArray, @"stylists", nil];
     stylists = [[NSMutableArray alloc] initWithObjects:stdic,nil];
-    imageArray = [[NSMutableArray alloc] initWithObjects:localCollection,localCollection1,localCollection2,nil];
-    
-    [tagCollection release];
-    [tagCollection1 release];
-    [tagCollection2 release];
-    [tagCollection3 release];
-    [localCollection release];
-    [localCollection1 release];
-    [localCollection2 release];
+    //imageArray = [[NSMutableArray alloc] initWithObjects:localCollection,localCollection1,localCollection2,nil];
+    imageArray = [[NSMutableArray alloc] initWithObjects:nil];
+    for (NSDictionary *dict in imageArray2) {
+        [imageArray addObject:dict];
+    }
+
+
     [stylist1 release];
     [stylist2 release];
     [stylist3 release];
