@@ -1967,7 +1967,7 @@
     
     
     
-    UAExampleModalPanel *modalPanel = [[[UAExampleModalPanel alloc] initWithFrame:self.view.bounds title:[(UIButton *)sender titleForState:UIControlStateNormal]] autorelease];
+    UAExampleModalPanel *modalPanel = [[[UAExampleModalPanel alloc] initWithFrame:self.view.bounds title:@"Comment"] autorelease];
     
     /////////////////////////////////
     // Randomly use the blocks method, delgate methods, or neither of them
@@ -2023,7 +2023,7 @@
     
     ///////////////////////////////////
     // Show the panel from the center of the button that was pressed
-    [modalPanel showFromPoint:[sender center]];
+    [modalPanel showFromPoint:CGPointMake(150.0, 150.0)];
 }
 
 -(void)showTablePopover:(id)sender forEvent:(UIEvent*)event
