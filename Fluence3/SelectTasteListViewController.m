@@ -194,8 +194,9 @@
 			[cell.selectedBackgroundView setBackgroundColor:[UIColor orangeColor]];
 		}
 
-        cell.tasteID = [rowData objectForKey:@"tasteID"];
-		cell.tasteName.text = [rowData objectForKey:@"tasteName"];
+        cell.tasteID = [rowData objectForKey:@"ID"];
+		cell.tasteName.text = [rowData objectForKey:@"Name"];
+        cell.description = [rowData objectForKey:@"Description"];
 		cell.checked.hidden = NO;
         cell.isSelected = NO;
         [cell.checked setImage:[UIImage imageNamed:@"checkbox_not_ticked.png"]];
@@ -240,7 +241,7 @@
 	 
 	 
 	 
-	 }else if ([rowData objectForKey:@"tasteName"] != NULL && ![[rowData objectForKey:@"tasteName"] isEqual:@""] ) {
+	 }else if ([rowData objectForKey:@"Name"] != NULL && ![[rowData objectForKey:@"Name"] isEqual:@""] ) {
 	 
          NSLog(@"option selected on select list");
 	 

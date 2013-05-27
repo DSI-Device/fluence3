@@ -243,14 +243,14 @@
 			cell.selectedBackgroundView = [[[UIView alloc] init] autorelease];
 			[cell.selectedBackgroundView setBackgroundColor:[UIColor orangeColor]];
 		}
-		cell.eventName.text = [rowData objectForKey:@"eventName"];
-        cell.eventID = [rowData objectForKey:@"eventID"];
+		cell.eventName.text = [rowData objectForKey:@"Name"];
+        cell.eventID = [rowData objectForKey:@"ID"];
 		cell.joined.hidden = NO;
         cell.joined.tag=[indexPath row];
         followed_s = [rowData objectForKey:@"joined"];
         [cell.joined addTarget:self action:@selector(tappedFollowBtn2:)  forControlEvents:UIControlEventTouchUpInside];
         
-		NSString *serverUrl = [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"images/%@",[rowData objectForKey:@"eventImage"]];
+		NSString *serverUrl = [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"images/%@",[rowData objectForKey:@"Photo"]];
 		
 		NSURL *url = [NSURL URLWithString:serverUrl];
 		
@@ -307,18 +307,34 @@
 	
     
 	
-   	NSLog(@"Follower ID : %@ ",cell.eventID);
-	NSString *myRequestString = [[NSString alloc] initWithFormat:@"EventID=%@&joined=%@",cell.eventID,followed_s];
-	NSLog(@"%@ ",myRequestString);
-	NSData *myRequestData = [ NSData dataWithBytes: [ myRequestString UTF8String ] length: [ myRequestString length ] ];
-	NSMutableURLRequest *request = [ [ NSMutableURLRequest alloc ] initWithURL: [ NSURL URLWithString: [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/eventJoin/" ]]];
-   	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
-    [request setHTTPMethod: @"POST"];
-	[request setHTTPBody: myRequestData];
+   	NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId",cell.eventID , @"EventId", followed_s , @"action", nil];
+    
+    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+    [dictionnary setObject:jsoning forKey:@"postData"];
+    
+    NSString *jsonStr = [dictionnary JSONRepresentation];
+    
+    //NSError *error = nil;
+    //NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionnary                                                       options:kNilOptions                                                         error:&error];
+    
+    NSLog(@"Join/Cancel jsonRequest is %@", jsonStr);
+    
+    NSURL *nsurl = [ NSURL URLWithString: [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/follow/" ]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl
+                                    
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                    
+                                                       timeoutInterval:60.0];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
 	//NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 	
     //if (conn) NSLog(@"Connection Successful");
-	[request release];//shuvo
+	//[request release];//shuvo
     
 }
 
