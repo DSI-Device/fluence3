@@ -405,7 +405,7 @@
 		C8A13E6F170C12E90027C655 /* RemoveEventView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveEventView.m; sourceTree = "<group>"; };
 		C8A2E0361755E44C004E2E51 /* JSNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSNotifier.m; sourceTree = "<group>"; };
 		C8A2E0371755E44C004E2E51 /* JSNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSNotifier.h; sourceTree = "<group>"; };
-		C8A2E0391755F31E004E2E51 /* NotifyCheck1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NotifyCheck1.png; path = Fluence3/NotifyCheck1.png; sourceTree = "<group>"; };
+		C8A2E0391755F31E004E2E51 /* NotifyCheck1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NotifyCheck1.png; sourceTree = "<group>"; };
 		C8A39B5E171D926D00F7F44D /* TagCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagCategoryController.h; sourceTree = "<group>"; };
 		C8A39B5F171D926D00F7F44D /* TagCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagCategoryController.m; sourceTree = "<group>"; };
 		C8A39B60171D926D00F7F44D /* TagCategoryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagCategoryController.xib; sourceTree = "<group>"; };
@@ -582,7 +582,6 @@
 		2BCF8CC8171FF01100B31E12 /* Photos */ = {
 			isa = PBXGroup;
 			children = (
-				C8A2E0391755F31E004E2E51 /* NotifyCheck1.png */,
 				C8C0E7FF16F8901100C92E99 /* gallery */,
 				C8C0E7EF16F87ECF00C92E99 /* images */,
 				C8CE00DE17042C2200558361 /* Menu */,
@@ -877,6 +876,7 @@
 		C8C0E7EF16F87ECF00C92E99 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C8A2E0391755F31E004E2E51 /* NotifyCheck1.png */,
 				2BD1837F174B08A400B198A1 /* tactile_noise.png */,
 				2B5D0CA317427A5C003521A2 /* background.png */,
 				2B5D0CA417427A5C003521A2 /* comment_bubble.png */,
