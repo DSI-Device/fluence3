@@ -47,6 +47,7 @@
     
     NSString *jsonStr = [dictionnary JSONRepresentation];
 
+    NSLog(@"Json send %@", jsonStr);
     
     NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getGallery/" ];
     //[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
