@@ -148,6 +148,6 @@ typedef enum
 //Date Related Datasource Change
 - (int)photoGallery:(FGalleryViewController*)gallery likeButtonClicked:(NSString*)imageId:(NSInteger)imgIndex;
 - (void)commentButtonClicked:(NSString*)imageId:(NSString*)comment;
-- (void)photoGallery:(FGalleryViewController*)gallery stylistButtonClicked:(NSInteger*)stylistId:(NSString*)userId:(NSString*)imageId;
+- (void)photoGallery:(FGalleryViewController*)gallery stylistButtonClicked:(NSInteger)stylistId:(NSString*)userId:(NSString*)imageId:(NSString*)query;
 
 @end

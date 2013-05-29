@@ -139,6 +139,8 @@
 		C89AEB181725634100AD2EF0 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C89AEB161725634100AD2EF0 /* MapViewController.xib */; };
 		C89AEB1B1725637100AD2EF0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89AEB1A1725637100AD2EF0 /* MapKit.framework */; };
 		C8A13E70170C12E90027C655 /* RemoveEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A13E6F170C12E90027C655 /* RemoveEventView.m */; };
+		C8A2E0381755E44C004E2E51 /* JSNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A2E0361755E44C004E2E51 /* JSNotifier.m */; };
+		C8A2E03A1755F31E004E2E51 /* NotifyCheck1.png in Resources */ = {isa = PBXBuildFile; fileRef = C8A2E0391755F31E004E2E51 /* NotifyCheck1.png */; };
 		C8A39B61171D926D00F7F44D /* TagCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A39B5F171D926D00F7F44D /* TagCategoryController.m */; };
 		C8A39B62171D926D00F7F44D /* TagCategoryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A39B60171D926D00F7F44D /* TagCategoryController.xib */; };
 		C8A4176C17411B3000439DBA /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A4176B17411B3000439DBA /* CoreMedia.framework */; };
@@ -401,6 +403,9 @@
 		C89AEB1A1725637100AD2EF0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C8A13E6E170C12E90027C655 /* RemoveEventView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveEventView.h; sourceTree = "<group>"; };
 		C8A13E6F170C12E90027C655 /* RemoveEventView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveEventView.m; sourceTree = "<group>"; };
+		C8A2E0361755E44C004E2E51 /* JSNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSNotifier.m; sourceTree = "<group>"; };
+		C8A2E0371755E44C004E2E51 /* JSNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSNotifier.h; sourceTree = "<group>"; };
+		C8A2E0391755F31E004E2E51 /* NotifyCheck1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NotifyCheck1.png; path = Fluence3/NotifyCheck1.png; sourceTree = "<group>"; };
 		C8A39B5E171D926D00F7F44D /* TagCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagCategoryController.h; sourceTree = "<group>"; };
 		C8A39B5F171D926D00F7F44D /* TagCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagCategoryController.m; sourceTree = "<group>"; };
 		C8A39B60171D926D00F7F44D /* TagCategoryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagCategoryController.xib; sourceTree = "<group>"; };
@@ -577,6 +582,7 @@
 		2BCF8CC8171FF01100B31E12 /* Photos */ = {
 			isa = PBXGroup;
 			children = (
+				C8A2E0391755F31E004E2E51 /* NotifyCheck1.png */,
 				C8C0E7FF16F8901100C92E99 /* gallery */,
 				C8C0E7EF16F87ECF00C92E99 /* images */,
 				C8CE00DE17042C2200558361 /* Menu */,
@@ -780,6 +786,15 @@
 			name = LocationGetter;
 			sourceTree = "<group>";
 		};
+		C8A2E0351755E411004E2E51 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				C8A2E0361755E44C004E2E51 /* JSNotifier.m */,
+				C8A2E0371755E44C004E2E51 /* JSNotifier.h */,
+			);
+			name = Notification;
+			sourceTree = "<group>";
+		};
 		C8AAC07E1748C1330020632D /* dateSelect */ = {
 			isa = PBXGroup;
 			children = (
@@ -932,6 +947,7 @@
 		C8C0E7F116F87F0600C92E99 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C8A2E0351755E411004E2E51 /* Notification */,
 				C8B5A463174B4941001C1574 /* PopOverPanel */,
 				C8AAC07E1748C1330020632D /* dateSelect */,
 				2BD59775174248A000E426B5 /* stylistGroup */,
@@ -1222,6 +1238,7 @@
 				C8AB1686174CE567004E2463 /* CustomStylistCell.xib in Resources */,
 				C8A6C1B517536477007B0092 /* stylistGalleryCommentCell.xib in Resources */,
 				C8A6C1BD17536989007B0092 /* stylistImageViewController.xib in Resources */,
+				C8A2E03A1755F31E004E2E51 /* NotifyCheck1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1317,6 +1334,7 @@
 				C8A6C1A6175349BA007B0092 /* styListModal.m in Sources */,
 				C8A6C1B317536477007B0092 /* stylistImageViewController.m in Sources */,
 				C8A6C1B617536477007B0092 /* stylistGalleryCommentCell.m in Sources */,
+				C8A2E0381755E44C004E2E51 /* JSNotifier.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

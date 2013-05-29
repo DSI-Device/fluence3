@@ -40,8 +40,6 @@
 	[super loadView];
     appdt = [[UIApplication sharedApplication] delegate];
     
-    
-    
    	NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId", nil];
     
     NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
@@ -58,13 +56,10 @@
     [request setHTTPMethod:@"POST"];
     
     [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
-    
-    
+
     NSError *theError = nil;
     NSURLResponse *theResponse =[[NSURLResponse alloc]init];
-    NSData *data = [[NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&theError] autorelease];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&theError];
     NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     NSLog(@"Json back %@", string);
@@ -92,7 +87,7 @@
     stylistArray = [[NSMutableArray alloc] initWithObjects:stylist1,stylist2,stylist3,stylist4,stylist5,stylist6,stylist7,nil];
     NSMutableDictionary *stdic = [[NSMutableDictionary  alloc] initWithObjectsAndKeys: stylistArray, @"stylists", nil];
     stylists = [[NSMutableArray alloc] initWithObjects:stdic,nil];
-    //imageArray = [[NSMutableArray alloc] initWithObjects:localCollection,localCollection1,localCollection2,nil];
+//    imageArray = [[NSMutableArray alloc] initWithObjects:localCollection,localCollection1,localCollection2,nil];
     imageArray = [[NSMutableArray alloc] initWithObjects:nil];
     for (NSDictionary *dict in imageArray2) {
         [imageArray addObject:dict];
@@ -404,12 +399,12 @@
 }
 
 
--(void)photoGallery:(FGalleryViewController *)gallery stylistButtonClicked:(NSInteger*)stylistId:(NSString*)userId:(NSString*)imageId{
+-(void)photoGallery:(FGalleryViewController *)gallery stylistButtonClicked:(NSInteger*)stylistId:(NSString*)userId:(NSString*)imageId:(NSString*)query{
     
     NSString * text = [[stylistArray objectAtIndex:stylistId] objectForKey:@"stylistName"];
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle: [[[@"Current Image ID : " stringByAppendingString:imageId] stringByAppendingString:@" User ID : "] stringByAppendingString: userId]
-                          message: text
+                          message: [[text stringByAppendingString:@" was asked - "] stringByAppendingString: query]
                           delegate: nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil];

@@ -7,7 +7,7 @@
 #import "SelectPoseListViewController.h"
 #import "SelectTasteListViewController.h"
 #import "Fluence3AppDelegate.h"
-
+#import "JSNotifier.h"
 
 @implementation ISViewController
 
@@ -38,7 +38,6 @@
         
     }
     
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -52,7 +51,9 @@
         notiImage.hidden = NO;
         notiNumber.hidden = NO;
         notiNumber.text = appdt.notification;
-        
+        JSNotifier *notify = [[JSNotifier alloc]initWithTitle:[[@"You have " stringByAppendingString:appdt.notification]stringByAppendingString:@" new notifications"]];
+        notify.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"NotifyCheck1.png"]];
+        [notify showFor:3.0];
     }
     else
     {
@@ -60,6 +61,7 @@
         notiNumber.hidden = YES;
         
     }
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated

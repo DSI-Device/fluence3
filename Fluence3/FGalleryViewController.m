@@ -2067,17 +2067,68 @@
     
 }
 
--(void)selectedRow:(int)row withString:(NSString *)text{
+-(void)selectedRow:(int)row withString:(NSString *)text {
     
-    NSLog(@"%d",row);
-    NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
+   
     
-    NSString* userId   = appdt.userGalleryId;
-    NSString* imageID = [NSString stringWithFormat:[imageInfo objectForKey:@"imageId"]];
-    [_photoSource photoGallery:self stylistButtonClicked:row:userId:imageID];
+    
+    
+    
+    
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Write your query to Stylist"
+                                                      message:nil
+                                                     delegate:self 
+                                            cancelButtonTitle:@"Cancel" 
+                                            otherButtonTitles:@"Continue", nil];
+    
+    [message setAlertViewStyle:UIAlertViewStylePlainTextInput];
+    
+    [message show];
+    appdt.currentImageGallery = [NSString stringWithFormat:@"%d", row];    
+    
+    
+    
+    
+   
     
     
 }
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if([alertView.title isEqualToString:@"Write your query to Stylist"]) 
+    {
+        if (buttonIndex == [alertView cancelButtonIndex]) {
+        } else {
+            NSLog(@"textField: %@", [[alertView textFieldAtIndex:0] text]);
+            NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
+            NSString* userId   = appdt.userGalleryId;
+            NSString* imageID = [NSString stringWithFormat:[imageInfo objectForKey:@"imageId"]];
+            [_photoSource photoGallery:self stylistButtonClicked:[appdt.currentImageGallery integerValue]:userId:imageID:[[alertView textFieldAtIndex:0] text]];
+        }
+    }
+    
+}
+
+- (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView
+{
+    if([alertView.title isEqualToString:@"Write your query to Stylist"]) 
+        {
+        NSString *inputText = [[alertView textFieldAtIndex:0] text];
+        if( [inputText length] >= 1 )
+        {
+            return YES;
+        }
+        else
+        {
+            return NO;
+        }
+    }
+    else
+    {
+        return YES;
+    }
+}
+
 
 #pragma mark dateChanged
 -(void)dateChanged:(NSDate *)selectedDate{
