@@ -206,6 +206,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
                                     
                                                        timeoutInterval:60.0];
     
+    
     [request setHTTPMethod:@"POST"];
     
     [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
