@@ -23,7 +23,7 @@
 const NSString *kWundergroundKey = @"67b642d58e39c9cc";
 
 @synthesize toolBar = _toolbar;
-@synthesize _tagCategory,spinner,lastKnownLocation;
+@synthesize _tagCategory,spinner,lastKnownLocation,title,tagWord;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -364,7 +364,7 @@ const NSString *kWundergroundKey = @"67b642d58e39c9cc";
     NSInteger x = point.x-12;
     NSInteger y = point.y-25;
 
-    _tag = [[NSMutableDictionary alloc] initWithObjectsAndKeys: @"0", @"tagId", @"0", @"imageId", @"Test", @"tagCaption", @"http://www.google.com", @"tagShopLink", [NSString stringWithFormat:@"%d", x], @"tagX", [NSString stringWithFormat:@"%d", y], @"tagY", @"testBrand", @"tagBrand", @"0", @"tagDeleted", nil];
+    _tag = [[NSMutableDictionary alloc] initWithObjectsAndKeys: @"0", @"tagId", @"0", @"imageId", @"Test", @"tagCaption", @"http://www.google.com", @"tagShopLink", [NSString stringWithFormat:@"%d", x], @"tagX", [NSString stringWithFormat:@"%d", y], @"tagY", @"0", @"tagId", @"testBrand", @"tagBrand", @"0", @"tagDeleted", nil];
 }
 
 #pragma mark Image Upload Code
@@ -421,22 +421,36 @@ const NSString *kWundergroundKey = @"67b642d58e39c9cc";
     
     [spinner startAnimating];
     
-	
+    NSString *latitude = [[NSString alloc] initWithFormat:@"%g°", self.lastKnownLocation.coordinate.latitude];
+     NSString *longitude = [[NSString alloc] initWithFormat:@"%g°", self.lastKnownLocation.coordinate.longitude];
+    title = @"Test Title";
+    NSLog(@" Statistics file upload finish: \"%@\"", title);
+    NSMutableDictionary *datas = [[NSMutableDictionary alloc] initWithObjectsAndKeys:title, @"Title", appdt.userId, @"FbId",appdt.userGalleryId, @"UserId",latitude,@"Latitude",longitude,@"Longitude",_tag,@"Tags",@"0",@"WeatherId",nil];
+    
+	    
 	NSString *strURL = @"http://103.4.147.139/fluence3/index.php/welcome/upload";
     
-    //ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:strURL]];
+    
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:strURL]]; // Upload a file on disk
     NSString *filename1=[NSString stringWithFormat:@"ipodfile.jpg"];
     NSData *imageData1=UIImageJPEGRepresentation(appdt.img, 1.0);
-    [request setData:imageData1 withFileName:filename1 andContentType:@"image/jpeg" forKey:@"ipodfile"];
+    [request addData:imageData1 withFileName:filename1 andContentType:@"image/jpeg" forKey:@"ipodfile"];
+    
+    [request addRequestHeader:@"User-Agent" value:@"ASIHTTPRequest"];
+    [request addRequestHeader:@"Content-Type" value:@"application/json"];
+    
+    [request addPostValue:datas forKey:@"postData"];
     [request setRequestMethod:@"POST"];
     //[request appendPostData:body];
     [request setDelegate:self];
-    [request setTimeOutSeconds:3.0];
+    [request setTimeOutSeconds:300.0];
     //request.shouldAttemptPersistentConnection = NO;
     [request setDidFinishSelector:@selector(uploadRequestFinished:)];
     [request setDidFailSelector:@selector(uploadRequestFailed:)];
     [request startAsynchronous];
+    
+    
+        
     
     self.navigationItem.hidesBackButton = YES;
     
