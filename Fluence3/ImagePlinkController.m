@@ -272,7 +272,9 @@ const NSString *kWundergroundKey = @"67b642d58e39c9cc";
 //                          otherButtonTitles:nil];
 //    [alert show];
 //    [alert release];
-    
+    [_tag setValue:appdt.tagID forKey:@"CategoryID"];
+    [_tag setValue:appdt.TagBrandID forKey:@"TagBrandID"];
+    [_tag setValue:item2 forKey:@"tagBrand"];
     NSInteger myX = [[_tag objectForKey:@"tagX"] intValue];
     NSInteger myY = [[_tag objectForKey:@"tagY"] intValue];
 
@@ -421,13 +423,22 @@ const NSString *kWundergroundKey = @"67b642d58e39c9cc";
     
     [spinner startAnimating];
     
-    NSString *latitude = [[NSString alloc] initWithFormat:@"%g°", self.lastKnownLocation.coordinate.latitude];
-     NSString *longitude = [[NSString alloc] initWithFormat:@"%g°", self.lastKnownLocation.coordinate.longitude];
+    //NSString *latitude = [[NSString alloc] initWithFormat:@"%f°", self.lastKnownLocation.coordinate.latitude];
+    //NSString *longitude = [[NSString alloc] initWithFormat:@"%f°", self.lastKnownLocation.coordinate.longitude];
+    NSString *latitude = [NSString stringWithFormat:@"%f", self.lastKnownLocation.coordinate.latitude];
+    NSString *longitude = [NSString stringWithFormat:@"%f", self.lastKnownLocation.coordinate.longitude];
+    tagWord=@"Tag1,Tag2";
     title = @"Test Title";
     NSLog(@" Statistics file upload finish: \"%@\"", title);
-    NSMutableDictionary *datas = [[NSMutableDictionary alloc] initWithObjectsAndKeys:title, @"Title", appdt.userId, @"FbId",appdt.userGalleryId, @"UserId",latitude,@"Latitude",longitude,@"Longitude",_tag,@"Tags",@"0",@"WeatherId",nil];
+    NSMutableDictionary *datas = [[NSMutableDictionary alloc] initWithObjectsAndKeys:title, @"Title", appdt.userId, @"FbId",appdt.userGalleryId, @"UserId",latitude,@"Latitude",longitude,@"Longitude",_tagItems,@"Tags",@"0",@"WeatherId",tagWord,@"tagWord",nil];
     
-	    
+    
+    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+    [dictionnary setObject:datas forKey:@"postData"];
+    NSString *jsonRequest = [dictionnary JSONRepresentation];
+    NSLog(@"jsonRequest is %@", jsonRequest);
+    
+    	    
 	NSString *strURL = @"http://103.4.147.139/fluence3/index.php/welcome/upload";
     
     

@@ -28,6 +28,8 @@
     id<FBGraphUser> loggedInUser;
     NSString *currentImageGallery;
     NSString *currentStylistImage;
+    NSString *tagID;
+    NSString *TagBrandID;
 }
 
 extern NSString *const SessionStateChangedNotification;
@@ -53,7 +55,8 @@ extern NSString *const SessionStateChangedNotification;
 @property (nonatomic, strong) UIImage *imgOptimized;
 @property (nonatomic, strong) NSMutableArray *selectedPoseList;
 //@property (strong, nonatomic) MainViewController *mainViewController;
-
+@property (nonatomic, strong) NSString *tagID;
+@property (nonatomic, strong) NSString *TagBrandID;
 - (void)openSession;
 - (void)reloadViewControllers;
 -(void)logoutButtonWasPressed;
