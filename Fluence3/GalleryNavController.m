@@ -10,6 +10,10 @@
 #import "Fluence3AppDelegate.h"
 #import "StylistViewController.h"
 #import "CameraImageController.h"
+#import "BrandGallery.h"
+#import "RegionGallery.h"
+#import "WeatherGallery.h"
+#import "FollowerGallery.h"
 
 @implementation GalleryNavController
 @synthesize imgviewCntrllr;
@@ -163,11 +167,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if(appdt.isStylist)
     {
-        return 4;
+        return 7;
     }
     else
     {
-        return 3;
+        return 6;
         
     }
 }
@@ -185,15 +189,25 @@
     
 	// Configure the cell.
 	if( indexPath.row == 0 ) {
-		cell.textLabel.text = @"Private Gallery";
+		cell.textLabel.text = @"Featured Gallery";
 	}
     else if( indexPath.row == 1 ) {
-		cell.textLabel.text = @"Public Gallery";
+		cell.textLabel.text = @"Brand Gallery";
 	}
 	else if( indexPath.row == 2 ) {
 		cell.textLabel.text = @"Popular Gallery";//popular gallery
 	}
     else if( indexPath.row == 3 ) {
+		cell.textLabel.text = @"Region wise Gallery";
+	}
+	else if( indexPath.row == 4 ) {
+		cell.textLabel.text = @"Weather wise Gallery";//popular gallery
+	}
+    else if( indexPath.row == 5 ) {
+		cell.textLabel.text = @"Follower wise Gallery";
+	}
+
+    else if( indexPath.row == 6 ) {
         appdt = [[UIApplication sharedApplication] delegate];
         int x = [appdt.notification intValue];
         if(x > 0)
@@ -222,13 +236,64 @@
         UIViewController *topVC = (UIViewController *)self.navigationController.delegate;
         [topVC.navigationController pushViewController:localGallery animated:YES];
 //        [localGallery release];
+        
+                
+        
+        
+        
+        
+        
 	}
     else if( indexPath.row == 1 ) {
-		networkGallery = [[FGalleryViewController alloc] initWithPhotoSource:self];
-        //        [self.navigationController pushViewController:networkGallery animated:YES];
+//		networkGallery = [[FGalleryViewController alloc] initWithPhotoSource:self];
+//        //        [self.navigationController pushViewController:networkGallery animated:YES];
+//        
+//        UIViewController *topVC = (UIViewController *)self.navigationController.delegate;
+//        [topVC.navigationController pushViewController:networkGallery animated:YES];        
         
-        UIViewController *topVC = (UIViewController *)self.navigationController.delegate;
-        [topVC.navigationController pushViewController:networkGallery animated:YES];        
+        
+        
+        BrandGallery *modalPanel = [[[BrandGallery alloc] initWithFrame:self.view.bounds title:@"Brand Gallery"] autorelease];
+        
+        int blocksDelegateOrNone = arc4random() % 3;
+        if (0 == blocksDelegateOrNone) {
+            modalPanel.onClosePressed = ^(UAModalPanel* panel) {
+                [panel hideWithOnComplete:^(BOOL finished) {
+                    [panel removeFromSuperview];
+                }];
+                UADebugLog(@"onClosePressed block called from panel: %@", modalPanel);
+            };
+            modalPanel.onActionPressed = ^(UAModalPanel* panel) {
+                UADebugLog(@"onActionPressed block called from panel: %@", modalPanel);
+            };
+            
+            UADebugLog(@"UAModalView will display using blocks: %@", modalPanel);
+            
+        } else if (1 == blocksDelegateOrNone) {
+            ///////////////////////////////////
+            // Add self as the delegate so we know how to close the panel
+            modalPanel.delegate = self;
+            
+            UADebugLog(@"UAModalView will display using delegate methods: %@", modalPanel);
+            
+        } else {
+            // no-op. No delegate or blocks
+            UADebugLog(@"UAModalView will display without blocks or delegate methods: %@", modalPanel);
+        }
+        
+        
+        ///////////////////////////////////
+        // Add the panel to our view
+        [self.view addSubview:modalPanel];
+        
+        ///////////////////////////////////
+        // Show the panel from the center of the button that was pressed
+        [modalPanel showFromPoint:CGPointMake(150.0, 150.0)];
+        
+        
+        
+        
+        
     }
 	else if( indexPath.row == 2 ) {
 		UIImage *trashIcon = [UIImage imageNamed:@"photo-gallery-trashcan.png"];
@@ -241,8 +306,134 @@
         //        [self.navigationController pushViewController:localGallery animated:YES];
         UIViewController *topVC = (UIViewController *)self.navigationController.delegate;
         [topVC.navigationController pushViewController:localGallery animated:YES];        
+        
+        
+
+        
+        
+        
+        
     }
     else if( indexPath.row == 3 )
+    {
+        
+        RegionGallery *modalPanel = [[[RegionGallery alloc] initWithFrame:self.view.bounds title:@"Region Gallery"] autorelease];
+        
+        int blocksDelegateOrNone = arc4random() % 3;
+        if (0 == blocksDelegateOrNone) {
+            modalPanel.onClosePressed = ^(UAModalPanel* panel) {
+                [panel hideWithOnComplete:^(BOOL finished) {
+                    [panel removeFromSuperview];
+                }];
+                UADebugLog(@"onClosePressed block called from panel: %@", modalPanel);
+            };
+            modalPanel.onActionPressed = ^(UAModalPanel* panel) {
+                UADebugLog(@"onActionPressed block called from panel: %@", modalPanel);
+            };
+            
+            UADebugLog(@"UAModalView will display using blocks: %@", modalPanel);
+            
+        } else if (1 == blocksDelegateOrNone) {
+            ///////////////////////////////////
+            // Add self as the delegate so we know how to close the panel
+            modalPanel.delegate = self;
+            
+            UADebugLog(@"UAModalView will display using delegate methods: %@", modalPanel);
+            
+        } else {
+            // no-op. No delegate or blocks
+            UADebugLog(@"UAModalView will display without blocks or delegate methods: %@", modalPanel);
+        }
+        
+        
+        ///////////////////////////////////
+        // Add the panel to our view
+        [self.view addSubview:modalPanel];
+        
+        ///////////////////////////////////
+        // Show the panel from the center of the button that was pressed
+        [modalPanel showFromPoint:CGPointMake(150.0, 150.0)];
+    }
+    else if( indexPath.row == 4 )
+    {
+        
+        WeatherGallery *modalPanel = [[[WeatherGallery alloc] initWithFrame:self.view.bounds title:@"Weather Gallery"] autorelease];
+        
+        int blocksDelegateOrNone = arc4random() % 3;
+        if (0 == blocksDelegateOrNone) {
+            modalPanel.onClosePressed = ^(UAModalPanel* panel) {
+                [panel hideWithOnComplete:^(BOOL finished) {
+                    [panel removeFromSuperview];
+                }];
+                UADebugLog(@"onClosePressed block called from panel: %@", modalPanel);
+            };
+            modalPanel.onActionPressed = ^(UAModalPanel* panel) {
+                UADebugLog(@"onActionPressed block called from panel: %@", modalPanel);
+            };
+            
+            UADebugLog(@"UAModalView will display using blocks: %@", modalPanel);
+            
+        } else if (1 == blocksDelegateOrNone) {
+            ///////////////////////////////////
+            // Add self as the delegate so we know how to close the panel
+            modalPanel.delegate = self;
+            
+            UADebugLog(@"UAModalView will display using delegate methods: %@", modalPanel);
+            
+        } else {
+            // no-op. No delegate or blocks
+            UADebugLog(@"UAModalView will display without blocks or delegate methods: %@", modalPanel);
+        }
+        
+        
+        ///////////////////////////////////
+        // Add the panel to our view
+        [self.view addSubview:modalPanel];
+        
+        ///////////////////////////////////
+        // Show the panel from the center of the button that was pressed
+        [modalPanel showFromPoint:CGPointMake(150.0, 150.0)];
+    }
+    else if( indexPath.row == 5 )
+    {
+        FollowerGallery *modalPanel = [[[FollowerGallery alloc] initWithFrame:self.view.bounds title:@"Follower Gallery"] autorelease];
+        
+        int blocksDelegateOrNone = arc4random() % 3;
+        if (0 == blocksDelegateOrNone) {
+            modalPanel.onClosePressed = ^(UAModalPanel* panel) {
+                [panel hideWithOnComplete:^(BOOL finished) {
+                    [panel removeFromSuperview];
+                }];
+                UADebugLog(@"onClosePressed block called from panel: %@", modalPanel);
+            };
+            modalPanel.onActionPressed = ^(UAModalPanel* panel) {
+                UADebugLog(@"onActionPressed block called from panel: %@", modalPanel);
+            };
+            
+            UADebugLog(@"UAModalView will display using blocks: %@", modalPanel);
+            
+        } else if (1 == blocksDelegateOrNone) {
+            ///////////////////////////////////
+            // Add self as the delegate so we know how to close the panel
+            modalPanel.delegate = self;
+            
+            UADebugLog(@"UAModalView will display using delegate methods: %@", modalPanel);
+            
+        } else {
+            // no-op. No delegate or blocks
+            UADebugLog(@"UAModalView will display without blocks or delegate methods: %@", modalPanel);
+        }
+        
+        
+        ///////////////////////////////////
+        // Add the panel to our view
+        [self.view addSubview:modalPanel];
+        
+        ///////////////////////////////////
+        // Show the panel from the center of the button that was pressed
+        [modalPanel showFromPoint:CGPointMake(150.0, 150.0)];
+    }
+    else if( indexPath.row == 6 )
     {
         appdt.notification = @"0";
 		imgviewCntrllr = [[[StylistViewController alloc] initWithNibName:@"StylistViewController" bundle:nil]autorelease];

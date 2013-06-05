@@ -194,6 +194,10 @@
 		C8C0E80B16F890D900C92E99 /* photo-gallery-right.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0E80716F890D900C92E99 /* photo-gallery-right.png */; };
 		C8C0E80C16F890D900C92E99 /* photo-gallery-left.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0E80816F890D900C92E99 /* photo-gallery-left.png */; };
 		C8C0E80D16F890D900C92E99 /* photo-gallery-edit-caption.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0E80916F890D900C92E99 /* photo-gallery-edit-caption.png */; };
+		C8C3F2E9175F2E7700D79799 /* WeatherGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C3F2DD175F2E7500D79799 /* WeatherGallery.m */; };
+		C8C3F2EA175F2E7700D79799 /* RegionGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C3F2DF175F2E7600D79799 /* RegionGallery.m */; };
+		C8C3F2EC175F2E7700D79799 /* FollowerGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C3F2E3175F2E7600D79799 /* FollowerGallery.m */; };
+		C8C3F2EE175F2E7700D79799 /* BrandGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C3F2E7175F2E7600D79799 /* BrandGallery.m */; };
 		C8CE00DA1704299400558361 /* ISColumnsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CE00D61704299400558361 /* ISColumnsController.m */; };
 		C8CE00DB1704299400558361 /* ISViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CE00D81704299400558361 /* ISViewController.m */; };
 		C8CE00E617042C9200558361 /* menu1.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CE00DF17042C9200558361 /* menu1.png */; };
@@ -499,6 +503,14 @@
 		C8C0E80716F890D900C92E99 /* photo-gallery-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo-gallery-right.png"; sourceTree = "<group>"; };
 		C8C0E80816F890D900C92E99 /* photo-gallery-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo-gallery-left.png"; sourceTree = "<group>"; };
 		C8C0E80916F890D900C92E99 /* photo-gallery-edit-caption.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo-gallery-edit-caption.png"; sourceTree = "<group>"; };
+		C8C3F2DD175F2E7500D79799 /* WeatherGallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherGallery.m; sourceTree = "<group>"; };
+		C8C3F2DE175F2E7500D79799 /* WeatherGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherGallery.h; sourceTree = "<group>"; };
+		C8C3F2DF175F2E7600D79799 /* RegionGallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionGallery.m; sourceTree = "<group>"; };
+		C8C3F2E0175F2E7600D79799 /* RegionGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionGallery.h; sourceTree = "<group>"; };
+		C8C3F2E3175F2E7600D79799 /* FollowerGallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowerGallery.m; sourceTree = "<group>"; };
+		C8C3F2E4175F2E7600D79799 /* FollowerGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowerGallery.h; sourceTree = "<group>"; };
+		C8C3F2E7175F2E7600D79799 /* BrandGallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandGallery.m; sourceTree = "<group>"; };
+		C8C3F2E8175F2E7700D79799 /* BrandGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandGallery.h; sourceTree = "<group>"; };
 		C8CE00D51704299400558361 /* ISColumnsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISColumnsController.h; sourceTree = "<group>"; };
 		C8CE00D61704299400558361 /* ISColumnsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISColumnsController.m; sourceTree = "<group>"; };
 		C8CE00D71704299400558361 /* ISViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISViewController.h; sourceTree = "<group>"; };
@@ -863,6 +875,14 @@
 		C8B5A463174B4941001C1574 /* PopOverPanel */ = {
 			isa = PBXGroup;
 			children = (
+				C8C3F2DD175F2E7500D79799 /* WeatherGallery.m */,
+				C8C3F2DE175F2E7500D79799 /* WeatherGallery.h */,
+				C8C3F2DF175F2E7600D79799 /* RegionGallery.m */,
+				C8C3F2E0175F2E7600D79799 /* RegionGallery.h */,
+				C8C3F2E3175F2E7600D79799 /* FollowerGallery.m */,
+				C8C3F2E4175F2E7600D79799 /* FollowerGallery.h */,
+				C8C3F2E7175F2E7600D79799 /* BrandGallery.m */,
+				C8C3F2E8175F2E7700D79799 /* BrandGallery.h */,
 				C8B5A494174B61C5001C1574 /* Views */,
 				C8B5A49B174B61C5001C1574 /* Panels */,
 				C8B5A4A0174B61C5001C1574 /* Images */,
@@ -1405,6 +1425,10 @@
 				2BD3628D175873F800E4AE2E /* FollowListViewController.m in Sources */,
 				2BBFDFCF175DE7810025FA2A /* CustomCategoryListCell.m in Sources */,
 				2BBFDFD3175DE7930025FA2A /* TagCategoryController.m in Sources */,
+				C8C3F2E9175F2E7700D79799 /* WeatherGallery.m in Sources */,
+				C8C3F2EA175F2E7700D79799 /* RegionGallery.m in Sources */,
+				C8C3F2EC175F2E7700D79799 /* FollowerGallery.m in Sources */,
+				C8C3F2EE175F2E7700D79799 /* BrandGallery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

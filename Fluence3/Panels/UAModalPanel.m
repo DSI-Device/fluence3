@@ -36,7 +36,7 @@
 		contentView = nil;
 		startEndPoint = CGPointZero;
 		
-		margin = UIEdgeInsetsMake(DEFAULT_MARGIN, DEFAULT_MARGIN, 0, DEFAULT_MARGIN);
+		margin = UIEdgeInsetsMake(DEFAULT_MARGIN, DEFAULT_MARGIN, DEFAULT_MARGIN, DEFAULT_MARGIN);
 		padding = UIEdgeInsetsMake(DEFAULT_MARGIN, DEFAULT_MARGIN, DEFAULT_MARGIN, DEFAULT_MARGIN);
 		cornerRadius = DEFAULT_CORNER_RADIUS;
 		borderWidth = DEFAULT_BORDER_WIDTH;
