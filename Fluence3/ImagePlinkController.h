@@ -33,6 +33,8 @@
     NSInteger _currentIndex;
     UIActivityIndicatorView *spinner;
     CLLocation *lastKnownLocation;
+    NSString *title;
+    NSString *tagWord;
 }
 
 - (void)removeImageAtIndex:(NSUInteger)index;
@@ -42,4 +44,6 @@
 @property (nonatomic,readonly) UIToolbar *toolBar;
 @property (nonatomic,readonly) UIActivityIndicatorView *spinner;
 @property (nonatomic, retain) CLLocation *lastKnownLocation;
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSString *tagWord;
 @end

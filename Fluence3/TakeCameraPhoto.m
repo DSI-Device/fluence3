@@ -74,6 +74,8 @@
 }
 - (IBAction)selectPhotos
 {
+    self.image.hidden=YES;
+     /*
     @try
     {
         if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
@@ -102,10 +104,10 @@
         [alert show];
         [alert release];
     }
+    */
     
-    self.image.hidden=YES;
     
-    /*
+   
     appdt.img = appdt.imgOptimized = [UIImage imageNamed:@"gavandme.jpg"];
     
 //    self.imageCropper.frame = CGRectMake(0, 0 ,300, 400);
@@ -123,8 +125,7 @@
     
     //[self dismissModalViewControllerAnimated:YES];
     cropButton.hidden = NO;
-    */
-    
+        
 }
 - (IBAction)cropping
 {

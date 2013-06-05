@@ -8,7 +8,9 @@
 #import "SelectTasteListViewController.h"
 #import "Fluence3AppDelegate.h"
 #import "JSNotifier.h"
-
+#import "BrandListViewController.h"
+#import "CountryListViewController.h"
+#import "FollowListViewController.h"
 @implementation ISViewController
 
 @synthesize gc;
@@ -155,11 +157,25 @@
     selectListView.title = @"Find People";
     [self.navigationController pushViewController:selectListView animated:true];
     */
-    
+    /*
     selectTasteListView = [[[SelectTasteListViewController alloc] initWithNibName:@"SelectTasteListViewController" bundle:nil]autorelease];
     selectTasteListView.title = @"Find Event";
     [self.navigationController pushViewController:selectTasteListView animated:true];
-     
+     */
+    /*
+     BrandListViewController *brandListViewController = [[[BrandListViewController alloc] initWithNibName:@"BrandListViewController" bundle:nil]autorelease];
+    brandListViewController.title = @"Select Brand";
+    [self.navigationController pushViewController:brandListViewController animated:true];
+     */
+    /*
+    CountryListViewController *countryListViewController = [[[CountryListViewController alloc] initWithNibName:@"CountryListViewController" bundle:nil]autorelease];
+    countryListViewController.title = @"Select Country";
+    [self.navigationController pushViewController:countryListViewController animated:true];
+     */
+    
+    FollowListViewController *followListViewController = [[[FollowListViewController alloc] initWithNibName:@"FollowListViewController" bundle:nil]autorelease];
+    followListViewController.title = @"Select Follow";
+    [self.navigationController pushViewController:followListViewController animated:true];
 }
 - (IBAction)mapViewClicked{
     mapViewController = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil]autorelease];

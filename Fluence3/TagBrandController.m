@@ -10,7 +10,7 @@
 
 @implementation TagBrandController
 
-@synthesize delegate;
+@synthesize delegate,dataSource,action_status,appdt,currentLimit,totalCount;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -34,12 +34,100 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    self.currentLimit = 5000;
+    adapter = [MYSBJsonStreamParserAdapter new];
+    adapter.delegate = self;
+    parser = [MYSBJsonStreamParser new];
+    parser.delegate = adapter;
+    parser.multi = YES;
+    appdt = [[UIApplication sharedApplication]delegate];
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getBrandListData/" ];
+    [self performSelector:@selector(triggerAsyncronousRequest2:) withObject: serverUrl];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+- (void) triggerAsyncronousRequest2: (NSString *)url {
+	    
+	url = [url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    
+    
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId, @"UserId", nil];
+    
+    
+   
+    //NSString *jsonRequest = [jsoning JSONRepresentation];
+    
+    
+    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+    [dictionnary setObject:jsoning forKey:@"postData"];
+    
+    NSString *jsonRequest = [dictionnary JSONRepresentation];
+    
+    //NSError *error = nil;
+    //NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionnary                                                       options:kNilOptions                                                         error:&error];
+    
+    NSLog(@"jsonRequest is %@", jsonRequest);
+    
+    NSURL *nsurl = [NSURL URLWithString:url ];
+    
+	
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl
+                                    
+                                                           cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                    
+                                                       timeoutInterval:60.0];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //[[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSURLResponse* response;
+    NSError* error = nil;
+    
+    //Capturing server response
+    NSData* data = [NSURLConnection sendSynchronousRequest:request  returningResponse:&response error:&error];
+    NSLog(@"Connection didReceiveData of length: %u", data.length);
+	NSLog(@"String sent from server %@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+	MYSBJsonStreamParserStatus status = [parser parse:data];
+	
+	if (status == MYSBJsonStreamParserError) {
+		NSLog(@"Parser error: %@", parser.error);
+		
+	} else if (status == MYSBJsonStreamParserWaitingForData) {
+		NSLog(@"Parser waiting for more data");
+	}
+	NSLog(@"row size : %u",[self.dataSource count]);
+	NSDictionary *countData = [self.dataSource objectAtIndex:0];
+	self.action_status = [[countData objectForKey:@"action"] intValue];
+	if(self.action_status==1)
+	{
+		[self.dataSource removeObjectAtIndex:0];
+        countData = [self.dataSource objectAtIndex:0];
+		self.totalCount = [[countData objectForKey:@"count"] intValue];
+		NSLog(@"total count %d",self.totalCount);
+		
+		[self.dataSource removeObjectAtIndex:0];
+		if ([self.dataSource count] < self.totalCount) {
+			[self.dataSource addObject:[[[NSDictionary alloc] initWithObjectsAndKeys:[NSString stringWithFormat:@"Showing %d out of %d",self.currentLimit,self.totalCount],@"count",nil] autorelease] ];
+		}
+		//[self.dataSource addObject:[[[NSDictionary alloc] init] autorelease] ];//empty allocation in-order to able to select the last element
+        
+
+	}
+	if(self.action_status==2)
+	{
+		NSLog(@"Follow/Unfollow");
+	}
+    
+    /*if (theConnection) {
+     
+     receiveData = [NSMutableData data];
+     
+     }}*/
 }
 
 - (void)viewDidUnload
@@ -84,46 +172,54 @@
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 3;
+- (void)parser:(MYSBJsonStreamParser *)parser foundArray:(NSArray *)array {
+	NSLog(@"inside foundArray %u", [array count]);
+	if([array count] > 0){
+		
+		for (NSDictionary *dict in array) {
+            self.action_status = [[dict objectForKey:@"action"] intValue];
+            if(self.action_status==2)
+            {
+                return;
+            }
+            if(self.action_status==1)
+            {
+                NSLog(@"New Json");
+                self.dataSource = [[NSMutableArray alloc] initWithObjects:nil];
+            }
+			[self.dataSource addObject:dict];
+		}
+	}
 }
+
+- (void)parser:(MYSBJsonStreamParser *)parser foundObject:(NSDictionary *)dict {
+	NSLog(@"inside foundObject");
+	self.dataSource = [[NSMutableArray alloc] initWithObjects:nil];
+	[self.dataSource addObject:dict];
+}
+
+// methods for tableview protocols
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"Count numberOfRowsInSection %u", [self.dataSource count]);
+	return [self.dataSource count];
+}
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    
+    NSUInteger row = [indexPath row];
+	NSDictionary *rowData = [self.dataSource objectAtIndex:row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-    
+    cell.textLabel.text = [rowData objectForKey:@"Name"];
+    appdt.TagBrandID = [rowData objectForKey:@"ID"];
+    cell.imageView.image = [UIImage imageNamed:@"action-location.png"];
     // Configure the cell...
-    switch (indexPath.row) {
-            
-        case 0:
-            cell.textLabel.text = @"Gucci";
-            cell.detailTextLabel.text = @"";
-            cell.imageView.image = [UIImage imageNamed:@"action-location.png"];
-            break;
-            
-        case 1:
-            cell.textLabel.text = @"Ralph Lauren";
-            cell.detailTextLabel.text = @"";
-            cell.imageView.image = [UIImage imageNamed:@"action-people.png"];
-            break;
-        case 2:
-            cell.textLabel.text = @"Addidas";
-            cell.detailTextLabel.text = @"";
-            cell.imageView.image = [UIImage imageNamed:@"action-people.png"];
-            break;
-            
-            
-        default:
-            break;
-    }
     return cell;
 }
 
@@ -171,21 +267,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *itemToPassBack = @"Pass this value back to ViewControllerA";
-    switch (indexPath.row) {
-        case 0:
-            itemToPassBack = @"Gucci";
-            break;
-            
-        case 1:
-            itemToPassBack = @"Ralph Lauren";
-            break;
-            
-        case 2:
-            itemToPassBack = @"Addidas";
-            break;
-            
-    }
+    NSUInteger row = [indexPath row];
+	NSDictionary *rowData = [self.dataSource objectAtIndex:row];
+	//NSString *qwe = [rowData JSONRepresentation];
+    //
+    UITableViewCell *cell = (UITableViewCell *) [tableView cellForRowAtIndexPath:indexPath];
     
+    itemToPassBack = cell.textLabel.text;
+
     [self.delegate addBrandViewController:self didFinishEnteringBrand:itemToPassBack];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

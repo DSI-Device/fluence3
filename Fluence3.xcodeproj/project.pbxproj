@@ -25,6 +25,10 @@
 		2B98853A1727DD10000386E5 /* TSPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9885351727DD10000386E5 /* TSPopoverController.m */; };
 		2B98853B1727DD10000386E5 /* TSPopoverPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9885371727DD10000386E5 /* TSPopoverPopoverView.m */; };
 		2B98853C1727DD10000386E5 /* TSPopoverTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9885391727DD10000386E5 /* TSPopoverTouchView.m */; };
+		2BBFDFCB175DD9C80025FA2A /* TagCategoryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBFDFC9175DD9C80025FA2A /* TagCategoryController.xib */; };
+		2BBFDFCF175DE7810025FA2A /* CustomCategoryListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFDFCD175DE7810025FA2A /* CustomCategoryListCell.m */; };
+		2BBFDFD0175DE7810025FA2A /* CustomCategoryListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBFDFCE175DE7810025FA2A /* CustomCategoryListCell.xib */; };
+		2BBFDFD3175DE7930025FA2A /* TagCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFDFD2175DE7930025FA2A /* TagCategoryController.m */; };
 		2BC20D2F1726C30B00EE2CCB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC20D2E1726C30B00EE2CCB /* CFNetwork.framework */; };
 		2BC20D311726C37A00EE2CCB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC20D301726C37A00EE2CCB /* MobileCoreServices.framework */; };
 		2BC20D331726C39700EE2CCB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC20D321726C39700EE2CCB /* Security.framework */; };
@@ -46,6 +50,18 @@
 		2BC35F1E173907FD00EF1A7C /* CustomPoseSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC35F1A173907FD00EF1A7C /* CustomPoseSelectCell.m */; };
 		2BC52767173A47AD00DE8BF9 /* ISViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BC52766173A47AD00DE8BF9 /* ISViewController.xib */; };
 		2BCF8CA8171FEC3B00B31E12 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCF8CA7171FEC3B00B31E12 /* ImageUtil.m */; };
+		2BD3627617585C3F00E4AE2E /* BrandListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3627117585C3F00E4AE2E /* BrandListViewController.m */; };
+		2BD3627717585C3F00E4AE2E /* BrandListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD3627217585C3F00E4AE2E /* BrandListViewController.xib */; };
+		2BD3627817585C3F00E4AE2E /* CustomBrandListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3627417585C3F00E4AE2E /* CustomBrandListCell.m */; };
+		2BD3627917585C3F00E4AE2E /* CustomBrandListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD3627517585C3F00E4AE2E /* CustomBrandListCell.xib */; };
+		2BD362811758710100E4AE2E /* CountryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3627C1758710100E4AE2E /* CountryListViewController.m */; };
+		2BD362821758710100E4AE2E /* CountryListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD3627D1758710100E4AE2E /* CountryListViewController.xib */; };
+		2BD362831758710100E4AE2E /* CustomCountryListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3627F1758710100E4AE2E /* CustomCountryListCell.m */; };
+		2BD362841758710100E4AE2E /* CustomCountryListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD362801758710100E4AE2E /* CustomCountryListCell.xib */; };
+		2BD3628B175873F800E4AE2E /* CustomFollowListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD36286175873F800E4AE2E /* CustomFollowListCell.m */; };
+		2BD3628C175873F800E4AE2E /* CustomFollowListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD36287175873F800E4AE2E /* CustomFollowListCell.xib */; };
+		2BD3628D175873F800E4AE2E /* FollowListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD36289175873F800E4AE2E /* FollowListViewController.m */; };
+		2BD3628E175873F800E4AE2E /* FollowListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD3628A175873F800E4AE2E /* FollowListViewController.xib */; };
 		2BE93ADB173BD82B0086D98E /* GalleryCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE93AD5173BD8290086D98E /* GalleryCommentViewController.m */; };
 		2BE93ADC173BD82B0086D98E /* CustomGalleryCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE93AD8173BD82B0086D98E /* CustomGalleryCommentCell.m */; };
 		2BE93ADF173BDB4F0086D98E /* CustomGalleryCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BE93ADD173BDB4F0086D98E /* CustomGalleryCommentCell.xib */; };
@@ -141,8 +157,6 @@
 		C8A13E70170C12E90027C655 /* RemoveEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A13E6F170C12E90027C655 /* RemoveEventView.m */; };
 		C8A2E0381755E44C004E2E51 /* JSNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A2E0361755E44C004E2E51 /* JSNotifier.m */; };
 		C8A2E03A1755F31E004E2E51 /* NotifyCheck1.png in Resources */ = {isa = PBXBuildFile; fileRef = C8A2E0391755F31E004E2E51 /* NotifyCheck1.png */; };
-		C8A39B61171D926D00F7F44D /* TagCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A39B5F171D926D00F7F44D /* TagCategoryController.m */; };
-		C8A39B62171D926D00F7F44D /* TagCategoryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A39B60171D926D00F7F44D /* TagCategoryController.xib */; };
 		C8A4176C17411B3000439DBA /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A4176B17411B3000439DBA /* CoreMedia.framework */; };
 		C8A4176F17411BBD00439DBA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A4176E17411BBD00439DBA /* AVFoundation.framework */; };
 		C8A4177117411BED00439DBA /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A4177017411BED00439DBA /* ImageIO.framework */; };
@@ -225,6 +239,12 @@
 		2B9885381727DD10000386E5 /* TSPopoverTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverTouchView.h; sourceTree = "<group>"; };
 		2B9885391727DD10000386E5 /* TSPopoverTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverTouchView.m; sourceTree = "<group>"; };
 		2B98853D1727DEF3000386E5 /* TSPopoverTouchesDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverTouchesDelegate.h; sourceTree = "<group>"; };
+		2BBFDFC9175DD9C80025FA2A /* TagCategoryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TagCategoryController.xib; path = Fluence3/TagCategoryController.xib; sourceTree = "<group>"; };
+		2BBFDFCC175DE7810025FA2A /* CustomCategoryListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCategoryListCell.h; path = Fluence3/CustomCategoryListCell.h; sourceTree = "<group>"; };
+		2BBFDFCD175DE7810025FA2A /* CustomCategoryListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCategoryListCell.m; path = Fluence3/CustomCategoryListCell.m; sourceTree = "<group>"; };
+		2BBFDFCE175DE7810025FA2A /* CustomCategoryListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomCategoryListCell.xib; path = Fluence3/CustomCategoryListCell.xib; sourceTree = "<group>"; };
+		2BBFDFD1175DE7930025FA2A /* TagCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagCategoryController.h; path = Fluence3/TagCategoryController.h; sourceTree = "<group>"; };
+		2BBFDFD2175DE7930025FA2A /* TagCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagCategoryController.m; path = Fluence3/TagCategoryController.m; sourceTree = "<group>"; };
 		2BC20D2E1726C30B00EE2CCB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		2BC20D301726C37A00EE2CCB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		2BC20D321726C39700EE2CCB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -256,6 +276,24 @@
 		2BCF8CA7171FEC3B00B31E12 /* ImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtil.m; sourceTree = "<group>"; };
 		2BD1837D174B081700B198A1 /* red-banner-web3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "red-banner-web3.jpg"; sourceTree = "<group>"; };
 		2BD1837F174B08A400B198A1 /* tactile_noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tactile_noise.png; path = photos/tactile_noise.png; sourceTree = "<group>"; };
+		2BD3627017585C3F00E4AE2E /* BrandListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrandListViewController.h; path = Fluence3/BrandListViewController.h; sourceTree = "<group>"; };
+		2BD3627117585C3F00E4AE2E /* BrandListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrandListViewController.m; path = Fluence3/BrandListViewController.m; sourceTree = "<group>"; };
+		2BD3627217585C3F00E4AE2E /* BrandListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BrandListViewController.xib; path = Fluence3/BrandListViewController.xib; sourceTree = "<group>"; };
+		2BD3627317585C3F00E4AE2E /* CustomBrandListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomBrandListCell.h; path = Fluence3/CustomBrandListCell.h; sourceTree = "<group>"; };
+		2BD3627417585C3F00E4AE2E /* CustomBrandListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomBrandListCell.m; path = Fluence3/CustomBrandListCell.m; sourceTree = "<group>"; };
+		2BD3627517585C3F00E4AE2E /* CustomBrandListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomBrandListCell.xib; path = Fluence3/CustomBrandListCell.xib; sourceTree = "<group>"; };
+		2BD3627B1758710100E4AE2E /* CountryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CountryListViewController.h; path = Fluence3/CountryListViewController.h; sourceTree = "<group>"; };
+		2BD3627C1758710100E4AE2E /* CountryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CountryListViewController.m; path = Fluence3/CountryListViewController.m; sourceTree = "<group>"; };
+		2BD3627D1758710100E4AE2E /* CountryListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CountryListViewController.xib; path = Fluence3/CountryListViewController.xib; sourceTree = "<group>"; };
+		2BD3627E1758710100E4AE2E /* CustomCountryListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCountryListCell.h; path = Fluence3/CustomCountryListCell.h; sourceTree = "<group>"; };
+		2BD3627F1758710100E4AE2E /* CustomCountryListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCountryListCell.m; path = Fluence3/CustomCountryListCell.m; sourceTree = "<group>"; };
+		2BD362801758710100E4AE2E /* CustomCountryListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomCountryListCell.xib; path = Fluence3/CustomCountryListCell.xib; sourceTree = "<group>"; };
+		2BD36285175873F800E4AE2E /* CustomFollowListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomFollowListCell.h; path = Fluence3/CustomFollowListCell.h; sourceTree = "<group>"; };
+		2BD36286175873F800E4AE2E /* CustomFollowListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomFollowListCell.m; path = Fluence3/CustomFollowListCell.m; sourceTree = "<group>"; };
+		2BD36287175873F800E4AE2E /* CustomFollowListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomFollowListCell.xib; path = Fluence3/CustomFollowListCell.xib; sourceTree = "<group>"; };
+		2BD36288175873F800E4AE2E /* FollowListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FollowListViewController.h; path = Fluence3/FollowListViewController.h; sourceTree = "<group>"; };
+		2BD36289175873F800E4AE2E /* FollowListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FollowListViewController.m; path = Fluence3/FollowListViewController.m; sourceTree = "<group>"; };
+		2BD3628A175873F800E4AE2E /* FollowListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FollowListViewController.xib; path = Fluence3/FollowListViewController.xib; sourceTree = "<group>"; };
 		2BE93AD5173BD8290086D98E /* GalleryCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryCommentViewController.m; sourceTree = "<group>"; };
 		2BE93AD6173BD8290086D98E /* GalleryCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryCommentViewController.h; sourceTree = "<group>"; };
 		2BE93AD7173BD82A0086D98E /* CustomGalleryCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomGalleryCommentCell.h; sourceTree = "<group>"; };
@@ -276,8 +314,8 @@
 		C849D18F17049995003D18A5 /* TakeCameraPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeCameraPhoto.m; sourceTree = "<group>"; };
 		C849D19017049995003D18A5 /* TakeCameraPhoto.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TakeCameraPhoto.xib; sourceTree = "<group>"; };
 		C849D197170499B1003D18A5 /* gavandme.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gavandme.jpg; sourceTree = "<group>"; };
-		C84D34C7171EA8B800FFBA18 /* TagBrandController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagBrandController.h; sourceTree = "<group>"; };
-		C84D34C8171EA8B800FFBA18 /* TagBrandController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagBrandController.m; sourceTree = "<group>"; };
+		C84D34C7171EA8B800FFBA18 /* TagBrandController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagBrandController.h; path = Fluence3/TagBrandController.h; sourceTree = "<group>"; };
+		C84D34C8171EA8B800FFBA18 /* TagBrandController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagBrandController.m; path = Fluence3/TagBrandController.m; sourceTree = "<group>"; };
 		C84D34C9171EA8B800FFBA18 /* TagBrandController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagBrandController.xib; sourceTree = "<group>"; };
 		C8840F481741170900965915 /* CaptureSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureSessionManager.h; sourceTree = "<group>"; };
 		C8840F491741170900965915 /* CaptureSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureSessionManager.m; sourceTree = "<group>"; };
@@ -406,9 +444,6 @@
 		C8A2E0361755E44C004E2E51 /* JSNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSNotifier.m; sourceTree = "<group>"; };
 		C8A2E0371755E44C004E2E51 /* JSNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSNotifier.h; sourceTree = "<group>"; };
 		C8A2E0391755F31E004E2E51 /* NotifyCheck1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NotifyCheck1.png; sourceTree = "<group>"; };
-		C8A39B5E171D926D00F7F44D /* TagCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagCategoryController.h; sourceTree = "<group>"; };
-		C8A39B5F171D926D00F7F44D /* TagCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagCategoryController.m; sourceTree = "<group>"; };
-		C8A39B60171D926D00F7F44D /* TagCategoryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagCategoryController.xib; sourceTree = "<group>"; };
 		C8A4176B17411B3000439DBA /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		C8A4176E17411BBD00439DBA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C8A4177017411BED00439DBA /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -633,10 +668,6 @@
 				C8D27A2317058F590069D983 /* ColorViewController.m */,
 				C8AC7EE31716EE49007E035E /* ImagePlinkController.h */,
 				C8AC7EE41716EE49007E035E /* ImagePlinkController.m */,
-				C8A39B5E171D926D00F7F44D /* TagCategoryController.h */,
-				C8A39B5F171D926D00F7F44D /* TagCategoryController.m */,
-				C84D34C7171EA8B800FFBA18 /* TagBrandController.h */,
-				C84D34C8171EA8B800FFBA18 /* TagBrandController.m */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -644,6 +675,32 @@
 		C889BABB16F213370040CA39 = {
 			isa = PBXGroup;
 			children = (
+				C84D34C7171EA8B800FFBA18 /* TagBrandController.h */,
+				C84D34C8171EA8B800FFBA18 /* TagBrandController.m */,
+				2BBFDFD1175DE7930025FA2A /* TagCategoryController.h */,
+				2BBFDFD2175DE7930025FA2A /* TagCategoryController.m */,
+				2BBFDFC9175DD9C80025FA2A /* TagCategoryController.xib */,
+				2BBFDFCC175DE7810025FA2A /* CustomCategoryListCell.h */,
+				2BBFDFCD175DE7810025FA2A /* CustomCategoryListCell.m */,
+				2BBFDFCE175DE7810025FA2A /* CustomCategoryListCell.xib */,
+				2BD36285175873F800E4AE2E /* CustomFollowListCell.h */,
+				2BD36286175873F800E4AE2E /* CustomFollowListCell.m */,
+				2BD36287175873F800E4AE2E /* CustomFollowListCell.xib */,
+				2BD36288175873F800E4AE2E /* FollowListViewController.h */,
+				2BD36289175873F800E4AE2E /* FollowListViewController.m */,
+				2BD3628A175873F800E4AE2E /* FollowListViewController.xib */,
+				2BD3627017585C3F00E4AE2E /* BrandListViewController.h */,
+				2BD3627117585C3F00E4AE2E /* BrandListViewController.m */,
+				2BD3627217585C3F00E4AE2E /* BrandListViewController.xib */,
+				2BD3627317585C3F00E4AE2E /* CustomBrandListCell.h */,
+				2BD3627417585C3F00E4AE2E /* CustomBrandListCell.m */,
+				2BD3627517585C3F00E4AE2E /* CustomBrandListCell.xib */,
+				2BD3627B1758710100E4AE2E /* CountryListViewController.h */,
+				2BD3627C1758710100E4AE2E /* CountryListViewController.m */,
+				2BD3627D1758710100E4AE2E /* CountryListViewController.xib */,
+				2BD3627E1758710100E4AE2E /* CustomCountryListCell.h */,
+				2BD3627F1758710100E4AE2E /* CustomCountryListCell.m */,
+				2BD362801758710100E4AE2E /* CustomCountryListCell.xib */,
 				C889BAD016F213370040CA39 /* Fluence3 */,
 				C889BAC916F213370040CA39 /* Frameworks */,
 				C889BAC716F213370040CA39 /* Products */,
@@ -926,7 +983,6 @@
 				2BC35EF51738F78600EF1A7C /* CustomEventListCell.xib */,
 				2BC52766173A47AD00DE8BF9 /* ISViewController.xib */,
 				C89AEB161725634100AD2EF0 /* MapViewController.xib */,
-				C8A39B60171D926D00F7F44D /* TagCategoryController.xib */,
 				C84D34C9171EA8B800FFBA18 /* TagBrandController.xib */,
 				C8AC7EE51716EE49007E035E /* ImagePlinkController.xib */,
 				2B18F10C171459AE008432D6 /* viewMoreCell.xib */,
@@ -1191,7 +1247,6 @@
 				2B18F10E171459AE008432D6 /* viewMoreCell.xib in Resources */,
 				2B18F11017145A09008432D6 /* shop.png in Resources */,
 				C8AC7EE71716EE49007E035E /* ImagePlinkController.xib in Resources */,
-				C8A39B62171D926D00F7F44D /* TagCategoryController.xib in Resources */,
 				C84D34CB171EA8B800FFBA18 /* TagBrandController.xib in Resources */,
 				C89AEB181725634100AD2EF0 /* MapViewController.xib in Resources */,
 				2BC35EF81738F78600EF1A7C /* CustomEventListCell.xib in Resources */,
@@ -1239,6 +1294,14 @@
 				C8A6C1B517536477007B0092 /* stylistGalleryCommentCell.xib in Resources */,
 				C8A6C1BD17536989007B0092 /* stylistImageViewController.xib in Resources */,
 				C8A2E03A1755F31E004E2E51 /* NotifyCheck1.png in Resources */,
+				2BD3627717585C3F00E4AE2E /* BrandListViewController.xib in Resources */,
+				2BD3627917585C3F00E4AE2E /* CustomBrandListCell.xib in Resources */,
+				2BD362821758710100E4AE2E /* CountryListViewController.xib in Resources */,
+				2BD362841758710100E4AE2E /* CustomCountryListCell.xib in Resources */,
+				2BD3628C175873F800E4AE2E /* CustomFollowListCell.xib in Resources */,
+				2BD3628E175873F800E4AE2E /* FollowListViewController.xib in Resources */,
+				2BBFDFCB175DD9C80025FA2A /* TagCategoryController.xib in Resources */,
+				2BBFDFD0175DE7810025FA2A /* CustomCategoryListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1289,7 +1352,6 @@
 				2B18F0FA1714574F008432D6 /* SelectListViewController.m in Sources */,
 				2B18F10D171459AE008432D6 /* viewMoreCell.m in Sources */,
 				C8AC7EE61716EE49007E035E /* ImagePlinkController.m in Sources */,
-				C8A39B61171D926D00F7F44D /* TagCategoryController.m in Sources */,
 				C84D34CA171EA8B800FFBA18 /* TagBrandController.m in Sources */,
 				2BCF8CA8171FEC3B00B31E12 /* ImageUtil.m in Sources */,
 				C89AEB171725634100AD2EF0 /* MapViewController.m in Sources */,
@@ -1335,6 +1397,14 @@
 				C8A6C1B317536477007B0092 /* stylistImageViewController.m in Sources */,
 				C8A6C1B617536477007B0092 /* stylistGalleryCommentCell.m in Sources */,
 				C8A2E0381755E44C004E2E51 /* JSNotifier.m in Sources */,
+				2BD3627617585C3F00E4AE2E /* BrandListViewController.m in Sources */,
+				2BD3627817585C3F00E4AE2E /* CustomBrandListCell.m in Sources */,
+				2BD362811758710100E4AE2E /* CountryListViewController.m in Sources */,
+				2BD362831758710100E4AE2E /* CustomCountryListCell.m in Sources */,
+				2BD3628B175873F800E4AE2E /* CustomFollowListCell.m in Sources */,
+				2BD3628D175873F800E4AE2E /* FollowListViewController.m in Sources */,
+				2BBFDFCF175DE7810025FA2A /* CustomCategoryListCell.m in Sources */,
+				2BBFDFD3175DE7930025FA2A /* TagCategoryController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

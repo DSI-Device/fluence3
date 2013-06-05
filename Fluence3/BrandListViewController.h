@@ -11,12 +11,11 @@
 #import "utils.h"
 #import "searchDao.h"
 #import "SelectBoxProtocol.h"
-#import "CustomCategoryListCell.h"
+#import "CustomBrandListCell.h"
 #import "viewMoreCell.h"
 #import "Fluence3AppDelegate.h"
-#import "TagBrandController.h"
-@protocol TagCategoryControllerDelegate ;
-@interface TagCategoryController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate,TagBrandControllerDelegate> {
+
+@interface BrandListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate> {
 	MYSBJsonStreamParser *parser;
 	MYSBJsonStreamParserAdapter *adapter;
 	NSMutableArray *dataSource;
@@ -37,13 +36,10 @@
 	int maxSelectionLimit;
 	UIViewController<SelectBoxProtocol> *filterView;
 	NSString *followed_s;
-    NSString *category, *brand,*categoryid;
+    
     Fluence3AppDelegate *appdt;
 }
-@property (nonatomic, retain) id <TagCategoryControllerDelegate> delegate;
-@property (nonatomic, retain) NSString *category;
-@property (nonatomic, retain) NSString *categoryid;
-@property (nonatomic, retain) NSString *brand;
+
 @property(nonatomic, retain) UITextField *searchBar;
 @property(nonatomic, retain) UITableView *listTableView;
 @property(nonatomic, retain) UIActivityIndicatorView *spinner;
@@ -68,11 +64,3 @@
 - (NSString *) getSearchBarTitle;
 
 @end
-
-@protocol TagCategoryControllerDelegate <NSObject>
-
-@optional
-- (void)addItemViewController:(TagCategoryController *)controller didFinishEnteringItem:(NSString *)item:(NSString *)item2;
-
-@end
-
