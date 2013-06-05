@@ -36,4 +36,6 @@
 }
 @property (strong, nonatomic) StylistViewController *imgviewCntrllr;
 
+
+-(void)RegionGallerySelected:(NSString*)jsnString;
 @end

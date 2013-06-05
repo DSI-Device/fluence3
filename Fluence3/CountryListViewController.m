@@ -7,6 +7,7 @@
 //
 
 #import "CountryListViewController.h"
+#import "GalleryNavController.h"
 
 
 @implementation CountryListViewController
@@ -271,6 +272,10 @@
     
         
     NSLog(@"Json Request is %@", jsonStr);
+    
+    
+    GalleryNavController *c=[[GalleryNavController alloc] init];
+    [c RegionGallerySelected:jsonStr];
     
 	[self hideKeyboard:nil];
 }

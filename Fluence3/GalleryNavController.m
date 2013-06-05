@@ -649,4 +649,14 @@
     [alert release];
 }
 
+
+-(void)RegionGallerySelected:(NSString*)jsnString{
+    
+    NSLog([NSString stringWithFormat:@"%@          (%@)", @"IT IS THE JSON FUNCTION", jsnString]);
+   
+}
+
 @end
+
+
+

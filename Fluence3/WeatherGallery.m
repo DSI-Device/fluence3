@@ -7,7 +7,7 @@
 //
 
 #import "WeatherGallery.h"
-#import "GalleryCommentViewController.h"
+#import "WeatherListViewController.h"
 #define BLACK_BAR_COMPONENTS				{ 0.22, 0.22, 0.22, 1.0, 0.07, 0.07, 0.07, 1.0 }
 
 @implementation WeatherGallery
@@ -43,7 +43,7 @@
 //		[iv setImage:[UIImage imageNamed:@"UrbanApps.png"]];
 //		[iv setContentMode:UIViewContentModeScaleAspectFit];
         
-        GalleryCommentViewController *my = [[GalleryCommentViewController alloc] initWithNibName:@"GalleryCommentViewController" bundle:nil] ;
+        WeatherListViewController *my = [[WeatherListViewController alloc] initWithNibName:@"WeatherListViewController" bundle:nil] ;
         //SelectListViewController *my = [[UIApplication sharedApplication] delegate];
         //UITableViewController *tableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
         my.view.frame = CGRectMake(0, 0, 0, 0);

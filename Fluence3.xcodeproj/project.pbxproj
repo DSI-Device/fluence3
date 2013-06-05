@@ -1443,6 +1443,8 @@
 				2BD3628D175873F800E4AE2E /* FollowListViewController.m in Sources */,
 				2BBFDFCF175DE7810025FA2A /* CustomCategoryListCell.m in Sources */,
 				2BBFDFD3175DE7930025FA2A /* TagCategoryController.m in Sources */,
+				2B22C6BC175F3F340026B467 /* WeatherListViewController.m in Sources */,
+				2B22C6C2175F3F430026B467 /* CustomWeatherListCell.m in Sources */,
 				C8C3F2E9175F2E7700D79799 /* WeatherGallery.m in Sources */,
 				C8C3F2EA175F2E7700D79799 /* RegionGallery.m in Sources */,
 				C8C3F2EC175F2E7700D79799 /* FollowerGallery.m in Sources */,
