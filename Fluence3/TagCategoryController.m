@@ -135,7 +135,7 @@
 - (IBAction) searchContentChanged: (id) sender{
 	
 	NSLog(@"inside searchContentChanged......");
-	self.currentLimit = 50;
+	self.currentLimit = 5000;
 	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&doc_name=%@&limit=%d", self.searchBar.text, self.currentLimit];
     NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
 	//NSString *serverUrl=@"http://103.4.147.139/fluence3";

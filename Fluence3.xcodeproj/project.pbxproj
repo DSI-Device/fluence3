@@ -15,6 +15,10 @@
 		2B18F10E171459AE008432D6 /* viewMoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B18F10C171459AE008432D6 /* viewMoreCell.xib */; };
 		2B18F11017145A09008432D6 /* shop.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B18F10F17145A09008432D6 /* shop.png */; };
 		2B1B65611713044D006610D3 /* lava.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2B1B65601713044D006610D3 /* lava.jpeg */; };
+		2B22C6BC175F3F340026B467 /* WeatherListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B22C6BA175F3F340026B467 /* WeatherListViewController.m */; };
+		2B22C6BD175F3F340026B467 /* WeatherListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B22C6BB175F3F340026B467 /* WeatherListViewController.xib */; };
+		2B22C6C2175F3F430026B467 /* CustomWeatherListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B22C6C0175F3F430026B467 /* CustomWeatherListCell.m */; };
+		2B22C6C3175F3F440026B467 /* CustomWeatherListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B22C6C1175F3F430026B467 /* CustomWeatherListCell.xib */; };
 		2B53EDE9170F039200C8C184 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE6170F039200C8C184 /* share.png */; };
 		2B53EDEA170F039200C8C184 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE7170F039200C8C184 /* comment.png */; };
 		2B53EDEB170F039200C8C184 /* heart-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B53EDE8170F039200C8C184 /* heart-icon.png */; };
@@ -229,6 +233,12 @@
 		2B18F10C171459AE008432D6 /* viewMoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = viewMoreCell.xib; sourceTree = "<group>"; };
 		2B18F10F17145A09008432D6 /* shop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shop.png; sourceTree = "<group>"; };
 		2B1B65601713044D006610D3 /* lava.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lava.jpeg; sourceTree = "<group>"; };
+		2B22C6B9175F3F340026B467 /* WeatherListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherListViewController.h; path = Fluence3/WeatherListViewController.h; sourceTree = "<group>"; };
+		2B22C6BA175F3F340026B467 /* WeatherListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeatherListViewController.m; path = Fluence3/WeatherListViewController.m; sourceTree = "<group>"; };
+		2B22C6BB175F3F340026B467 /* WeatherListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WeatherListViewController.xib; path = Fluence3/WeatherListViewController.xib; sourceTree = "<group>"; };
+		2B22C6BF175F3F430026B467 /* CustomWeatherListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomWeatherListCell.h; path = Fluence3/CustomWeatherListCell.h; sourceTree = "<group>"; };
+		2B22C6C0175F3F430026B467 /* CustomWeatherListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomWeatherListCell.m; path = Fluence3/CustomWeatherListCell.m; sourceTree = "<group>"; };
+		2B22C6C1175F3F430026B467 /* CustomWeatherListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomWeatherListCell.xib; path = Fluence3/CustomWeatherListCell.xib; sourceTree = "<group>"; };
 		2B53EDE6170F039200C8C184 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		2B53EDE7170F039200C8C184 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
 		2B53EDE8170F039200C8C184 /* heart-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-icon.png"; sourceTree = "<group>"; };
@@ -687,6 +697,12 @@
 		C889BABB16F213370040CA39 = {
 			isa = PBXGroup;
 			children = (
+				2B22C6BF175F3F430026B467 /* CustomWeatherListCell.h */,
+				2B22C6C0175F3F430026B467 /* CustomWeatherListCell.m */,
+				2B22C6C1175F3F430026B467 /* CustomWeatherListCell.xib */,
+				2B22C6B9175F3F340026B467 /* WeatherListViewController.h */,
+				2B22C6BA175F3F340026B467 /* WeatherListViewController.m */,
+				2B22C6BB175F3F340026B467 /* WeatherListViewController.xib */,
 				C84D34C7171EA8B800FFBA18 /* TagBrandController.h */,
 				C84D34C8171EA8B800FFBA18 /* TagBrandController.m */,
 				2BBFDFD1175DE7930025FA2A /* TagCategoryController.h */,
@@ -1322,6 +1338,8 @@
 				2BD3628E175873F800E4AE2E /* FollowListViewController.xib in Resources */,
 				2BBFDFCB175DD9C80025FA2A /* TagCategoryController.xib in Resources */,
 				2BBFDFD0175DE7810025FA2A /* CustomCategoryListCell.xib in Resources */,
+				2B22C6BD175F3F340026B467 /* WeatherListViewController.xib in Resources */,
+				2B22C6C3175F3F440026B467 /* CustomWeatherListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
