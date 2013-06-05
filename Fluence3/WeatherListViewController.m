@@ -6,10 +6,10 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "CountryListViewController.h"
+#import "WeatherListViewController.h"
 
 
-@implementation CountryListViewController
+@implementation WeatherListViewController
 @synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,appdt;
 
 - (void)loadView{
@@ -25,7 +25,7 @@
     [utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
     appdt = [[UIApplication sharedApplication]delegate];
     [self.listTableView setHidden:YES];
-    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getCountryList/" ];
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getFollowerListData/" ];
     [self performSelector:@selector(triggerAsyncronousRequest2:) withObject: serverUrl];
 }
 
@@ -233,18 +233,19 @@
 		
 	}else {
 		
-		static NSString *cellTableIdentifier = @"CustomCountryListCellIdentifier";
+		static NSString *cellTableIdentifier = @"CustomWeatherListCellIdentifier";
 		
-		CustomCountryListCell *cell = (CustomCountryListCell *)[tableView dequeueReusableCellWithIdentifier:cellTableIdentifier];
+		CustomWeatherListCell *cell = (CustomWeatherListCell *)[tableView dequeueReusableCellWithIdentifier:cellTableIdentifier];
 		if (cell == nil) {
-			NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCountryListCell" owner:self options:nil];
+			NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomWeatherListCell" owner:self options:nil];
 			cell = [nib objectAtIndex:0];
 			cell.selectedBackgroundView = [[[UIView alloc] init] autorelease];
 			[cell.selectedBackgroundView setBackgroundColor:[UIColor orangeColor]];
 		}
-		cell.countryName.text = [rowData objectForKey:@"Name"];
-        cell.countryID = [rowData objectForKey:@"ID"];
-				
+		cell.weatherName.text = [rowData objectForKey:@"Name"];
+        cell.weatherID = [rowData objectForKey:@"ID"];
+		
+		        
 		return cell;
         
 	}
@@ -259,10 +260,10 @@
     NSUInteger row = [indexPath row];
     NSDictionary *rowData = [self.dataSource objectAtIndex:row];[listTableView cellForRowAtIndexPath:indexPath];
     
-    CustomCountryListCell *cell = (CustomCountryListCell *)[tableView cellForRowAtIndexPath:indexPath];
+    CustomWeatherListCell *cell = (CustomWeatherListCell *)[tableView cellForRowAtIndexPath:indexPath];
     
     
-    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId",@"5" , @"gallertType", cell.countryID , @"countryId", nil];
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId",@"7" , @"gallertType", cell.weatherID , @"followerId", nil];
     
     NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
     [dictionnary setObject:jsoning forKey:@"postData"];
