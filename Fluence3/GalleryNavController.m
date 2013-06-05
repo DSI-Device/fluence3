@@ -384,7 +384,37 @@
         [[imageArray objectAtIndex:imgIndex] setValue:imglk forKey:@"imageLike"];
         imglk = @"1";
         [[imageArray objectAtIndex:imgIndex] setValue:imglk forKey:@"imageLiked"];
+        
+        
+        
+        NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"userId",imageId , @"imageId", nil];
+        
+        NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+        [dictionnary setObject:jsoning forKey:@"postData"];
+        
+        NSString *jsonStr = [dictionnary JSONRepresentation];
+        
+        //NSError *error = nil;
+        //NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionnary                                                       options:kNilOptions                                                         error:&error];
+        
+        NSLog(@"jsonRequest is %@", jsonStr);
+        
+        NSURL *nsurl = [ NSURL URLWithString: [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/follow/" ]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl
+                                        
+                                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                        
+                                                           timeoutInterval:60.0];
+        
+        [request setHTTPMethod:@"POST"];
+        
+        [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        
         return 1;
+
+        
     }
     else
     {
