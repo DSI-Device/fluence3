@@ -25,7 +25,7 @@
     [utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
     appdt = [[UIApplication sharedApplication]delegate];
     [self.listTableView setHidden:YES];
-    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getFollowerListData/" ];
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getWeatherListData/" ];
     [self performSelector:@selector(triggerAsyncronousRequest2:) withObject: serverUrl];
 }
 
