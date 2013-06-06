@@ -1801,20 +1801,20 @@
 #pragma mark Date-Related Operation
 
 - (void) swipedScreenDown:(UISwipeGestureRecognizer*)swipeGesture {
-    //[utils showAlert:@"Warning !!" message:@"Activation Failed !! Please try again with correct credential." delegate:self];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate *dateFromString = [[NSDate alloc] init];
-    dateFromString = [dateFormatter dateFromString:self.currentDate];
-    
-    NSCalendar*       calendar = [[[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar] autorelease];
-    NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
-    components.day = 1;
-    NSDate* newDate = [calendar dateByAddingComponents: components toDate: dateFromString options: 0];
-    
-    [_photoSource photoGallery:self handleChangeDate:[dateFormatter stringFromDate:newDate]];
-    
-    
+//    //[utils showAlert:@"Warning !!" message:@"Activation Failed !! Please try again with correct credential." delegate:self];
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+//    NSDate *dateFromString = [[NSDate alloc] init];
+//    dateFromString = [dateFormatter dateFromString:self.currentDate];
+//    
+//    NSCalendar*       calendar = [[[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar] autorelease];
+//    NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
+//    components.day = 1;
+//    NSDate* newDate = [calendar dateByAddingComponents: components toDate: dateFromString options: 0];
+//    
+//    [_photoSource photoGallery:self handleChangeDate:[dateFormatter stringFromDate:newDate]];
+//    
+//    
 }
 - (void) swipedScreenUp:(UISwipeGestureRecognizer*)swipeGesture {
 //    UIAlertView *alert = [[UIAlertView alloc]
@@ -2142,21 +2142,26 @@
 #pragma mark dateChanged
 -(void)dateChanged:(NSDate *)selectedDate{
     
+    
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"dd-MM-yyyy"];
     
     NSString *stringFromDate = [formatter stringFromDate:selectedDate];
     
     [formatter release];
-    UIAlertView *tmp = [[UIAlertView alloc] 
-                        initWithTitle:@"DATE DONE" 
-                        message:stringFromDate
-                        delegate:self 
-                        cancelButtonTitle:nil
-                        otherButtonTitles:@"Ok", nil];
     
-    [tmp show];
-    [tmp release];
+    
+    [_photoSource photoGallery:self handleChangeDate:stringFromDate];
+//    UIAlertView *tmp = [[UIAlertView alloc] 
+//                        initWithTitle:@"DATE DONE" 
+//                        message:stringFromDate
+//                        delegate:self 
+//                        cancelButtonTitle:nil
+//                        otherButtonTitles:@"Ok", nil];
+//    
+//    [tmp show];
+//    [tmp release];
     
     
 }

@@ -184,7 +184,8 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 
 - (void)openSession
 {
-    [spinner startAnimating];
+    
+    
     //FBSession *session = [[FBSession alloc] initWithAppID:nil permissions:nil urlSchemeSuffix:@"foo" tokenCacheStrategy:nil];
     NSArray *permissions = [[NSArray alloc] initWithObjects:
                             @"publish_stream",
@@ -259,7 +260,11 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
           );
     
 	[responseData release];
-    [spinner stopAnimating];
+    if(conCheckr)
+    {
+        [spinner stopAnimating];
+    }
+    
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -330,6 +335,20 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
     spinner.hidesWhenStopped = YES;
     spinner.frame = _window.bounds;
     [self.window.rootViewController.view addSubview:spinner];
+    [spinner startAnimating];
+     conCheckr=[self connectedToNetwork];
+    if(conCheckr)
+    {
+        NSLog(@"Have Connection");
+    }
+    else
+    {
+        
+        UIAlertView *myAlert = [[UIAlertView alloc]initWithTitle:@"No Internet Connection"   message:@"You require an internet connection via WiFi or cellular network."delegate:self cancelButtonTitle:@"Ok"otherButtonTitles:nil];
+        [myAlert show];
+        [myAlert release];
+        
+    }
     //[_window addSubview:spinner];
 
     return YES;
@@ -338,7 +357,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 - (void)reloadViewControllers
 {
     self.userGalleryId = @"1";
-    self.isStylist = FALSE;
+    self.isStylist = TRUE;
     self.notification = @"1";
     ISViewController *viewController1 = [[[ISViewController alloc] init] autorelease];
     viewController1.navigationItem.title = @"Fluence";
