@@ -478,12 +478,19 @@ const NSString *kWundergroundKey = @"67b642d58e39c9cc";
 - (void)uploadRequestFinished:(ASIHTTPRequest *)request
 {
     NSLog(@" Statistics file upload finish: \"%@\"",[request responseString]);
+    
     [spinner stopAnimating];
+    CameraImageController *nCameraImage = [[[CameraImageController alloc] initWithNibName:@"CameraImageController" bundle:nil]autorelease];
+    nCameraImage.title = @"Capture New";
+    [self.navigationController pushViewController:nCameraImage animated:true];
 }
 
 - (void)uploadRequestFailed:(ASIHTTPRequest *)request{
     NSLog(@" Error - Statistics file upload failed: \"%@\"",[[request error] localizedDescription]);
     [spinner stopAnimating];
+    CameraImageController *nCameraImage = [[[CameraImageController alloc] initWithNibName:@"CameraImageController" bundle:nil]autorelease];
+    nCameraImage.title = @"Capture New";
+    [self.navigationController pushViewController:nCameraImage animated:true];
     
 }
 
@@ -682,9 +689,10 @@ const NSString *kWundergroundKey = @"67b642d58e39c9cc";
 }
 
 - (void)handleBack1:(id)sender {
-    ISViewController *nCameraImage = [[[ISViewController alloc] initWithNibName:@"ISViewController" bundle:nil]autorelease];
-    nCameraImage.title = @"Fluence";
-    [self.navigationController pushViewController:nCameraImage animated:true];}
+    CameraImageController *nCameraImage = [[[CameraImageController alloc] initWithNibName:@"CameraImageController" bundle:nil]autorelease];
+    nCameraImage.title = @"Capture New";
+    [self.navigationController pushViewController:nCameraImage animated:true];
+}
 
 
 @end

@@ -29,10 +29,8 @@
 		2B98853A1727DD10000386E5 /* TSPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9885351727DD10000386E5 /* TSPopoverController.m */; };
 		2B98853B1727DD10000386E5 /* TSPopoverPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9885371727DD10000386E5 /* TSPopoverPopoverView.m */; };
 		2B98853C1727DD10000386E5 /* TSPopoverTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9885391727DD10000386E5 /* TSPopoverTouchView.m */; };
-		2BBFDFCB175DD9C80025FA2A /* TagCategoryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBFDFC9175DD9C80025FA2A /* TagCategoryController.xib */; };
 		2BBFDFCF175DE7810025FA2A /* CustomCategoryListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFDFCD175DE7810025FA2A /* CustomCategoryListCell.m */; };
 		2BBFDFD0175DE7810025FA2A /* CustomCategoryListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBFDFCE175DE7810025FA2A /* CustomCategoryListCell.xib */; };
-		2BBFDFD3175DE7930025FA2A /* TagCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFDFD2175DE7930025FA2A /* TagCategoryController.m */; };
 		2BC20D2F1726C30B00EE2CCB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC20D2E1726C30B00EE2CCB /* CFNetwork.framework */; };
 		2BC20D311726C37A00EE2CCB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC20D301726C37A00EE2CCB /* MobileCoreServices.framework */; };
 		2BC20D331726C39700EE2CCB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC20D321726C39700EE2CCB /* Security.framework */; };
@@ -80,8 +78,6 @@
 		C849D19517049995003D18A5 /* TakeCameraPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = C849D18F17049995003D18A5 /* TakeCameraPhoto.m */; };
 		C849D19617049995003D18A5 /* TakeCameraPhoto.xib in Resources */ = {isa = PBXBuildFile; fileRef = C849D19017049995003D18A5 /* TakeCameraPhoto.xib */; };
 		C849D199170499B1003D18A5 /* gavandme.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C849D197170499B1003D18A5 /* gavandme.jpg */; };
-		C84D34CA171EA8B800FFBA18 /* TagBrandController.m in Sources */ = {isa = PBXBuildFile; fileRef = C84D34C8171EA8B800FFBA18 /* TagBrandController.m */; };
-		C84D34CB171EA8B800FFBA18 /* TagBrandController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C84D34C9171EA8B800FFBA18 /* TagBrandController.xib */; };
 		C8840F4A1741170900965915 /* CaptureSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C8840F491741170900965915 /* CaptureSessionManager.m */; };
 		C8840F4D1741191D00965915 /* AROverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8840F4C1741191D00965915 /* AROverlayViewController.m */; };
 		C889BACB16F213370040CA39 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889BACA16F213370040CA39 /* UIKit.framework */; };
@@ -99,6 +95,12 @@
 		C889BAF316F2152E0040CA39 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C889BAF116F2152E0040CA39 /* LoginViewController.xib */; };
 		C88DC2BA17031A6E002402BC /* GalleryNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = C88DC2B817031A6E002402BC /* GalleryNavController.m */; };
 		C88DC2BB17031A6E002402BC /* GalleryNavController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C88DC2B917031A6E002402BC /* GalleryNavController.xib */; };
+		C88E923C1760B39E001C4E2A /* TagBrandController.m in Sources */ = {isa = PBXBuildFile; fileRef = C88E92371760B39C001C4E2A /* TagBrandController.m */; };
+		C88E923D1760B39E001C4E2A /* TagBrandController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C88E92381760B39C001C4E2A /* TagBrandController.xib */; };
+		C88E923E1760B39E001C4E2A /* TagCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = C88E923A1760B39D001C4E2A /* TagCategoryController.m */; };
+		C88E923F1760B39E001C4E2A /* TagCategoryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C88E923B1760B39D001C4E2A /* TagCategoryController.xib */; };
+		C88E92431760B485001C4E2A /* ImagePlinkController.m in Sources */ = {isa = PBXBuildFile; fileRef = C88E92411760B484001C4E2A /* ImagePlinkController.m */; };
+		C88E92441760B485001C4E2A /* ImagePlinkController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C88E92421760B484001C4E2A /* ImagePlinkController.xib */; };
 		C8952FB516F99E7B004EDAD7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8952FB416F99E7B004EDAD7 /* QuartzCore.framework */; };
 		C8952FB916F9A25A004EDAD7 /* GalleryController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8952FB716F9A25A004EDAD7 /* GalleryController.m */; };
 		C8952FBA16F9A25A004EDAD7 /* GalleryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8952FB816F9A25A004EDAD7 /* GalleryController.xib */; };
@@ -174,8 +176,6 @@
 		C8AB1685174CE567004E2463 /* StylistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8AB1680174CE567004E2463 /* StylistViewController.xib */; };
 		C8AB1686174CE567004E2463 /* CustomStylistCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8AB1681174CE567004E2463 /* CustomStylistCell.xib */; };
 		C8AB1687174CE567004E2463 /* CustomStylistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AB1682174CE567004E2463 /* CustomStylistCell.m */; };
-		C8AC7EE61716EE49007E035E /* ImagePlinkController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AC7EE41716EE49007E035E /* ImagePlinkController.m */; };
-		C8AC7EE71716EE49007E035E /* ImagePlinkController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8AC7EE51716EE49007E035E /* ImagePlinkController.xib */; };
 		C8B5A491174B5D68001C1574 /* commentPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B5A48F174B5D68001C1574 /* commentPanel.m */; };
 		C8B5A4AA174B61C5001C1574 /* UAGradientBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B5A496174B61C5001C1574 /* UAGradientBackground.m */; };
 		C8B5A4AB174B61C5001C1574 /* UANoisyGradientBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B5A498174B61C5001C1574 /* UANoisyGradientBackground.m */; };
@@ -253,12 +253,9 @@
 		2B9885381727DD10000386E5 /* TSPopoverTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverTouchView.h; sourceTree = "<group>"; };
 		2B9885391727DD10000386E5 /* TSPopoverTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverTouchView.m; sourceTree = "<group>"; };
 		2B98853D1727DEF3000386E5 /* TSPopoverTouchesDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverTouchesDelegate.h; sourceTree = "<group>"; };
-		2BBFDFC9175DD9C80025FA2A /* TagCategoryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TagCategoryController.xib; path = Fluence3/TagCategoryController.xib; sourceTree = "<group>"; };
 		2BBFDFCC175DE7810025FA2A /* CustomCategoryListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCategoryListCell.h; path = Fluence3/CustomCategoryListCell.h; sourceTree = "<group>"; };
 		2BBFDFCD175DE7810025FA2A /* CustomCategoryListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCategoryListCell.m; path = Fluence3/CustomCategoryListCell.m; sourceTree = "<group>"; };
 		2BBFDFCE175DE7810025FA2A /* CustomCategoryListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomCategoryListCell.xib; path = Fluence3/CustomCategoryListCell.xib; sourceTree = "<group>"; };
-		2BBFDFD1175DE7930025FA2A /* TagCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagCategoryController.h; path = Fluence3/TagCategoryController.h; sourceTree = "<group>"; };
-		2BBFDFD2175DE7930025FA2A /* TagCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagCategoryController.m; path = Fluence3/TagCategoryController.m; sourceTree = "<group>"; };
 		2BC20D2E1726C30B00EE2CCB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		2BC20D301726C37A00EE2CCB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		2BC20D321726C39700EE2CCB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -328,9 +325,6 @@
 		C849D18F17049995003D18A5 /* TakeCameraPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeCameraPhoto.m; sourceTree = "<group>"; };
 		C849D19017049995003D18A5 /* TakeCameraPhoto.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TakeCameraPhoto.xib; sourceTree = "<group>"; };
 		C849D197170499B1003D18A5 /* gavandme.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gavandme.jpg; sourceTree = "<group>"; };
-		C84D34C7171EA8B800FFBA18 /* TagBrandController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagBrandController.h; path = Fluence3/TagBrandController.h; sourceTree = "<group>"; };
-		C84D34C8171EA8B800FFBA18 /* TagBrandController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagBrandController.m; path = Fluence3/TagBrandController.m; sourceTree = "<group>"; };
-		C84D34C9171EA8B800FFBA18 /* TagBrandController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagBrandController.xib; sourceTree = "<group>"; };
 		C8840F481741170900965915 /* CaptureSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureSessionManager.h; sourceTree = "<group>"; };
 		C8840F491741170900965915 /* CaptureSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureSessionManager.m; sourceTree = "<group>"; };
 		C8840F4B1741191D00965915 /* AROverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AROverlayViewController.h; sourceTree = "<group>"; };
@@ -358,6 +352,15 @@
 		C88DC2B717031A6E002402BC /* GalleryNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryNavController.h; sourceTree = "<group>"; };
 		C88DC2B817031A6E002402BC /* GalleryNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryNavController.m; sourceTree = "<group>"; };
 		C88DC2B917031A6E002402BC /* GalleryNavController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryNavController.xib; sourceTree = "<group>"; };
+		C88E92361760B39C001C4E2A /* TagBrandController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagBrandController.h; path = Fluence3/TagBrandController.h; sourceTree = "<group>"; };
+		C88E92371760B39C001C4E2A /* TagBrandController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagBrandController.m; path = Fluence3/TagBrandController.m; sourceTree = "<group>"; };
+		C88E92381760B39C001C4E2A /* TagBrandController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TagBrandController.xib; path = Fluence3/TagBrandController.xib; sourceTree = "<group>"; };
+		C88E92391760B39D001C4E2A /* TagCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagCategoryController.h; path = Fluence3/TagCategoryController.h; sourceTree = "<group>"; };
+		C88E923A1760B39D001C4E2A /* TagCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagCategoryController.m; path = Fluence3/TagCategoryController.m; sourceTree = "<group>"; };
+		C88E923B1760B39D001C4E2A /* TagCategoryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TagCategoryController.xib; path = Fluence3/TagCategoryController.xib; sourceTree = "<group>"; };
+		C88E92401760B484001C4E2A /* ImagePlinkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImagePlinkController.h; path = Fluence3/ImagePlinkController.h; sourceTree = "<group>"; };
+		C88E92411760B484001C4E2A /* ImagePlinkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImagePlinkController.m; path = Fluence3/ImagePlinkController.m; sourceTree = "<group>"; };
+		C88E92421760B484001C4E2A /* ImagePlinkController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImagePlinkController.xib; path = Fluence3/ImagePlinkController.xib; sourceTree = "<group>"; };
 		C8952FB416F99E7B004EDAD7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C8952FB616F9A25A004EDAD7 /* GalleryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryController.h; sourceTree = "<group>"; };
 		C8952FB716F9A25A004EDAD7 /* GalleryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryController.m; sourceTree = "<group>"; };
@@ -477,9 +480,6 @@
 		C8AB1681174CE567004E2463 /* CustomStylistCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomStylistCell.xib; sourceTree = "<group>"; };
 		C8AB1682174CE567004E2463 /* CustomStylistCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomStylistCell.m; sourceTree = "<group>"; };
 		C8AB1683174CE567004E2463 /* CustomStylistCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomStylistCell.h; sourceTree = "<group>"; };
-		C8AC7EE31716EE49007E035E /* ImagePlinkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePlinkController.h; sourceTree = "<group>"; };
-		C8AC7EE41716EE49007E035E /* ImagePlinkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePlinkController.m; sourceTree = "<group>"; };
-		C8AC7EE51716EE49007E035E /* ImagePlinkController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImagePlinkController.xib; sourceTree = "<group>"; };
 		C8B5A48F174B5D68001C1574 /* commentPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commentPanel.m; sourceTree = "<group>"; };
 		C8B5A490174B5D68001C1574 /* commentPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentPanel.h; sourceTree = "<group>"; };
 		C8B5A495174B61C5001C1574 /* UAGradientBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAGradientBackground.h; sourceTree = "<group>"; };
@@ -688,8 +688,6 @@
 				C849D18F17049995003D18A5 /* TakeCameraPhoto.m */,
 				C8D27A2217058F590069D983 /* ColorViewController.h */,
 				C8D27A2317058F590069D983 /* ColorViewController.m */,
-				C8AC7EE31716EE49007E035E /* ImagePlinkController.h */,
-				C8AC7EE41716EE49007E035E /* ImagePlinkController.m */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -697,17 +695,21 @@
 		C889BABB16F213370040CA39 = {
 			isa = PBXGroup;
 			children = (
+				C88E92401760B484001C4E2A /* ImagePlinkController.h */,
+				C88E92411760B484001C4E2A /* ImagePlinkController.m */,
+				C88E92421760B484001C4E2A /* ImagePlinkController.xib */,
+				C88E92361760B39C001C4E2A /* TagBrandController.h */,
+				C88E92371760B39C001C4E2A /* TagBrandController.m */,
+				C88E92381760B39C001C4E2A /* TagBrandController.xib */,
+				C88E92391760B39D001C4E2A /* TagCategoryController.h */,
+				C88E923A1760B39D001C4E2A /* TagCategoryController.m */,
+				C88E923B1760B39D001C4E2A /* TagCategoryController.xib */,
 				2B22C6BF175F3F430026B467 /* CustomWeatherListCell.h */,
 				2B22C6C0175F3F430026B467 /* CustomWeatherListCell.m */,
 				2B22C6C1175F3F430026B467 /* CustomWeatherListCell.xib */,
 				2B22C6B9175F3F340026B467 /* WeatherListViewController.h */,
 				2B22C6BA175F3F340026B467 /* WeatherListViewController.m */,
 				2B22C6BB175F3F340026B467 /* WeatherListViewController.xib */,
-				C84D34C7171EA8B800FFBA18 /* TagBrandController.h */,
-				C84D34C8171EA8B800FFBA18 /* TagBrandController.m */,
-				2BBFDFD1175DE7930025FA2A /* TagCategoryController.h */,
-				2BBFDFD2175DE7930025FA2A /* TagCategoryController.m */,
-				2BBFDFC9175DD9C80025FA2A /* TagCategoryController.xib */,
 				2BBFDFCC175DE7810025FA2A /* CustomCategoryListCell.h */,
 				2BBFDFCD175DE7810025FA2A /* CustomCategoryListCell.m */,
 				2BBFDFCE175DE7810025FA2A /* CustomCategoryListCell.xib */,
@@ -1019,8 +1021,6 @@
 				2BC35EF51738F78600EF1A7C /* CustomEventListCell.xib */,
 				2BC52766173A47AD00DE8BF9 /* ISViewController.xib */,
 				C89AEB161725634100AD2EF0 /* MapViewController.xib */,
-				C84D34C9171EA8B800FFBA18 /* TagBrandController.xib */,
-				C8AC7EE51716EE49007E035E /* ImagePlinkController.xib */,
 				2B18F10C171459AE008432D6 /* viewMoreCell.xib */,
 				2B18F0FF1714579F008432D6 /* SelectListViewController.xib */,
 				2B18F0F41714574F008432D6 /* CustomPeopleListCell.xib */,
@@ -1282,8 +1282,6 @@
 				2B18F1001714579F008432D6 /* SelectListViewController.xib in Resources */,
 				2B18F10E171459AE008432D6 /* viewMoreCell.xib in Resources */,
 				2B18F11017145A09008432D6 /* shop.png in Resources */,
-				C8AC7EE71716EE49007E035E /* ImagePlinkController.xib in Resources */,
-				C84D34CB171EA8B800FFBA18 /* TagBrandController.xib in Resources */,
 				C89AEB181725634100AD2EF0 /* MapViewController.xib in Resources */,
 				2BC35EF81738F78600EF1A7C /* CustomEventListCell.xib in Resources */,
 				2BC35EFE1738F8A500EF1A7C /* EventListViewController.xib in Resources */,
@@ -1336,10 +1334,12 @@
 				2BD362841758710100E4AE2E /* CustomCountryListCell.xib in Resources */,
 				2BD3628C175873F800E4AE2E /* CustomFollowListCell.xib in Resources */,
 				2BD3628E175873F800E4AE2E /* FollowListViewController.xib in Resources */,
-				2BBFDFCB175DD9C80025FA2A /* TagCategoryController.xib in Resources */,
 				2BBFDFD0175DE7810025FA2A /* CustomCategoryListCell.xib in Resources */,
 				2B22C6BD175F3F340026B467 /* WeatherListViewController.xib in Resources */,
 				2B22C6C3175F3F440026B467 /* CustomWeatherListCell.xib in Resources */,
+				C88E923D1760B39E001C4E2A /* TagBrandController.xib in Resources */,
+				C88E923F1760B39E001C4E2A /* TagCategoryController.xib in Resources */,
+				C88E92441760B485001C4E2A /* ImagePlinkController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1389,8 +1389,6 @@
 				2B18F0F81714574F008432D6 /* CustomPeopleListCell.m in Sources */,
 				2B18F0FA1714574F008432D6 /* SelectListViewController.m in Sources */,
 				2B18F10D171459AE008432D6 /* viewMoreCell.m in Sources */,
-				C8AC7EE61716EE49007E035E /* ImagePlinkController.m in Sources */,
-				C84D34CA171EA8B800FFBA18 /* TagBrandController.m in Sources */,
 				2BCF8CA8171FEC3B00B31E12 /* ImageUtil.m in Sources */,
 				C89AEB171725634100AD2EF0 /* MapViewController.m in Sources */,
 				C838CB741726A4CC00B9AC17 /* MyAnnotation.m in Sources */,
@@ -1442,13 +1440,15 @@
 				2BD3628B175873F800E4AE2E /* CustomFollowListCell.m in Sources */,
 				2BD3628D175873F800E4AE2E /* FollowListViewController.m in Sources */,
 				2BBFDFCF175DE7810025FA2A /* CustomCategoryListCell.m in Sources */,
-				2BBFDFD3175DE7930025FA2A /* TagCategoryController.m in Sources */,
 				2B22C6BC175F3F340026B467 /* WeatherListViewController.m in Sources */,
 				2B22C6C2175F3F430026B467 /* CustomWeatherListCell.m in Sources */,
 				C8C3F2E9175F2E7700D79799 /* WeatherGallery.m in Sources */,
 				C8C3F2EA175F2E7700D79799 /* RegionGallery.m in Sources */,
 				C8C3F2EC175F2E7700D79799 /* FollowerGallery.m in Sources */,
 				C8C3F2EE175F2E7700D79799 /* BrandGallery.m in Sources */,
+				C88E923C1760B39E001C4E2A /* TagBrandController.m in Sources */,
+				C88E923E1760B39E001C4E2A /* TagCategoryController.m in Sources */,
+				C88E92431760B485001C4E2A /* ImagePlinkController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

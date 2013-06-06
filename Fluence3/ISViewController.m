@@ -152,11 +152,11 @@
     selectPoseListView.title = @"Find People";
     [self.navigationController pushViewController:selectPoseListView animated:true];
     */
-    /*
+    
     selectListView = [[[SelectListViewController alloc] initWithNibName:@"SelectListViewController" bundle:nil]autorelease];
     selectListView.title = @"Find People";
     [self.navigationController pushViewController:selectListView animated:true];
-    */
+    
     /*
     selectTasteListView = [[[SelectTasteListViewController alloc] initWithNibName:@"SelectTasteListViewController" bundle:nil]autorelease];
     selectTasteListView.title = @"Find Event";
@@ -172,10 +172,11 @@
     countryListViewController.title = @"Select Country";
     [self.navigationController pushViewController:countryListViewController animated:true];
      */
-    
+    /*
     FollowListViewController *followListViewController = [[[FollowListViewController alloc] initWithNibName:@"FollowListViewController" bundle:nil]autorelease];
     followListViewController.title = @"Select Follow";
     [self.navigationController pushViewController:followListViewController animated:true];
+     */
 }
 - (IBAction)mapViewClicked{
     mapViewController = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil]autorelease];

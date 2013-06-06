@@ -16,6 +16,7 @@
 #import "FollowerGallery.h"
 #import "RegionGallery.h"
 #import "CountryListViewController.h"
+#import "BrandListViewController.h"
 @implementation GalleryNavController
 @synthesize imgviewCntrllr,rg;
 - (id)initWithStyle:(UITableViewStyle)style
@@ -168,11 +169,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if(appdt.isStylist)
     {
-        return 7-2;
+        return 7;
     }
     else
     {
-        return 6-2;
+        return 6;
         
     }
 }
@@ -291,42 +292,10 @@
         
         
         
-        BrandGallery *modalPanel = [[[BrandGallery alloc] initWithFrame:self.view.bounds title:@"Brand Gallery"] autorelease];
-        
-        int blocksDelegateOrNone = arc4random() % 3;
-        if (0 == blocksDelegateOrNone) {
-            modalPanel.onClosePressed = ^(UAModalPanel* panel) {
-                [panel hideWithOnComplete:^(BOOL finished) {
-                    [panel removeFromSuperview];
-                }];
-                UADebugLog(@"onClosePressed block called from panel: %@", modalPanel);
-            };
-            modalPanel.onActionPressed = ^(UAModalPanel* panel) {
-                UADebugLog(@"onActionPressed block called from panel: %@", modalPanel);
-            };
-            
-            UADebugLog(@"UAModalView will display using blocks: %@", modalPanel);
-            
-        } else if (1 == blocksDelegateOrNone) {
-            ///////////////////////////////////
-            // Add self as the delegate so we know how to close the panel
-            modalPanel.delegate = self;
-            
-            UADebugLog(@"UAModalView will display using delegate methods: %@", modalPanel);
-            
-        } else {
-            // no-op. No delegate or blocks
-            UADebugLog(@"UAModalView will display without blocks or delegate methods: %@", modalPanel);
-        }
-        
-        
-        ///////////////////////////////////
-        // Add the panel to our view
-        [self.view addSubview:modalPanel];
-        
-        ///////////////////////////////////
-        // Show the panel from the center of the button that was pressed
-        [modalPanel showFromPoint:CGPointMake(150.0, 150.0)];
+        BrandListViewController* nextView = [[BrandListViewController alloc]initWithNibName:@"BrandListViewController" bundle:[NSBundle mainBundle]];
+        nextView.delegate = self;
+        [self presentViewController:nextView animated:YES completion:nil];
+        [nextView release];
         
         
         

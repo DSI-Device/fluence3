@@ -14,7 +14,9 @@
 #import "utils.h"
 #import "LocationGetter.h"
 #import "CameraImageController.h"
-@interface ImagePlinkController : UIViewController<TagCategoryControllerDelegate, LocationGetterDelegate>{
+#import "CountryListViewController.h"
+
+@interface ImagePlinkController : UIViewController<TagCategoryControllerDelegate, LocationGetterDelegate, CountryControllerDelegate>{
     Fluence3AppDelegate *appdt;
     UIView *_container; // used as view for the controller
 	UIView *_innerContainer; // sized and placed to be fullscreen within the container

@@ -13,7 +13,7 @@
 #import "SelectBoxProtocol.h"
 #import "CustomPeopleListCell.h"
 #import "viewMoreCell.h"
-
+#import "Fluence3AppDelegate.h"
 @interface SelectListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate> {
 	MYSBJsonStreamParser *parser;
 	MYSBJsonStreamParserAdapter *adapter;
@@ -29,7 +29,7 @@
 	IBOutlet UIActivityIndicatorView *spinner;
 	IBOutlet UIScrollView *spinnerBg;
 	IBOutlet UILabel *countText;
-	
+	Fluence3AppDelegate *appdt;
 	searchDao *dao;
 	BOOL *isSearchFromOnline;
 	int maxSelectionLimit;
@@ -52,6 +52,7 @@
 @property(nonatomic, assign) int currentLimit;
 @property(nonatomic, assign) NSString *followed_s;
 @property(nonatomic, assign) int action_status;
+@property(nonatomic, assign) Fluence3AppDelegate *appdt;
 - (IBAction) selectionDone:(id) sender;
 - (IBAction) searchContentChanged: (id) sender;
 - (IBAction) hideKeyboard: (id) sender;

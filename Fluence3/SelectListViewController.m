@@ -11,7 +11,7 @@
 
 @implementation SelectListViewController
 
-@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit;
+@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,appdt;
 
 - (void)loadView{
 	[super loadView];
@@ -24,10 +24,10 @@
 	parser.delegate = adapter;
 	parser.multi = YES;
     [utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
-    
+    appdt = [[UIApplication sharedApplication]delegate];
 	[self.listTableView setHidden:YES];
 	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&limit=%d",self.currentLimit];
-    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/index/" ];
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/catchPostedDataOfPoseList/" ];
 		[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
 	//[utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
 	
@@ -35,14 +35,32 @@
 
 - (void) triggerAsyncronousRequest: (NSString *)url {
 	
-	[self.spinner startAnimating];
+    [self.spinner startAnimating];
 	self.spinner.hidden = NO;
 	self.spinnerBg.hidden = NO;
 	
-	url = [url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];//asynchronous call
-	[[NSURLConnection alloc] initWithRequest:request delegate:self];
-	
+    
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId", nil];
+    
+    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+    [dictionnary setObject:jsoning forKey:@"postData"];
+    
+    NSString *jsonStr = [dictionnary JSONRepresentation];
+    
+    NSLog(@"Join/Cancel jsonRequest is %@", jsonStr);
+    
+    NSURL *nsurl = [ NSURL URLWithString: url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl
+                                    
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                    
+                                                       timeoutInterval:60.0];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
 - (IBAction) searchContentChanged: (id) sender{
@@ -50,7 +68,7 @@
 	NSLog(@"inside searchContentChanged......");
 	self.currentLimit = 5000;
 	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&doc_name=%@&limit=%d", self.searchBar.text, self.currentLimit];
-    NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
+   NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/catchPostedDataOfPoseList/" ];
 	//NSString *serverUrl=@"http://103.4.147.139/fluence3";
 	[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
 }
@@ -188,14 +206,17 @@
 			cell.selectedBackgroundView = [[[UIView alloc] init] autorelease];
 			[cell.selectedBackgroundView setBackgroundColor:[UIColor orangeColor]];
 		}
-		cell.userName.text = [rowData objectForKey:@"userName"];
-        cell.userID = [rowData objectForKey:@"userID"];
+		cell.userName.text = [rowData objectForKey:@"Name"];
+        cell.userID = [rowData objectForKey:@"ID"];
+        cell.userFb = [rowData objectForKey:@"Fb"];
 		cell.followed.hidden = NO;
         cell.followed.tag=[indexPath row];
         followed_s = [rowData objectForKey:@"followed"];
         [cell.followed addTarget:self action:@selector(tappedFollowBtn2:)  forControlEvents:UIControlEventTouchUpInside];
-        //NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
-		NSString *serverUrl = [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"images/%@",[rowData objectForKey:@"userImage"]];
+        
+		NSString *serverUrl = [@"http://graph.facebook.com/" stringByAppendingFormat:@"%@/picture?type=small",[rowData objectForKey:@"Fb"]];
+        
+        //[[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"images/%@",[rowData objectForKey:@"userImage"]];
 		
 		NSURL *url = [NSURL URLWithString:serverUrl];
 		
@@ -219,6 +240,7 @@
 		}
 		
 		return cell;
+		
 
 	}
 }
@@ -252,19 +274,45 @@
 	
     
 	
-   	NSLog(@"Follower ID : %@ ",cell.userID);
-	NSString *myRequestString = [[NSString alloc] initWithFormat:@"userID=%@&followed=%@",cell.userID,followed_s];
-	NSLog(@"%@ ",myRequestString);
-	NSData *myRequestData = [ NSData dataWithBytes: [ myRequestString UTF8String ] length: [ myRequestString length ] ];
-	NSMutableURLRequest *request = [ [ NSMutableURLRequest alloc ] initWithURL: [ NSURL URLWithString: [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/follow/" ]]];
-   	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
-    [request setHTTPMethod: @"POST"];
-	[request setHTTPBody: myRequestData];
-	NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-	
-    if (conn) NSLog(@"Connection Successful");
-	[request release];//shuvo
-
+    //   	NSLog(@"Follower ID : %@ ",cell.userID);
+    //	NSString *myRequestString = [[NSString alloc] initWithFormat:@"FollowerUserId=%@&FollowUserId=%@&action=%@",appdt.userId,cell.userFb,followed_s];
+    //	NSLog(@"%@ ",myRequestString);
+    //	NSData *myRequestData = [ NSData dataWithBytes: [ myRequestString UTF8String ] length: [ myRequestString length ] ];
+    //	NSMutableURLRequest *request = [ [ NSMutableURLRequest alloc ] initWithURL: [ NSURL URLWithString: [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/follow/" ]]];
+    //   	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
+    //    [request setHTTPMethod: @"POST"];
+    //	[request setHTTPBody: myRequestData];
+    //	NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    //
+    //    if (conn) NSLog(@"Connection Successful");
+    //	[request release];//shuvo
+    
+    
+    
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"FollowerUserId",cell.userID , @"FollowUserId", followed_s , @"action", nil];
+    
+    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+    [dictionnary setObject:jsoning forKey:@"postData"];
+    
+    NSString *jsonStr = [dictionnary JSONRepresentation];
+    
+    //NSError *error = nil;
+    //NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionnary                                                       options:kNilOptions                                                         error:&error];
+    
+    NSLog(@"Follow/Unfollow jsonRequest is %@", jsonStr);
+    
+    NSURL *nsurl = [ NSURL URLWithString: [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/follow/" ]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl
+                                    
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                    
+                                                       timeoutInterval:60.0];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
      
      // event handler after selecting a table row
