@@ -17,7 +17,7 @@
 #import "Fluence3AppDelegate.h"
 #import "YHCPickerView.h"
 #import "galleryDateSelect.h"
-
+#import "GalleryController.h"
 @class DDMenuController;
 typedef enum
 {

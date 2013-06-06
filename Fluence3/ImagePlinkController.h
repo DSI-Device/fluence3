@@ -13,7 +13,7 @@
 #import "ASIHTTPRequest.h"
 #import "utils.h"
 #import "LocationGetter.h"
-
+#import "CameraImageController.h"
 @interface ImagePlinkController : UIViewController<TagCategoryControllerDelegate, LocationGetterDelegate>{
     Fluence3AppDelegate *appdt;
     UIView *_container; // used as view for the controller

@@ -29,6 +29,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back"
+                                                                   style:UIBarButtonItemStyleBordered
+                                                                  target:self
+                                                                  action:@selector(handleBack:)];
+    
+    self.navigationItem.leftBarButtonItem = backButton;
+    //[backButton release];
+
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -59,7 +67,11 @@
     [self.navigationController pushViewController:arOverlayView animated:true];
 
 }
-
+- (void)handleBack:(id)sender {
+    ISViewController *nCameraImage = [[[ISViewController alloc] initWithNibName:@"ISViewController" bundle:nil]autorelease];
+    nCameraImage.title = @"Fluence";
+    [self.navigationController pushViewController:nCameraImage animated:true];
+}
 
 
 @end

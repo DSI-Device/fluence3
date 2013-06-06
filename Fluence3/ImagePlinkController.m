@@ -14,6 +14,7 @@
 #import "ASIFormDataRequest.h"
 
 @class ASIFormDataRequest;
+@class CameraImageController;
 
 #define kCaptionPadding 3
 #define kToolbarHeight 40
@@ -51,6 +52,13 @@ const NSString *kWundergroundKey = @"67b642d58e39c9cc";
 
 - (void)viewDidLoad
 {
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back"
+                                                                   style:UIBarButtonItemStyleBordered
+                                                                  target:self
+                                                                  action:@selector(handleBack1:)];
+    
+    self.navigationItem.leftBarButtonItem = backButton;
+    //[backButton release];
     [super viewDidLoad];
     spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [spinner setCenter:CGPointMake(((self.view.frame.size.width/2.0)), ((self.view.frame.size.height/2.0)-80))]; 
@@ -70,6 +78,7 @@ const NSString *kWundergroundKey = @"67b642d58e39c9cc";
 }
 - (void)loadView
 {
+    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString* path = [documentsDirectory stringByAppendingPathComponent:
@@ -158,7 +167,7 @@ const NSString *kWundergroundKey = @"67b642d58e39c9cc";
 //set the button's title
     [_cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
 //listen for clicks
-    [_cancelButton addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [_cancelButton addTarget:self action:@selector(handleBack) forControlEvents:UIControlEventTouchUpInside];
 //add the button to the view
     
 // set view
@@ -662,6 +671,20 @@ const NSString *kWundergroundKey = @"67b642d58e39c9cc";
 //    [self updateStatusMessage:statusMessage stopActivityIndicator:YES stopLocationServices:YES logMessage:weatherResults];
 }
 
+-(void)handleBack
+{
+    //handle back
+    
+    CameraImageController *nCameraImage = [[[CameraImageController alloc] initWithNibName:@"CameraImageController" bundle:nil]autorelease];
+    nCameraImage.title = @"Capture New";
+    [self.navigationController pushViewController:nCameraImage animated:true];
+    
+}
+
+- (void)handleBack1:(id)sender {
+    ISViewController *nCameraImage = [[[ISViewController alloc] initWithNibName:@"ISViewController" bundle:nil]autorelease];
+    nCameraImage.title = @"Fluence";
+    [self.navigationController pushViewController:nCameraImage animated:true];}
 
 
 @end

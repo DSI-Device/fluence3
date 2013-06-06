@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CaptureSessionManager.h"
 #import "AROverlayViewController.h"
-
+#import "ISViewController.h"
 @interface CameraImageController : UIViewController <UINavigationControllerDelegate>{
     NSTimer *counterTimer;
     CaptureSessionManager *captureManager;

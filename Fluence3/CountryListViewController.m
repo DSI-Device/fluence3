@@ -258,7 +258,8 @@
     NSLog(@"Row selected...");
     
     NSUInteger row = [indexPath row];
-    NSDictionary *rowData = [self.dataSource objectAtIndex:row];[listTableView cellForRowAtIndexPath:indexPath];
+    NSDictionary *rowData = [self.dataSource objectAtIndex:row];
+    [listTableView cellForRowAtIndexPath:indexPath];
     
     CustomCountryListCell *cell = (CustomCountryListCell *)[tableView cellForRowAtIndexPath:indexPath];
     
@@ -272,13 +273,18 @@
     
         
     NSLog(@"Json Request is %@", jsonStr);
-    
-    
+        
+    [self.delegate addItemViewController:self didFinishEnteringItem:jsonStr];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    /*
     GalleryNavController *c=[[GalleryNavController alloc] init];
-    [c RegionGallerySelected:jsonStr];
     
-	[self hideKeyboard:nil];
+    [c RegionGallerySelected:jsonStr];
+    [self removeFromParentViewController];
+	[self hideKeyboard:nil];*/
 }
+
+
 
 - (IBAction) hideKeyboard: (id) sender{
 	[searchBar resignFirstResponder];

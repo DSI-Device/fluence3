@@ -295,7 +295,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 - (void)reloadViewControllers
 {
     self.userGalleryId = @"1";
-    self.isStylist = TRUE;
+    self.isStylist = FALSE;
     self.notification = @"1";
     ISViewController *viewController1 = [[[ISViewController alloc] init] autorelease];
     viewController1.navigationItem.title = @"Fluence";

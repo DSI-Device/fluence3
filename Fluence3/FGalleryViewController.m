@@ -202,7 +202,12 @@
     [swipeGestureDown release];
     [swipeGestureUp release];
     
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back"
+                                                                   style:UIBarButtonItemStyleBordered
+                                                                  target:self
+                                                                  action:@selector(handleBack:)];
     
+    self.navigationItem.leftBarButtonItem = backButton;
     
     
     countriesArray = [[NSMutableArray alloc] init];
@@ -237,7 +242,11 @@
 - (void) backButtonClicked: (id) sender{
 	//[self dismissViewControllerAnimated:YES completion:nil];
 }
-
+- (void)handleBack:(id)sender {
+    GalleryController *gc = [[[GalleryController alloc] initWithNibName:@"GalleryController" bundle:nil]autorelease];
+    gc.title = @"Gallery";
+    [self.navigationController pushViewController:gc animated:true];
+}
 - (void)loadView
 {
     

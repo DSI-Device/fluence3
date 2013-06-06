@@ -14,9 +14,10 @@
 #import "RegionGallery.h"
 #import "WeatherGallery.h"
 #import "FollowerGallery.h"
-
+#import "RegionGallery.h"
+#import "CountryListViewController.h"
 @implementation GalleryNavController
-@synthesize imgviewCntrllr;
+@synthesize imgviewCntrllr,rg;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -46,32 +47,32 @@
     
     
     
-   	NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId", @"1" , @"gallertType", nil];
-    
-    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
-    [dictionnary setObject:jsoning forKey:@"postData"];
-    
-    NSString *jsonStr = [dictionnary JSONRepresentation];
-
-    NSLog(@"Json send %@", jsonStr);
-    
-    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getGallery/" ];
-    //[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverUrl]];
-    
-    [request setHTTPMethod:@"POST"];
-    
-    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
-
-    NSError *theError = nil;
-    NSURLResponse *theResponse =[[NSURLResponse alloc]init];
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&theError];
-    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
-    NSLog(@"Json back %@", string);
-    
-    NSMutableArray *imageArray2  = [string JSONValue];
+//   	NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId", @"1" , @"gallertType", nil];
+//    
+//    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+//    [dictionnary setObject:jsoning forKey:@"postData"];
+//    
+//    NSString *jsonStr = [dictionnary JSONRepresentation];
+//
+//    NSLog(@"Json send %@", jsonStr);
+//    
+//    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getGallery/" ];
+//    //[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
+//    
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverUrl]];
+//    
+//    [request setHTTPMethod:@"POST"];
+//    
+//    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+//
+//    NSError *theError = nil;
+//    NSURLResponse *theResponse =[[NSURLResponse alloc]init];
+//    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&theError];
+//    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//    
+//    NSLog(@"Json back %@", string);
+//    
+//    NSMutableArray *imageArray2  = [string JSONValue];
 	
     //localCaptions = [[NSArray alloc] initWithObjects:@"Lava", @"Hawaii", @"Audi", @"Happy New Year!",@"Frosty Web",nil];
     //localImages = [[NSArray alloc] initWithObjects: @"lava.jpeg", @"hawaii.jpeg", @"audi.jpg",nil];
@@ -96,9 +97,9 @@
     stylists = [[NSMutableArray alloc] initWithObjects:stdic,nil];
 //    imageArray = [[NSMutableArray alloc] initWithObjects:localCollection,localCollection1,localCollection2,nil];
     imageArray = [[NSMutableArray alloc] initWithObjects:nil];
-    for (NSDictionary *dict in imageArray2) {
-        [imageArray addObject:dict];
-    }
+//    for (NSDictionary *dict in imageArray2) {
+//        [imageArray addObject:dict];
+//    }
 
 
     [stylist1 release];
@@ -167,11 +168,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if(appdt.isStylist)
     {
-        return 7;
+        return 7-2;
     }
     else
     {
-        return 6;
+        return 6-2;
         
     }
 }
@@ -228,6 +229,43 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
 	if( indexPath.row == 0 ) {
+        
+        
+        
+        NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId",@"1" , @"gallertType", nil];
+        
+        NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+        [dictionnary setObject:jsoning forKey:@"postData"];
+        
+        NSString *jsnString = [dictionnary JSONRepresentation];
+        
+        NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getGallery/" ];
+        //[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverUrl]];
+        
+        [request setHTTPMethod:@"POST"];
+        
+        [request setHTTPBody:[jsnString dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        NSError *theError = nil;
+        NSURLResponse *theResponse =[[NSURLResponse alloc]init];
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&theError];
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        
+        NSLog(@"Json back %@", string);
+        
+        NSMutableArray *imageArray2  = [string JSONValue];
+        imageArray = [[NSMutableArray alloc] initWithObjects:nil];
+        for (NSDictionary *dict in imageArray2) {
+            [imageArray addObject:dict];
+        }
+
+        
+        
+        
+        
+        
 		localGallery = [[FGalleryViewController alloc] initWithPhotoSource:self];
         //        [self.navigationController pushViewController:localGallery animated:YES];
         //        [localGallery release];
@@ -302,6 +340,42 @@
 		UIBarButtonItem *editCaptionButton = [[[UIBarButtonItem alloc] initWithImage:captionIcon style:UIBarButtonItemStylePlain target:self action:@selector(handleEditCaptionButtonTouch:)] autorelease];
 		NSArray *barItems = [NSArray arrayWithObjects:editCaptionButton, trashButton, nil];
 		
+        
+        
+        NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId",@"3" , @"gallertType", nil];
+        
+        NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+        [dictionnary setObject:jsoning forKey:@"postData"];
+        
+        NSString *jsnString = [dictionnary JSONRepresentation];
+        
+        NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getGallery/" ];
+        //[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverUrl]];
+        
+        [request setHTTPMethod:@"POST"];
+        
+        [request setHTTPBody:[jsnString dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        NSError *theError = nil;
+        NSURLResponse *theResponse =[[NSURLResponse alloc]init];
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&theError];
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        
+        NSLog(@"Json back %@", string);
+        
+        NSMutableArray *imageArray2  = [string JSONValue];
+        imageArray = [[NSMutableArray alloc] initWithObjects:nil];
+        for (NSDictionary *dict in imageArray2) {
+            [imageArray addObject:dict];
+        }
+
+        
+        
+        
+        
+        
 		localGallery = [[FGalleryViewController alloc] initWithPhotoSource:self barItems:barItems];
         //        [self.navigationController pushViewController:localGallery animated:YES];
         UIViewController *topVC = (UIViewController *)self.navigationController.delegate;
@@ -316,18 +390,24 @@
     }
     else if( indexPath.row == 3 )
     {
+        CountryListViewController* nextView = [[CountryListViewController alloc]initWithNibName:@"CountryListViewController" bundle:[NSBundle mainBundle]];
+        nextView.delegate = self;
+        [self presentViewController:nextView animated:YES completion:nil];
+        [nextView release];
         
-        RegionGallery *modalPanel = [[[RegionGallery alloc] initWithFrame:self.view.bounds title:@"Region Gallery"] autorelease];
+        
+        /*
+        rg = [[[RegionGallery alloc] initWithFrame:self.view.bounds title:@"Region Gallery"] autorelease];
         
         int blocksDelegateOrNone = arc4random() % 3;
         if (0 == blocksDelegateOrNone) {
-            modalPanel.onClosePressed = ^(UAModalPanel* panel) {
+            rg.onClosePressed = ^(UAModalPanel* panel) {
                 [panel hideWithOnComplete:^(BOOL finished) {
                     [panel removeFromSuperview];
                 }];
                 UADebugLog(@"onClosePressed block called from panel: %@", modalPanel);
             };
-            modalPanel.onActionPressed = ^(UAModalPanel* panel) {
+            rg.onActionPressed = ^(UAModalPanel* panel) {
                 UADebugLog(@"onActionPressed block called from panel: %@", modalPanel);
             };
             
@@ -336,7 +416,7 @@
         } else if (1 == blocksDelegateOrNone) {
             ///////////////////////////////////
             // Add self as the delegate so we know how to close the panel
-            modalPanel.delegate = self;
+            rg.delegate = self;
             
             UADebugLog(@"UAModalView will display using delegate methods: %@", modalPanel);
             
@@ -348,11 +428,11 @@
         
         ///////////////////////////////////
         // Add the panel to our view
-        [self.view addSubview:modalPanel];
+        [self.view addSubview:rg];
         
         ///////////////////////////////////
         // Show the panel from the center of the button that was pressed
-        [modalPanel showFromPoint:CGPointMake(150.0, 150.0)];
+        [rg showFromPoint:CGPointMake(150.0, 150.0)];*/
     }
     else if( indexPath.row == 4 )
     {
@@ -651,10 +731,75 @@
 
 
 -(void)RegionGallerySelected:(NSString*)jsnString{
+    //OBShapedButton* deleteBtn = (OBShapedButton *)sender;UAModalPanel* panel
+    
+   /* [rg.closeButton sendActionsForControlEvents: UIControlEventTouchUpInside];
+
+      UAModalPanel *rgPanel = (UAModalPanel *)rg;
+     [rgPanel removeFromSuperview];*/
     
     NSLog([NSString stringWithFormat:@"%@          (%@)", @"IT IS THE JSON FUNCTION", jsnString]);
-   
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getGallery/" ];
+    //[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverUrl]];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsnString dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSError *theError = nil;
+    NSURLResponse *theResponse =[[NSURLResponse alloc]init];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&theError];
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"Json back %@", string);
+    
+    NSMutableArray *imageArray2  = [string JSONValue];
+    imageArray = [[NSMutableArray alloc] initWithObjects:nil];
+    for (NSDictionary *dict in imageArray2) {
+        [imageArray addObject:dict];
+    }
+    localGallery = [[FGalleryViewController alloc] initWithPhotoSource:self];
+    //        [self.navigationController pushViewController:localGallery animated:YES];
+    //        [localGallery release];
+    
+    // THIS IS THE MAGIC PART 2
+    UIViewController *topVC = (UIViewController *)self.navigationController.delegate;
+    [topVC.navigationController pushViewController:localGallery animated:YES];
 }
+
+- (void)addItemViewController:(CountryListViewController *)controller didFinishEnteringItem:(NSString *)jsnString
+{
+    NSLog([NSString stringWithFormat:@"%@          (%@)", @"IT IS THE JSON FUNCTION", jsnString]);
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getGallery/" ];
+    //[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverUrl]];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsnString dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSError *theError = nil;
+    NSURLResponse *theResponse =[[NSURLResponse alloc]init];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&theError];
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"Json back %@", string);
+    
+    NSMutableArray *imageArray2  = [string JSONValue];
+    imageArray = [[NSMutableArray alloc] initWithObjects:nil];
+    for (NSDictionary *dict in imageArray2) {
+        [imageArray addObject:dict];
+    }
+    localGallery = [[FGalleryViewController alloc] initWithPhotoSource:self];
+    //        [self.navigationController pushViewController:localGallery animated:YES];
+    //        [localGallery release];
+    
+    // THIS IS THE MAGIC PART 2
+    UIViewController *topVC = (UIViewController *)self.navigationController.delegate;
+    [topVC.navigationController pushViewController:localGallery animated:YES];}
 
 @end
 

@@ -15,7 +15,7 @@
 #import "viewMoreCell.h"
 #import "Fluence3AppDelegate.h"
 #import "TagBrandController.h"
-@protocol TagCategoryControllerDelegate ;
+@protocol TagCategoryControllerDelegate;
 @interface TagCategoryController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate,TagBrandControllerDelegate> {
 	MYSBJsonStreamParser *parser;
 	MYSBJsonStreamParserAdapter *adapter;

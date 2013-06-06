@@ -10,11 +10,14 @@
 #import "FGalleryViewController.h"
 #import "Fluence3AppDelegate.h"
 #import "StylistViewController.h"
+#import "RegionGallery.h"
+#import "CountryListViewController.h"
 
 @class Fluence3AppDelegate;
 
-@interface GalleryNavController : UITableViewController<FGalleryViewControllerDelegate>{
+@interface GalleryNavController : UITableViewController<FGalleryViewControllerDelegate,CountryControllerDelegate>{
     Fluence3AppDelegate *appdt;
+    RegionGallery *rg;
     NSArray *localCaptions;
     NSArray *localImages;
     NSArray *localTags;
@@ -35,7 +38,7 @@
     
 }
 @property (strong, nonatomic) StylistViewController *imgviewCntrllr;
-
+@property(strong, nonatomic) RegionGallery *rg;
 
 -(void)RegionGallerySelected:(NSString*)jsnString;
 @end
