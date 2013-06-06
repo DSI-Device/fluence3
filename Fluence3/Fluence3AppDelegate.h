@@ -22,6 +22,7 @@
     UIImage *userProfileImage;
     NSMutableData *responseData;
     BOOL *isStylist;
+    BOOL *conCheckr;
     UIImage *img;
     UIImage *imgOptimized;
     NSMutableArray *selectedPoseList;
