@@ -322,9 +322,9 @@ const NSString *kWundergroundKey = @"67b642d58e39c9cc";
     NSInteger height = ( textSize.height + kCaptionPadding ) * numLines;
     _tagCaption.numberOfLines = numLines;
     NSString *result;
-    result = [result stringByAppendingString:[_tag objectForKey:@"tagCaption"]];
-    result = [result stringByAppendingString:[_tag objectForKey:@"tagBrand"]];
-    _tagCaption.text = result;
+   // result = [result stringByAppendingString:[_tag objectForKey:@"tagCaption"]];
+   // result = [result stringByAppendingString:[_tag objectForKey:@"tagBrand"]];
+    _tagCaption.text = [_tag objectForKey:@"tagCaption"];//result;
 
     NSInteger containerHeight = height + kCaptionPadding*2;
     _tagCaptionContainer.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];

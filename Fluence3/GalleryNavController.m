@@ -284,19 +284,11 @@
         
 	}
     else if( indexPath.row == 1 ) {
-//		networkGallery = [[FGalleryViewController alloc] initWithPhotoSource:self];
-//        //        [self.navigationController pushViewController:networkGallery animated:YES];
-//        
-//        UIViewController *topVC = (UIViewController *)self.navigationController.delegate;
-//        [topVC.navigationController pushViewController:networkGallery animated:YES];        
+     
         
         
         
-        BrandListViewController* nextView = [[BrandListViewController alloc]initWithNibName:@"BrandListViewController" bundle:[NSBundle mainBundle]];
-        nextView.delegate = self;
-        [self presentViewController:nextView animated:YES completion:nil];
-        [nextView release];
-        
+                
         
         
         

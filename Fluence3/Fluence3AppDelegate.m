@@ -97,6 +97,8 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 {
     switch (state) {
         case FBSessionStateOpen: {
+            
+            
             UIViewController *topViewController = [self.navigationController topViewController];
             if ([[topViewController modalViewController] isKindOfClass:[LoginViewController class]]) {
                 [topViewController dismissModalViewControllerAnimated:YES];
@@ -154,10 +156,36 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 /*
  * Opens a Facebook session and optionally shows the login UX.
  */
+- (BOOL) connectedToNetwork
+{
+    // Create zero addy
+    struct sockaddr_in zeroAddress;
+    bzero(&zeroAddress, sizeof(zeroAddress));
+    zeroAddress.sin_len = sizeof(zeroAddress);
+    zeroAddress.sin_family = AF_INET;
+	
+    // Recover reachability flags
+    SCNetworkReachabilityRef defaultRouteReachability = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr *)&zeroAddress);
+    SCNetworkReachabilityFlags flags;
+	
+    BOOL didRetrieveFlags = SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags);
+    CFRelease(defaultRouteReachability);
+	
+    if (!didRetrieveFlags)
+    {
+       
+        return NO;
+   }
+   
+   BOOL isReachable = flags & kSCNetworkFlagsReachable;
+   BOOL needsConnection = flags & kSCNetworkFlagsConnectionRequired;
+   return (isReachable && !needsConnection) ? YES : NO;
+}
 
 - (void)openSession
 {
-    [spinner startAnimating];
+    
+    
     //FBSession *session = [[FBSession alloc] initWithAppID:nil permissions:nil urlSchemeSuffix:@"foo" tokenCacheStrategy:nil];
     NSArray *permissions = [[NSArray alloc] initWithObjects:
                             @"publish_stream",
@@ -232,7 +260,11 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
           );
     
 	[responseData release];
-    [spinner stopAnimating];
+    if(conCheckr)
+    {
+        [spinner stopAnimating];
+    }
+    
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -303,6 +335,20 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
     spinner.hidesWhenStopped = YES;
     spinner.frame = _window.bounds;
     [self.window.rootViewController.view addSubview:spinner];
+    [spinner startAnimating];
+     conCheckr=[self connectedToNetwork];
+    if(conCheckr)
+    {
+        NSLog(@"Have Connection");
+    }
+    else
+    {
+        
+        UIAlertView *myAlert = [[UIAlertView alloc]initWithTitle:@"No Internet Connection"   message:@"You require an internet connection via WiFi or cellular network."delegate:self cancelButtonTitle:@"Ok"otherButtonTitles:nil];
+        [myAlert show];
+        [myAlert release];
+        
+    }
     //[_window addSubview:spinner];
 
     return YES;
