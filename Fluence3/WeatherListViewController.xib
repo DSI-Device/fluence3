@@ -50,7 +50,7 @@
 							<object class="IBUITableView" id="173655112">
 								<reference key="NSNextResponder" ref="42719447"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{0, -1}, {242, 281}}</string>
+								<string key="NSFrame">{{0, -1}, {320, 414}}</string>
 								<reference key="NSSuperview" ref="42719447"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="708043193"/>
@@ -106,7 +106,6 @@
 										<string key="NSFrame">{{14, 60}, {67, 21}}</string>
 										<reference key="NSSuperview" ref="708043193"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<int key="IBUIContentMode">7</int>
@@ -136,7 +135,7 @@
 										</object>
 									</object>
 								</object>
-								<string key="NSFrame">{{87, 105}, {90, 92}}</string>
+								<string key="NSFrame">{{115, 160}, {90, 92}}</string>
 								<reference key="NSSuperview" ref="42719447"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="434015368"/>
@@ -145,7 +144,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</object>
-						<string key="NSFrameSize">{242, 280}</string>
+						<string key="NSFrame">{{0, 47}, {320, 413}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="173655112"/>
@@ -160,15 +159,29 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
-				<string key="NSFrame">{{0, 20}, {242, 310}}</string>
+				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="42719447"/>
 				<reference key="IBUIBackgroundColor" ref="442139360"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics">
-					<string key="IBUISimulatedSizeMetricsClass">IBUISimulatedFreeformSizeMetricsSentinel</string>
-					<string key="IBUIDisplayName">Freeform</string>
+				<object class="IBUIScreenMetrics" key="IBUISimulatedDestinationMetrics">
+					<string key="IBUISimulatedSizeMetricsClass">IBUIScreenMetrics</string>
+					<object class="NSMutableDictionary" key="IBUINormalizedOrientationToSizeMap">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<integer value="1"/>
+							<integer value="3"/>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>{320, 480}</string>
+							<string>{480, 320}</string>
+						</object>
+					</object>
+					<string key="IBUITargetRuntime">IBCocoaTouchFramework</string>
+					<string key="IBUIDisplayName">iPhone/iPod touch Full Screen</string>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>

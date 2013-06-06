@@ -10,7 +10,7 @@
 
 
 @implementation FollowListViewController
-@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,appdt;
+@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,appdt,delegate;
 
 - (void)loadView{
     [super loadView];
@@ -284,6 +284,10 @@
     
         
     NSLog(@"Json Request is %@", jsonStr);
+    
+    
+    [self.delegate FollowItemViewController:self didFinishEnteringItem:jsonStr];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 	[self hideKeyboard:nil];
 }

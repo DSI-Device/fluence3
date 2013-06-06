@@ -274,7 +274,7 @@
     UITableViewCell *cell = (UITableViewCell *) [tableView cellForRowAtIndexPath:indexPath];
     
     itemToPassBack = cell.textLabel.text;
-
+    appdt.TagBrandID = [rowData objectForKey:@"ID"];
     [self.delegate addBrandViewController:self didFinishEnteringBrand:itemToPassBack];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

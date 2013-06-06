@@ -38,7 +38,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 @synthesize img;
 @synthesize imgOptimized;
 @synthesize selectedPoseList;
-@synthesize notification,currentImageGallery,currentStylistImage,tagID,TagBrandID;
+@synthesize notification,currentImageGallery,currentStylistImage,tagID,TagBrandID,spinner;
 
 - (void)dealloc {
     [_navigationController release];
@@ -157,6 +157,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 
 - (void)openSession
 {
+    [spinner startAnimating];
     //FBSession *session = [[FBSession alloc] initWithAppID:nil permissions:nil urlSchemeSuffix:@"foo" tokenCacheStrategy:nil];
     NSArray *permissions = [[NSArray alloc] initWithObjects:
                             @"publish_stream",
@@ -231,18 +232,22 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
           );
     
 	[responseData release];
+    [spinner stopAnimating];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
 	[responseData setLength:0];
+    
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
 	[responseData appendData:data];
+   
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {;
 	NSLog([NSString stringWithFormat:@"Connection failed: %@", [error description]]);
+   
 }
 
 #pragma mark Default Delegate Functions
@@ -266,7 +271,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
      }
      
      return YES;*/
-    self.columnsController = [[[ISColumnsController alloc] init] autorelease];
+        self.columnsController = [[[ISColumnsController alloc] init] autorelease];
     self.columnsController.navigationItem.rightBarButtonItem =
     [[[UIBarButtonItem alloc] initWithTitle:@"Logout"
                                       style:UIBarButtonItemStylePlain
@@ -289,6 +294,17 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
         [self showLoginView];
     }
     selectedPoseList = [[NSMutableArray alloc] init];
+    
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    //[spinner setCenter:_window.center]; 
+    spinner.center = self.window.rootViewController.view.center;
+    
+    spinner.layer.backgroundColor = [[UIColor colorWithWhite:0.0f alpha:0.5f] CGColor];
+    spinner.hidesWhenStopped = YES;
+    spinner.frame = _window.bounds;
+    [self.window.rootViewController.view addSubview:spinner];
+    //[_window addSubview:spinner];
+
     return YES;
 }
 
@@ -362,5 +378,4 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
      See also applicationDidEnterBackground:.
      */
 }
-
 @end

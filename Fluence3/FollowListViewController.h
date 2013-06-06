@@ -14,7 +14,8 @@
 #import "CustomFollowListCell.h"
 #import "viewMoreCell.h"
 #import "Fluence3AppDelegate.h"
-
+#import "FollowListViewController.h"
+@protocol FollowControllerDelegate ;
 @interface FollowListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate> {
 	MYSBJsonStreamParser *parser;
 	MYSBJsonStreamParserAdapter *adapter;
@@ -39,7 +40,7 @@
     
     Fluence3AppDelegate *appdt;
 }
-
+@property (nonatomic, retain) id <FollowControllerDelegate> delegate;
 @property(nonatomic, retain) UITextField *searchBar;
 @property(nonatomic, retain) UITableView *listTableView;
 @property(nonatomic, retain) UIActivityIndicatorView *spinner;
@@ -62,5 +63,11 @@
 - (IBAction) clearAllBtnClicked: (id) sender;
 
 - (NSString *) getSearchBarTitle;
+
+@end
+@protocol FollowControllerDelegate <NSObject>
+
+@optional
+- (void)FollowItemViewController:(FollowListViewController *)controller didFinishEnteringItem:(NSString *)item;
 
 @end

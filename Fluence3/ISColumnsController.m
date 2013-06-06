@@ -108,6 +108,7 @@
 {
     [super viewDidLoad];
     
+    
     [self reloadChildViewControllers];
     [self.pageControl addObserver:self
                        forKeyPath:@"currentPage"

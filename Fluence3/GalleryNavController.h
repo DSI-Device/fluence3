@@ -12,10 +12,12 @@
 #import "StylistViewController.h"
 #import "RegionGallery.h"
 #import "CountryListViewController.h"
+#import "BrandListViewController.h"
+#import "WeatherListViewController.h"
 
 @class Fluence3AppDelegate;
 
-@interface GalleryNavController : UITableViewController<FGalleryViewControllerDelegate,CountryControllerDelegate>{
+@interface GalleryNavController : UITableViewController<FGalleryViewControllerDelegate,CountryControllerDelegate,BrandControllerDelegate,WeatherControllerDelegate>{
     Fluence3AppDelegate *appdt;
     RegionGallery *rg;
     NSArray *localCaptions;

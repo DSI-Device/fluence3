@@ -16,6 +16,9 @@
 #import "FollowerGallery.h"
 #import "RegionGallery.h"
 #import "CountryListViewController.h"
+#import "BrandListViewController.h"
+#import "WeatherListViewController.h"
+#import "FollowListViewController.h"
 @implementation GalleryNavController
 @synthesize imgviewCntrllr,rg;
 - (id)initWithStyle:(UITableViewStyle)style
@@ -168,11 +171,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if(appdt.isStylist)
     {
-        return 7-2;
+        return 7;
     }
     else
     {
-        return 6-2;
+        return 6;
         
     }
 }
@@ -291,42 +294,10 @@
         
         
         
-        BrandGallery *modalPanel = [[[BrandGallery alloc] initWithFrame:self.view.bounds title:@"Brand Gallery"] autorelease];
-        
-        int blocksDelegateOrNone = arc4random() % 3;
-        if (0 == blocksDelegateOrNone) {
-            modalPanel.onClosePressed = ^(UAModalPanel* panel) {
-                [panel hideWithOnComplete:^(BOOL finished) {
-                    [panel removeFromSuperview];
-                }];
-                UADebugLog(@"onClosePressed block called from panel: %@", modalPanel);
-            };
-            modalPanel.onActionPressed = ^(UAModalPanel* panel) {
-                UADebugLog(@"onActionPressed block called from panel: %@", modalPanel);
-            };
-            
-            UADebugLog(@"UAModalView will display using blocks: %@", modalPanel);
-            
-        } else if (1 == blocksDelegateOrNone) {
-            ///////////////////////////////////
-            // Add self as the delegate so we know how to close the panel
-            modalPanel.delegate = self;
-            
-            UADebugLog(@"UAModalView will display using delegate methods: %@", modalPanel);
-            
-        } else {
-            // no-op. No delegate or blocks
-            UADebugLog(@"UAModalView will display without blocks or delegate methods: %@", modalPanel);
-        }
-        
-        
-        ///////////////////////////////////
-        // Add the panel to our view
-        [self.view addSubview:modalPanel];
-        
-        ///////////////////////////////////
-        // Show the panel from the center of the button that was pressed
-        [modalPanel showFromPoint:CGPointMake(150.0, 150.0)];
+        BrandListViewController* nextView = [[BrandListViewController alloc]initWithNibName:@"BrandListViewController" bundle:[NSBundle mainBundle]];
+        nextView.delegate = self;
+        [self presentViewController:nextView animated:YES completion:nil];
+        [nextView release];
         
         
         
@@ -437,81 +408,17 @@
     else if( indexPath.row == 4 )
     {
         
-        WeatherGallery *modalPanel = [[[WeatherGallery alloc] initWithFrame:self.view.bounds title:@"Weather Gallery"] autorelease];
-        
-        int blocksDelegateOrNone = arc4random() % 3;
-        if (0 == blocksDelegateOrNone) {
-            modalPanel.onClosePressed = ^(UAModalPanel* panel) {
-                [panel hideWithOnComplete:^(BOOL finished) {
-                    [panel removeFromSuperview];
-                }];
-                UADebugLog(@"onClosePressed block called from panel: %@", modalPanel);
-            };
-            modalPanel.onActionPressed = ^(UAModalPanel* panel) {
-                UADebugLog(@"onActionPressed block called from panel: %@", modalPanel);
-            };
-            
-            UADebugLog(@"UAModalView will display using blocks: %@", modalPanel);
-            
-        } else if (1 == blocksDelegateOrNone) {
-            ///////////////////////////////////
-            // Add self as the delegate so we know how to close the panel
-            modalPanel.delegate = self;
-            
-            UADebugLog(@"UAModalView will display using delegate methods: %@", modalPanel);
-            
-        } else {
-            // no-op. No delegate or blocks
-            UADebugLog(@"UAModalView will display without blocks or delegate methods: %@", modalPanel);
-        }
-        
-        
-        ///////////////////////////////////
-        // Add the panel to our view
-        [self.view addSubview:modalPanel];
-        
-        ///////////////////////////////////
-        // Show the panel from the center of the button that was pressed
-        [modalPanel showFromPoint:CGPointMake(150.0, 150.0)];
+        WeatherListViewController* nextView = [[WeatherListViewController alloc]initWithNibName:@"WeatherListViewController" bundle:[NSBundle mainBundle]];
+        nextView.delegate = self;
+        [self presentViewController:nextView animated:YES completion:nil];
+        [nextView release];
     }
     else if( indexPath.row == 5 )
     {
-        FollowerGallery *modalPanel = [[[FollowerGallery alloc] initWithFrame:self.view.bounds title:@"Follower Gallery"] autorelease];
-        
-        int blocksDelegateOrNone = arc4random() % 3;
-        if (0 == blocksDelegateOrNone) {
-            modalPanel.onClosePressed = ^(UAModalPanel* panel) {
-                [panel hideWithOnComplete:^(BOOL finished) {
-                    [panel removeFromSuperview];
-                }];
-                UADebugLog(@"onClosePressed block called from panel: %@", modalPanel);
-            };
-            modalPanel.onActionPressed = ^(UAModalPanel* panel) {
-                UADebugLog(@"onActionPressed block called from panel: %@", modalPanel);
-            };
-            
-            UADebugLog(@"UAModalView will display using blocks: %@", modalPanel);
-            
-        } else if (1 == blocksDelegateOrNone) {
-            ///////////////////////////////////
-            // Add self as the delegate so we know how to close the panel
-            modalPanel.delegate = self;
-            
-            UADebugLog(@"UAModalView will display using delegate methods: %@", modalPanel);
-            
-        } else {
-            // no-op. No delegate or blocks
-            UADebugLog(@"UAModalView will display without blocks or delegate methods: %@", modalPanel);
-        }
-        
-        
-        ///////////////////////////////////
-        // Add the panel to our view
-        [self.view addSubview:modalPanel];
-        
-        ///////////////////////////////////
-        // Show the panel from the center of the button that was pressed
-        [modalPanel showFromPoint:CGPointMake(150.0, 150.0)];
+        FollowListViewController* nextView = [[FollowListViewController alloc]initWithNibName:@"FollowListViewController" bundle:[NSBundle mainBundle]];
+        nextView.delegate = self;
+        [self presentViewController:nextView animated:YES completion:nil];
+        [nextView release];
     }
     else if( indexPath.row == 6 )
     {
@@ -730,14 +637,47 @@
 }
 
 
--(void)RegionGallerySelected:(NSString*)jsnString{
-    //OBShapedButton* deleteBtn = (OBShapedButton *)sender;UAModalPanel* panel
-    
-   /* [rg.closeButton sendActionsForControlEvents: UIControlEventTouchUpInside];
+//-(void)RegionGallerySelected:(NSString*)jsnString{
+//    //OBShapedButton* deleteBtn = (OBShapedButton *)sender;UAModalPanel* panel
+//    
+//   /* [rg.closeButton sendActionsForControlEvents: UIControlEventTouchUpInside];
+//
+//      UAModalPanel *rgPanel = (UAModalPanel *)rg;
+//     [rgPanel removeFromSuperview];*/
+//    
+//    NSLog([NSString stringWithFormat:@"%@          (%@)", @"IT IS THE JSON FUNCTION", jsnString]);
+//    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getGallery/" ];
+//    //[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
+//    
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverUrl]];
+//    
+//    [request setHTTPMethod:@"POST"];
+//    
+//    [request setHTTPBody:[jsnString dataUsingEncoding:NSUTF8StringEncoding]];
+//    
+//    NSError *theError = nil;
+//    NSURLResponse *theResponse =[[NSURLResponse alloc]init];
+//    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&theError];
+//    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//    
+//    NSLog(@"Json back %@", string);
+//    
+//    NSMutableArray *imageArray2  = [string JSONValue];
+//    imageArray = [[NSMutableArray alloc] initWithObjects:nil];
+//    for (NSDictionary *dict in imageArray2) {
+//        [imageArray addObject:dict];
+//    }
+//    localGallery = [[FGalleryViewController alloc] initWithPhotoSource:self];
+//    //        [self.navigationController pushViewController:localGallery animated:YES];
+//    //        [localGallery release];
+//    
+//    // THIS IS THE MAGIC PART 2
+//    UIViewController *topVC = (UIViewController *)self.navigationController.delegate;
+//    [topVC.navigationController pushViewController:localGallery animated:YES];
+//}
 
-      UAModalPanel *rgPanel = (UAModalPanel *)rg;
-     [rgPanel removeFromSuperview];*/
-    
+- (void)addItemViewController:(CountryListViewController *)controller didFinishEnteringItem:(NSString *)jsnString
+{
     NSLog([NSString stringWithFormat:@"%@          (%@)", @"IT IS THE JSON FUNCTION", jsnString]);
     NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getGallery/" ];
     //[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
@@ -766,10 +706,74 @@
     
     // THIS IS THE MAGIC PART 2
     UIViewController *topVC = (UIViewController *)self.navigationController.delegate;
-    [topVC.navigationController pushViewController:localGallery animated:YES];
-}
+    [topVC.navigationController pushViewController:localGallery animated:YES];}
 
-- (void)addItemViewController:(CountryListViewController *)controller didFinishEnteringItem:(NSString *)jsnString
+
+- (void)BrandItemViewController:(BrandListViewController *)controller didFinishEnteringItem:(NSString *)jsnString
+{
+    NSLog([NSString stringWithFormat:@"%@          (%@)", @"IT IS THE JSON FUNCTION", jsnString]);
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getGallery/" ];
+    //[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverUrl]];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsnString dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSError *theError = nil;
+    NSURLResponse *theResponse =[[NSURLResponse alloc]init];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&theError];
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"Json back %@", string);
+    
+    NSMutableArray *imageArray2  = [string JSONValue];
+    imageArray = [[NSMutableArray alloc] initWithObjects:nil];
+    for (NSDictionary *dict in imageArray2) {
+        [imageArray addObject:dict];
+    }
+    localGallery = [[FGalleryViewController alloc] initWithPhotoSource:self];
+    //        [self.navigationController pushViewController:localGallery animated:YES];
+    //        [localGallery release];
+    
+    // THIS IS THE MAGIC PART 2
+    UIViewController *topVC = (UIViewController *)self.navigationController.delegate;
+    [topVC.navigationController pushViewController:localGallery animated:YES];}
+
+- (void)WeatherItemViewController:(WeatherListViewController *)controller didFinishEnteringItem:(NSString *)jsnString
+{
+    NSLog([NSString stringWithFormat:@"%@          (%@)", @"IT IS THE JSON FUNCTION", jsnString]);
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getGallery/" ];
+    //[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverUrl]];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsnString dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSError *theError = nil;
+    NSURLResponse *theResponse =[[NSURLResponse alloc]init];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&theError];
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"Json back %@", string);
+    
+    NSMutableArray *imageArray2  = [string JSONValue];
+    imageArray = [[NSMutableArray alloc] initWithObjects:nil];
+    for (NSDictionary *dict in imageArray2) {
+        [imageArray addObject:dict];
+    }
+    localGallery = [[FGalleryViewController alloc] initWithPhotoSource:self];
+    //        [self.navigationController pushViewController:localGallery animated:YES];
+    //        [localGallery release];
+    
+    // THIS IS THE MAGIC PART 2
+    UIViewController *topVC = (UIViewController *)self.navigationController.delegate;
+    [topVC.navigationController pushViewController:localGallery animated:YES];}
+
+- (void)FollowItemViewController:(FollowListViewController *)controller didFinishEnteringItem:(NSString *)jsnString
 {
     NSLog([NSString stringWithFormat:@"%@          (%@)", @"IT IS THE JSON FUNCTION", jsnString]);
     NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getGallery/" ];

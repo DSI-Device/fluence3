@@ -30,6 +30,7 @@
     NSString *currentStylistImage;
     NSString *tagID;
     NSString *TagBrandID;
+    UIActivityIndicatorView *spinner;
 }
 
 extern NSString *const SessionStateChangedNotification;
@@ -46,7 +47,7 @@ extern NSString *const SessionStateChangedNotification;
 @property (nonatomic, strong) NSString *currentImageGallery;
 @property (strong, nonatomic) FBSession *session;
 @property (strong, nonatomic) UIWindow *window;
-
+@property (nonatomic,readonly) UIActivityIndicatorView *spinner;
 @property (retain, nonatomic) UINavigationController *navigationController;
 @property (retain, nonatomic) ISColumnsController *columnsController;
 

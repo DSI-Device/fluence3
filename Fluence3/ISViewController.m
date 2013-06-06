@@ -18,33 +18,33 @@
 @synthesize notiImage,notiNumber,appdt;
 @synthesize nCameraImage,selectListView,mapViewController,selectPoseListView,selectTasteListView;
 
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     NSLog(@"[%@ %@]", [self class], NSStringFromSelector(_cmd));
     
-    
+    NSLog(@"GOGOGOGOGOGGOGg");
     appdt = [[UIApplication sharedApplication] delegate];
     int x = [appdt.notification intValue];
     if( x > 0)
     {
-        notiImage.hidden = NO;
-        notiNumber.hidden = NO;
-        notiNumber.text = appdt.notification;
         
-    }
-    else
-    {
-        notiImage.hidden = YES;
-        notiNumber.hidden = YES;
-        
+        JSNotifier *notify = [[JSNotifier alloc]initWithTitle:[[@"You have " stringByAppendingString:appdt.notification]stringByAppendingString:@" new notifications"]];
+        notify.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"NotifyCheck1.png"]];
+        [notify showFor:3.0];
     }
     
+    
 }
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];   //it hides  
     NSLog(@"[%@ %@]", [self class], NSStringFromSelector(_cmd));
     appdt = [[UIApplication sharedApplication] delegate];
     int x = [appdt.notification intValue];
@@ -53,9 +53,7 @@
         notiImage.hidden = NO;
         notiNumber.hidden = NO;
         notiNumber.text = appdt.notification;
-        JSNotifier *notify = [[JSNotifier alloc]initWithTitle:[[@"You have " stringByAppendingString:appdt.notification]stringByAppendingString:@" new notifications"]];
-        notify.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"NotifyCheck1.png"]];
-        [notify showFor:3.0];
+        
     }
     else
     {
@@ -75,6 +73,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     NSLog(@"[%@ %@]", [self class], NSStringFromSelector(_cmd));
+    [self.navigationController setNavigationBarHidden:NO];    // it shows
     [super viewWillDisappear:animated];
 }
 
@@ -152,11 +151,11 @@
     selectPoseListView.title = @"Find People";
     [self.navigationController pushViewController:selectPoseListView animated:true];
     */
-    /*
+    
     selectListView = [[[SelectListViewController alloc] initWithNibName:@"SelectListViewController" bundle:nil]autorelease];
     selectListView.title = @"Find People";
     [self.navigationController pushViewController:selectListView animated:true];
-    */
+    
     /*
     selectTasteListView = [[[SelectTasteListViewController alloc] initWithNibName:@"SelectTasteListViewController" bundle:nil]autorelease];
     selectTasteListView.title = @"Find Event";
@@ -172,10 +171,11 @@
     countryListViewController.title = @"Select Country";
     [self.navigationController pushViewController:countryListViewController animated:true];
      */
-    
+    /*
     FollowListViewController *followListViewController = [[[FollowListViewController alloc] initWithNibName:@"FollowListViewController" bundle:nil]autorelease];
     followListViewController.title = @"Select Follow";
     [self.navigationController pushViewController:followListViewController animated:true];
+     */
 }
 - (IBAction)mapViewClicked{
     mapViewController = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil]autorelease];
