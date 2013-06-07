@@ -622,7 +622,7 @@
     [alert release];
 }
 
--(void)commentButtonClicked:(NSString*)imageId:(NSString*)comment{
+-(void)photoGallery:(FGalleryViewController *)gallery commentButtonClicked:(NSString*)imageId:(NSString*)comment{
     
     
     UIAlertView *alert = [[UIAlertView alloc]

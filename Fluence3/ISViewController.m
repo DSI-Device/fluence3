@@ -179,7 +179,7 @@
 }
 - (IBAction)mapViewClicked{
     mapViewController = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil]autorelease];
-    selectListView.title = @"Map View";
+    mapViewController.title = @"Map View";
     [self.navigationController pushViewController:mapViewController animated:true];
 }
 @end

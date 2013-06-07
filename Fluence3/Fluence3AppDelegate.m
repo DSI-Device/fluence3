@@ -38,7 +38,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 @synthesize img;
 @synthesize imgOptimized;
 @synthesize selectedPoseList;
-@synthesize notification,currentImageGallery,currentStylistImage,tagID,TagBrandID,spinner;
+@synthesize notification,currentImageGallery,currentStylistImage,tagID1,TagBrandID,spinner;
 
 - (void)dealloc {
     [_navigationController release];

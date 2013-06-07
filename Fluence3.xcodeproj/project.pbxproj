@@ -68,6 +68,13 @@
 		2BE93ADC173BD82B0086D98E /* CustomGalleryCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE93AD8173BD82B0086D98E /* CustomGalleryCommentCell.m */; };
 		2BE93ADF173BDB4F0086D98E /* CustomGalleryCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BE93ADD173BDB4F0086D98E /* CustomGalleryCommentCell.xib */; };
 		2BE93AE0173BDB4F0086D98E /* GalleryCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BE93ADE173BDB4F0086D98E /* GalleryCommentViewController.xib */; };
+		C81530311761D4E4003D3761 /* stylist1.png in Resources */ = {isa = PBXBuildFile; fileRef = C81530301761D4E4003D3761 /* stylist1.png */; };
+		C81530501761E29D003D3761 /* CQMFloatingContentOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = C81530451761E29D003D3761 /* CQMFloatingContentOverlayView.m */; };
+		C81530511761E29D003D3761 /* CQMFloatingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C81530471761E29D003D3761 /* CQMFloatingController.m */; };
+		C81530521761E29D003D3761 /* CQMFloatingFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = C81530491761E29D003D3761 /* CQMFloatingFrameView.m */; };
+		C81530531761E29D003D3761 /* CQMFloatingMaskControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C815304B1761E29D003D3761 /* CQMFloatingMaskControl.m */; };
+		C81530541761E29D003D3761 /* CQMFloatingNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C815304D1761E29D003D3761 /* CQMFloatingNavigationBar.m */; };
+		C81530551761E29D003D3761 /* CQMPathUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C815304F1761E29D003D3761 /* CQMPathUtilities.m */; };
 		C838CB741726A4CC00B9AC17 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C838CB731726A4CC00B9AC17 /* MyAnnotation.m */; };
 		C849D17A17048DEC003D18A5 /* menu7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C849D17917048DEC003D18A5 /* menu7.jpg */; };
 		C849D18617049419003D18A5 /* fb-login-button.png in Resources */ = {isa = PBXBuildFile; fileRef = C849D18517049419003D18A5 /* fb-login-button.png */; };
@@ -78,7 +85,6 @@
 		C849D19517049995003D18A5 /* TakeCameraPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = C849D18F17049995003D18A5 /* TakeCameraPhoto.m */; };
 		C849D19617049995003D18A5 /* TakeCameraPhoto.xib in Resources */ = {isa = PBXBuildFile; fileRef = C849D19017049995003D18A5 /* TakeCameraPhoto.xib */; };
 		C849D199170499B1003D18A5 /* gavandme.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C849D197170499B1003D18A5 /* gavandme.jpg */; };
-		C87787D31760E9290060B58E /* stylist1.png in Resources */ = {isa = PBXBuildFile; fileRef = C87787D21760E9290060B58E /* stylist1.png */; };
 		C8840F4A1741170900965915 /* CaptureSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C8840F491741170900965915 /* CaptureSessionManager.m */; };
 		C8840F4D1741191D00965915 /* AROverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8840F4C1741191D00965915 /* AROverlayViewController.m */; };
 		C889BACB16F213370040CA39 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889BACA16F213370040CA39 /* UIKit.framework */; };
@@ -311,6 +317,19 @@
 		2BE93AD8173BD82B0086D98E /* CustomGalleryCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomGalleryCommentCell.m; sourceTree = "<group>"; };
 		2BE93ADD173BDB4F0086D98E /* CustomGalleryCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomGalleryCommentCell.xib; sourceTree = "<group>"; };
 		2BE93ADE173BDB4F0086D98E /* GalleryCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryCommentViewController.xib; sourceTree = "<group>"; };
+		C81530301761D4E4003D3761 /* stylist1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stylist1.png; path = Fluence3/stylist1.png; sourceTree = "<group>"; };
+		C81530441761E29D003D3761 /* CQMFloatingContentOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CQMFloatingContentOverlayView.h; path = popUpNew/CQMFloatingContentOverlayView.h; sourceTree = "<group>"; };
+		C81530451761E29D003D3761 /* CQMFloatingContentOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CQMFloatingContentOverlayView.m; path = popUpNew/CQMFloatingContentOverlayView.m; sourceTree = "<group>"; };
+		C81530461761E29D003D3761 /* CQMFloatingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CQMFloatingController.h; path = popUpNew/CQMFloatingController.h; sourceTree = "<group>"; };
+		C81530471761E29D003D3761 /* CQMFloatingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CQMFloatingController.m; path = popUpNew/CQMFloatingController.m; sourceTree = "<group>"; };
+		C81530481761E29D003D3761 /* CQMFloatingFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CQMFloatingFrameView.h; path = popUpNew/CQMFloatingFrameView.h; sourceTree = "<group>"; };
+		C81530491761E29D003D3761 /* CQMFloatingFrameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CQMFloatingFrameView.m; path = popUpNew/CQMFloatingFrameView.m; sourceTree = "<group>"; };
+		C815304A1761E29D003D3761 /* CQMFloatingMaskControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CQMFloatingMaskControl.h; path = popUpNew/CQMFloatingMaskControl.h; sourceTree = "<group>"; };
+		C815304B1761E29D003D3761 /* CQMFloatingMaskControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CQMFloatingMaskControl.m; path = popUpNew/CQMFloatingMaskControl.m; sourceTree = "<group>"; };
+		C815304C1761E29D003D3761 /* CQMFloatingNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CQMFloatingNavigationBar.h; path = popUpNew/CQMFloatingNavigationBar.h; sourceTree = "<group>"; };
+		C815304D1761E29D003D3761 /* CQMFloatingNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CQMFloatingNavigationBar.m; path = popUpNew/CQMFloatingNavigationBar.m; sourceTree = "<group>"; };
+		C815304E1761E29D003D3761 /* CQMPathUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CQMPathUtilities.h; path = popUpNew/CQMPathUtilities.h; sourceTree = "<group>"; };
+		C815304F1761E29D003D3761 /* CQMPathUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CQMPathUtilities.m; path = popUpNew/CQMPathUtilities.m; sourceTree = "<group>"; };
 		C838CB721726A4CC00B9AC17 /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
 		C838CB731726A4CC00B9AC17 /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
 		C849D17917048DEC003D18A5 /* menu7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu7.jpg; sourceTree = "<group>"; };
@@ -325,7 +344,6 @@
 		C849D18F17049995003D18A5 /* TakeCameraPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeCameraPhoto.m; sourceTree = "<group>"; };
 		C849D19017049995003D18A5 /* TakeCameraPhoto.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TakeCameraPhoto.xib; sourceTree = "<group>"; };
 		C849D197170499B1003D18A5 /* gavandme.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gavandme.jpg; sourceTree = "<group>"; };
-		C87787D21760E9290060B58E /* stylist1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stylist1.png; sourceTree = "<group>"; };
 		C8840F481741170900965915 /* CaptureSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureSessionManager.h; sourceTree = "<group>"; };
 		C8840F491741170900965915 /* CaptureSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureSessionManager.m; sourceTree = "<group>"; };
 		C8840F4B1741191D00965915 /* AROverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AROverlayViewController.h; sourceTree = "<group>"; };
@@ -668,6 +686,25 @@
 			name = stylistGroup;
 			sourceTree = "<group>";
 		};
+		C81530431761E27F003D3761 /* popUpNew */ = {
+			isa = PBXGroup;
+			children = (
+				C81530441761E29D003D3761 /* CQMFloatingContentOverlayView.h */,
+				C81530451761E29D003D3761 /* CQMFloatingContentOverlayView.m */,
+				C81530461761E29D003D3761 /* CQMFloatingController.h */,
+				C81530471761E29D003D3761 /* CQMFloatingController.m */,
+				C81530481761E29D003D3761 /* CQMFloatingFrameView.h */,
+				C81530491761E29D003D3761 /* CQMFloatingFrameView.m */,
+				C815304A1761E29D003D3761 /* CQMFloatingMaskControl.h */,
+				C815304B1761E29D003D3761 /* CQMFloatingMaskControl.m */,
+				C815304C1761E29D003D3761 /* CQMFloatingNavigationBar.h */,
+				C815304D1761E29D003D3761 /* CQMFloatingNavigationBar.m */,
+				C815304E1761E29D003D3761 /* CQMPathUtilities.h */,
+				C815304F1761E29D003D3761 /* CQMPathUtilities.m */,
+			);
+			name = popUpNew;
+			sourceTree = "<group>";
+		};
 		C838CB701726A46500B9AC17 /* Annotation */ = {
 			isa = PBXGroup;
 			children = (
@@ -695,6 +732,7 @@
 		C889BABB16F213370040CA39 = {
 			isa = PBXGroup;
 			children = (
+				C81530301761D4E4003D3761 /* stylist1.png */,
 				C88E92401760B484001C4E2A /* ImagePlinkController.h */,
 				C88E92411760B484001C4E2A /* ImagePlinkController.m */,
 				C88E92421760B484001C4E2A /* ImagePlinkController.xib */,
@@ -1039,6 +1077,7 @@
 		C8C0E7F116F87F0600C92E99 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C81530431761E27F003D3761 /* popUpNew */,
 				C8A2E0351755E411004E2E51 /* Notification */,
 				C8B5A463174B4941001C1574 /* PopOverPanel */,
 				C8AAC07E1748C1330020632D /* dateSelect */,
@@ -1152,7 +1191,6 @@
 		C8CE00DE17042C2200558361 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				C87787D21760E9290060B58E /* stylist1.png */,
 				2BD1837D174B081700B198A1 /* red-banner-web3.jpg */,
 				2B18F10F17145A09008432D6 /* shop.png */,
 				2B53EDE6170F039200C8C184 /* share.png */,
@@ -1339,7 +1377,7 @@
 				C88E923D1760B39E001C4E2A /* TagBrandController.xib in Resources */,
 				C88E923F1760B39E001C4E2A /* TagCategoryController.xib in Resources */,
 				C88E92441760B485001C4E2A /* ImagePlinkController.xib in Resources */,
-				C87787D31760E9290060B58E /* stylist1.png in Resources */,
+				C81530311761D4E4003D3761 /* stylist1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1449,6 +1487,12 @@
 				C88E923C1760B39E001C4E2A /* TagBrandController.m in Sources */,
 				C88E923E1760B39E001C4E2A /* TagCategoryController.m in Sources */,
 				C88E92431760B485001C4E2A /* ImagePlinkController.m in Sources */,
+				C81530501761E29D003D3761 /* CQMFloatingContentOverlayView.m in Sources */,
+				C81530511761E29D003D3761 /* CQMFloatingController.m in Sources */,
+				C81530521761E29D003D3761 /* CQMFloatingFrameView.m in Sources */,
+				C81530531761E29D003D3761 /* CQMFloatingMaskControl.m in Sources */,
+				C81530541761E29D003D3761 /* CQMFloatingNavigationBar.m in Sources */,
+				C81530551761E29D003D3761 /* CQMPathUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1544,8 +1588,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Fluence3;
-				PROVISIONING_PROFILE = "9AD14E67-F209-4160-A2E7-2CEF27C492BD";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9AD14E67-F209-4160-A2E7-2CEF27C492BD";
+				PROVISIONING_PROFILE = "36F7D840-E95D-406C-840E-158FD579040D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "36F7D840-E95D-406C-840E-158FD579040D";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1570,8 +1614,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Fluence3;
-				PROVISIONING_PROFILE = "9AD14E67-F209-4160-A2E7-2CEF27C492BD";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9AD14E67-F209-4160-A2E7-2CEF27C492BD";
+				PROVISIONING_PROFILE = "36F7D840-E95D-406C-840E-158FD579040D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "36F7D840-E95D-406C-840E-158FD579040D";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

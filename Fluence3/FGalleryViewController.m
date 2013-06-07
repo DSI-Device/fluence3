@@ -15,7 +15,7 @@
 #import "commentPanel.h"
 #import "UANoisyGradientBackground.h"
 #import "UAGradientBackground.h"
-
+#import "CQMFloatingController.h"
 #define kThumbnailSize 75
 #define kThumbnailSpacing 4
 #define kCaptionPadding 3
@@ -88,7 +88,7 @@
 @synthesize beginsInThumbnailView = _beginsInThumbnailView;
 @synthesize hideTitle = _hideTitle;
 @synthesize currentDate;
-@synthesize appdt;
+@synthesize appdt,floatingController;
 
 #pragma mark - Public Methods
 
@@ -343,14 +343,14 @@
     
     _stylistButton  = [UIButton buttonWithType:UIButtonTypeCustom];
     //set the position of the button
-    _stylistButton.frame = CGRectMake(kCaptionPadding+235, kCaptionPadding+45, 80, 40);
+    _stylistButton.frame = CGRectMake(kCaptionPadding+235, kCaptionPadding+15, 80, 40);
     UIImage *buttonImage0 = [UIImage imageNamed:@"stylist1.png"];
     
     //create the button and assign the image addSubview:button
     
     [_stylistButton setBackgroundImage:buttonImage0 forState:UIControlStateNormal];
     [_stylistButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    _stylistButton.alpha = 0.7;
+    _stylistButton.alpha = 0.8;
     //set the button's title
     //listen for clicks
     [_stylistButton addTarget:self action:@selector(stylizeButtonP:forEvent:) forControlEvents:UIControlEventTouchUpInside];
@@ -1976,93 +1976,104 @@
     
     
     
-    commentPanel *modalPanel = [[[commentPanel alloc] initWithFrame:self.view.bounds title:@"Comment"] autorelease];
     
-    /////////////////////////////////
-    // Randomly use the blocks method, delgate methods, or neither of them
-    int blocksDelegateOrNone = arc4random() % 3;
+//    
+//    /////////////////////////////////
+//    // Randomly use the blocks method, delgate methods, or neither of them
+//    int blocksDelegateOrNone = arc4random() % 3;
+//    commentPanel *modalPanel = [[[commentPanel alloc] initWithFrame:self.view.bounds title:@"Comment"] autorelease];
+//    NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
+//        //    
+//       NSString* imageID = [NSString stringWithFormat:[imageInfo objectForKey:@"imageId"]];
+//    appdt.currentImageGallery = imageID;
+//    ////////////////////////
+//    // USE BLOCKS
+//    if (0 == blocksDelegateOrNone) {
+//        ///////////////////////////////////////////
+//        // The block is responsible for closing the panel,
+//        //   either with -[UAModalPanel hide] or -[UAModalPanel hideWithOnComplete:]
+//        //   Panel is a reference to the modalPanel
+//        modalPanel.onClosePressed = ^(UAModalPanel* panel1) {
+//            // [panel hide];
+//            self.panel = panel1;
+//            [panel1 hideWithOnComplete:^(BOOL finished) {
+//                [panel1 removeFromSuperview];
+//            }];
+//            UADebugLog(@"onClosePressed block called from panel: %@", modalPanel);
+//        };
+//        
+//        ///////////////////////////////////////////
+//        //   Panel is a reference to the modalPanel
+//        modalPanel.onActionPressed = ^(UAModalPanel* panel) {
+//            UADebugLog(@"onActionPressed block called from panel: %@", modalPanel);
+//        };
+//        
+//        UADebugLog(@"UAModalView will display using blocks: %@", modalPanel);
+//        
+//        ////////////////////////
+//        // USE DELEGATE
+//    } else if (1 == blocksDelegateOrNone) {
+//        ///////////////////////////////////
+//        // Add self as the delegate so we know how to close the panel
+//        modalPanel.delegate = self;
+//        
+//        UADebugLog(@"UAModalView will display using delegate methods: %@", modalPanel);
+//        
+//        ////////////////////////
+//        // USE NOTHING
+//    } else {
+//        // no-op. No delegate or blocks
+//        UADebugLog(@"UAModalView will display without blocks or delegate methods: %@", modalPanel);
+//    }
+//    
+//    
+//    ///////////////////////////////////
+//    // Add the panel to our view
+//    [self.view addSubview:modalPanel];
+//    
+//    ///////////////////////////////////
+//    // Show the panel from the center of the button that was pressed
+//    [modalPanel showFromPoint:CGPointMake(150.0, 150.0)];
     
-    NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
-        //    
-       NSString* imageID = [NSString stringWithFormat:[imageInfo objectForKey:@"imageId"]];
-    appdt.currentImageGallery = imageID;
-    ////////////////////////
-    // USE BLOCKS
-    if (0 == blocksDelegateOrNone) {
-        ///////////////////////////////////////////
-        // The block is responsible for closing the panel,
-        //   either with -[UAModalPanel hide] or -[UAModalPanel hideWithOnComplete:]
-        //   Panel is a reference to the modalPanel
-        modalPanel.onClosePressed = ^(UAModalPanel* panel) {
-            // [panel hide];
-            [panel hideWithOnComplete:^(BOOL finished) {
-                [panel removeFromSuperview];
-            }];
-            UADebugLog(@"onClosePressed block called from panel: %@", modalPanel);
-        };
-        
-        ///////////////////////////////////////////
-        //   Panel is a reference to the modalPanel
-        modalPanel.onActionPressed = ^(UAModalPanel* panel) {
-            UADebugLog(@"onActionPressed block called from panel: %@", modalPanel);
-        };
-        
-        UADebugLog(@"UAModalView will display using blocks: %@", modalPanel);
-        
-        ////////////////////////
-        // USE DELEGATE
-    } else if (1 == blocksDelegateOrNone) {
-        ///////////////////////////////////
-        // Add self as the delegate so we know how to close the panel
-        modalPanel.delegate = self;
-        
-        UADebugLog(@"UAModalView will display using delegate methods: %@", modalPanel);
-        
-        ////////////////////////
-        // USE NOTHING
-    } else {
-        // no-op. No delegate or blocks
-        UADebugLog(@"UAModalView will display without blocks or delegate methods: %@", modalPanel);
-    }
+        NSDictionary *imageInfo = [_photoSource photoGallery:self infoForPhotoAtIndex:_currentIndex];
+             
+           NSString* imageID = [NSString stringWithFormat:[imageInfo objectForKey:@"imageId"]];
+        appdt.currentImageGallery = imageID;
     
-    
-    ///////////////////////////////////
-    // Add the panel to our view
-    [self.view addSubview:modalPanel];
-    
-    ///////////////////////////////////
-    // Show the panel from the center of the button that was pressed
-    [modalPanel showFromPoint:CGPointMake(150.0, 150.0)];
-}
-
--(void)showTablePopover:(id)sender forEvent:(UIEvent*)event
-{
     GalleryCommentViewController *my = [[GalleryCommentViewController alloc] initWithNibName:@"GalleryCommentViewController" bundle:nil] ;
-    //SelectListViewController *my = [[UIApplication sharedApplication] delegate];
-    //UITableViewController *tableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
-    my.view.frame = CGRectMake(0,0, 320, 400);
-    TSPopoverController *popoverController = [[TSPopoverController alloc] initWithContentViewController:my];
     
-    popoverController.cornerRadius = 5;
-    popoverController.titleText = @"Comments";
-    popoverController.popoverBaseColor = [UIColor lightGrayColor];
-    popoverController.popoverGradient= NO;
-    //    popoverController.arrowPosition = TSPopoverArrowPositionHorizontal;
-    [popoverController showPopoverWithTouch:event];
+	
+    
+    my.delegate = self;
+	// 2. Get shared floating controller
+	floatingController = [CQMFloatingController sharedFloatingController];
+	
+	// 3. Show floating controller with specified content
+	
+	[floatingController showInView:[self view]
+		 withContentViewController:my
+						  animated:YES];
+    
+    floatingController.view.hidden = FALSE;
     
 }
 
-- (void)commentDone:(NSString*)comment {
-    UIAlertView *tmp = [[UIAlertView alloc] 
-                        initWithTitle:comment
-                        message:appdt.currentImageGallery
-                        delegate:self 
-                        cancelButtonTitle:nil
-                        otherButtonTitles:@"Ok", nil];
+- (void)commentDone:(GalleryCommentViewController *)controller didFinishEnteringBrand:(NSString *)item
+{
+        NSLog(@"Baaaaal");
+    floatingController.view.hidden = TRUE;
+    [_photoSource photoGallery:self commentButtonClicked:appdt.currentImageGallery:item];
     
-    [tmp show];
-    [_photoSource photoGallery:self commentButtonClicked:appdt.currentImageGallery:comment];
 }
+- (IBAction) hideKeyboard: (id) sender{
+	
+}
+
+
+//- (void)commentDone:(NSString*)comment {
+//    [[floatingController view] removeFromSuperview];
+//    [_photoSource photoGallery:self commentButtonClicked:appdt.currentImageGallery:comment];
+//}
 
 #pragma mark stylistButtonPressed
 
@@ -2476,32 +2487,13 @@
 
 @implementation UINavigationController (FGallery)
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-	if([self.visibleViewController isKindOfClass:[FGalleryViewController class]])
-	{
-        return YES;
-	}
-    
-	// To preserve the UINavigationController's defined behavior,
-	// walk its stack.  If all of the view controllers in the stack
-	// agree they can rotate to the given orientation, then allow it.
-	BOOL supported = YES;
-	for(UIViewController *sub in self.viewControllers)
-	{
-		if(![sub shouldAutorotateToInterfaceOrientation:interfaceOrientation])
-		{
-			supported = NO;
-			break;
-		}
-	}
-	if(supported)
-		return YES;
-	
-	// we need to support at least one type of auto-rotation we'll get warnings.
-	// so, we'll just support the basic portrait.
-	return ( interfaceOrientation == UIInterfaceOrientationPortrait ) ? YES : NO;
+    //If you don't want to support multiple orientations uncomment the line below
+    return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
+    //return [super shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
 }
+
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
