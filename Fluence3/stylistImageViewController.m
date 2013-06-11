@@ -12,11 +12,12 @@
 
 @implementation stylistImageViewController
 
-@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,commentTextField,fgc,queryImageView;
+@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,commentTextField,fgc,queryImageView,appdt;
 
 - (void)loadView{
 	[super loadView];
-    Fluence3AppDelegate *appdt = [[UIApplication sharedApplication] delegate];
+    appdt = [[UIApplication sharedApplication] delegate];
+    
      NSLog(@"Hehe %@",appdt.currentStylistImage);
 //    NSString *imgUrl = appdt.currentStylistImage;
 //    
@@ -56,7 +57,7 @@
 	[self.listTableView setHidden:YES];
 	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&limit=%d",self.currentLimit];
     NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getComment/" ];
-    [self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
+    [self performSelector:@selector(triggerAsyncronousRequest1:) withObject: serverUrl];
 	//[utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
 	
 }
@@ -71,6 +72,36 @@
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];//asynchronous call
 	[[NSURLConnection alloc] initWithRequest:request delegate:self];
 	
+}
+
+- (void) triggerAsyncronousRequest1: (NSString *)url {
+	
+	[self.spinner startAnimating];
+	self.spinner.hidden = NO;
+	self.spinnerBg.hidden = NO;
+	
+    
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId",appdt.currentStylistImageId , @"ImageID", nil];
+    
+    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+    [dictionnary setObject:jsoning forKey:@"postData"];
+    
+    NSString *jsonStr = [dictionnary JSONRepresentation];
+    
+    NSLog(@"jsonRequest is %@", jsonStr);
+    
+    NSURL *nsurl = [ NSURL URLWithString: url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl
+                                    
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                    
+                                                       timeoutInterval:60.0];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
 - (IBAction) searchContentChanged: (id) sender{
@@ -329,8 +360,29 @@
 - (IBAction)commentTextButton:(id)sender {
     NSString *string = commentTextField.text;
     commentTextField.text = @"";
-    fgc = [[FGalleryViewController alloc] initWithNibName:nil bundle:nil];
-    [fgc commentDone:string];
+    NSLog(string);
+        
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId",appdt.currentStylistImageId , @"ImageID",string,@"Comment", nil];
+    
+    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+    [dictionnary setObject:jsoning forKey:@"postData"];
+    
+    NSString *jsonStr = [dictionnary JSONRepresentation];
+    
+    NSLog(@"jsonRequest is %@", jsonStr);
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/SubmitStylishComment/" ];
+    NSURL *nsurl = [ NSURL URLWithString: serverUrl];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl
+                                    
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                    
+                                                       timeoutInterval:60.0];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
 }
 

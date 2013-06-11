@@ -34,7 +34,7 @@
 	[self.listTableView setHidden:YES];
 	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&limit=%d",self.currentLimit];
     NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getComment2/" ];
-    [self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
+    [self performSelector:@selector(triggerAsyncronousRequest1:) withObject: serverUrl];
 	//[utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
 	
 }
@@ -49,6 +49,35 @@
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];//asynchronous call
 	[[NSURLConnection alloc] initWithRequest:request delegate:self];
 	
+}
+- (void) triggerAsyncronousRequest1: (NSString *)url {
+	
+	[self.spinner startAnimating];
+	self.spinner.hidden = NO;
+	self.spinnerBg.hidden = NO;
+	
+    
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId", nil];
+    
+    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+    [dictionnary setObject:jsoning forKey:@"postData"];
+    
+    NSString *jsonStr = [dictionnary JSONRepresentation];
+    
+    NSLog(@"Join/Cancel jsonRequest is %@", jsonStr);
+    
+    NSURL *nsurl = [ NSURL URLWithString: url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl
+                                    
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                    
+                                                       timeoutInterval:60.0];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
 - (IBAction) searchContentChanged: (id) sender{
@@ -198,10 +227,10 @@
 			cell.selectedBackgroundView = [[[UIView alloc] init] autorelease];
 			[cell.selectedBackgroundView setBackgroundColor:[UIColor orangeColor]];
 		}
-		cell.commentName.text = [rowData objectForKey:@"userName"];
-        cell.commentID = [rowData objectForKey:@"userID"];
+		cell.commentName.text = [rowData objectForKey:@"commentName"];
+        cell.commentID = [rowData objectForKey:@"commentID"];
 		cell.commentDate.text = [rowData objectForKey:@"commentDate"];
-        cell.commentBody.text = [rowData objectForKey:@"query"];
+        cell.commentBody.text = [rowData objectForKey:@"commentBody"];
         NSLog([rowData objectForKey:@"read"]);
 //        if([[rowData objectForKey:@"read"] intValue] == 0)
 //        {
@@ -215,7 +244,7 @@
 //        }
         
         //NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
-		NSString *serverUrl = [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"images/%@",[rowData objectForKey:@"userImage"]];
+		NSString *serverUrl = [rowData objectForKey:@"commentImage"];
 		
 		NSURL *url = [NSURL URLWithString:serverUrl];
 		
@@ -247,7 +276,7 @@
     
      NSUInteger row = [indexPath row];
 	 NSDictionary *rowData = [self.dataSource objectAtIndex:row];
-   
+    appdt.currentStylistImageId = [rowData objectForKey:@"ImageID"];
     appdt.currentStylistImage = [rowData objectForKey:@"galleryImage"];
      NSLog(@"%@ ..... %@",[rowData objectForKey:@"galleryImage"],appdt.currentStylistImage);
     stylistModal *modalPanel = [[[stylistModal alloc] initWithFrame:self.view.bounds title:@"Stylist Queries"] autorelease];

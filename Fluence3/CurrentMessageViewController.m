@@ -6,28 +6,33 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "MessageViewController.h"
+#import "CurrentMessageViewController.h"
 #import "Fluence3AppDelegate.h"
-#import "commentPanel.h"
-#import "stylistModal.h"
-#import "UANoisyGradientBackground.h"
-#import "UAGradientBackground.h"
 
-@implementation MessageViewController
 
-@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,commentTextField,fgc,appdt;
+@implementation CurrentMessageViewController
+
+@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,commentTextField,fgc,queryImageView,appdt;
 
 - (void)loadView{
 	[super loadView];
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back"
-                                                                   style:UIBarButtonItemStyleBordered
-                                                                  target:self
-                                                                  action:@selector(handleBack1:)];
-    
-    self.navigationItem.leftBarButtonItem = backButton;
-
     appdt = [[UIApplication sharedApplication] delegate];
-    [self.navigationController setNavigationBarHidden:NO];
+    
+     NSLog(@"Hehe %@",appdt.currentStylistImage);
+
+    
+    NSString *serverUrl1 = appdt.currentStylistImage;
+    
+    NSURL *url = [NSURL URLWithString:serverUrl1];
+    
+    NSData *data = [[NSData alloc] initWithContentsOfURL:url];
+    
+    UIImage *tmpImage = [[UIImage alloc] initWithData:data];
+    
+    //yourImageView.image = tmpImage;
+    
+    
+    [queryImageView setImage:tmpImage];
 	dao = [[searchDao alloc] init];
 	self.searchBar.placeholder = [self getSearchBarTitle];
 	self.currentLimit = 5000;
@@ -40,7 +45,7 @@
     
 	[self.listTableView setHidden:YES];
 	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&limit=%d",self.currentLimit];
-    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getMessage/" ];
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/FetchConv/" ];
     [self performSelector:@selector(triggerAsyncronousRequest1:) withObject: serverUrl];
 	//[utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
 	
@@ -65,7 +70,7 @@
 	self.spinnerBg.hidden = NO;
 	
     
-    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId", nil];
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId",appdt.currentStylistImageId , @"SenderId", nil];
     
     NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
     [dictionnary setObject:jsoning forKey:@"postData"];
@@ -87,6 +92,7 @@
     
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
+
 
 - (IBAction) searchContentChanged: (id) sender{
 	
@@ -245,16 +251,16 @@
             cell.notiImage.hidden = FALSE;
         }
         
-//        if([[rowData objectForKey:@"read"] intValue] == 0)
-//        {
-//            NSLog([rowData objectForKey:@"read"]);
-//            cell.contentView.backgroundColor  = [UIColor colorWithRed:0.8 green:0.9 blue:1 alpha:1];
-//        }
-//        else
-//        {
-//            cell.contentView.backgroundColor  = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1];
-//            
-//        }
+        //        if([[rowData objectForKey:@"read"] intValue] == 0)
+        //        {
+        //            NSLog([rowData objectForKey:@"read"]);
+        //            cell.contentView.backgroundColor  = [UIColor colorWithRed:0.8 green:0.9 blue:1 alpha:1];
+        //        }
+        //        else
+        //        {
+        //            cell.contentView.backgroundColor  = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1];
+        //
+        //        }
         
         //NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
 		NSString *serverUrl = [rowData objectForKey:@"messageImage"];
@@ -286,15 +292,7 @@
 // event handler after selecting a table row
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"Row selected...");
-    NSUInteger row = [indexPath row];
-    NSDictionary *rowData = [self.dataSource objectAtIndex:row];
-    appdt.currentStylistImageId = [rowData objectForKey:@"senderID"];
-    NSLog(@"ID is %@", appdt.currentStylistImageId);
-    CurrentMessageViewController *nCameraImage = [[[CurrentMessageViewController alloc] initWithNibName:@"CurrentMessageViewController" bundle:nil]autorelease];
-    nCameraImage.title = @"Message";
-    [self.navigationController pushViewController:nCameraImage animated:true];
-    
-	 
+   
 	[self hideKeyboard:nil];
 }
 
@@ -324,8 +322,39 @@
 - (IBAction)commentTextButton:(id)sender {
     NSString *string = commentTextField.text;
     commentTextField.text = @"";
-    fgc = [[FGalleryViewController alloc] initWithNibName:nil bundle:nil];
-    [fgc commentDone:string];
+    NSLog(string);
+    if(string==NULL)
+    {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Error"
+                              message: @"No Message Given"
+                              delegate: nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId",appdt.currentStylistImageId , @"ReceiverId",string,@"Message", nil];
+    
+    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+    [dictionnary setObject:jsoning forKey:@"postData"];
+    
+    NSString *jsonStr = [dictionnary JSONRepresentation];
+    
+    NSLog(@"jsonRequest is %@", jsonStr);
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/SubmitStylishComment/" ];
+    NSURL *nsurl = [ NSURL URLWithString: serverUrl];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl
+                                    
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                    
+                                                       timeoutInterval:60.0];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
 }
 
@@ -347,15 +376,11 @@
 - (void)viewDidUnload {
     [commentTextField release];
     commentTextField = nil;
+    [queryImageView release];
+    queryImageView = nil;
     [super viewDidUnload];
-    
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
-- (void)viewDidLoad {
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    
 }
 
 
@@ -377,19 +402,14 @@
 	[followed_s release];
     
     [commentTextField release];
+    [queryImageView release];
     [super dealloc];
 }
 
 
 -(IBAction)userDoneEnteringText:(id)sender
 {
-    commentTextField = (UITextField*)sender;
-    // do whatever you want with this text field
-}
-- (void)handleBack1:(id)sender {
-    MainViewController *nCameraImage = [[[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil]autorelease];
-    nCameraImage.title = @"Fluence";
-    [self.navigationController pushViewController:nCameraImage animated:true];
+    commentTextField = (UITextField*)sender;    // do whatever you want with this text field
 }
 
 @end

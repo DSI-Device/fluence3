@@ -14,7 +14,7 @@
 #import "stylistGalleryCommentCell.h"
 #import "viewMoreCell.h"
 #import "FGalleryViewController.h"
-
+#import "Fluence3AppDelegate.h"
 @interface stylistImageViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate> {
 	MYSBJsonStreamParser *parser;
 	MYSBJsonStreamParserAdapter *adapter;
@@ -24,7 +24,7 @@
 	int totalCount;
 	int action_status;
 	int currentLimit;
-	
+	Fluence3AppDelegate *appdt;
 	IBOutlet UITextField *searchBar;
 	IBOutlet UITableView *listTableView;
 	IBOutlet UIActivityIndicatorView *spinner;
@@ -59,6 +59,7 @@
 @property(nonatomic, assign) int action_status;
 @property(nonatomic, assign) UITextField *commentTextField;
 @property(nonatomic, strong) FGalleryViewController *fgc;
+@property (nonatomic, retain) Fluence3AppDelegate *appdt;
 - (IBAction) selectionDone:(id) sender;
 - (IBAction) searchContentChanged: (id) sender;
 - (IBAction) hideKeyboard: (id) sender;

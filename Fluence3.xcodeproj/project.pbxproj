@@ -31,6 +31,8 @@
 		2B691B9D17672E8F00BCEFAB /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B691B9B17672E8F00BCEFAB /* MessageViewController.m */; };
 		2B691B9E17672E8F00BCEFAB /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B691B9C17672E8F00BCEFAB /* MessageViewController.xib */; };
 		2B691BA017673D9F00BCEFAB /* circle-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B691B9F17673D9F00BCEFAB /* circle-icon.png */; };
+		2B691BA81767734C00BCEFAB /* CurrentMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B691BA61767734B00BCEFAB /* CurrentMessageViewController.m */; };
+		2B691BA91767734C00BCEFAB /* CurrentMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B691BA71767734B00BCEFAB /* CurrentMessageViewController.xib */; };
 		2B7F19BD173AA77F0049084C /* YHCPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7F19BC173AA77F0049084C /* YHCPickerView.m */; };
 		2B7F19C2173AC4410049084C /* FGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E7F616F88FC900C92E99 /* FGalleryViewController.m */; };
 		2B98853A1727DD10000386E5 /* TSPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9885351727DD10000386E5 /* TSPopoverController.m */; };
@@ -267,6 +269,9 @@
 		2B691B9B17672E8F00BCEFAB /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageViewController.m; path = Fluence3/MessageViewController.m; sourceTree = "<group>"; };
 		2B691B9C17672E8F00BCEFAB /* MessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessageViewController.xib; path = Fluence3/MessageViewController.xib; sourceTree = "<group>"; };
 		2B691B9F17673D9F00BCEFAB /* circle-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "circle-icon.png"; path = "Fluence3/circle-icon.png"; sourceTree = "<group>"; };
+		2B691BA51767734A00BCEFAB /* CurrentMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CurrentMessageViewController.h; path = Fluence3/CurrentMessageViewController.h; sourceTree = "<group>"; };
+		2B691BA61767734B00BCEFAB /* CurrentMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CurrentMessageViewController.m; path = Fluence3/CurrentMessageViewController.m; sourceTree = "<group>"; };
+		2B691BA71767734B00BCEFAB /* CurrentMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CurrentMessageViewController.xib; path = Fluence3/CurrentMessageViewController.xib; sourceTree = "<group>"; };
 		2B7F19BB173AA77F0049084C /* YHCPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHCPickerView.h; sourceTree = "<group>"; };
 		2B7F19BC173AA77F0049084C /* YHCPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHCPickerView.m; sourceTree = "<group>"; };
 		2B9885341727DD10000386E5 /* TSPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverController.h; sourceTree = "<group>"; };
@@ -749,6 +754,9 @@
 		C889BABB16F213370040CA39 = {
 			isa = PBXGroup;
 			children = (
+				2B691BA51767734A00BCEFAB /* CurrentMessageViewController.h */,
+				2B691BA61767734B00BCEFAB /* CurrentMessageViewController.m */,
+				2B691BA71767734B00BCEFAB /* CurrentMessageViewController.xib */,
 				2B691B9F17673D9F00BCEFAB /* circle-icon.png */,
 				2B691B9A17672E8F00BCEFAB /* MessageViewController.h */,
 				2B691B9B17672E8F00BCEFAB /* MessageViewController.m */,
@@ -1409,6 +1417,7 @@
 				2B691B9817672E7C00BCEFAB /* CustomMessageCell.xib in Resources */,
 				2B691B9E17672E8F00BCEFAB /* MessageViewController.xib in Resources */,
 				2B691BA017673D9F00BCEFAB /* circle-icon.png in Resources */,
+				2B691BA91767734C00BCEFAB /* CurrentMessageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1527,6 +1536,7 @@
 				2B1BD0691762A1C2006753B9 /* OpeningViewController.m in Sources */,
 				2B691B9717672E7C00BCEFAB /* CustomMessageCell.m in Sources */,
 				2B691B9D17672E8F00BCEFAB /* MessageViewController.m in Sources */,
+				2B691BA81767734C00BCEFAB /* CurrentMessageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

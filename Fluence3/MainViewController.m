@@ -267,7 +267,12 @@
 //                                              action:@selector(logoutButtonWasPressed:)]autorelease];
     [super viewDidLoad];
 
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back"
+                                                                   style:UIBarButtonItemStyleBordered
+                                                                  target:self
+                                                                  action:@selector(handleBack1:)];
     
+    self.navigationItem.leftBarButtonItem = backButton;
     [[NSNotificationCenter defaultCenter] 
      addObserver:self 
      selector:@selector(sessionStateChanged:) 
@@ -331,5 +336,10 @@
 //-(void)logoutButtonWasPressed:(id)sender {
 //    [FBSession.activeSession closeAndClearTokenInformation];
 //}
+- (void)handleBack1:(id)sender {
+    ISViewController *nCameraImage = [[[ISViewController alloc] initWithNibName:@"ISViewController" bundle:nil]autorelease];
+    nCameraImage.title = @"Fluence";
+    [self.navigationController pushViewController:nCameraImage animated:true];
+}
 
 @end

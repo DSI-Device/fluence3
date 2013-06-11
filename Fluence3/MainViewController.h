@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "ISViewController.h"
 #import "MessageViewController.h"
+@class MessageViewController;
 @class Fluence3AppDelegate;
 @class GalleryController;
 

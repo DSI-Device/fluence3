@@ -11,13 +11,12 @@
 #import "utils.h"
 #import "searchDao.h"
 #import "SelectBoxProtocol.h"
-#import "CustomMessageCell.h"
+#import "stylistGalleryCommentCell.h"
 #import "viewMoreCell.h"
-#import "Fluence3AppDelegate.h"
 #import "FGalleryViewController.h"
-#import "MainViewController.h"
-#import "CurrentMessageViewController.h"
-@interface MessageViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate> {
+#import "Fluence3AppDelegate.h"
+#import "CustomMessageCell.h"
+@interface CurrentMessageViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate> {
 	MYSBJsonStreamParser *parser;
 	MYSBJsonStreamParserAdapter *adapter;
 	NSMutableArray *dataSource;
@@ -26,13 +25,14 @@
 	int totalCount;
 	int action_status;
 	int currentLimit;
-	
+	Fluence3AppDelegate *appdt;
 	IBOutlet UITextField *searchBar;
 	IBOutlet UITableView *listTableView;
 	IBOutlet UIActivityIndicatorView *spinner;
 	IBOutlet UIScrollView *spinnerBg;
 	IBOutlet UILabel *countText;
     IBOutlet UITextField *commentTextField;
+    IBOutlet UIImageView *queryImageView;
 	
 	searchDao *dao;
 	BOOL *isSearchFromOnline;
@@ -40,7 +40,6 @@
 	UIViewController<SelectBoxProtocol> *filterView;
 	NSString *followed_s;
     FGalleryViewController *fgc;
-    Fluence3AppDelegate *appdt;
 }
 
 @property(nonatomic, retain) UITextField *searchBar;
@@ -52,6 +51,7 @@
 @property(nonatomic, retain) NSMutableArray *selectedDataSource;
 @property(nonatomic, retain) NSString *defaultElemId;
 @property(nonatomic, retain) UIViewController<SelectBoxProtocol> *filterView;
+@property(nonatomic, retain) UIImageView *queryImageView;
 @property(nonatomic, assign) BOOL *isSearchFromOnline;
 @property(nonatomic, assign) int maxSelectionLimit;
 @property(nonatomic, assign) int totalCount;
