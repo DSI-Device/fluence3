@@ -57,6 +57,7 @@
     txtSearch.barStyle = UIBarStyleBlackTranslucent;
     txtSearch.backgroundColor = [UIColor clearColor];
     txtSearch.delegate = self;
+    txtSearch.hidden = YES;
     txtSearch.userInteractionEnabled = TRUE;
     
     for (UIView *subview in txtSearch.subviews) {
@@ -67,13 +68,13 @@
     } 
     
     
-    UIBarButtonItem *flexible1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    //UIBarButtonItem *flexible1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:@selector(btnCancelClick)];
     
     UIBarButtonItem *btnDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(btnDoneClick)];
     [picketToolbar addSubview:txtSearch];
-    NSArray *arrBarButtoniTems = [[NSArray alloc] initWithObjects:flexible1,flexible,btnDone, nil];
+    NSArray *arrBarButtoniTems = [[NSArray alloc] initWithObjects:flexible,btnDone, nil];
     [picketToolbar setItems:arrBarButtoniTems];
     [self addSubview:pickerView];
     [self addSubview:picketToolbar];

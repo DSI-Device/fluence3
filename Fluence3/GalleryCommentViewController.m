@@ -11,7 +11,7 @@
 
 @implementation GalleryCommentViewController
 
-@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,commentTextField,fgc;
+@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,commentTextField,delegate;
 
 - (void)loadView{
 	[super loadView];
@@ -199,7 +199,7 @@
         followed_s = [rowData objectForKey:@"followed"];
         
         //NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
-		NSString *serverUrl = [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"images/%@",[rowData objectForKey:@"commentImage"]];
+		NSString *serverUrl = [rowData objectForKey:@"commentImage"];
 		
 		NSURL *url = [NSURL URLWithString:serverUrl];
 		
@@ -273,6 +273,7 @@
 	 }
 	 }*/
 	[self hideKeyboard:nil];
+
 }
 
 - (IBAction) hideKeyboard: (id) sender{
@@ -301,8 +302,11 @@
 - (IBAction)commentTextButton:(id)sender {
     NSString *string = commentTextField.text;
     commentTextField.text = @"";
-    fgc = [[FGalleryViewController alloc] initWithNibName:nil bundle:nil];
-    [fgc commentDone:string];
+    [self.delegate commentDone:self didFinishEnteringBrand:string];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [commentTextField resignFirstResponder];
+//    fgc = [[FGalleryViewController alloc] initWithNibName:nil bundle:nil];
+//    [fgc commentDone:string];
     
 }
 

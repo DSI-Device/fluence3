@@ -9,9 +9,11 @@
 #import "MapViewController.h"
 #import "MyAnnotation.h"
 
+#import "TSPopoverController.h"
+
 @implementation MapViewController
 
-@synthesize mapView,annotationsArray;
+@synthesize mapView,annotationsArray,appdt;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,6 +44,48 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    appdt = [[UIApplication sharedApplication] delegate];
+    
+    NSString *latitude = [NSString stringWithFormat:@"%f", appdt.latitude];
+    NSString *longitude = [NSString stringWithFormat:@"%f", appdt.longitude];
+    
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId",latitude,@"latitude",longitude,@"longitude", nil];
+    
+    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+    [dictionnary setObject:jsoning forKey:@"postData"];
+    
+    NSString *jsonStr = [dictionnary JSONRepresentation];
+    
+    NSLog(@"jsonRequest is %@", jsonStr);
+    
+    NSURL *nsurl = [ NSURL URLWithString: [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/GetMapData/" ]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl
+                                    
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                    
+                                                       timeoutInterval:60.0];
+    
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //[[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    NSError *theError = nil;
+    NSURLResponse *theResponse =[[NSURLResponse alloc]init];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&theError];
+    NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"Json back %@", responseString);
+    
+    NSMutableArray *annotationsArray2 = [responseString JSONValue];
+    
+    annotationsArray = [[NSMutableArray alloc] initWithObjects:nil];
+    for (NSDictionary *dict in annotationsArray2) {
+        [annotationsArray addObject:dict];
+    }
+
     // Do any additional setup after loading the view from its nib.
     self.mapView.delegate = self;
     [self getLocations];
@@ -82,8 +126,8 @@
 {
     // start off by default in San Francisco
     MKCoordinateRegion newRegion;
-    newRegion.center.latitude = 37.786996;
-    newRegion.center.longitude = -122.440100;
+    newRegion.center.latitude = appdt.latitude;
+    newRegion.center.longitude = appdt.longitude;
     newRegion.span.latitudeDelta = 0.112872;
     newRegion.span.longitudeDelta = 0.109863;
 	
@@ -94,7 +138,7 @@
 {
     
     mapView.delegate=self;
-    
+    /*
     NSDictionary *user1 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"3", @"userId", @"Naim", @"userName", @"37.786996", @"userLatitude", @"-122.419281", @"userLontitude",@"1", @"userCat", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic",nil];
     NSDictionary *user2 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"7", @"userId", @"Nazmul", @"userName", @"37.810000", @"userLatitude", @"-122.477989", @"userLontitude",@"1", @"userCat", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", nil];
     NSDictionary *user3 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"4", @"userId", @"Shuvo", @"userName", @"37.760000", @"userLatitude", @"-122.447989", @"userLontitude",@"1", @"userCat", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", nil];
@@ -117,7 +161,7 @@
 	CLLocationCoordinate2D theCoordinate4;
     theCoordinate4.latitude = 37.80000;
     theCoordinate4.longitude = -122.407989;
-	
+	*/
     [self setLocations];
 	
 }
@@ -214,7 +258,52 @@ calloutAccessoryControlTapped:(UIControl *)control
     if ([selectedAnn isKindOfClass:[MyAnnotation class]])
     {
         MyAnnotation *vma = (MyAnnotation *)selectedAnn;
-        NSLog(@"selected VMA = %@, blobkey=%@", vma, vma.uniqueId);
+        NSLog(@"User Name = %@, UserId=%@", vma.title, vma.uniqueId);
+        
+        UIViewController *commentViewController = [UIViewController alloc];
+        commentViewController.view.frame = CGRectMake(10,200, 300, 100);
+        popoverController = [[TSPopoverController alloc] initWithContentViewController:commentViewController];
+        
+        popoverController.cornerRadius = 5;
+        popoverController.titleColor = [UIColor whiteColor];
+        popoverController.titleText = @"Send";
+        popoverController.popoverBaseColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
+        popoverController.popoverGradient= NO;
+        //    popoverController.arrowPosition = TSPopoverArrowPositionHorizontal;
+        
+        
+        _shareloading = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 200, 30)];
+        _shareloading.font = [UIFont systemFontOfSize:22];
+        _shareloading.text = @"Message Send";
+        _shareloading.textColor = [UIColor whiteColor];
+        
+        _commentTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 200, 30)];
+        _commentTextField.borderStyle = UITextBorderStyleRoundedRect;
+        _commentTextField.font = [UIFont systemFontOfSize:15];
+        _commentTextField.placeholder = @"enter text";
+        _commentTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+        _commentTextField.keyboardType = UIKeyboardTypeDefault;
+        _commentTextField.returnKeyType = UIReturnKeyDone;
+        _commentTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        _commentTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        _commentTextField.delegate = self;
+        _commentTextField.hidden = NO;
+        _topButton.hidden = NO;
+        _shareloading.hidden = YES;
+        [commentViewController.view addSubview:_commentTextField];
+        [commentViewController.view addSubview:_shareloading];
+        [_commentTextField release];
+        
+        
+        
+        
+        _topButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [_topButton addTarget:self action:@selector(messageDone:forEvent:) forControlEvents:UIControlEventTouchUpInside];
+        _topButton.frame = CGRectMake(220,20, 80, 30);
+        [_topButton setTitle:@"Message" forState:UIControlStateNormal];
+        _topButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        [commentViewController.view addSubview:_topButton];
+        [popoverController showPopoverWithTouchinBottom];
     }
     else
     {
@@ -222,6 +311,12 @@ calloutAccessoryControlTapped:(UIControl *)control
     }
     
     //do something with the selected annotation... 
+}
+- (void)messageDone:(id)sender forEvent:(UIEvent*)event {
+    _commentTextField.hidden = YES;
+    _topButton.hidden = YES;
+    _shareloading.hidden = NO;
+    //    [popoverController dismissPopoverAnimatd:YES];
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation

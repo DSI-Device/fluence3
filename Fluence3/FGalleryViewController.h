@@ -18,6 +18,10 @@
 #import "YHCPickerView.h"
 #import "galleryDateSelect.h"
 #import "GalleryController.h"
+#import "CQMFloatingController.h"
+#import "GalleryCommentViewController.h"
+#import "UAModalPanel.h"
+
 @class DDMenuController;
 typedef enum
 {
@@ -33,7 +37,7 @@ typedef enum
 
 @protocol FGalleryViewControllerDelegate;
 
-@interface FGalleryViewController : UIViewController <UIScrollViewDelegate,FGalleryPhotoDelegate,FGalleryPhotoViewDelegate,UITextFieldDelegate> {
+@interface FGalleryViewController : UIViewController <UIScrollViewDelegate,FGalleryPhotoDelegate,FGalleryPhotoViewDelegate,UITextFieldDelegate,GalleryCommentViewControllerDelegate> {
 	
 	BOOL _isActive;
 	BOOL _isFullscreen;
@@ -89,6 +93,9 @@ typedef enum
     UILabel *_likeNumber;
     
     Fluence3AppDelegate *appdt;
+    
+    CQMFloatingController *floatingController;
+    UAModalPanel *panel;
 }
 
 
@@ -102,8 +109,9 @@ typedef enum
 - (void)reloadGallery;
 - (FGalleryPhoto*)currentPhoto;
 - (void)addMyButton:(NSInteger)index:(NSString*)caption:(UIView*)container:(NSInteger)xc:(NSInteger)yc;
-- (void)commentDone:(NSString*)comment;
-
+//- (void)commentDone:(NSString*)comment;
+@property (nonatomic, retain) UAModalPanel *panel;
+@property (nonatomic, retain) CQMFloatingController *floatingController;
 @property (nonatomic, retain) Fluence3AppDelegate *appdt;
 @property (nonatomic,retain) NSString *currentDate;
 @property NSInteger currentIndex;
@@ -121,6 +129,7 @@ typedef enum
 -(void)promptUserWithAccountName;
 -(void)controlStatusUsable:(BOOL)usable;
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+- (void)commentDone:(GalleryCommentViewController *)controller didFinishEnteringBrand:(NSString *)item;
 @end
 
 
@@ -149,5 +158,7 @@ typedef enum
 - (int)photoGallery:(FGalleryViewController*)gallery likeButtonClicked:(NSString*)imageId:(NSInteger)imgIndex;
 - (void)commentButtonClicked:(NSString*)imageId:(NSString*)comment;
 - (void)photoGallery:(FGalleryViewController*)gallery stylistButtonClicked:(NSInteger)stylistId:(NSString*)userId:(NSString*)imageId:(NSString*)query;
+
+- (void)photoGallery:(FGalleryViewController*)gallery commentButtonClicked:(NSString*)imageId:(NSString*)comment;
 
 @end

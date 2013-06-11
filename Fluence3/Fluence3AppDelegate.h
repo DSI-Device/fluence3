@@ -9,41 +9,49 @@
 #import <UIKit/UIKit.h>
 #import "utils.h"
 #import <FacebookSDK/FacebookSDK.h>
-
+#import <CoreLocation/CoreLocation.h>
+#import "OpeningViewController.h"
 @class MainViewController;
 @class ISColumnsController;
 
 @interface Fluence3AppDelegate : UIResponder <UIApplicationDelegate>{
+    CLLocationManager *locationManager;
     NSString *userId;
     NSString *userGalleryId;
     NSString *userName;
     NSString *accessToken;
     NSString *notification;
+    NSString *message;
     UIImage *userProfileImage;
     NSMutableData *responseData;
     BOOL *isStylist;
     BOOL *conCheckr;
+    CLLocationDegrees latitude;
+	CLLocationDegrees longitude;
     UIImage *img;
     UIImage *imgOptimized;
     NSMutableArray *selectedPoseList;
     id<FBGraphUser> loggedInUser;
     NSString *currentImageGallery;
     NSString *currentStylistImage;
-    NSString *tagID;
+    NSString *tagID1;
     NSString *TagBrandID;
     UIActivityIndicatorView *spinner;
 }
 
 extern NSString *const SessionStateChangedNotification;
-
+@property (nonatomic, retain) CLLocationManager *locationManager;
 @property (strong, nonatomic) id<FBGraphUser> loggedInUser;
 @property (nonatomic, strong) NSString *userId;
+@property (nonatomic, nonatomic) CLLocationDegrees latitude;
+@property (nonatomic, nonatomic) CLLocationDegrees longitude;
 @property (nonatomic, strong) NSString *userGalleryId;
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *currentStylistImage;
 @property (nonatomic, strong) UIImage *userProfileImage;
 @property (nonatomic, strong) NSString *accessToken;
 @property (nonatomic, strong) NSString *notification;
+@property (nonatomic, strong) NSString *message;
 @property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, strong) NSString *currentImageGallery;
 @property (strong, nonatomic) FBSession *session;
@@ -57,7 +65,7 @@ extern NSString *const SessionStateChangedNotification;
 @property (nonatomic, strong) UIImage *imgOptimized;
 @property (nonatomic, strong) NSMutableArray *selectedPoseList;
 //@property (strong, nonatomic) MainViewController *mainViewController;
-@property (nonatomic, strong) NSString *tagID;
+@property (nonatomic, strong) NSString *tagID1;
 @property (nonatomic, strong) NSString *TagBrandID;
 - (void)openSession;
 - (void)reloadViewControllers;

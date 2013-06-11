@@ -156,7 +156,6 @@
 							</object>
 						</object>
 						<bool key="IBUIOpaque">NO</bool>
-						<float key="IBUIAlpha">0.40140846371650696</float>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>

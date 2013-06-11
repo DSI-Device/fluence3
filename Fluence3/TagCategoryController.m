@@ -285,7 +285,7 @@
     
     category = [rowData objectForKey:@"Name"];
     categoryid=[rowData objectForKey:@"ID"];
-	appdt.TagID = [rowData objectForKey:@"ID"];
+	appdt.tagID1 = [rowData objectForKey:@"ID"];
     
    	TagBrandController* nextView1 = [[TagBrandController alloc]initWithNibName:@"TagBrandController" bundle:[NSBundle mainBundle]];
     nextView1.delegate = self;

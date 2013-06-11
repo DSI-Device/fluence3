@@ -112,6 +112,13 @@
     [self showPopoverWithPoint:senderPoint];
 }
 
+- (void) showPopoverWithTouchinBottom
+{    
+    
+    CGPoint senderPoint = CGPointMake(0, 0);
+    [self showPopoverWithPoint:senderPoint];
+}
+
 - (void) showPopoverWithCell:(UITableViewCell*)senderCell
 {
     UIView *senderView = senderCell.superview;

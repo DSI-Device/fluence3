@@ -281,7 +281,7 @@ const NSString *kWundergroundKey = @"67b642d58e39c9cc";
 //                          otherButtonTitles:nil];
 //    [alert show];
 //    [alert release];
-    [_tag setValue:appdt.tagID forKey:@"CategoryID"];
+    [_tag setValue:appdt.tagID1 forKey:@"CategoryID"];
     [_tag setValue:appdt.TagBrandID forKey:@"TagBrandID"];
     [_tag setValue:item2 forKey:@"tagBrand"];
     NSInteger myX = [[_tag objectForKey:@"tagX"] intValue];
@@ -459,7 +459,7 @@ const NSString *kWundergroundKey = @"67b642d58e39c9cc";
     [request addRequestHeader:@"User-Agent" value:@"ASIHTTPRequest"];
     [request addRequestHeader:@"Content-Type" value:@"application/json"];
     
-    [request addPostValue:datas forKey:@"postData"];
+    [request addPostValue:jsonRequest forKey:@"postData"];
     [request setRequestMethod:@"POST"];
     //[request appendPostData:body];
     [request setDelegate:self];
