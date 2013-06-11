@@ -6,15 +6,21 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "GalleryCommentViewController.h"
+#import "MessageViewController.h"
+#import "Fluence3AppDelegate.h"
+#import "commentPanel.h"
+#import "stylistModal.h"
+#import "UANoisyGradientBackground.h"
+#import "UAGradientBackground.h"
 
+@implementation MessageViewController
 
-@implementation GalleryCommentViewController
-
-@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,commentTextField,delegate;
+@synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,commentTextField,fgc,appdt;
 
 - (void)loadView{
 	[super loadView];
+    appdt = [[UIApplication sharedApplication] delegate];
+    [self.navigationController setNavigationBarHidden:NO];
 	dao = [[searchDao alloc] init];
 	self.searchBar.placeholder = [self getSearchBarTitle];
 	self.currentLimit = 5000;
@@ -27,8 +33,8 @@
     
 	[self.listTableView setHidden:YES];
 	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&limit=%d",self.currentLimit];
-    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getComment/" ];
-    [self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getMessage/" ];
+    [self performSelector:@selector(triggerAsyncronousRequest1:) withObject: serverUrl];
 	//[utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
 	
 }
@@ -43,6 +49,36 @@
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];//asynchronous call
 	[[NSURLConnection alloc] initWithRequest:request delegate:self];
 	
+}
+
+- (void) triggerAsyncronousRequest1: (NSString *)url {
+	
+	[self.spinner startAnimating];
+	self.spinner.hidden = NO;
+	self.spinnerBg.hidden = NO;
+	
+    
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId", nil];
+    
+    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+    [dictionnary setObject:jsoning forKey:@"postData"];
+    
+    NSString *jsonStr = [dictionnary JSONRepresentation];
+    
+    NSLog(@"Join/Cancel jsonRequest is %@", jsonStr);
+    
+    NSURL *nsurl = [ NSURL URLWithString: url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl
+                                    
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                    
+                                                       timeoutInterval:60.0];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
 - (IBAction) searchContentChanged: (id) sender{
@@ -183,23 +219,38 @@
 		
 	}else {
 		
-		static NSString *cellTableIdentifier = @"CustomGalleryCommentCellIdentifier";
+		static NSString *cellTableIdentifier = @"CustomMessageCellIdentifier";
 		//CustomGalleryCommentCell
-		CustomGalleryCommentCell *cell = (CustomGalleryCommentCell *)[tableView dequeueReusableCellWithIdentifier:cellTableIdentifier];
+		CustomMessageCell *cell = (CustomMessageCell *)[tableView dequeueReusableCellWithIdentifier:cellTableIdentifier];
 		if (cell == nil) {
-			NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomGalleryCommentCell" owner:self options:nil];
+			NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomMessageCell" owner:self options:nil];
 			cell = [nib objectAtIndex:0];
 			cell.selectedBackgroundView = [[[UIView alloc] init] autorelease];
 			[cell.selectedBackgroundView setBackgroundColor:[UIColor orangeColor]];
 		}
-		cell.commentName.text = [rowData objectForKey:@"commentName"];
-        cell.commentID = [rowData objectForKey:@"commentID"];
-		cell.commentDate.text = [rowData objectForKey:@"commentDate"];
-        cell.commentBody.text = [rowData objectForKey:@"commentBody"];
-        followed_s = [rowData objectForKey:@"followed"];
+		cell.senderName.text = [rowData objectForKey:@"senderName"];
+        cell.senderID = [rowData objectForKey:@"senderID"];
+		cell.messageDate.text = [rowData objectForKey:@"messageDate"];
+        cell.messageBody.text = [rowData objectForKey:@"messageBody"];
+        int not = [[rowData objectForKey:@"IsRead"] intValue];
+        if(not==0)
+        {
+            cell.notiImage.hidden = FALSE;
+        }
+        
+//        if([[rowData objectForKey:@"read"] intValue] == 0)
+//        {
+//            NSLog([rowData objectForKey:@"read"]);
+//            cell.contentView.backgroundColor  = [UIColor colorWithRed:0.8 green:0.9 blue:1 alpha:1];
+//        }
+//        else
+//        {
+//            cell.contentView.backgroundColor  = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1];
+//            
+//        }
         
         //NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
-		NSString *serverUrl = [rowData objectForKey:@"commentImage"];
+		NSString *serverUrl = [rowData objectForKey:@"messageImage"];
 		
 		NSURL *url = [NSURL URLWithString:serverUrl];
 		
@@ -210,7 +261,7 @@
 		//yourImageView.image = tmpImage;
 		
 		
-		[cell.commentImage setImage:tmpImage];
+		[cell.messageImage setImage:tmpImage];
 		
 		
 		return cell;
@@ -229,51 +280,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"Row selected...");
     
-    /* NSUInteger row = [indexPath row];
-	 NSDictionary *rowData = [self.dataSource objectAtIndex:row];
-	 if ([rowData objectForKey:@"count"] != NULL && ![[rowData objectForKey:@"count"] isEqual:@""] ) {
-	 viewMoreCell *cell = (viewMoreCell *)[tableView cellForRowAtIndexPath:indexPath];
-	 [cell setUserInteractionEnabled:NO];
-	 self.currentLimit += 50;
-	 if (self.isSearchFromOnline) {
-	 NSString *serverUrl = [utils performSelector:@selector(getServerURL)];
-	 serverUrl = [serverUrl stringByAppendingFormat:@"&limit=%d",self.currentLimit];
-	 [self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
-	 }else {
+    
 	 
-	 [NSThread detachNewThreadSelector:@selector(loadLocalRows) toTarget:self withObject:nil];
-	 }
-	 
-	 
-	 
-	 }else if ([rowData objectForKey:@"userName"] != NULL && ![[rowData objectForKey:@"userName"] isEqual:@""] ) {
-	 
-	 NSLog(@"option selected on select list");
-	 if( self.defaultElemId != nil && [self.defaultElemId isEqual:[rowData objectForKey:@"userID"]]){
-	 [utils showAlert:@"Warning !!" message:@"Default option can't be removed." delegate:nil];
-	 return;
-	 }
-	 CustomGalleryCommentCell *cell = (CustomGalleryCommentCell *)[tableView cellForRowAtIndexPath:indexPath];
-	 [cell.followed addTarget:self action:@selector(tappedFollowBtn2:) forControlEvents:UIControlEventTouchUpInside];
-	 if (!cell.isFollowed) {
-	 if (self.maxSelectionLimit > 0 && [selectedDataSource count] >= self.maxSelectionLimit) {
-	 [utils showAlert:@"Warning !!" message:@"Maximum selection limit exceeded." delegate:nil];
-	 return;
-	 }
-	 [selectedDataSource addObject:rowData];
-	 //cell.isFollowed = YES;
-	 //[cell.followed setTitle:@"Unfollow" forState:UIControlStateNormal];
-	 //[cell.userImage setImage:[UIImage imageNamed:@"checkbox_ticked.png"]];
-	 
-	 }else {
-	 [utils deleteRowFromList:selectedDataSource row:rowData];
-	 //cell.isFollowed = NO;
-	 //[cell.followed setTitle:@"Follow" forState:UIControlStateNormal];
-	 //[cell.userImage setImage:[UIImage imageNamed:@"checkbox_not_ticked.png"]];
-	 }
-	 }*/
 	[self hideKeyboard:nil];
-
 }
 
 - (IBAction) hideKeyboard: (id) sender{
@@ -302,11 +311,8 @@
 - (IBAction)commentTextButton:(id)sender {
     NSString *string = commentTextField.text;
     commentTextField.text = @"";
-    [self.delegate commentDone:self didFinishEnteringBrand:string];
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [commentTextField resignFirstResponder];
-//    fgc = [[FGalleryViewController alloc] initWithNibName:nil bundle:nil];
-//    [fgc commentDone:string];
+    fgc = [[FGalleryViewController alloc] initWithNibName:nil bundle:nil];
+    [fgc commentDone:string];
     
 }
 
@@ -329,8 +335,14 @@
     [commentTextField release];
     commentTextField = nil;
     [super viewDidUnload];
+    
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+- (void)viewDidLoad {
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+    
 }
 
 

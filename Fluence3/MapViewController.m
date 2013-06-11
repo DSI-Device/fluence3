@@ -11,7 +11,7 @@
 
 @implementation MapViewController
 
-@synthesize mapView,annotationsArray;
+@synthesize mapView,annotationsArray,appdt;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,6 +42,48 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    appdt = [[UIApplication sharedApplication] delegate];
+    
+    NSString *latitude = [NSString stringWithFormat:@"%f", appdt.latitude];
+    NSString *longitude = [NSString stringWithFormat:@"%f", appdt.longitude];
+    
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId",latitude,@"latitude",longitude,@"longitude", nil];
+    
+    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+    [dictionnary setObject:jsoning forKey:@"postData"];
+    
+    NSString *jsonStr = [dictionnary JSONRepresentation];
+    
+    NSLog(@"jsonRequest is %@", jsonStr);
+    
+    NSURL *nsurl = [ NSURL URLWithString: [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/GetMapData/" ]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl
+                                    
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                    
+                                                       timeoutInterval:60.0];
+    
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //[[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    NSError *theError = nil;
+    NSURLResponse *theResponse =[[NSURLResponse alloc]init];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&theError];
+    NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"Json back %@", responseString);
+    
+    NSMutableArray *annotationsArray2 = [responseString JSONValue];
+    
+    annotationsArray = [[NSMutableArray alloc] initWithObjects:nil];
+    for (NSDictionary *dict in annotationsArray2) {
+        [annotationsArray addObject:dict];
+    }
+
     // Do any additional setup after loading the view from its nib.
     self.mapView.delegate = self;
     [self getLocations];
@@ -82,8 +124,8 @@
 {
     // start off by default in San Francisco
     MKCoordinateRegion newRegion;
-    newRegion.center.latitude = 37.786996;
-    newRegion.center.longitude = -122.440100;
+    newRegion.center.latitude = appdt.latitude;
+    newRegion.center.longitude = appdt.longitude;
     newRegion.span.latitudeDelta = 0.112872;
     newRegion.span.longitudeDelta = 0.109863;
 	
@@ -94,7 +136,7 @@
 {
     
     mapView.delegate=self;
-    
+    /*
     NSDictionary *user1 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"3", @"userId", @"Naim", @"userName", @"37.786996", @"userLatitude", @"-122.419281", @"userLontitude",@"1", @"userCat", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic",nil];
     NSDictionary *user2 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"7", @"userId", @"Nazmul", @"userName", @"37.810000", @"userLatitude", @"-122.477989", @"userLontitude",@"1", @"userCat", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", nil];
     NSDictionary *user3 = [[NSDictionary  alloc] initWithObjectsAndKeys: @"4", @"userId", @"Shuvo", @"userName", @"37.760000", @"userLatitude", @"-122.447989", @"userLontitude",@"1", @"userCat", @"http://farm6.static.flickr.com/5042/5323996646_9c11e1b2f6_b.jpg", @"userPic", nil];
@@ -117,7 +159,7 @@
 	CLLocationCoordinate2D theCoordinate4;
     theCoordinate4.latitude = 37.80000;
     theCoordinate4.longitude = -122.407989;
-	
+	*/
     [self setLocations];
 	
 }

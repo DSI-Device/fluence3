@@ -8,15 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-
+#import "Fluence3AppDelegate.h"
 @interface MapViewController : UIViewController <MKMapViewDelegate>
 {
     NSMutableArray* annotationsArray;
+    Fluence3AppDelegate *appdt;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
 @property (nonatomic, retain) NSMutableArray* annotationsArray;
-
+@property (strong, nonatomic) Fluence3AppDelegate *appdt;
 - (void)getLocations;
 - (void)setLocations;
 - (void)gotoLocation;

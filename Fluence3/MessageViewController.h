@@ -11,12 +11,12 @@
 #import "utils.h"
 #import "searchDao.h"
 #import "SelectBoxProtocol.h"
-#import "CustomGalleryCommentCell.h"
+#import "CustomMessageCell.h"
 #import "viewMoreCell.h"
-//#import "FGalleryViewController.h"
+#import "Fluence3AppDelegate.h"
+#import "FGalleryViewController.h"
 
-@protocol GalleryCommentViewControllerDelegate;
-@interface GalleryCommentViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate> {
+@interface MessageViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate> {
 	MYSBJsonStreamParser *parser;
 	MYSBJsonStreamParserAdapter *adapter;
 	NSMutableArray *dataSource;
@@ -38,8 +38,10 @@
 	int maxSelectionLimit;
 	UIViewController<SelectBoxProtocol> *filterView;
 	NSString *followed_s;
+    FGalleryViewController *fgc;
+    Fluence3AppDelegate *appdt;
 }
-@property (nonatomic, retain) id <GalleryCommentViewControllerDelegate> delegate;
+
 @property(nonatomic, retain) UITextField *searchBar;
 @property(nonatomic, retain) UITableView *listTableView;
 @property(nonatomic, retain) UIActivityIndicatorView *spinner;
@@ -56,6 +58,8 @@
 @property(nonatomic, assign) NSString *followed_s;
 @property(nonatomic, assign) int action_status;
 @property(nonatomic, assign) UITextField *commentTextField;
+@property(nonatomic, strong) FGalleryViewController *fgc;
+@property (nonatomic, retain) Fluence3AppDelegate *appdt;
 - (IBAction) selectionDone:(id) sender;
 - (IBAction) searchContentChanged: (id) sender;
 - (IBAction) hideKeyboard: (id) sender;
@@ -63,12 +67,5 @@
 - (IBAction)commentTextButton:(id)sender;
 -(IBAction)userDoneEnteringText:(id)sender;
 - (NSString *) getSearchBarTitle;
-
-@end
-
-@protocol GalleryCommentViewControllerDelegate <NSObject>
-
-@optional
-- (void)commentDone:(GalleryCommentViewController *)controller didFinishEnteringBrand:(NSString *)item;
 
 @end

@@ -227,7 +227,7 @@
         followed_s = [rowData objectForKey:@"followed"];
         
         //NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
-		NSString *serverUrl = [[utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"images/%@",[rowData objectForKey:@"commentImage"]];
+		NSString *serverUrl = [rowData objectForKey:@"commentImage"];
 		
 		NSURL *url = [NSURL URLWithString:serverUrl];
 		

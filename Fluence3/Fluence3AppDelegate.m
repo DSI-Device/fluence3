@@ -38,7 +38,7 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 @synthesize img;
 @synthesize imgOptimized;
 @synthesize selectedPoseList;
-@synthesize notification,currentImageGallery,currentStylistImage,tagID,TagBrandID,spinner;
+@synthesize notification,message,currentImageGallery,currentStylistImage,tagID1,TagBrandID,spinner,locationManager,latitude,longitude;
 
 - (void)dealloc {
     [_navigationController release];
@@ -219,7 +219,21 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 
 - (void)getUserId
 {
-    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: self.userId , @"Fb", nil];
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.distanceFilter = kCLDistanceFilterNone;
+    [locationManager startUpdatingLocation];
+    CLLocation *location = [locationManager location];
+    
+    CLLocationCoordinate2D coordinate = [location coordinate];
+    self.latitude=coordinate.latitude;
+    self.longitude=coordinate.longitude;
+    
+    NSString *latitude = [NSString stringWithFormat:@"%f", coordinate.latitude];
+    NSString *longitude = [NSString stringWithFormat:@"%f", coordinate.longitude];
+    
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: self.userId , @"Fb",latitude,@"latitude",longitude,@"longitude", nil];
     
     NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
     [dictionnary setObject:jsoning forKey:@"postData"];
@@ -240,8 +254,47 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
     
     [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
     
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    //[[NSURLConnection alloc] initWithRequest:request delegate:self];
     
+    NSError *theError = nil;
+    NSURLResponse *theResponse =[[NSURLResponse alloc]init];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&theError];
+    NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"Json back %@", responseString);
+    
+    NSDictionary *dict = [responseString JSONValue];
+    NSDictionary *dict2 = [dict objectAtIndex:0];
+    self.userGalleryId = [NSString stringWithFormat:@"%d", [[dict2 objectForKey:@"AppID"] intValue]];
+    if([[dict2 objectForKey:@"isStylish"] intValue]==1)
+    {
+        self.isStylist = TRUE;
+        self.notification = [NSString stringWithFormat:@"%d", [[dict2 objectForKey:@"totalStyleQuery"] intValue]];
+        self.message = [NSString stringWithFormat:@"%d", [[dict2 objectForKey:@"totalMessage"] intValue]];
+    }
+    
+    
+    NSLog(@"Got json: %d",
+          [[dict2 objectForKey:@"AppID"] intValue]
+          );
+    
+	[responseData release];
+    if(conCheckr)
+    {
+        [spinner stopAnimating];
+    
+
+    
+        ISViewController* nextView = [[ISViewController alloc]initWithNibName:@"ISViewController" bundle:[NSBundle mainBundle]];
+        //    nextView.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        //    [self presentViewController:nextView animated:YES completion:nil];
+
+
+        nextView.title = @"Fluence";
+        [self.navigationController pushViewController:nextView animated:YES];
+        [nextView release];
+    }
+
 }
 
 // methods for NSURLConnection delegate
@@ -255,6 +308,14 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 	NSDictionary *dict = [responseString JSONValue];
     NSDictionary *dict2 = [dict objectAtIndex:0];
     self.userGalleryId = [NSString stringWithFormat:@"%d", [[dict2 objectForKey:@"AppID"] intValue]];
+    if([[dict2 objectForKey:@"isStylish"] intValue]==1)
+    {
+        self.isStylist = TRUE;
+        self.notification = [NSString stringWithFormat:@"%d", [[dict2 objectForKey:@"totalStyleQuery"] intValue]];
+        self.message = [NSString stringWithFormat:@"%d", [[dict2 objectForKey:@"totalMessage"] intValue]];
+    }
+    
+    
     NSLog(@"Got json: %d",
           [[dict2 objectForKey:@"AppID"] intValue]
           );
@@ -263,7 +324,19 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
     if(conCheckr)
     {
         [spinner stopAnimating];
+        
+        
+        
+        ISViewController* nextView = [[ISViewController alloc]initWithNibName:@"ISViewController" bundle:[NSBundle mainBundle]];
+        //    nextView.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        //    [self presentViewController:nextView animated:YES completion:nil];
+        
+        
+        nextView.title = @"Fluence";
+        [self.navigationController pushViewController:nextView animated:YES];
+        [nextView release];
     }
+
     
 }
 
@@ -356,22 +429,40 @@ NSString *const SessionStateChangedNotification = @"com.dsi.Fluence3:SessionStat
 
 - (void)reloadViewControllers
 {
-    self.userGalleryId = @"1";
-    self.isStylist = TRUE;
-    self.notification = @"1";
-    ISViewController *viewController1 = [[[ISViewController alloc] init] autorelease];
+    //OpeningViewController
+    //self.userGalleryId = @"1";
+    //self.isStylist = TRUE;
+    
+    OpeningViewController *viewController1 = [[[OpeningViewController alloc] init] autorelease];
     viewController1.navigationItem.title = @"Fluence";
     
-    ISViewController *viewController2 = [[[ISViewController alloc] init] autorelease];
+    OpeningViewController *viewController2 = [[[OpeningViewController alloc] init] autorelease];
     viewController2.navigationItem.title = @"Fluence";
     
-    ISViewController *viewController3 = [[[ISViewController alloc] init] autorelease];
+    OpeningViewController *viewController3 = [[[OpeningViewController alloc] init] autorelease];
     viewController3.navigationItem.title = @"Fluence";
     
     self.columnsController.viewControllers = [NSArray arrayWithObjects:
                                               viewController1,
                                               viewController2,
                                               viewController3, nil];
+//    self.userGalleryId = @"1";
+//    self.isStylist = TRUE;
+//    self.notification = @"1";
+//    ISViewController *viewController1 = [[[ISViewController alloc] init] autorelease];
+//    viewController1.navigationItem.title = @"Fluence";
+//    
+//    ISViewController *viewController2 = [[[ISViewController alloc] init] autorelease];
+//    viewController2.navigationItem.title = @"Fluence";
+//    
+//    ISViewController *viewController3 = [[[ISViewController alloc] init] autorelease];
+//    viewController3.navigationItem.title = @"Fluence";
+//    
+//    self.columnsController.viewControllers = [NSArray arrayWithObjects:
+//                                              viewController1,
+//                                              viewController2,
+//                                              viewController3, nil];
+
     
 }
 

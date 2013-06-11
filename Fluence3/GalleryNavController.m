@@ -50,33 +50,38 @@
     
     
     
-//   	NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId", @"1" , @"gallertType", nil];
-//    
-//    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
-//    [dictionnary setObject:jsoning forKey:@"postData"];
-//    
-//    NSString *jsonStr = [dictionnary JSONRepresentation];
-//
-//    NSLog(@"Json send %@", jsonStr);
-//    
-//    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getGallery/" ];
-//    //[self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
-//    
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverUrl]];
-//    
-//    [request setHTTPMethod:@"POST"];
-//    
-//    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
-//
-//    NSError *theError = nil;
-//    NSURLResponse *theResponse =[[NSURLResponse alloc]init];
-//    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&theError];
-//    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//    
-//    NSLog(@"Json back %@", string);
-//    
-//    NSMutableArray *imageArray2  = [string JSONValue];
-	
+  	NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId", nil];
+    
+    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+    [dictionnary setObject:jsoning forKey:@"postData"];
+   
+    NSString *jsonStr = [dictionnary JSONRepresentation];
+
+    NSLog(@"Json send %@", jsonStr);
+    
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getStylishList/" ];
+    
+    
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverUrl]];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+
+    NSError *theError = nil;
+    NSURLResponse *theResponse =[[NSURLResponse alloc]init];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&theError];
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"Json back %@", string);
+    
+    NSMutableArray *stylistArray2  = [string JSONValue];
+	stylistArray = [[NSMutableArray alloc] initWithObjects:nil];
+        for (NSDictionary *dict in stylistArray2) {
+            [stylistArray addObject:dict];
+        }
+
     //localCaptions = [[NSArray alloc] initWithObjects:@"Lava", @"Hawaii", @"Audi", @"Happy New Year!",@"Frosty Web",nil];
     //localImages = [[NSArray alloc] initWithObjects: @"lava.jpeg", @"hawaii.jpeg", @"audi.jpg",nil];
     //localTags = [[NSArray alloc] initWithObjects:@"TestTag1", @"TestTag2", @"TestTag3", @"Happy New Year!",@"Frosty Web",nil];
@@ -95,7 +100,7 @@
     NSDictionary *stylist5 = [[NSDictionary alloc] initWithObjectsAndKeys: @"4", @"stylistId", @"Mushraful", @"stylistName", nil];
     NSDictionary *stylist6 = [[NSDictionary alloc] initWithObjectsAndKeys: @"5", @"stylistId", @"Tanveer", @"stylistName", nil];
     NSDictionary *stylist7 = [[NSDictionary alloc] initWithObjectsAndKeys: @"6", @"stylistId", @"Rubel", @"stylistName", nil];
-    stylistArray = [[NSMutableArray alloc] initWithObjects:stylist1,stylist2,stylist3,stylist4,stylist5,stylist6,stylist7,nil];
+    NSMutableArray *stylistArray3 = [[NSMutableArray alloc] initWithObjects:stylist1,stylist2,stylist3,stylist4,stylist5,stylist6,stylist7,nil];
     NSMutableDictionary *stdic = [[NSMutableDictionary  alloc] initWithObjectsAndKeys: stylistArray, @"stylists", nil];
     stylists = [[NSMutableArray alloc] initWithObjects:stdic,nil];
 //    imageArray = [[NSMutableArray alloc] initWithObjects:localCollection,localCollection1,localCollection2,nil];
@@ -622,7 +627,7 @@
     [alert release];
 }
 
--(void)commentButtonClicked:(NSString*)imageId:(NSString*)comment{
+-(void)photoGallery:(FGalleryViewController *)gallery commentButtonClicked:(NSString*)imageId:(NSString*)comment{
     
     
     UIAlertView *alert = [[UIAlertView alloc]
