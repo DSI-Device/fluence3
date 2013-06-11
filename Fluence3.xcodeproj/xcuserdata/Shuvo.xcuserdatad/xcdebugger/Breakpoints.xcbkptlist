@@ -13,9 +13,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1264"
-         endingLineNumber = "1264"
-         landmarkName = "-createGalleryPhotoForIndex:"
-         landmarkType = "5">
+         endingLineNumber = "1264">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -27,9 +25,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1280"
-         endingLineNumber = "1280"
-         landmarkName = "-scrollingHasEnded"
-         landmarkType = "5">
+         endingLineNumber = "1280">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
