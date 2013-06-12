@@ -48,6 +48,7 @@ extern NSString *const SessionStateChangedNotification;
 @property (nonatomic, strong) NSString *userGalleryId;
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *currentStylistImage;
+@property (nonatomic, strong) NSString *currentStylistImageId;
 @property (nonatomic, strong) UIImage *userProfileImage;
 @property (nonatomic, strong) NSString *accessToken;
 @property (nonatomic, strong) NSString *notification;

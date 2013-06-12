@@ -6,11 +6,11 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "stylistImageViewController.h"
+#import "CurrentMessageViewController.h"
 #import "Fluence3AppDelegate.h"
 
 
-@implementation stylistImageViewController
+@implementation CurrentMessageViewController
 
 @synthesize action_status,followed_s,dataSource, searchBar, listTableView, spinner, countText, filterView, isSearchFromOnline, selectedDataSource, spinnerBg, defaultElemId, maxSelectionLimit, totalCount, currentLimit,commentTextField,fgc,queryImageView,appdt;
 
@@ -19,18 +19,7 @@
     appdt = [[UIApplication sharedApplication] delegate];
     
      NSLog(@"Hehe %@",appdt.currentStylistImage);
-//    NSString *imgUrl = appdt.currentStylistImage;
-//    
-//    NSURL *url = [NSURL URLWithString:imgUrl];
-//    
-//    NSData *data = [[NSData alloc] initWithContentsOfURL:url];
-//    
-//    UIImage *tmpImage = [[UIImage alloc] initWithData:data];
-//    
-//    //yourImageView.image = tmpImage;
-//    
-//    
-//    [queryImageView setImage: tmpImage];
+
     
     NSString *serverUrl1 = appdt.currentStylistImage;
     
@@ -56,7 +45,7 @@
     
 	[self.listTableView setHidden:YES];
 	//NSString *serverUrl = [[NSString stringWithString: [utils performSelector:@selector(getServerURL)]] stringByAppendingFormat:@"doctor/jsonLite&prac_ids=1&limit=%d",self.currentLimit];
-    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/getComment/" ];
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/FetchConv/" ];
     [self performSelector:@selector(triggerAsyncronousRequest1:) withObject: serverUrl];
 	//[utils roundUpView:[[self.spinnerBg subviews] objectAtIndex:0]];
 	
@@ -81,7 +70,7 @@
 	self.spinnerBg.hidden = NO;
 	
     
-    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId",appdt.currentStylistImageId , @"ImageID", nil];
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId",appdt.currentStylistImageId , @"SenderId", nil];
     
     NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
     [dictionnary setObject:jsoning forKey:@"postData"];
@@ -103,6 +92,7 @@
     
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
+
 
 - (IBAction) searchContentChanged: (id) sender{
 	
@@ -242,23 +232,38 @@
 		
 	}else {
 		
-		static NSString *cellTableIdentifier = @"stylistGalleryCommentCellIdentifier";
+		static NSString *cellTableIdentifier = @"CustomMessageCellIdentifier";
 		//CustomGalleryCommentCell
-		stylistGalleryCommentCell *cell = (stylistGalleryCommentCell *)[tableView dequeueReusableCellWithIdentifier:cellTableIdentifier];
+		CustomMessageCell *cell = (CustomMessageCell *)[tableView dequeueReusableCellWithIdentifier:cellTableIdentifier];
 		if (cell == nil) {
-			NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"stylistGalleryCommentCell" owner:self options:nil];
+			NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomMessageCell" owner:self options:nil];
 			cell = [nib objectAtIndex:0];
 			cell.selectedBackgroundView = [[[UIView alloc] init] autorelease];
 			[cell.selectedBackgroundView setBackgroundColor:[UIColor orangeColor]];
 		}
-		cell.commentName.text = [rowData objectForKey:@"commentName"];
-        cell.commentID = [rowData objectForKey:@"commentID"];
-		cell.commentDate.text = [rowData objectForKey:@"commentDate"];
-        cell.commentBody.text = [rowData objectForKey:@"commentBody"];
-        followed_s = [rowData objectForKey:@"followed"];
+		cell.senderName.text = [rowData objectForKey:@"senderName"];
+        cell.senderID = [rowData objectForKey:@"messageID"];
+		cell.messageDate.text = [rowData objectForKey:@"messageDate"];
+        cell.messageBody.text = [rowData objectForKey:@"messageBody"];
+        int not = [[rowData objectForKey:@"IsRead"] intValue];
+        if(not==0)
+        {
+            cell.notiImage.hidden = FALSE;
+        }
+        
+        //        if([[rowData objectForKey:@"read"] intValue] == 0)
+        //        {
+        //            NSLog([rowData objectForKey:@"read"]);
+        //            cell.contentView.backgroundColor  = [UIColor colorWithRed:0.8 green:0.9 blue:1 alpha:1];
+        //        }
+        //        else
+        //        {
+        //            cell.contentView.backgroundColor  = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1];
+        //
+        //        }
         
         //NSString *serverUrl=[utils performSelector:@selector(getServerURL)];
-		NSString *serverUrl = [rowData objectForKey:@"commentImage"];
+		NSString *serverUrl = [rowData objectForKey:@"messageImage"];
 		
 		NSURL *url = [NSURL URLWithString:serverUrl];
 		
@@ -269,7 +274,7 @@
 		//yourImageView.image = tmpImage;
 		
 		
-		[cell.commentImage setImage:tmpImage];
+		[cell.messageImage setImage:tmpImage];
 		
 		
 		return cell;
@@ -287,50 +292,7 @@
 // event handler after selecting a table row
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"Row selected...");
-    
-    /* NSUInteger row = [indexPath row];
-	 NSDictionary *rowData = [self.dataSource objectAtIndex:row];
-	 if ([rowData objectForKey:@"count"] != NULL && ![[rowData objectForKey:@"count"] isEqual:@""] ) {
-	 viewMoreCell *cell = (viewMoreCell *)[tableView cellForRowAtIndexPath:indexPath];
-	 [cell setUserInteractionEnabled:NO];
-	 self.currentLimit += 50;
-	 if (self.isSearchFromOnline) {
-	 NSString *serverUrl = [utils performSelector:@selector(getServerURL)];
-	 serverUrl = [serverUrl stringByAppendingFormat:@"&limit=%d",self.currentLimit];
-	 [self performSelector:@selector(triggerAsyncronousRequest:) withObject: serverUrl];
-	 }else {
-	 
-	 [NSThread detachNewThreadSelector:@selector(loadLocalRows) toTarget:self withObject:nil];
-	 }
-	 
-	 
-	 
-	 }else if ([rowData objectForKey:@"userName"] != NULL && ![[rowData objectForKey:@"userName"] isEqual:@""] ) {
-	 
-	 NSLog(@"option selected on select list");
-	 if( self.defaultElemId != nil && [self.defaultElemId isEqual:[rowData objectForKey:@"userID"]]){
-	 [utils showAlert:@"Warning !!" message:@"Default option can't be removed." delegate:nil];
-	 return;
-	 }
-	 CustomGalleryCommentCell *cell = (CustomGalleryCommentCell *)[tableView cellForRowAtIndexPath:indexPath];
-	 [cell.followed addTarget:self action:@selector(tappedFollowBtn2:) forControlEvents:UIControlEventTouchUpInside];
-	 if (!cell.isFollowed) {
-	 if (self.maxSelectionLimit > 0 && [selectedDataSource count] >= self.maxSelectionLimit) {
-	 [utils showAlert:@"Warning !!" message:@"Maximum selection limit exceeded." delegate:nil];
-	 return;
-	 }
-	 [selectedDataSource addObject:rowData];
-	 //cell.isFollowed = YES;
-	 //[cell.followed setTitle:@"Unfollow" forState:UIControlStateNormal];
-	 //[cell.userImage setImage:[UIImage imageNamed:@"checkbox_ticked.png"]];
-	 
-	 }else {
-	 [utils deleteRowFromList:selectedDataSource row:rowData];
-	 //cell.isFollowed = NO;
-	 //[cell.followed setTitle:@"Follow" forState:UIControlStateNormal];
-	 //[cell.userImage setImage:[UIImage imageNamed:@"checkbox_not_ticked.png"]];
-	 }
-	 }*/
+   
 	[self hideKeyboard:nil];
 }
 
@@ -361,8 +323,18 @@
     NSString *string = commentTextField.text;
     commentTextField.text = @"";
     NSLog(string);
-        
-    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId",appdt.currentStylistImageId , @"ImageID",string,@"Comment", nil];
+    if(string==NULL)
+    {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Error"
+                              message: @"No Message Given"
+                              delegate: nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId",appdt.currentStylistImageId , @"ReceiverId",string,@"Message", nil];
     
     NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
     [dictionnary setObject:jsoning forKey:@"postData"];

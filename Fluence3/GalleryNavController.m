@@ -617,27 +617,69 @@
 -(void)photoGallery:(FGalleryViewController *)gallery stylistButtonClicked:(NSInteger*)stylistId:(NSString*)userId:(NSString*)imageId:(NSString*)query{
     
     NSString * text = [[stylistArray objectAtIndex:stylistId] objectForKey:@"stylistName"];
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle: [[[@"Current Image ID : " stringByAppendingString:imageId] stringByAppendingString:@" User ID : "] stringByAppendingString: userId]
-                          message: [[text stringByAppendingString:@" was asked - "] stringByAppendingString: query]
-                          delegate: nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil];
-    [alert show];
-    [alert release];
+//    UIAlertView *alert = [[UIAlertView alloc]
+//                          initWithTitle: [[[@"Current Image ID : " stringByAppendingString:imageId] stringByAppendingString:@" User ID : "] stringByAppendingString: userId]
+//                          message: [[text stringByAppendingString:@" was asked - "] stringByAppendingString: query]
+//                          delegate: nil
+//                          cancelButtonTitle:@"OK"
+//                          otherButtonTitles:nil];
+//    [alert show];
+//    [alert release];
+    NSDictionary *jsoning = [[NSDictionary alloc] initWithObjectsAndKeys: appdt.userGalleryId , @"UserId",imageId , @"ImageID",stylistId,@"StylishID",query,@"Comment", nil];
+    
+    NSMutableDictionary *dictionnary = [NSMutableDictionary dictionary];
+    [dictionnary setObject:jsoning forKey:@"postData"];
+    
+    NSString *jsonStr = [dictionnary JSONRepresentation];
+    
+    NSLog(@"jsonRequest is %@", jsonStr);
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/SubmitQueryForStylish/" ];
+    NSURL *nsurl = [ NSURL URLWithString: serverUrl];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl
+                                    
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                    
+                                                       timeoutInterval:60.0];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //[[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    NSError *theError = nil;
+    NSURLResponse *theResponse =[[NSURLResponse alloc]init];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&theError];
+    NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"Json back %@", responseString);
+    
+    
 }
 
 -(void)photoGallery:(FGalleryViewController *)gallery commentButtonClicked:(NSString*)imageId:(NSString*)comment{
     
+    NSLog(@"jsonRequest is %@", jsonStr);
+    NSString *serverUrl=[ [utils performSelector:@selector(getServerURL)] stringByAppendingFormat:@"index.php/welcome/SubmitComment/" ];
+    NSURL *nsurl = [ NSURL URLWithString: serverUrl];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl
+                                    
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                    
+                                                       timeoutInterval:60.0];
     
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle: [@"Image ID : " stringByAppendingString:imageId]
-                          message: comment
-                          delegate: nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil];
-    [alert show];
-    [alert release];
+    [request setHTTPMethod:@"POST"];
+    
+    [request setHTTPBody:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //[[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    NSError *theError = nil;
+    NSURLResponse *theResponse =[[NSURLResponse alloc]init];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&theError];
+    NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"Json back %@", responseString);
 }
 
 

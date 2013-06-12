@@ -21,7 +21,7 @@
 @synthesize locationManager = _locationManager;
 @synthesize placePickerController = _placePickerController;
 @synthesize selectedPlace = _selectedPlace; 
-@synthesize gc;
+@synthesize gc,mv;
 
 - (void)didReceiveMemoryWarning
 {
@@ -108,24 +108,24 @@
             [self.navigationController pushViewController:self.friendPickerController animated:true];
             break;
         
-//        case 3:
-//            gc = [[GalleryController alloc] initWithNibName:@"GalleryController" bundle:nil];
-//                
-//            gc.title = @"Gallery";
-//                
-//            // Set the friend picker delegate
-//            //gc.delegate = self;
-//                
-//            [self.navigationController pushViewController:gc animated:YES];
-//            [gc release];
-//            break;
+        case 2:
+            mv = [[MessageViewController alloc] initWithNibName:@"MessageViewController" bundle:nil];
+            
+            mv.title = @"Message";
+            
+            // Set the friend picker delegate
+            //gc.delegate = self;
+            
+            [self.navigationController pushViewController:mv animated:YES];
+            [mv release];
+            break;
             
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
@@ -170,6 +170,12 @@
         case 1:
             cell.textLabel.text = @"Friends?";
             cell.detailTextLabel.text = @"Select friends";
+            cell.imageView.image = [UIImage imageNamed:@"action-people.png"];
+            break;
+            
+        case 2:
+            cell.textLabel.text = @"Message";
+            cell.detailTextLabel.text = @"Show all Message";
             cell.imageView.image = [UIImage imageNamed:@"action-people.png"];
             break;
             
@@ -261,7 +267,12 @@
 //                                              action:@selector(logoutButtonWasPressed:)]autorelease];
     [super viewDidLoad];
 
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back"
+                                                                   style:UIBarButtonItemStyleBordered
+                                                                  target:self
+                                                                  action:@selector(handleBack1:)];
     
+    self.navigationItem.leftBarButtonItem = backButton;
     [[NSNotificationCenter defaultCenter] 
      addObserver:self 
      selector:@selector(sessionStateChanged:) 
@@ -325,5 +336,10 @@
 //-(void)logoutButtonWasPressed:(id)sender {
 //    [FBSession.activeSession closeAndClearTokenInformation];
 //}
+- (void)handleBack1:(id)sender {
+    ISViewController *nCameraImage = [[[ISViewController alloc] initWithNibName:@"ISViewController" bundle:nil]autorelease];
+    nCameraImage.title = @"Fluence";
+    [self.navigationController pushViewController:nCameraImage animated:true];
+}
 
 @end

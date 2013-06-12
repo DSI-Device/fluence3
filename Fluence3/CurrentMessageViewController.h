@@ -15,7 +15,8 @@
 #import "viewMoreCell.h"
 #import "FGalleryViewController.h"
 #import "Fluence3AppDelegate.h"
-@interface stylistImageViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate> {
+#import "CustomMessageCell.h"
+@interface CurrentMessageViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, MYSBJsonStreamParserAdapterDelegate> {
 	MYSBJsonStreamParser *parser;
 	MYSBJsonStreamParserAdapter *adapter;
 	NSMutableArray *dataSource;

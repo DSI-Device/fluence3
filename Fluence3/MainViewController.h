@@ -8,13 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
-
+#import "ISViewController.h"
+#import "MessageViewController.h"
+@class MessageViewController;
 @class Fluence3AppDelegate;
 @class GalleryController;
 
 @interface MainViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, FBFriendPickerDelegate, CLLocationManagerDelegate, FBPlacePickerDelegate>{
     Fluence3AppDelegate *appdt;
     GalleryController *gc;
+    MessageViewController *mv;
 }
 
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *userProfileImage;
@@ -26,7 +29,7 @@
 @property (strong, nonatomic) FBPlacePickerViewController *placePickerController;
 @property (strong, nonatomic) NSObject<FBGraphPlace>* selectedPlace;
 @property (strong, nonatomic) GalleryController *gc;
-
+@property (strong, nonatomic) MessageViewController *mv;
 - (void)populateUserDetails; 
 
 @end
