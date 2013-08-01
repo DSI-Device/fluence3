@@ -16,7 +16,7 @@
     NSMutableArray* annotationsArray;
     Fluence3AppDelegate *appdt;
     
-	TSPopoverController *popoverController;
+    TSPopoverController *popoverController;
     UITextField *_commentTextField;
     UILabel *_shareloading;
     
